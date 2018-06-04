@@ -26,16 +26,11 @@
 package java.lang;
 
 /**
- * The Boolean class wraps a value of the primitive type
- * {@code boolean} in an object. An object of type
- * {@code Boolean} contains a single field whose type is
- * {@code boolean}.
+ * Boolean 类将基本类型为 {@code boolean} 的值包装在一个对象中。
+ * 一个 {@code Boolean} 类型的对象只包含一个类型为 {@code Boolean} 的字段。
  * <p>
- * In addition, this class provides many methods for
- * converting a {@code boolean} to a {@code String} and a
- * {@code String} to a {@code boolean}, as well as other
- * constants and methods useful when dealing with a
- * {@code boolean}.
+ * 此外，此类还为 {@code boolean} 和 @code String} 的相互转换提供了许多方法，
+ * 并提供了处理 {@code boolean} 时非常有用的其他一些常量和方法。
  *
  * @author  Arthur van Hoff
  * @since   JDK1.0
@@ -45,7 +40,7 @@ public final class Boolean implements java.io.Serializable,
 {
     /**
      * The {@code Boolean} object corresponding to the primitive
-     * value {@code true}.
+     * 值 {@code true}.
      */
     public static final Boolean TRUE = new Boolean(true);
 
