@@ -27,14 +27,10 @@ package java.lang;
 
 /**
  *
- * The {@code Byte} class wraps a value of primitive type {@code byte}
- * in an object.  An object of type {@code Byte} contains a single
- * field whose type is {@code byte}.
+ * {@code Byte} 类将基本类型 {@code byte} 的值包装在一个对象中。
+ * 一个 {@code Byte} 的对象只包含一个类型为 {@code byte} 的字段。
  *
- * <p>In addition, this class provides several methods for converting
- * a {@code byte} to a {@code String} and a {@code String} to a {@code
- * byte}, as well as other constants and methods useful when dealing
- * with a {@code byte}.
+ * <p>另外，此类还为 {@code byte} 和 {@code String} 的相互转换提供了几种方法。
  *
  * @author  Nakul Saraiya
  * @author  Joseph D. Darcy
@@ -44,30 +40,27 @@ package java.lang;
 public final class Byte extends Number implements Comparable<Byte> {
 
     /**
-     * A constant holding the minimum value a {@code byte} can
-     * have, -2<sup>7</sup>.
+     * 一个常量，保存 {@code byte} 类型可取的最小值，即-2<sup>7</sup>.
      */
     public static final byte   MIN_VALUE = -128;
 
     /**
-     * A constant holding the maximum value a {@code byte} can
-     * have, 2<sup>7</sup>-1.
+     * 一个常量，保存 {@code byte} 类型可取的最大值，即 2<sup>7</sup>-1.
      */
     public static final byte   MAX_VALUE = 127;
 
     /**
-     * The {@code Class} instance representing the primitive type
-     * {@code byte}.
+     * 表示基本类型 {@code byte} 的 {@code Class} 实例。
      */
     @SuppressWarnings("unchecked")
     public static final Class<Byte>     TYPE = (Class<Byte>) Class.getPrimitiveClass("byte");
 
     /**
-     * Returns a new {@code String} object representing the
-     * specified {@code byte}. The radix is assumed to be 10.
+     * 返回表达指定 {@code byte} 的一个新 {@code String} 对象。
+     * 基数假定为10.
      *
-     * @param b the {@code byte} to be converted
-     * @return the string representation of the specified {@code byte}
+     * @param b 需要转换的 {@code byte}
+     * @return 表达指定 {@code byte} 的 String
      * @see java.lang.Integer#toString(int)
      */
     public static String toString(byte b) {
@@ -86,16 +79,13 @@ public final class Byte extends Number implements Comparable<Byte> {
     }
 
     /**
-     * Returns a {@code Byte} instance representing the specified
-     * {@code byte} value.
-     * If a new {@code Byte} instance is not required, this method
-     * should generally be used in preference to the constructor
-     * {@link #Byte(byte)}, as this method is likely to yield
-     * significantly better space and time performance since
-     * all byte values are cached.
+     * 返回表达指定 {@code byte} 值的一个{@code Byte} 实例。
+     * 如果不需要新的 {@code Byte} 实例， 则通常应优先使用此方法，
+     * 而不是构造方法 {@link #Byte(byte)}，
+     * 因为该方法有可能通过缓存经常请求的值来显著提高空间和时间性能。
      *
-     * @param  b a byte value.
-     * @return a {@code Byte} instance representing {@code b}.
+     * @param  b 一个 byte 值。
+     * @return 表示 {@code b} 的{@code Byte} 实例。
      * @since  1.5
      */
     public static Byte valueOf(byte b) {
