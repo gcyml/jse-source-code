@@ -39,19 +39,17 @@ public final class Boolean implements java.io.Serializable,
                                       Comparable<Boolean>
 {
     /**
-     * The {@code Boolean} object corresponding to the primitive
-     * 值 {@code true}.
+     * 对应基值 {@code true}的 {@code Boolean} 对象
      */
     public static final Boolean TRUE = new Boolean(true);
 
     /**
-     * The {@code Boolean} object corresponding to the primitive
-     * value {@code false}.
+     * 对应基值 {@code false} 的 {@code Boolean} 对象。
      */
     public static final Boolean FALSE = new Boolean(false);
 
     /**
-     * The Class object representing the primitive type boolean.
+     * 表示基本类型 boolean 的 Class 对象。
      *
      * @since   JDK1.1
      */
@@ -59,7 +57,7 @@ public final class Boolean implements java.io.Serializable,
     public static final Class<Boolean> TYPE = (Class<Boolean>) Class.getPrimitiveClass("boolean");
 
     /**
-     * The value of the Boolean.
+     * Boolean 的值.
      *
      * @serial
      */
@@ -69,48 +67,41 @@ public final class Boolean implements java.io.Serializable,
     private static final long serialVersionUID = -3665804199014368530L;
 
     /**
-     * Allocates a {@code Boolean} object representing the
-     * {@code value} argument.
+     * 分配一个表示 {@code value} 参数的{@code Boolean} 对象。
      *
-     * <p><b>Note: It is rarely appropriate to use this constructor.
-     * Unless a <i>new</i> instance is required, the static factory
-     * {@link #valueOf(boolean)} is generally a better choice. It is
-     * likely to yield significantly better space and time performance.</b>
+     * <p><b>注意：一般情况下都不宜使用该构造方法。若不需要 <i>新</i> 的实例，
+     * 则静态工厂 {@link #valueOf(boolean)} 通常是更好的选择。
+     * 这有可能显著提高空间和时间性能。</b>
      *
-     * @param   value   the value of the {@code Boolean}.
+     * @param   value   {@code Boolean}的值。
      */
     public Boolean(boolean value) {
         this.value = value;
     }
 
     /**
-     * Allocates a {@code Boolean} object representing the value
-     * {@code true} if the string argument is not {@code null}
-     * and is equal, ignoring case, to the string {@code "true"}.
-     * Otherwise, allocate a {@code Boolean} object representing the
-     * value {@code false}. Examples:<p>
-     * {@code new Boolean("True")} produces a {@code Boolean} object
-     * that represents {@code true}.<br>
-     * {@code new Boolean("yes")} produces a {@code Boolean} object
-     * that represents {@code false}.
+     * 如果 String 参数不为 {@code null} 且在忽略大小写时等于 {@code "true"}，
+     * 则分配一个表示 {@code true} 值 的 {@code Boolean} 对象。
+     * 否则分配一个表示 {@code false} 值的 {@code Boolean} 对象。示例：
+     * <p>
+     * {@code new Boolean("True")} 生成一个表示 {@code true} 的 {@code Boolean} 对象。<br>
+     * {@code new Boolean("yes")} 生成一个表示 {@code false} 的 {@code Boolean} 对象。
      *
-     * @param   s   the string to be converted to a {@code Boolean}.
+     * @param   s   要转换为 {@code Boolean} 的字符串。
      */
     public Boolean(String s) {
         this(parseBoolean(s));
     }
 
     /**
-     * Parses the string argument as a boolean.  The {@code boolean}
-     * returned represents the value {@code true} if the string argument
-     * is not {@code null} and is equal, ignoring case, to the string
-     * {@code "true"}. <p>
-     * Example: {@code Boolean.parseBoolean("True")} returns {@code true}.<br>
-     * Example: {@code Boolean.parseBoolean("yes")} returns {@code false}.
+     * 将字符串参数解析为 boolean 值。
+     * 如果 String 参数不为 {@code null} 且在忽略大小写时等于 {@code "true"}，
+     * 则返回的 {@code boolean} 表示 {@code true} 值。 <p>
+     * 示例： {@code Boolean.parseBoolean("True")} 返回 {@code true}.<br>
+     * 示例： {@code Boolean.parseBoolean("yes")} 返回 {@code false}.
      *
-     * @param      s   the {@code String} containing the boolean
-     *                 representation to be parsed
-     * @return     the boolean represented by the string argument
+     * @param      s   包含要解析的布尔表达式的 {@code String}
+     * @return     String 参数所表示的布尔值
      * @since 1.5
      */
     public static boolean parseBoolean(String s) {
@@ -118,27 +109,23 @@ public final class Boolean implements java.io.Serializable,
     }
 
     /**
-     * Returns the value of this {@code Boolean} object as a boolean
-     * primitive.
+     * 将此 {@code Boolean} 对象的值作为基本布尔值返回。
      *
-     * @return  the primitive {@code boolean} value of this object.
+     * @return  此对象的基本 {@code boolean} 值。
      */
     public boolean booleanValue() {
         return value;
     }
 
     /**
-     * Returns a {@code Boolean} instance representing the specified
-     * {@code boolean} value.  If the specified {@code boolean} value
-     * is {@code true}, this method returns {@code Boolean.TRUE};
-     * if it is {@code false}, this method returns {@code Boolean.FALSE}.
-     * If a new {@code Boolean} instance is not required, this method
-     * should generally be used in preference to the constructor
-     * {@link #Boolean(boolean)}, as this method is likely to yield
-     * significantly better space and time performance.
+     * 返回一个表示指定 {@code boolean} {@code Boolean} 实例。
+     * 如果指定的 {@code boolean} 值为 {@code true}， 则该方法返回 {@code Boolean.TRUE}；
+     * 如果为 {@code false}， 则返回 {@code Boolean.FALSE}。
+     * 如果不需要新的 {@code Boolean} 实例，则应优先使用此方法，
+     * 而不是构造方法 {@link #Boolean(boolean)}， 因为此方法有可能大大提高空间和时间性能。
      *
-     * @param  b a boolean value.
-     * @return a {@code Boolean} instance representing {@code b}.
+     * @param  b 布尔值。
+     * @return a 一个表示 {@code b} 的 {@code Boolean} 实例
      * @since  1.4
      */
     public static Boolean valueOf(boolean b) {
@@ -146,26 +133,23 @@ public final class Boolean implements java.io.Serializable,
     }
 
     /**
-     * Returns a {@code Boolean} with a value represented by the
-     * specified string.  The {@code Boolean} returned represents a
-     * true value if the string argument is not {@code null}
-     * and is equal, ignoring case, to the string {@code "true"}.
+     * 返回一个用指定的字符串表示值的 {@code Boolean} 值。
+     * 如果字符串参数不为 {@code null} 且在忽略大小写时等于 {@code "true"}，
+     * 则返回的 {@code Boolean} 表示 true 值。
      *
-     * @param   s   a string.
-     * @return  the {@code Boolean} value represented by the string.
+     * @param   s   字符串。
+     * @return  该字符串所表示的 {@code Boolean} 值。
      */
     public static Boolean valueOf(String s) {
         return parseBoolean(s) ? TRUE : FALSE;
     }
 
     /**
-     * Returns a {@code String} object representing the specified
-     * boolean.  If the specified boolean is {@code true}, then
-     * the string {@code "true"} will be returned, otherwise the
-     * string {@code "false"} will be returned.
+     * 返回一个表示指定布尔值的 {@code String} 对象。
+     * 如果指定布尔值为 {@code true}，则将返回字符串 {@code "true"}，否则将返回字符串 {@code "false"} 。
      *
-     * @param b the boolean to be converted
-     * @return the string representation of the specified {@code boolean}
+     * @param b  要转换的布尔值
+     * @return 指定 {@code boolean} 值的字符串表达式
      * @since 1.4
      */
     public static String toString(boolean b) {
@@ -173,35 +157,34 @@ public final class Boolean implements java.io.Serializable,
     }
 
     /**
-     * Returns a {@code String} object representing this Boolean's
-     * value.  If this object represents the value {@code true},
-     * a string equal to {@code "true"} is returned. Otherwise, a
-     * string equal to {@code "false"} is returned.
+     * 返回表示该布尔值的 {@code String} 对象。
+     * 如果该对象表示 @code true} 值，则返回等于 {@code "true"} 的字符串。
+     * 否则返回等于 {@code "false"} 的字符串。
      *
-     * @return  a string representation of this object.
+     * @return  此对象的字符串表示形式。
      */
     public String toString() {
         return value ? "true" : "false";
     }
 
     /**
-     * Returns a hash code for this {@code Boolean} object.
+     * 返回该 {@code Boolean} 对象的哈希码。
      *
-     * @return  the integer {@code 1231} if this object represents
-     * {@code true}; returns the integer {@code 1237} if this
-     * object represents {@code false}.
+     * @return  如果此对象表示 {@code true} 则返回整数 1231；
+     * 如果表示 {@code false} 则返回整数 1237。
      */
+    // TODO: 为什么是1231 和 1237
     @Override
     public int hashCode() {
         return Boolean.hashCode(value);
     }
 
     /**
-     * Returns a hash code for a {@code boolean} value; compatible with
-     * {@code Boolean.hashCode()}.
+     * 返回 {@code boolean} 值的哈希码；
+     * 和 {@code Boolean.hashCode()} 兼容。
      *
-     * @param value the value to hash
-     * @return a hash code value for a {@code boolean} value.
+     * @param value 需要哈希的值
+     * @return {@code boolean} 值的哈希码.
      * @since 1.8
      */
     public static int hashCode(boolean value) {
@@ -209,13 +192,11 @@ public final class Boolean implements java.io.Serializable,
     }
 
    /**
-     * Returns {@code true} if and only if the argument is not
-     * {@code null} and is a {@code Boolean} object that
-     * represents the same {@code boolean} value as this object.
+     * 当且仅当参数不为 {@code null}，而是一个与此对象一样，
+    * 都表示同一个 {@code Boolean} 值的 {@code boolean} 对象时，才返回 {@code true}。
      *
-     * @param   obj   the object to compare with.
-     * @return  {@code true} if the Boolean objects represent the
-     *          same value; {@code false} otherwise.
+     * @param   obj   比较的对象。
+     * @return  如果这些布尔对象表示相同的值，则返回 {@code true}；否则返回 {@code false}。
      */
     public boolean equals(Object obj) {
         if (obj instanceof Boolean) {
@@ -225,19 +206,14 @@ public final class Boolean implements java.io.Serializable,
     }
 
     /**
-     * Returns {@code true} if and only if the system property
-     * named by the argument exists and is equal to the string
-     * {@code "true"}. (Beginning with version 1.0.2 of the
-     * Java<small><sup>TM</sup></small> platform, the test of
-     * this string is case insensitive.) A system property is accessible
-     * through {@code getProperty}, a method defined by the
-     * {@code System} class.
+     * 当且仅当以参数命名的系统属性存在，且等于{@code "true"} 字符串才返回{@code "true"}。
+     * （从 Java <small><sup>TM</sup></small> 平台的 1.0.2 版本开始，字符串的测试不再区分大小写。）
+     * 通过 {@code getProperty} 方法可访问系统属性，此方法由 {@code System} 类定义。
      * <p>
-     * If there is no property with the specified name, or if the specified
-     * name is empty or null, then {@code false} is returned.
+     * 如果没有以指定名称命名的属性或者指定名称为空或 null，则返回 {@code false}。
      *
-     * @param   name   the system property name.
-     * @return  the {@code boolean} value of the system property.
+     * @param   name   系统属性名。
+     * @return  系统属性的 {@code boolean} 值。
      * @throws  SecurityException for the same reasons as
      *          {@link System#getProperty(String) System.getProperty}
      * @see     java.lang.System#getProperty(java.lang.String)
@@ -253,14 +229,13 @@ public final class Boolean implements java.io.Serializable,
     }
 
     /**
-     * Compares this {@code Boolean} instance with another.
+     * 将此 {@code Boolean} 实例与其他实例进行比较。
      *
-     * @param   b the {@code Boolean} instance to be compared
-     * @return  zero if this object represents the same boolean value as the
-     *          argument; a positive value if this object represents true
-     *          and the argument represents false; and a negative value if
-     *          this object represents false and the argument represents true
-     * @throws  NullPointerException if the argument is {@code null}
+     * @param   b 要进行比较的 {@code Boolean} 实例
+     * @return  如果对象与参数表示的布尔值相同，则返回零；
+     *           如果此对象表示 true，参数表示 false，则返回一个正值；
+     *           如果此对象表示 false，参数表示 true，则返回一个负值
+     * @throws  NullPointerException 如果参数为 {@code null}
      * @see     Comparable
      * @since  1.5
      */
@@ -269,17 +244,17 @@ public final class Boolean implements java.io.Serializable,
     }
 
     /**
-     * Compares two {@code boolean} values.
+     * 比较两个 {@code boolean} 值。
      * The value returned is identical to what would be returned by:
      * <pre>
      *    Boolean.valueOf(x).compareTo(Boolean.valueOf(y))
      * </pre>
      *
-     * @param  x the first {@code boolean} to compare
-     * @param  y the second {@code boolean} to compare
-     * @return the value {@code 0} if {@code x == y};
-     *         a value less than {@code 0} if {@code !x && y}; and
-     *         a value greater than {@code 0} if {@code x && !y}
+     * @param  x 第一个需要比较的 {@code boolean}
+     * @param  y 第二个需要比较的 {@code boolean}
+     * @return 如果 {@code x == y} 则返回{@code 0} ；
+     *          如果 {@code !x && y} 则返回小于{@code 0} 的值；
+     *          如果 {@code x && !y} 则返回大于{@code 0} 的值；
      * @since 1.7
      */
     public static int compare(boolean x, boolean y) {
@@ -287,12 +262,11 @@ public final class Boolean implements java.io.Serializable,
     }
 
     /**
-     * Returns the result of applying the logical AND operator to the
-     * specified {@code boolean} operands.
+     * 返回逻辑和操作后的{@code boolean} 结果。
      *
-     * @param a the first operand
-     * @param b the second operand
-     * @return the logical AND of {@code a} and {@code b}
+     * @param a 第一个运算数
+     * @param b 第二个运算数
+     * @return {@code a} 和 {@code b} 的逻辑和
      * @see java.util.function.BinaryOperator
      * @since 1.8
      */
@@ -301,12 +275,11 @@ public final class Boolean implements java.io.Serializable,
     }
 
     /**
-     * Returns the result of applying the logical OR operator to the
-     * specified {@code boolean} operands.
+     * 返回逻辑或操作后的{@code boolean} 结果。
      *
-     * @param a the first operand
-     * @param b the second operand
-     * @return the logical OR of {@code a} and {@code b}
+     * @param a 第一个运算数
+     * @param b 第二个运算数
+     * @return {@code a} 和 {@code b} 的逻辑或
      * @see java.util.function.BinaryOperator
      * @since 1.8
      */
@@ -315,12 +288,11 @@ public final class Boolean implements java.io.Serializable,
     }
 
     /**
-     * Returns the result of applying the logical XOR operator to the
-     * specified {@code boolean} operands.
+     * 返回逻辑异或操作后的{@code boolean} 结果。
      *
-     * @param a the first operand
-     * @param b the second operand
-     * @return  the logical XOR of {@code a} and {@code b}
+     * @param a 第一个运算数
+     * @param b 第二个运算数
+     * @return {@code a} 和 {@code b} 的逻辑异或
      * @see java.util.function.BinaryOperator
      * @since 1.8
      */
