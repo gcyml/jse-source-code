@@ -94,45 +94,35 @@ public final class Byte extends Number implements Comparable<Byte> {
     }
 
     /**
-     * Parses the string argument as a signed {@code byte} in the
-     * radix specified by the second argument. The characters in the
-     * string must all be digits, of the specified radix (as
-     * determined by whether {@link java.lang.Character#digit(char,
-     * int)} returns a nonnegative value) except that the first
-     * character may be an ASCII minus sign {@code '-'}
-     * ({@code '\u005Cu002D'}) to indicate a negative value or an
-     * ASCII plus sign {@code '+'} ({@code '\u005Cu002B'}) to
-     * indicate a positive value.  The resulting {@code byte} value is
-     * returned.
+     * 将 string 参数解析为一个有符号的 {@code byte}，
+     * 其基数由第二个参数指定。
+     * 除了第一个字符可以是表示负值的 ASCII 负号 {@code '-'}
+     * ({@code '\u005Cu002D'}) 或 表示正值的ASCII 正号
+     * {@code '+'} ({@code '\u005Cu002B'})之外，
+     * 该 string 中的字符必须都是指定基数的数字
+     * （这取决于 {@link java.lang.Character#digit(char, int)} 是否返回非负值）。
+     * 返回得到的 {@code byte} 值。
      *
-     * <p>An exception of type {@code NumberFormatException} is
-     * thrown if any of the following situations occurs:
+     * <p>如果出现下列任何一种情况，则抛出一个 {@code NumberFormatException}
+     * 类型的异常：
      * <ul>
-     * <li> The first argument is {@code null} or is a string of
-     * length zero.
+     * <li> 第一个参数为 {@code null} 或者字符串的长度为零。
      *
-     * <li> The radix is either smaller than {@link
-     * java.lang.Character#MIN_RADIX} or larger than {@link
-     * java.lang.Character#MAX_RADIX}.
+     * <li> 基数小于 {@link java.lang.Character#MIN_RADIX}
+     * 或大于 {@link java.lang.Character#MAX_RADIX}.
      *
-     * <li> Any character of the string is not a digit of the
-     * specified radix, except that the first character may be a minus
-     * sign {@code '-'} ({@code '\u005Cu002D'}) or plus sign
-     * {@code '+'} ({@code '\u005Cu002B'}) provided that the
-     * string is longer than length 1.
+     * <li> 字符串的任意字符不是指定基数的数字，
+     * 除了第一个字符是表示负值的 ASCII 负号 {@code '-'}
+     * ({@code '\u005Cu002D'}) 或 表示正值的ASCII 正号
+     * {@code '+'} ({@code '\u005Cu002B'})之外（但此时字符串的长度应超过 1）
      *
-     * <li> The value represented by the string is not a value of type
-     * {@code byte}.
+     * <li> 字符串所表示的值不是 {@code byte} 类型的值。
      * </ul>
      *
-     * @param s         the {@code String} containing the
-     *                  {@code byte}
-     *                  representation to be parsed
-     * @param radix     the radix to be used while parsing {@code s}
-     * @return          the {@code byte} value represented by the string
-     *                   argument in the specified radix
-     * @throws          NumberFormatException If the string does
-     *                  not contain a parsable {@code byte}.
+     * @param s         要解析的包含 {@code byte} 表示形式的 {@code String}
+     * @param radix     用来解析 {@code s} 的基数
+     * @return          以指定基数表示的 string 参数所表示的 {@code byte} 值
+     * @throws          NumberFormatException 如果该 string 不包含一个可解析的 {@code byte}。
      */
     public static byte parseByte(String s, int radix)
         throws NumberFormatException {
@@ -144,51 +134,39 @@ public final class Byte extends Number implements Comparable<Byte> {
     }
 
     /**
-     * Parses the string argument as a signed decimal {@code
-     * byte}. The characters in the string must all be decimal digits,
-     * except that the first character may be an ASCII minus sign
-     * {@code '-'} ({@code '\u005Cu002D'}) to indicate a negative
-     * value or an ASCII plus sign {@code '+'}
-     * ({@code '\u005Cu002B'}) to indicate a positive value. The
-     * resulting {@code byte} value is returned, exactly as if the
-     * argument and the radix 10 were given as arguments to the {@link
-     * #parseByte(java.lang.String, int)} method.
+     * 将 string 参数解析为有符号的十进制 {@code byte}.
+     * 该字符串中的字符必须都是十进制数字，
+     * 除了第一个字符是表示负值的 ASCII 负号 {@code '-'}
+     * ({@code '\u005Cu002D'}) 或 表示正值的ASCII 正号
+     * {@code '+'} ({@code '\u005Cu002B'})之外。
+     * 返回得到的 {@code byte} 值与以该 string 参数和基数10为参数的
+     * {@link #parseByte(java.lang.String, int)} 方法所返回的值一样。
      *
-     * @param s         a {@code String} containing the
-     *                  {@code byte} representation to be parsed
-     * @return          the {@code byte} value represented by the
-     *                  argument in decimal
-     * @throws          NumberFormatException if the string does not
-     *                  contain a parsable {@code byte}.
+     * @param s         a 要解析的包含 {@code byte} 表示形式的 {@code String}
+     * @return          以十进制的参数表示的 {@code byte} 值
+     * @throws          NumberFormatException 如果该 string 不包含一个可解析的 {@code byte}。
      */
     public static byte parseByte(String s) throws NumberFormatException {
         return parseByte(s, 10);
     }
 
     /**
-     * Returns a {@code Byte} object holding the value
-     * extracted from the specified {@code String} when parsed
-     * with the radix given by the second argument. The first argument
-     * is interpreted as representing a signed {@code byte} in
-     * the radix specified by the second argument, exactly as if the
-     * argument were given to the {@link #parseByte(java.lang.String,
-     * int)} method. The result is a {@code Byte} object that
-     * represents the {@code byte} value specified by the string.
+     * 返回一个 {@code Byte} 对象，该对象保持从指定的{@code String} 中提取的值
+     * 该值是在用第二个参数所给定的基数对指定字符串进行解析时提取的。
+     * 第一个参数被解释为用第二个参数所指定的基数表示一个有符号的 {@code byte}，
+     * 正如将该参数指定给 {@link #parseByte(java.lang.String, int)} 方法一样。
+     * 结果是一个表示该 string 所指定的 {@code byte} 值的 {@code Byte} 对象。
      *
-     * <p> In other words, this method returns a {@code Byte} object
-     * equal to the value of:
+     * <p> 换句话说，该方法返回一个等于以下代码的值的 {@code Byte} 对象：
      *
      * <blockquote>
      * {@code new Byte(Byte.parseByte(s, radix))}
      * </blockquote>
      *
-     * @param s         the string to be parsed
-     * @param radix     the radix to be used in interpreting {@code s}
-     * @return          a {@code Byte} object holding the value
-     *                  represented by the string argument in the
-     *                  specified radix.
-     * @throws          NumberFormatException If the {@code String} does
-     *                  not contain a parsable {@code byte}.
+     * @param s         要解析的字符串
+     * @param radix     在解析 {@code s} 时使用的基数
+     * @return          保持用指定基数表示的字符串参数所表示的值的 {@code Byte} 对象。
+     * @throws          NumberFormatException  如果 {@code String} 不包含一个可解析的 {@code byte}。                 not contain a parsable {@code byte}.
      */
     public static Byte valueOf(String s, int radix)
         throws NumberFormatException {
@@ -196,35 +174,28 @@ public final class Byte extends Number implements Comparable<Byte> {
     }
 
     /**
-     * Returns a {@code Byte} object holding the value
-     * given by the specified {@code String}. The argument is
-     * interpreted as representing a signed decimal {@code byte},
-     * exactly as if the argument were given to the {@link
-     * #parseByte(java.lang.String)} method. The result is a
-     * {@code Byte} object that represents the {@code byte}
-     * value specified by the string.
+     * 返回一个保持指定 {@code String} 所给出的值的 {@code Byte} 对象。
+     * 参数被解释为表示一个有符号的十进制的 {@code byte}，
+     * 正如将该参数指定给 {@link #parseByte(java.lang.String)} 方法一样。
+     * 结果是一个表示该 string 所指定的 {@code byte} 值的 {@code Byte} 对象。
      *
-     * <p> In other words, this method returns a {@code Byte} object
-     * equal to the value of:
+     * <p> 换句话说，该方法返回一个等于以下代码的值的 {@code Byte} 对象：
      *
      * <blockquote>
      * {@code new Byte(Byte.parseByte(s))}
      * </blockquote>
      *
-     * @param s         the string to be parsed
-     * @return          a {@code Byte} object holding the value
-     *                  represented by the string argument
-     * @throws          NumberFormatException If the {@code String} does
-     *                  not contain a parsable {@code byte}.
+     * @param s         要解析的字符串
+     * @return          保持 string 参数所表示的值的 {@code Byte} 对象
+     * @throws          NumberFormatException 如果 {@code String} 不包含一个可解析的 {@code byte}。
      */
     public static Byte valueOf(String s) throws NumberFormatException {
         return valueOf(s, 10);
     }
 
     /**
-     * Decodes a {@code String} into a {@code Byte}.
-     * Accepts decimal, hexadecimal, and octal numbers given by
-     * the following grammar:
+     * 将 {@code String} 解码为 {@code Byte}。
+     * 接受按下列语法给出的十进制、十六进制和八进制数：
      *
      * <blockquote>
      * <dl>
@@ -241,26 +212,20 @@ public final class Byte extends Number implements Comparable<Byte> {
      * </dl>
      * </blockquote>
      *
-     * <i>DecimalNumeral</i>, <i>HexDigits</i>, and <i>OctalDigits</i>
-     * are as defined in section 3.10.1 of
-     * <cite>The Java&trade; Language Specification</cite>,
-     * except that underscores are not accepted between digits.
+     * <cite>The Java&trade; Language Specification</cite> 的 3.10.1节中给出了
+     * <i>DecimalNumeral</i>， <i>HexDigits</i>， 和 <i>OctalDigits</i> 的定义。
+     * 除了在数字之间不接受下划线的情况。
      *
-     * <p>The sequence of characters following an optional
-     * sign and/or radix specifier ("{@code 0x}", "{@code 0X}",
-     * "{@code #}", or leading zero) is parsed as by the {@code
-     * Byte.parseByte} method with the indicated radix (10, 16, or 8).
-     * This sequence of characters must represent a positive value or
-     * a {@link NumberFormatException} will be thrown.  The result is
-     * negated if first character of the specified {@code String} is
-     * the minus sign.  No whitespace characters are permitted in the
-     * {@code String}.
+     * <p>对（可选）负号和/或基数说明符（“{@code 0x}”、“{@code 0X}”、“{@code #}” 或前导零）
+     * 后面的字符序列进行解析就如同使用带指定基数（10、16 或 8）的
+     * {@code Byte.parseByte} 方法一样。该字符序列必须表示一个正值，
+     * 否则将抛出 {@link NumberFormatException}。
+     * 如果指定 {@code String} 的第一个字符是负号，
+     * 则结果将被求反。该 {@code String} 中不允许出现空白字符。
      *
-     * @param     nm the {@code String} to decode.
-     * @return   a {@code Byte} object holding the {@code byte}
-     *          value represented by {@code nm}
-     * @throws  NumberFormatException  if the {@code String} does not
-     *            contain a parsable {@code byte}.
+     * @param     nm 要解码的 {@code String}。
+     * @return   保持由 {@code nm} 表示的 {@code byte} 值的 {@code Byte} 对象
+     * @throws  NumberFormatException  如果 {@code String}  不包含一个可解析的 {@code byte}。
      * @see java.lang.Byte#parseByte(java.lang.String, int)
      */
     public static Byte decode(String nm) throws NumberFormatException {
@@ -272,34 +237,27 @@ public final class Byte extends Number implements Comparable<Byte> {
     }
 
     /**
-     * The value of the {@code Byte}.
+     * {@code Byte} 的值。
      *
      * @serial
      */
     private final byte value;
 
     /**
-     * Constructs a newly allocated {@code Byte} object that
-     * represents the specified {@code byte} value.
+     * 构造一个新分配的 {@code Byte} 对象，以表示指定的 {@code byte} 值。
      *
-     * @param value     the value to be represented by the
-     *                  {@code Byte}.
+     * @param value    {@code Byte} 对象所表示的值
      */
     public Byte(byte value) {
         this.value = value;
     }
 
     /**
-     * Constructs a newly allocated {@code Byte} object that
-     * represents the {@code byte} value indicated by the
-     * {@code String} parameter. The string is converted to a
-     * {@code byte} value in exactly the manner used by the
-     * {@code parseByte} method for radix 10.
+     * 构造一个新分配的 {@code Byte} 对象，以表示 {@code String} 参数所指示的 {@code byte} 值。
+     * 该字符串以使用基数 10 的 {@code parseByte} 方法所使用的方式被转换成一个 {@code byte} 值。
      *
-     * @param s         the {@code String} to be converted to a
-     *                  {@code Byte}
-     * @throws           NumberFormatException If the {@code String}
-     *                  does not contain a parsable {@code byte}.
+     * @param s         要转换成 {@code Byte} 的 {@code String}
+     * @throws           NumberFormatException 如果 {@code String} 不包含一个可解析的 {@code byte}。
      * @see        java.lang.Byte#parseByte(java.lang.String, int)
      */
     public Byte(String s) throws NumberFormatException {
@@ -307,16 +265,14 @@ public final class Byte extends Number implements Comparable<Byte> {
     }
 
     /**
-     * Returns the value of this {@code Byte} as a
-     * {@code byte}.
+     * 作为一个 {@code byte} 返回此 {@code Byte} 的值。
      */
     public byte byteValue() {
         return value;
     }
 
     /**
-     * Returns the value of this {@code Byte} as a {@code short} after
-     * a widening primitive conversion.
+     * 做一个扩宽的原始转换后作为一个 {@code short} 返回此 {@code Byte} 的值。
      * @jls 5.1.2 Widening Primitive Conversions
      */
     public short shortValue() {
@@ -324,8 +280,7 @@ public final class Byte extends Number implements Comparable<Byte> {
     }
 
     /**
-     * Returns the value of this {@code Byte} as an {@code int} after
-     * a widening primitive conversion.
+     *  做一个扩宽的原始转换后作为一个 {@code int} 返回此 {@code Byte} 的值。
      * @jls 5.1.2 Widening Primitive Conversions
      */
     public int intValue() {
@@ -333,8 +288,7 @@ public final class Byte extends Number implements Comparable<Byte> {
     }
 
     /**
-     * Returns the value of this {@code Byte} as a {@code long} after
-     * a widening primitive conversion.
+     * 做一个扩宽的原始转换后作为一个 {@code long} 返回此 {@code Byte} 的值。
      * @jls 5.1.2 Widening Primitive Conversions
      */
     public long longValue() {
@@ -342,8 +296,7 @@ public final class Byte extends Number implements Comparable<Byte> {
     }
 
     /**
-     * Returns the value of this {@code Byte} as a {@code float} after
-     * a widening primitive conversion.
+     * 做一个扩宽的原始转换后作为一个 {@code float} 返回此 {@code Byte} 的值。
      * @jls 5.1.2 Widening Primitive Conversions
      */
     public float floatValue() {
@@ -351,8 +304,7 @@ public final class Byte extends Number implements Comparable<Byte> {
     }
 
     /**
-     * Returns the value of this {@code Byte} as a {@code double}
-     * after a widening primitive conversion.
+     * 做一个扩宽的原始转换后作为一个 {@code double} 返回此 {@code Byte} 的值。
      * @jls 5.1.2 Widening Primitive Conversions
      */
     public double doubleValue() {
@@ -360,24 +312,21 @@ public final class Byte extends Number implements Comparable<Byte> {
     }
 
     /**
-     * Returns a {@code String} object representing this
-     * {@code Byte}'s value.  The value is converted to signed
-     * decimal representation and returned as a string, exactly as if
-     * the {@code byte} value were given as an argument to the
-     * {@link java.lang.Byte#toString(byte)} method.
+     * 返回表示此 Byte 的值的 {@code String} 对象。
+     * 该值被转换成有符号的十进制表示形式，并作为一个 string 返回，
+     * 正如将 {@code byte} 值作为一个参数指定给 {@link java.lang.Byte#toString(byte)} 方法所返回的一样。
      *
-     * @return  a string representation of the value of this object in
-     *          base&nbsp;10.
+     * @return  以基数&nbsp;10 表示的此对象值的字符串表示形式。
      */
     public String toString() {
         return Integer.toString((int)value);
     }
 
     /**
-     * Returns a hash code for this {@code Byte}; equal to the result
-     * of invoking {@code intValue()}.
+     * 返回此 {@code Byte} 的哈希码。Returns a hash code for this {@code Byte};
+     * 和调用了{@code intValue()} 方法的结果相等。
      *
-     * @return a hash code value for this {@code Byte}
+     * @return 此 {@code Byte} 的哈希码。
      */
     @Override
     public int hashCode() {
@@ -385,11 +334,11 @@ public final class Byte extends Number implements Comparable<Byte> {
     }
 
     /**
-     * Returns a hash code for a {@code byte} value; compatible with
-     * {@code Byte.hashCode()}.
+     * 返回此 {@code byte} 值的哈希码。
+     * 和 {@code Byte.hashCode()} 兼容。
      *
-     * @param value the value to hash
-     * @return a hash code value for a {@code byte} value.
+     * @param value 需要哈希的值
+     * @return 此 {@code byte} 值的哈希码。
      * @since 1.8
      */
     public static int hashCode(byte value) {
@@ -397,14 +346,11 @@ public final class Byte extends Number implements Comparable<Byte> {
     }
 
     /**
-     * Compares this object to the specified object.  The result is
-     * {@code true} if and only if the argument is not
-     * {@code null} and is a {@code Byte} object that
-     * contains the same {@code byte} value as this object.
+     * 将此对象与指定对象比较。当且仅当参数不为 {@code null}，
+     * 而是一个与此对象一样包含相同 {@code Byte} 值的 {@code byte} 对象时，结果才为 {@code true} 。
      *
-     * @param obj       the object to compare with
-     * @return          {@code true} if the objects are the same;
-     *                  {@code false} otherwise.
+     * @param obj       要进行比较的对象
+     * @return          如果这些对象相同，则为 {@code true} ；否则为 {@code false} 。
      */
     public boolean equals(Object obj) {
         if (obj instanceof Byte) {
@@ -414,16 +360,12 @@ public final class Byte extends Number implements Comparable<Byte> {
     }
 
     /**
-     * Compares two {@code Byte} objects numerically.
+     * 在数字上比较两个 {@code Byte} 对象。
      *
-     * @param   anotherByte   the {@code Byte} to be compared.
-     * @return  the value {@code 0} if this {@code Byte} is
-     *          equal to the argument {@code Byte}; a value less than
-     *          {@code 0} if this {@code Byte} is numerically less
-     *          than the argument {@code Byte}; and a value greater than
-     *           {@code 0} if this {@code Byte} is numerically
-     *           greater than the argument {@code Byte} (signed
-     *           comparison).
+     * @param   anotherByte   要比较的 {@code Byte}。
+     * @return  如果此 {@code Byte} 等于参数 {@code Byte}，则返回 {@code 0}；
+     *           如果此 {@code Byte} 在数字上小于参数 {@code Byte}，则返回小于 {@code 0} 的值；
+     *           如果此 {@code Byte} 在数字上大于参数 {@code Byte}，则返回大于 {@code 0} 的值（有符号比较）。
      * @since   1.2
      */
     public int compareTo(Byte anotherByte) {
@@ -431,17 +373,17 @@ public final class Byte extends Number implements Comparable<Byte> {
     }
 
     /**
-     * Compares two {@code byte} values numerically.
-     * The value returned is identical to what would be returned by:
+     * 在数字上比较两个 {@code byte} 值。
+     * 返回的值与以下内容返回的值相同：
      * <pre>
      *    Byte.valueOf(x).compareTo(Byte.valueOf(y))
      * </pre>
      *
-     * @param  x the first {@code byte} to compare
-     * @param  y the second {@code byte} to compare
-     * @return the value {@code 0} if {@code x == y};
-     *         a value less than {@code 0} if {@code x < y}; and
-     *         a value greater than {@code 0} if {@code x > y}
+     * @param  x 第一个要比较的 {@code byte}
+     * @param  y 第二个要比较的 {@code byte}
+     * @return 如果 {@code x == y}， 则返回{@code 0};
+     *          如果 {@code x < y}， 则返回小于 {@code 0} 的值；
+     *          如果 {@code x > y}， 则返回大于 {@code 0} 的值。
      * @since 1.7
      */
     public static int compare(byte x, byte y) {
@@ -449,19 +391,15 @@ public final class Byte extends Number implements Comparable<Byte> {
     }
 
     /**
-     * Converts the argument to an {@code int} by an unsigned
-     * conversion.  In an unsigned conversion to an {@code int}, the
-     * high-order 24 bits of the {@code int} are zero and the
-     * low-order 8 bits are equal to the bits of the {@code byte} argument.
+     * 通过无符号转换将参数转换为 {@code int}。
+     * 在对 {@code int} 的无符号转换中， {@code int} 的高阶 24 位是 0，
+     * 低阶 8 位等于 {@code byte} 参数的值。
      *
-     * Consequently, zero and positive {@code byte} values are mapped
-     * to a numerically equal {@code int} value and negative {@code
-     * byte} values are mapped to an {@code int} value equal to the
-     * input plus 2<sup>8</sup>.
+     * 因此，零和正 {@code byte} 值被映射到数值相等的 {@code int} 值，
+     * 负 {@code byte} 值被映射到 {@code int} 值和 2<sup>8</sup> 加值.
      *
-     * @param  x the value to convert to an unsigned {@code int}
-     * @return the argument converted to {@code int} by an unsigned
-     *         conversion
+     * @param  x 转换到无符号 {@code int} 的值
+     * @return 参数无符号转换后得到的 {@code int}
      * @since 1.8
      */
     public static int toUnsignedInt(byte x) {
@@ -469,19 +407,15 @@ public final class Byte extends Number implements Comparable<Byte> {
     }
 
     /**
-     * Converts the argument to a {@code long} by an unsigned
-     * conversion.  In an unsigned conversion to a {@code long}, the
-     * high-order 56 bits of the {@code long} are zero and the
-     * low-order 8 bits are equal to the bits of the {@code byte} argument.
+     * 通过无符号转换将参数转换为 {@code long}。
+     * 在对 {@code long} 的无符号转换中， {@code long} 的高阶 56 位是 0，
+     * 低阶 8 位等于 {@code byte} 参数的值。
      *
-     * Consequently, zero and positive {@code byte} values are mapped
-     * to a numerically equal {@code long} value and negative {@code
-     * byte} values are mapped to a {@code long} value equal to the
-     * input plus 2<sup>8</sup>.
+     *  因此，零和正 {@code byte} 值被映射到数值相等的 {@code long} 值，
+     * 负 {@code byte} 值被映射到 {@code long} 值和 2<sup>8</sup> 加值.
      *
-     * @param  x the value to convert to an unsigned {@code long}
-     * @return the argument converted to {@code long} by an unsigned
-     *         conversion
+     * @param  x 转换到无符号 {@code long} 的值
+     * @return 参数无符号转换后得到的 {@code long}
      * @since 1.8
      */
     public static long toUnsignedLong(byte x) {
@@ -490,16 +424,14 @@ public final class Byte extends Number implements Comparable<Byte> {
 
 
     /**
-     * The number of bits used to represent a {@code byte} value in two's
-     * complement binary form.
+     * 在二进制补码形式中表示 {@code byte} 值的位数。
      *
      * @since 1.5
      */
     public static final int SIZE = 8;
 
     /**
-     * The number of bytes used to represent a {@code byte} value in two's
-     * complement binary form.
+     * 在二进制补码形式中用来表示 {@code byte} 值 的字节数。
      *
      * @since 1.8
      */
