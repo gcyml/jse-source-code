@@ -30,16 +30,11 @@ import sun.misc.FpUtils;
 import sun.misc.DoubleConsts;
 
 /**
- * The {@code Double} class wraps a value of the primitive type
- * {@code double} in an object. An object of type
- * {@code Double} contains a single field whose type is
- * {@code double}.
+ * {@code Double} 类在对象中包装一个基本类型 {@code double} 的值。
+ * 每个 {@code Double} 类型的对象都包含一个 {@code double} 类型的字段。
  *
- * <p>In addition, this class provides several methods for converting a
- * {@code double} to a {@code String} and a
- * {@code String} to a {@code double}, as well as other
- * constants and methods useful when dealing with a
- * {@code double}.
+ * <p>此外，该类还提供多个方法，可以将 {@code double} 转换为 {@code String}，
+ * 将 {@code String} 转换为 {@code double}，也提供了其他一些处理 {@code double} 时有用的常量和方法。
  *
  * @author  Lee Boynton
  * @author  Arthur van Hoff
@@ -48,90 +43,82 @@ import sun.misc.DoubleConsts;
  */
 public final class Double extends Number implements Comparable<Double> {
     /**
-     * A constant holding the positive infinity of type
-     * {@code double}. It is equal to the value returned by
-     * {@code Double.longBitsToDouble(0x7ff0000000000000L)}.
+     * 保存 {@code double} 类型的正无穷大值的常量。
+     * 它等于 {@code Double.longBitsToDouble(0x7ff0000000000000L)} 返回的值。
      */
     public static final double POSITIVE_INFINITY = 1.0 / 0.0;
 
     /**
-     * A constant holding the negative infinity of type
-     * {@code double}. It is equal to the value returned by
-     * {@code Double.longBitsToDouble(0xfff0000000000000L)}.
+     * 保存 {@code double} 类型的负无穷大值的常量。
+     * 它等于 {@code Double.longBitsToDouble(0xfff0000000000000L)} 返回的值。
      */
     public static final double NEGATIVE_INFINITY = -1.0 / 0.0;
 
     /**
-     * A constant holding a Not-a-Number (NaN) value of type
-     * {@code double}. It is equivalent to the value returned by
-     * {@code Double.longBitsToDouble(0x7ff8000000000000L)}.
+     * 保存 {@code double} 类型的 NaN 值的常量。
+     * 它等于 {@code Double.longBitsToDouble(0x7ff8000000000000L)} 返回的值。
      */
     public static final double NaN = 0.0d / 0.0;
 
     /**
-     * A constant holding the largest positive finite value of type
-     * {@code double},
-     * (2-2<sup>-52</sup>)&middot;2<sup>1023</sup>.  It is equal to
-     * the hexadecimal floating-point literal
-     * {@code 0x1.fffffffffffffP+1023} and also equal to
-     * {@code Double.longBitsToDouble(0x7fefffffffffffffL)}.
+     * 保存 {@code double} 类型的最大正有限值的常量，最大正有限值为 (2-2<sup>-52</sup>)&middot;2<sup>1023</sup>。
+     * 它等于十六进制的浮点字面值 {@code 0x1.fffffffffffffP+1023}，也等于
+     * {@code Double.longBitsToDouble(0x7fefffffffffffffL)}。
      */
     public static final double MAX_VALUE = 0x1.fffffffffffffP+1023; // 1.7976931348623157e+308
 
     /**
-     * A constant holding the smallest positive normal value of type
-     * {@code double}, 2<sup>-1022</sup>.  It is equal to the
-     * hexadecimal floating-point literal {@code 0x1.0p-1022} and also
-     * equal to {@code Double.longBitsToDouble(0x0010000000000000L)}.
+     * 保存 double 类型的最小正标准值值的常量，最小正标准值为
+     * {@code double}, 2<sup>-1022</sup>。
+     * 它等于十六进制的浮点字面值 {@code 0x1.0p-1022}，也等于
+     * {@code Double.longBitsToDouble(0x0010000000000000L)}。
      *
      * @since 1.6
      */
     public static final double MIN_NORMAL = 0x1.0p-1022; // 2.2250738585072014E-308
 
     /**
-     * A constant holding the smallest positive nonzero value of type
-     * {@code double}, 2<sup>-1074</sup>. It is equal to the
-     * hexadecimal floating-point literal
-     * {@code 0x0.0000000000001P-1022} and also equal to
-     * {@code Double.longBitsToDouble(0x1L)}.
+     * 保存 double 类型的最小正非零值的常量，最小正非零值为
+     * {@code double}, 2<sup>-1074</sup>。
+     * 它等于十六进制的浮点字面值 {@code 0x0.0000000000001P-1022}，也等于
+     * {@code Double.longBitsToDouble(0x1L)}。
+     *
+     * @since 1.6
      */
     public static final double MIN_VALUE = 0x0.0000000000001P-1022; // 4.9e-324
 
     /**
-     * Maximum exponent a finite {@code double} variable may have.
-     * It is equal to the value returned by
-     * {@code Math.getExponent(Double.MAX_VALUE)}.
+     * 标准化 {@code double} 变量可能具有的最小指数。
+     * 它等于 {@code Math.getExponent(Double.MAX_VALUE)} 返回的值。
      *
      * @since 1.6
      */
     public static final int MAX_EXPONENT = 1023;
 
     /**
-     * Minimum exponent a normalized {@code double} variable may
-     * have.  It is equal to the value returned by
-     * {@code Math.getExponent(Double.MIN_NORMAL)}.
+     * 标准化 {@code double} 变量可能具有的最小指数。
+     * 它等于 {@code Math.getExponent(Double.MIN_NORMAL) 返回的值。.
      *
      * @since 1.6
      */
     public static final int MIN_EXPONENT = -1022;
 
     /**
-     * The number of bits used to represent a {@code double} value.
+     * 用于表示 {@code double} 值的位数。
      *
      * @since 1.5
      */
     public static final int SIZE = 64;
 
     /**
-     * The number of bytes used to represent a {@code double} value.
+     * 用来表示一个 {@code double} 的字节数。
      *
      * @since 1.8
      */
     public static final int BYTES = SIZE / Byte.SIZE;
 
     /**
-     * The {@code Class} instance representing the primitive type
-     * {@code double}.
+     * 表示基本类型 {@code Class} 的 {@code Class} 实例。
      *
      * @since JDK1.1
      */
@@ -139,125 +126,90 @@ public final class Double extends Number implements Comparable<Double> {
     public static final Class<Double>   TYPE = (Class<Double>) Class.getPrimitiveClass("double");
 
     /**
-     * Returns a string representation of the {@code double}
-     * argument. All characters mentioned below are ASCII characters.
+     * 返回 {@code double} 参数的字符串表达形式。
+     * 下面提到的所有字符都是 ASCII 字符。
      * <ul>
-     * <li>If the argument is NaN, the result is the string
-     *     "{@code NaN}".
-     * <li>Otherwise, the result is a string that represents the sign and
-     * magnitude (absolute value) of the argument. If the sign is negative,
-     * the first character of the result is '{@code -}'
-     * ({@code '\u005Cu002D'}); if the sign is positive, no sign character
-     * appears in the result. As for the magnitude <i>m</i>:
+     * <li> 如果参数为 NaN，那么结果为字符串 "{@code NaN}"。
+     * <li> 否则，结果是表示参数符号和数值（绝对值）的字符串。如果符号为负，那么结果的第一个字符是
+     * '{@code -}'({@code '\u005Cu002D'})；
+     * 如果符号为正，那么结果中不显示符号字符。对于数值 <i>m</i>：
      * <ul>
-     * <li>If <i>m</i> is infinity, it is represented by the characters
-     * {@code "Infinity"}; thus, positive infinity produces the result
-     * {@code "Infinity"} and negative infinity produces the result
-     * {@code "-Infinity"}.
+     * <li> 如果 <i>m</i> 为无穷大，则用字符 {@code "Infinity"} 表示；
+     * 因此，正无穷大生成结果是 {@code "Infinity"}，负无穷大生成结果 {@code "-Infinity"}。
      *
-     * <li>If <i>m</i> is zero, it is represented by the characters
-     * {@code "0.0"}; thus, negative zero produces the result
-     * {@code "-0.0"} and positive zero produces the result
-     * {@code "0.0"}.
+     * <li> 如果 <i>m</i> 为 0，则用字符 {@code "0.0"} 表示；
+     * 因此负 0 生成结果 {@code "-0.0"}，正 0 生成结果 {@code "0.0"}。
      *
-     * <li>If <i>m</i> is greater than or equal to 10<sup>-3</sup> but less
-     * than 10<sup>7</sup>, then it is represented as the integer part of
-     * <i>m</i>, in decimal form with no leading zeroes, followed by
-     * '{@code .}' ({@code '\u005Cu002E'}), followed by one or
-     * more decimal digits representing the fractional part of <i>m</i>.
+     * <li> 如果 <i>m</i> 大于或等于 10<sup>-3</sup> 但小于 10<sup>7</sup>，
+     * 则采用不带前导 0 的十进制形式，用 <i>m</i> 的整数部分表示，后跟 '{@code .}' ({@code '\u005Cu002E'})，
+     * 再后面是表示 <i>m</i> 小数部分的一个或多个十进制数字。
      *
-     * <li>If <i>m</i> is less than 10<sup>-3</sup> or greater than or
-     * equal to 10<sup>7</sup>, then it is represented in so-called
-     * "computerized scientific notation." Let <i>n</i> be the unique
-     * integer such that 10<sup><i>n</i></sup> &le; <i>m</i> {@literal <}
-     * 10<sup><i>n</i>+1</sup>; then let <i>a</i> be the
-     * mathematically exact quotient of <i>m</i> and
-     * 10<sup><i>n</i></sup> so that 1 &le; <i>a</i> {@literal <} 10. The
-     * magnitude is then represented as the integer part of <i>a</i>,
-     * as a single decimal digit, followed by '{@code .}'
-     * ({@code '\u005Cu002E'}), followed by decimal digits
-     * representing the fractional part of <i>a</i>, followed by the
-     * letter '{@code E}' ({@code '\u005Cu0045'}), followed
-     * by a representation of <i>n</i> as a decimal integer, as
-     * produced by the method {@link Integer#toString(int)}.
+     * <li>如果 <i>m</i> 小于 10<sup>-3</sup> 或大于等于 10<sup>7</sup>，
+     * 则使用所谓的“计算机科学记数法”表示。
+     * 设 <i>n</i> 为满足 10<sup><i>n</i></sup> &le; <i>m</i> {@literal <}
+     * 10<sup><i>n</i>+1</sup> 的唯一整数；
+     * 然后设 <i>a</i> 为 <i>m</i> 与 10<sup><i>n</i></sup> 的精确算术商，
+     * 从而 1 &le; <i>a</i> {@literal <} 10。
+     * 那么，数值便表示为 <i>a</i> 的整数部分，其形式为：一个十进制数字，
+     * 后跟 '{@code .}'({@code '\u005Cu002E'})，接着显示表示 <i>a</i>小数部分的十进制数字，
+     * 再后面是字母 '{@code E}' ({@code '\u005Cu0045'})，最后是用十进制整数形式表示的 <i>n</i>，
+     * 这与方法 {@link Integer#toString(int)} 生成的结果一样。
      * </ul>
      * </ul>
-     * How many digits must be printed for the fractional part of
-     * <i>m</i> or <i>a</i>? There must be at least one digit to represent
-     * the fractional part, and beyond that as many, but only as many, more
-     * digits as are needed to uniquely distinguish the argument value from
-     * adjacent values of type {@code double}. That is, suppose that
-     * <i>x</i> is the exact mathematical value represented by the decimal
-     * representation produced by this method for a finite nonzero argument
-     * <i>d</i>. Then <i>d</i> must be the {@code double} value nearest
-     * to <i>x</i>; or if two {@code double} values are equally close
-     * to <i>x</i>, then <i>d</i> must be one of them and the least
-     * significant bit of the significand of <i>d</i> must be {@code 0}.
+     * 必须为 <i>m</i> 或 <i>a</i> 的小数部分显示多少位呢？
+     * 至少必须有一位数来表示小数部分，除此之外，
+     * 需要更多（但只能和需要的一样多）位数来唯一地区分参数值和 {@code double} 类型的邻近值。
+     * 这就是说，假设 <i>x</i> 是用十进制表示法表示的精确算术值，是通过对有限非 0 参数 <i>d</i> 调用此方法生成的。
+     * 那么 <i>d</i> 一定是最接近 <i>x</i> 的 {@code double} 值；
+     * 如果两个 {@code double} 值都同等地接近 <i>x</i>，那么 <i>d</i> 必须是其中之一，
+     * 并且 <i>d</i> 的有效数字的最低有效位必须是 {@code 0}。
      *
-     * <p>To create localized string representations of a floating-point
-     * value, use subclasses of {@link java.text.NumberFormat}.
+     * <p>要创建浮点值的本地化字符串表示形式，请使用 {@link java.text.NumberFormat}.
      *
-     * @param   d   the {@code double} to be converted.
-     * @return a string representation of the argument.
+     * @param   d   要转换的 {@code double} 值。
+     * @return 参数的字符串表示形式。
      */
     public static String toString(double d) {
         return FloatingDecimal.toJavaFormatString(d);
     }
 
     /**
-     * Returns a hexadecimal string representation of the
-     * {@code double} argument. All characters mentioned below
-     * are ASCII characters.
+     * 返回 {@code double} 参数的十六进制字符串表示形式。
+     * 下面提到的所有字符都是 ASCII 字符。
      *
      * <ul>
-     * <li>If the argument is NaN, the result is the string
-     *     "{@code NaN}".
-     * <li>Otherwise, the result is a string that represents the sign
-     * and magnitude of the argument. If the sign is negative, the
-     * first character of the result is '{@code -}'
-     * ({@code '\u005Cu002D'}); if the sign is positive, no sign
-     * character appears in the result. As for the magnitude <i>m</i>:
+     * <li> 如果参数为 NaN，那么结果为字符串 "{@code NaN}"。
+     * <li> 否则，结果是表示参数符号和数值的字符串。如果符号为负，那么结果的第一个字符是
+     * '{@code -}'({@code '\u005Cu002D'})；
+     * 如果符号为正，那么结果中不显示符号字符。对于数值 <i>m</i>：
      *
      * <ul>
-     * <li>If <i>m</i> is infinity, it is represented by the string
-     * {@code "Infinity"}; thus, positive infinity produces the
-     * result {@code "Infinity"} and negative infinity produces
-     * the result {@code "-Infinity"}.
+     * <li> 如果 <i>m</i> 为无穷大，则用字符串 {@code "Infinity"} 表示；
+     * 因此，正无穷大生成结果 {@code "Infinity"}，负无穷大生成结果 {@code "-Infinity"}。
      *
-     * <li>If <i>m</i> is zero, it is represented by the string
-     * {@code "0x0.0p0"}; thus, negative zero produces the result
-     * {@code "-0x0.0p0"} and positive zero produces the result
-     * {@code "0x0.0p0"}.
+     * <li> 如果 <i>m</i> 为 0，则用字符串 {@code "0x0.0p0"} 表示；
+     * 因此，负 0 生成结果 {@code "-0x0.0p0"}，正 0 生成结果 {@code "0x0.0p0"}。
      *
-     * <li>If <i>m</i> is a {@code double} value with a
-     * normalized representation, substrings are used to represent the
-     * significand and exponent fields.  The significand is
-     * represented by the characters {@code "0x1."}
-     * followed by a lowercase hexadecimal representation of the rest
-     * of the significand as a fraction.  Trailing zeros in the
-     * hexadecimal representation are removed unless all the digits
-     * are zero, in which case a single zero is used. Next, the
-     * exponent is represented by {@code "p"} followed
-     * by a decimal string of the unbiased exponent as if produced by
-     * a call to {@link Integer#toString(int) Integer.toString} on the
-     * exponent value.
+     * <li> 如果 <i>m</i> 是具有标准化表示形式的 {@code double} 值，
+     * 则使用子字符串表示有效数字和指数字段。有效数字用字符 {@code "0x1."} 表示，
+     * 后跟该有效数字剩余小数部分的小写十六进制表示形式。
+     * 除非所有位数都为 0，否则移除十六进制表示中的尾部 0，在所有位数都为零的情况下，
+     * 可以用一个 0 表示。接下来用 {@code "p"} 表示指数，后跟无偏指数的十进制字符串，
+     * 该值与通过对指数值调用 {@link Integer#toString(int) Integer.toString} 生成的值相同。
+     * 和指数字段。
      *
-     * <li>If <i>m</i> is a {@code double} value with a subnormal
-     * representation, the significand is represented by the
-     * characters {@code "0x0."} followed by a
-     * hexadecimal representation of the rest of the significand as a
-     * fraction.  Trailing zeros in the hexadecimal representation are
-     * removed. Next, the exponent is represented by
-     * {@code "p-1022"}.  Note that there must be at
-     * least one nonzero digit in a subnormal significand.
+     * <li> 如果 <i>m</i> 是非标准表示形式的 {@code double} 值，
+     * 则用字符 {@code "0x0."} 表示有效数字，后跟该有效数字剩余小数部分的十六进制表示形式。
+     * 移除十六进制表示中的尾部 0。然后用 {@code "p-1022"} 表示指数。
+     * 注意，在非标准有效数字中，必须至少有一个非 0 数字。
      *
      * </ul>
      *
      * </ul>
      *
      * <table border>
-     * <caption>Examples</caption>
-     * <tr><th>Floating-point Value</th><th>Hexadecimal String</th>
+     * <caption>示例</caption>
+     * <tr><th>浮点值</th><th>十六进制字符串</th>
      * <tr><td>{@code 1.0}</td> <td>{@code 0x1.0p0}</td>
      * <tr><td>{@code -1.0}</td>        <td>{@code -0x1.0p0}</td>
      * <tr><td>{@code 2.0}</td> <td>{@code 0x1.0p1}</td>
@@ -273,8 +225,8 @@ public final class Double extends Number implements Comparable<Double> {
      * <tr><td>{@code Double.MIN_VALUE}</td>
      *     <td>{@code 0x0.0000000000001p-1022}</td>
      * </table>
-     * @param   d   the {@code double} to be converted.
-     * @return a hex string representation of the argument.
+     * @param   d   要转换的 {@code double} 值。
+     * @return 参数的十六进制字符串表示形式。
      * @since 1.5
      * @author Joseph D. Darcy
      */
@@ -337,19 +289,13 @@ public final class Double extends Number implements Comparable<Double> {
     }
 
     /**
-     * Returns a {@code Double} object holding the
-     * {@code double} value represented by the argument string
-     * {@code s}.
+     * 返回保存用参数字符串 {@code s} 表示的 {@code double} 值的 {@code Double} 对象。
      *
-     * <p>If {@code s} is {@code null}, then a
-     * {@code NullPointerException} is thrown.
+     * <p> 如果 {@code s} 为 {@code null}，则抛出 {@code NullPointerException} 异常。
      *
-     * <p>Leading and trailing whitespace characters in {@code s}
-     * are ignored.  Whitespace is removed as if by the {@link
-     * String#trim} method; that is, both ASCII space and control
-     * characters are removed. The rest of {@code s} should
-     * constitute a <i>FloatValue</i> as described by the lexical
-     * syntax rules:
+     * <p>忽略 {@code s} 中的前导空白字符和尾部空白字符。
+     * 就像调用 {@link String#trim} 方法那样移除空白；这就是说，ASCII 空格和控制字符都要移除。
+     * {@code s} 的其余部分应该按词法语法规则所描述的那样构成一个 <i>FloatValue</i> ：
      *
      * <blockquote>
      * <dl>
@@ -389,61 +335,37 @@ public final class Double extends Number implements Comparable<Double> {
      *
      * </blockquote>
      *
-     * where <i>Sign</i>, <i>FloatingPointLiteral</i>,
-     * <i>HexNumeral</i>, <i>HexDigits</i>, <i>SignedInteger</i> and
-     * <i>FloatTypeSuffix</i> are as defined in the lexical structure
-     * sections of
-     * <cite>The Java&trade; Language Specification</cite>,
-     * except that underscores are not accepted between digits.
-     * If {@code s} does not have the form of
-     * a <i>FloatValue</i>, then a {@code NumberFormatException}
-     * is thrown. Otherwise, {@code s} is regarded as
-     * representing an exact decimal value in the usual
-     * "computerized scientific notation" or as an exact
-     * hexadecimal value; this exact numerical value is then
-     * conceptually converted to an "infinitely precise"
-     * binary value that is then rounded to type {@code double}
-     * by the usual round-to-nearest rule of IEEE 754 floating-point
-     * arithmetic, which includes preserving the sign of a zero
-     * value.
+     * 其中 <i>Sign</i>, <i>FloatingPointLiteral</i>,
+     * <i>HexNumeral</i>, <i>HexDigits</i>, <i>SignedInteger</i> 和
+     * <i>FloatTypeSuffix</i> 与 <cite>The Java&trade; Language Specification</cite>
+     * 的词法结构部分中定义的相同。,
+     * 如果 {@code s} 不具有 <i>FloatValue</i> 的形式，则抛出 {@code NumberFormatException}。
+     * 否则，可以认为 {@code s} 是一个以常用的“计算机科学记数法”表示的精确十进制值，
+     * 或者是一个精确的十六进制值；在概念上，这个精确的数值将被转换为一个“无限精确的”二进制值，
+     * 然后根据常用的 IEEE 754 浮点算法的“舍入为最接近的数”规则，将该值舍入为 {@code double} 类型，
+     * 其中包括保留 0 值的符号。
      *
-     * Note that the round-to-nearest rule also implies overflow and
-     * underflow behaviour; if the exact value of {@code s} is large
-     * enough in magnitude (greater than or equal to ({@link
-     * #MAX_VALUE} + {@link Math#ulp(double) ulp(MAX_VALUE)}/2),
-     * rounding to {@code double} will result in an infinity and if the
-     * exact value of {@code s} is small enough in magnitude (less
-     * than or equal to {@link #MIN_VALUE}/2), rounding to float will
-     * result in a zero.
+     * 注意，循环到最近的规则也意味着上溢和下溢行为；如果 {@code s} 的精确值在幅度上足够大
+     * （大于或等于({@link #MAX_VALUE} + {@link Math#ulp(double) ulp(MAX_VALUE)}/2），
+     * 则舍入为一个无穷大的 {@code double}，
+     * 如果 {@code s} 的精确值足够小（幅度小于或等于 {@link #MIN_VALUE}/2），
+     * 则将舍入为 0 的 浮点值。
      *
-     * Finally, after rounding a {@code Double} object representing
-     * this {@code double} value is returned.
+     * 最后，返回表示此 {@code double} 值的 {@code Double} 对象。
      *
-     * <p> To interpret localized string representations of a
-     * floating-point value, use subclasses of {@link
-     * java.text.NumberFormat}.
+     * <p> 要解释浮点值的本地化字符串表示形式，请使用 {@link java.text.NumberFormat}。
      *
-     * <p>Note that trailing format specifiers, specifiers that
-     * determine the type of a floating-point literal
-     * ({@code 1.0f} is a {@code float} value;
-     * {@code 1.0d} is a {@code double} value), do
-     * <em>not</em> influence the results of this method.  In other
-     * words, the numerical value of the input string is converted
-     * directly to the target floating-point type.  The two-step
-     * sequence of conversions, string to {@code float} followed
-     * by {@code float} to {@code double}, is <em>not</em>
-     * equivalent to converting a string directly to
-     * {@code double}. For example, the {@code float}
-     * literal {@code 0.1f} is equal to the {@code double}
-     * value {@code 0.10000000149011612}; the {@code float}
-     * literal {@code 0.1f} represents a different numerical
-     * value than the {@code double} literal
-     * {@code 0.1}. (The numerical value 0.1 cannot be exactly
-     * represented in a binary floating-point number.)
+     * <p>注意，尾部格式说明符、确定浮点字面值类型的说明符（{@code 1.0f} 是一个 {@code float} 值；
+     * {@code 1.0d} 是一个 @code double 值）<em>不会</em>影响此方法的结果。
+     * 换句话说，输入字符串的数值被直接转换为目标浮点类型。
+     * 分两步的转换（先将字符串转换为 {@code float} ，然后将 {@code float} 转换为 {@code double}）
+     * <em>不</em>同于直接将字符串转换为 {@code double}。
+     * 例如，{@code float} 字面值 {@code 0.1f} 等于 {@code double} 值 {@code 0.10000000149011612}；
+     * {@code float} 字面值 {@code 0.1f} 表示与 double 字面值 {@code 0.1} 不同的数值。
+     * （数值 0.1 无法用二进制浮点数准确表示。)
      *
-     * <p>To avoid calling this method on an invalid string and having
-     * a {@code NumberFormatException} be thrown, the regular
-     * expression below can be used to screen the input string:
+     * <p>为了避免因为对无效字符串调用此方法而导致抛出 {@code NumberFormatException}，
+     * 可以使用以下正则表达式作为输入到屏幕的字符串：
      *
      * <pre>{@code
      *  final String Digits     = "(\\p{Digit}+)";
@@ -492,27 +414,22 @@ public final class Double extends Number implements Comparable<Double> {
      *  }
      * }</pre>
      *
-     * @param      s   the string to be parsed.
-     * @return     a {@code Double} object holding the value
-     *             represented by the {@code String} argument.
-     * @throws     NumberFormatException  if the string does not contain a
-     *             parsable number.
+     * @param      s   要解析的字符串。
+     * @return     保存用 {@code String} 参数表示的值的 {@code Double}对象。
+     * @throws     NumberFormatException  如果字符串不包含可解析的数。
      */
     public static Double valueOf(String s) throws NumberFormatException {
         return new Double(parseDouble(s));
     }
 
     /**
-     * Returns a {@code Double} instance representing the specified
-     * {@code double} value.
-     * If a new {@code Double} instance is not required, this method
-     * should generally be used in preference to the constructor
-     * {@link #Double(double)}, as this method is likely to yield
-     * significantly better space and time performance by caching
-     * frequently requested values.
+     * 返回表示指定的 {@code double} 值的 {@code Double} 实例。
+     * 如果不需要新的 {@code Double} 实例，则通常应优先使用此方法，
+     * 而不是构造方法 {@link #Double(double)}，
+     * 因为此方法可能通过缓存经常请求的值来显著提高空间和时间性能。
      *
-     * @param  d a double value.
-     * @return a {@code Double} instance representing {@code d}.
+     * @param  d 一个 double 值。
+     * @return 表示 {@code d} 的 {@code Double} 实例。
      * @since  1.5
      */
     public static Double valueOf(double d) {
@@ -520,17 +437,13 @@ public final class Double extends Number implements Comparable<Double> {
     }
 
     /**
-     * Returns a new {@code double} initialized to the value
-     * represented by the specified {@code String}, as performed
-     * by the {@code valueOf} method of class
-     * {@code Double}.
+     * 返回一个新的 {@code double} 值，该值被初始化为用指定 {@code String} 表示的值，
+     * 这与 {@code Double} 类的 {@code valueOf} 方法一样。
      *
-     * @param  s   the string to be parsed.
-     * @return the {@code double} value represented by the string
-     *         argument.
-     * @throws NullPointerException  if the string is null
-     * @throws NumberFormatException if the string does not contain
-     *         a parsable {@code double}.
+     * @param  s   要解析的字符串。
+     * @return 由字符串参数表示的 {@code double} 值。
+     * @throws NullPointerException  如果字符串为空
+     * @throws NumberFormatException 如果字符串不包含可解析的 {@code double} 值。
      * @see    java.lang.Double#valueOf(String)
      * @since 1.2
      */
@@ -539,12 +452,10 @@ public final class Double extends Number implements Comparable<Double> {
     }
 
     /**
-     * Returns {@code true} if the specified number is a
-     * Not-a-Number (NaN) value, {@code false} otherwise.
+     * 如果指定的数是一个 NaN 值，则返回 {@code true}；否则返回 {@code false}。
      *
-     * @param   v   the value to be tested.
-     * @return  {@code true} if the value of the argument is NaN;
-     *          {@code false} otherwise.
+     * @param   v   要测试的值。
+     * @return  如果参数值为 NaN，则返回 {@code true}；否则返回 {@code false}。
      */
     public static boolean isNaN(double v) {
         return (v != v);
