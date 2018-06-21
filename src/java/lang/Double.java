@@ -462,25 +462,20 @@ public final class Double extends Number implements Comparable<Double> {
     }
 
     /**
-     * Returns {@code true} if the specified number is infinitely
-     * large in magnitude, {@code false} otherwise.
+     * 如果指定数在数值上为无穷大，则返回 {@code true}；否则返回 {@code false}。
      *
-     * @param   v   the value to be tested.
-     * @return  {@code true} if the value of the argument is positive
-     *          infinity or negative infinity; {@code false} otherwise.
+     * @param   v   要测试的值。
+     * @return  如果参数值是正无穷大或负无穷大，则返回 {@code true}；否则返回 {@code false}。
      */
     public static boolean isInfinite(double v) {
         return (v == POSITIVE_INFINITY) || (v == NEGATIVE_INFINITY);
     }
 
     /**
-     * Returns {@code true} if the argument is a finite floating-point
-     * value; returns {@code false} otherwise (for NaN and infinity
-     * arguments).
+     * 如果参数是有限浮点值，则返回 {@code true}；否则返回 {@code false}（对于NaN和无穷大参数）。
      *
-     * @param d the {@code double} value to be tested
-     * @return {@code true} if the argument is a finite
-     * floating-point value, {@code false} otherwise.
+     * @param d 要测试的 {@code double} 值
+     * @return 如果参数是有限浮点值，则返回 {@code true}；否则返回 {@code false}
      * @since 1.8
      */
     public static boolean isFinite(double d) {
@@ -488,31 +483,27 @@ public final class Double extends Number implements Comparable<Double> {
     }
 
     /**
-     * The value of the Double.
+     * Double 的值。
      *
      * @serial
      */
     private final double value;
 
     /**
-     * Constructs a newly allocated {@code Double} object that
-     * represents the primitive {@code double} argument.
+     * 构造一个新分配的 {@code Double} 对象，它表示基本的 {@code double} 参数。
      *
-     * @param   value   the value to be represented by the {@code Double}.
+     * @param   value   用 {@code Double} 表示的值。
      */
     public Double(double value) {
         this.value = value;
     }
 
     /**
-     * Constructs a newly allocated {@code Double} object that
-     * represents the floating-point value of type {@code double}
-     * represented by the string. The string is converted to a
-     * {@code double} value as if by the {@code valueOf} method.
+     * 构造一个新分配的 {@code Double} 对象，表示用字符串表示的 {@code double} 类型的浮点值。
+     * 该方法与 {@code valueOf} 方法一样，可将字符串转换为 {@code double} 值。
      *
-     * @param  s  a string to be converted to a {@code Double}.
-     * @throws    NumberFormatException  if the string does not contain a
-     *            parsable number.
+     * @param  s  要转换为 {@code Double} 的字符串。
+     * @throws    NumberFormatException  如果字符串不包含可解析的数字。
      * @see       java.lang.Double#valueOf(java.lang.String)
      */
     public Double(String s) throws NumberFormatException {
@@ -520,35 +511,29 @@ public final class Double extends Number implements Comparable<Double> {
     }
 
     /**
-     * Returns {@code true} if this {@code Double} value is
-     * a Not-a-Number (NaN), {@code false} otherwise.
+     * 如果此 {@code Double} 值是非数字（NaN）值，则返回 {@code true}；否则返回 {@code false}。
      *
-     * @return  {@code true} if the value represented by this object is
-     *          NaN; {@code false} otherwise.
+     * @return  如果此对象表示的值为 NaN，则返回 {@code true}；否则返回 {@code false}。
      */
     public boolean isNaN() {
         return isNaN(value);
     }
 
     /**
-     * Returns {@code true} if this {@code Double} value is
-     * infinitely large in magnitude, {@code false} otherwise.
+     * 如果此 {@code Double} 值在数值上为无穷大，则返回 {@code true}；否则返回 {@code false}。
      *
-     * @return  {@code true} if the value represented by this object is
-     *          positive infinity or negative infinity;
-     *          {@code false} otherwise.
+     * @return  如果此对象所表示的值是正无穷大或负无穷大，则返回 {@code true}；
+     *           否则返回 {@code false}。
      */
     public boolean isInfinite() {
         return isInfinite(value);
     }
 
     /**
-     * Returns a string representation of this {@code Double} object.
-     * The primitive {@code double} value represented by this
-     * object is converted to a string exactly as if by the method
-     * {@code toString} of one argument.
+     * 返回此 {@code Double} 对象的字符串表示形式。
+     * 使用此对象表示的基本 {@code double} 值被转换为一个字符串，这与带一个参数的 {@code toString} 方法完全一样。
      *
-     * @return  a {@code String} representation of this object.
+     * @return  此对象的 {@code String} 表示形式。
      * @see java.lang.Double#toString(double)
      */
     public String toString() {
@@ -556,11 +541,9 @@ public final class Double extends Number implements Comparable<Double> {
     }
 
     /**
-     * Returns the value of this {@code Double} as a {@code byte}
-     * after a narrowing primitive conversion.
+     * 以 {@code byte} 形式返回此 {@code Double} 的值（通过强制转换为 {@code byte}）。
      *
-     * @return  the {@code double} value represented by this object
-     *          converted to type {@code byte}
+     * @return  转换为 {@code byte} 类型的由此对象所表示的 {@code double} 值
      * @jls 5.1.3 Narrowing Primitive Conversions
      * @since JDK1.1
      */
@@ -569,11 +552,9 @@ public final class Double extends Number implements Comparable<Double> {
     }
 
     /**
-     * Returns the value of this {@code Double} as a {@code short}
-     * after a narrowing primitive conversion.
+     * 以 {@code short} 形式返回此 {@code Double} 的值（通过强制转换为 {@code short}）。
      *
-     * @return  the {@code double} value represented by this object
-     *          converted to type {@code short}
+     * @return  转换为 {@code short} 类型的由此对象所表示的 {@code double} 值
      * @jls 5.1.3 Narrowing Primitive Conversions
      * @since JDK1.1
      */
@@ -582,23 +563,19 @@ public final class Double extends Number implements Comparable<Double> {
     }
 
     /**
-     * Returns the value of this {@code Double} as an {@code int}
-     * after a narrowing primitive conversion.
+     * 以 {@code int} 形式返回此 {@code Double} 的值（通过强制转换为 {@code int} 类型）。
      * @jls 5.1.3 Narrowing Primitive Conversions
      *
-     * @return  the {@code double} value represented by this object
-     *          converted to type {@code int}
+     * @return  转换为 {@code int} 类型的由此对象所表示的 {@code double} 值
      */
     public int intValue() {
         return (int)value;
     }
 
     /**
-     * Returns the value of this {@code Double} as a {@code long}
-     * after a narrowing primitive conversion.
+     * 以 {@code long} 形式返回此 {@code Double} 的值（通过强制转换为 {@code long} 类型）。
      *
-     * @return  the {@code double} value represented by this object
-     *          converted to type {@code long}
+     * @return  转换为 {@code long} 类型的由此对象所表示的 {@code double} 值
      * @jls 5.1.3 Narrowing Primitive Conversions
      */
     public long longValue() {
@@ -606,11 +583,9 @@ public final class Double extends Number implements Comparable<Double> {
     }
 
     /**
-     * Returns the value of this {@code Double} as a {@code float}
-     * after a narrowing primitive conversion.
+     * 返回此 {@code Double} 对象的 {@code float} 值。
      *
-     * @return  the {@code double} value represented by this object
-     *          converted to type {@code float}
+     * @return  转换为 {@code float} 类型的由此对象所表示的 {@code double} 值
      * @jls 5.1.3 Narrowing Primitive Conversions
      * @since JDK1.0
      */
@@ -619,34 +594,31 @@ public final class Double extends Number implements Comparable<Double> {
     }
 
     /**
-     * Returns the {@code double} value of this {@code Double} object.
+     * 返回此 {@code Double} 对象的 {@code double} 值。
      *
-     * @return the {@code double} value represented by this object
+     * @return 此对象所表示的 {@code double} 值
      */
     public double doubleValue() {
         return value;
     }
 
     /**
-     * Returns a hash code for this {@code Double} object. The
-     * result is the exclusive OR of the two halves of the
-     * {@code long} integer bit representation, exactly as
-     * produced by the method {@link #doubleToLongBits(double)}, of
-     * the primitive {@code double} value represented by this
-     * {@code Double} object. That is, the hash code is the value
-     * of the expression:
+     * 返回此 {@code Double} 对象的哈希码。
+     * 结果是此 {@code Double} 对象所表示的基本 {@code double} 值的
+     * {@code long} 整数位表示形式（与 {@link #doubleToLongBits(double)} 方法生成的结果完全一样）
+     * 两部分整数之间的异或 (XOR)。也就是说，哈希码就是以下表达式的值：
      *
      * <blockquote>
      *  {@code (int)(v^(v>>>32))}
      * </blockquote>
      *
-     * where {@code v} is defined by:
+     * 其中 {@code v} 的定义为：
      *
      * <blockquote>
      *  {@code long v = Double.doubleToLongBits(this.doubleValue());}
      * </blockquote>
      *
-     * @return  a {@code hash code} value for this object.
+     * @return  此对象的 {@code hash code} 值。
      */
     @Override
     public int hashCode() {
@@ -654,11 +626,10 @@ public final class Double extends Number implements Comparable<Double> {
     }
 
     /**
-     * Returns a hash code for a {@code double} value; compatible with
-     * {@code Double.hashCode()}.
+     * 返回 {@code double} 值的哈希值；和 {@code Double.hashCode()} 兼容。
      *
-     * @param value the value to hash
-     * @return a hash code value for a {@code double} value.
+     * @param value 需要哈希的值
+     * @return {@code double} 值的哈希值。
      * @since 1.8
      */
     public static int hashCode(double value) {
@@ -667,42 +638,31 @@ public final class Double extends Number implements Comparable<Double> {
     }
 
     /**
-     * Compares this object against the specified object.  The result
-     * is {@code true} if and only if the argument is not
-     * {@code null} and is a {@code Double} object that
-     * represents a {@code double} that has the same value as the
-     * {@code double} represented by this object. For this
-     * purpose, two {@code double} values are considered to be
-     * the same if and only if the method {@link
-     * #doubleToLongBits(double)} returns the identical
-     * {@code long} value when applied to each.
+     * 将此对象与指定对象比较。当且仅当参数不是 {@code null} 而是 {@code Double} 对象，
+     * 且表示的 {@code Double} 值与此对象表示的 {@code double} 值相同时，结果为 {@code true}。
+     * 为此，当且仅当将方法 {@link #doubleToLongBits(double)} 应用于
+     * 两个值所返回的 {@code long} 值相同时，才认为这两个 {@code double} 值相同。
+     注意，在大多数情况下，对于 Double 类的两个实例 d1 和 d2，当且仅当
      *
-     * <p>Note that in most cases, for two instances of class
-     * {@code Double}, {@code d1} and {@code d2}, the
-     * value of {@code d1.equals(d2)} is {@code true} if and
-     * only if
+     * <p>注意，在大多数情况下，对于 {@code Double} 类的两个实例 {@code d1} 和 {@code d2}，当且仅当
      *
      * <blockquote>
      *  {@code d1.doubleValue() == d2.doubleValue()}
      * </blockquote>
      *
-     * <p>also has the value {@code true}. However, there are two
-     * exceptions:
+     * <p>为 {@code true} 时，{@code d1.equals(d2)} 的值才为 {@code true}。但是，有以下两种例外情况：
      * <ul>
-     * <li>If {@code d1} and {@code d2} both represent
-     *     {@code Double.NaN}, then the {@code equals} method
-     *     returns {@code true}, even though
-     *     {@code Double.NaN==Double.NaN} has the value
-     *     {@code false}.
-     * <li>If {@code d1} represents {@code +0.0} while
-     *     {@code d2} represents {@code -0.0}, or vice versa,
-     *     the {@code equal} test has the value {@code false},
-     *     even though {@code +0.0==-0.0} has the value {@code true}.
+     * <li>如果 {@code d1} 和 {@code d2} 都表示 {@code Double.NaN}，
+     *     那么即使  {@code Double.NaN==Double.NaN} 值为 {@code false}，
+     *     {@code equals} 方法也将返回 {@code true}。
+     * <li>如果 {@code d1} 表示 {@code +0.0} 而 {@code d2} 表示 {@code -0.0}，
+     *     或者相反，那么即使 {@code +0.0==-0.0} 值为 {@code true}，
+     *     {@code equal} 测试也将返回 {@code false}。
+
      * </ul>
-     * This definition allows hash tables to operate properly.
-     * @param   obj   the object to compare with.
-     * @return  {@code true} if the objects are the same;
-     *          {@code false} otherwise.
+     * 此定义使得哈希表得以正确操作。
+     * @param   obj   要与之进行比较的对象。
+     * @return  如果对象相同，则返回 {@code true}；否则返回 {@code false}。
      * @see java.lang.Double#doubleToLongBits(double)
      */
     public boolean equals(Object obj) {
@@ -712,36 +672,23 @@ public final class Double extends Number implements Comparable<Double> {
     }
 
     /**
-     * Returns a representation of the specified floating-point value
-     * according to the IEEE 754 floating-point "double
-     * format" bit layout.
+     * 根据 IEEE 754 浮点双精度格式 ("double format") 位布局，返回指定浮点值的表示形式。
      *
-     * <p>Bit 63 (the bit that is selected by the mask
-     * {@code 0x8000000000000000L}) represents the sign of the
-     * floating-point number. Bits
-     * 62-52 (the bits that are selected by the mask
-     * {@code 0x7ff0000000000000L}) represent the exponent. Bits 51-0
-     * (the bits that are selected by the mask
-     * {@code 0x000fffffffffffffL}) represent the significand
-     * (sometimes called the mantissa) of the floating-point number.
+     * <p>第 63 位（掩码 {@code 0x8000000000000000L} 选定的位）表示浮点数的符号。
+     * 第 62-52 位（掩码 {@code 0x7ff0000000000000L} 选定的位）表示指数。
+     * 第 51-0 位（掩码 {@code 0x000fffffffffffffL} 选定的位）表示浮点数的有效数字（有时也称为尾数）。
      *
-     * <p>If the argument is positive infinity, the result is
-     * {@code 0x7ff0000000000000L}.
+     * <p>如果参数是正无穷大，则结果为 {@code 0x7ff0000000000000L}。
      *
-     * <p>If the argument is negative infinity, the result is
-     * {@code 0xfff0000000000000L}.
+     * <p>如果参数是负无穷大，则结果为 {@code 0xfff0000000000000L}。
      *
-     * <p>If the argument is NaN, the result is
-     * {@code 0x7ff8000000000000L}.
+     * <p>如果参数是 NaN，则结果为 {@code 0x7ff8000000000000L}。
      *
-     * <p>In all cases, the result is a {@code long} integer that, when
-     * given to the {@link #longBitsToDouble(long)} method, will produce a
-     * floating-point value the same as the argument to
-     * {@code doubleToLongBits} (except all NaN values are
-     * collapsed to a single "canonical" NaN value).
+     * <p>在所有情况下，结果都是一个 {@code long} 整数，将其赋予{@link #longBitsToDouble(long)}
+     * 方法将生成一个与 {@code doubleToLongBits} 的参数相同的浮点值
      *
-     * @param   value   a {@code double} precision floating-point number.
-     * @return the bits that represent the floating-point number.
+     * @param   value   双精度 ({@code double}) 浮点数。
+     * @return 表示浮点数的位。
      */
     public static long doubleToLongBits(double value) {
         long result = doubleToRawLongBits(value);
@@ -755,68 +702,45 @@ public final class Double extends Number implements Comparable<Double> {
     }
 
     /**
-     * Returns a representation of the specified floating-point value
-     * according to the IEEE 754 floating-point "double
-     * format" bit layout, preserving Not-a-Number (NaN) values.
+     * 根据 IEEE 754 浮点“双精度格式”位布局，返回指定浮点值的表示形式，并保留 NaN 值。
      *
-     * <p>Bit 63 (the bit that is selected by the mask
-     * {@code 0x8000000000000000L}) represents the sign of the
-     * floating-point number. Bits
-     * 62-52 (the bits that are selected by the mask
-     * {@code 0x7ff0000000000000L}) represent the exponent. Bits 51-0
-     * (the bits that are selected by the mask
-     * {@code 0x000fffffffffffffL}) represent the significand
-     * (sometimes called the mantissa) of the floating-point number.
+     * <p>第 63 位（掩码 {@code 0x8000000000000000L} 选定的位）表示浮点数的符号。
+     * 第 62-52 位（掩码 {@code 0x7ff0000000000000L} 选定的位）表示指数。
+     * 第 51-0 位（掩码 {@code 0x000fffffffffffffL} 选定的位）表示浮点数的有效数字（有时也称为尾数）。
      *
-     * <p>If the argument is positive infinity, the result is
-     * {@code 0x7ff0000000000000L}.
+     * <p>如果参数是正无穷大，则结果为 {@code 0x7ff0000000000000L}。
      *
-     * <p>If the argument is negative infinity, the result is
-     * {@code 0xfff0000000000000L}.
+     * <p>如果参数是负无穷大，则结果为 {@code 0xfff0000000000000L}。
      *
-     * <p>If the argument is NaN, the result is the {@code long}
-     * integer representing the actual NaN value.  Unlike the
-     * {@code doubleToLongBits} method,
-     * {@code doubleToRawLongBits} does not collapse all the bit
-     * patterns encoding a NaN to a single "canonical" NaN
-     * value.
+     * <p>如果参数是 NaN，则结果为 {@code 0x7ff8000000000000L}。
+     * 与 {@code doubleToLongBits} 方法不同，{@code doubleToLongBits} 并没有压缩那些
+     * 将 NaN 编码为一个“规范的”NaN 值的所有位模式。
      *
-     * <p>In all cases, the result is a {@code long} integer that,
-     * when given to the {@link #longBitsToDouble(long)} method, will
-     * produce a floating-point value the same as the argument to
-     * {@code doubleToRawLongBits}.
+     * <p>在所有情况下，结果都是一个 {@code long} 整数，
+     * 将其赋予 {@link #longBitsToDouble(long)} 方法将生成一个
+     * 与 {@code doubleToRawLongBits} 的参数相同的浮点值。
      *
-     * @param   value   a {@code double} precision floating-point number.
-     * @return the bits that represent the floating-point number.
+     * @param   value   双精度 ({@code double}) 浮点数。
+     * @return 表示浮点数的位。
      * @since 1.3
      */
     public static native long doubleToRawLongBits(double value);
 
     /**
-     * Returns the {@code double} value corresponding to a given
-     * bit representation.
-     * The argument is considered to be a representation of a
-     * floating-point value according to the IEEE 754 floating-point
-     * "double format" bit layout.
+     * 返回对应于给定位表示形式的 {@code double} 值。
+     * 根据 IEEE 754 浮点“双精度格式”位布局，参数被视为浮点值表示形式。
      *
-     * <p>If the argument is {@code 0x7ff0000000000000L}, the result
-     * is positive infinity.
+     * <p>如果参数是 {@code 0x7ff0000000000000L}，则结果为正无穷大。
      *
-     * <p>If the argument is {@code 0xfff0000000000000L}, the result
-     * is negative infinity.
+     * <p>如果参数是 {@code 0xfff0000000000000L}，则结果为负无穷大。
      *
-     * <p>If the argument is any value in the range
-     * {@code 0x7ff0000000000001L} through
-     * {@code 0x7fffffffffffffffL} or in the range
-     * {@code 0xfff0000000000001L} through
-     * {@code 0xffffffffffffffffL}, the result is a NaN.  No IEEE
-     * 754 floating-point operation provided by Java can distinguish
-     * between two NaN values of the same type with different bit
-     * patterns.  Distinct values of NaN are only distinguishable by
-     * use of the {@code Double.doubleToRawLongBits} method.
+     * <p>如果参数值在 {@code 0x7ff0000000000001L} 到 {@code 0x7fffffffffffffffL}
+     * 之间或者在 {@code 0xfff0000000000001L} 到 {@code 0xffffffffffffffffL} 之间，
+     * 则结果为 NaN。
+     * Java 提供的任何 IEEE 754 浮点操作都不能区分具有不同位模式的两个同类型 NaN 值。
+     * 不同的 NaN 值只能使用 {@code Double.doubleToRawLongBits} 方法区分。
      *
-     * <p>In all other cases, let <i>s</i>, <i>e</i>, and <i>m</i> be three
-     * values that can be computed from the argument:
+     * <p>在所有其他情况下，设 <i>s</i>, <i>e</i>, 和 <i>m</i> 为可以通过以下参数计算的三个值：
      *
      * <blockquote><pre>{@code
      * int s = ((bits >> 63) == 0) ? 1 : -1;
@@ -826,62 +750,43 @@ public final class Double extends Number implements Comparable<Double> {
      *                 (bits & 0xfffffffffffffL) | 0x10000000000000L;
      * }</pre></blockquote>
      *
-     * Then the floating-point result equals the value of the mathematical
-     * expression <i>s</i>&middot;<i>m</i>&middot;2<sup><i>e</i>-1075</sup>.
+     * 那么浮点结果等于算术表达式
+     * <i>s</i>&middot;<i>m</i>&middot;2<sup><i>e</i>-1075</sup> 的值。
      *
-     * <p>Note that this method may not be able to return a
-     * {@code double} NaN with exactly same bit pattern as the
-     * {@code long} argument.  IEEE 754 distinguishes between two
-     * kinds of NaNs, quiet NaNs and <i>signaling NaNs</i>.  The
-     * differences between the two kinds of NaN are generally not
-     * visible in Java.  Arithmetic operations on signaling NaNs turn
-     * them into quiet NaNs with a different, but often similar, bit
-     * pattern.  However, on some processors merely copying a
-     * signaling NaN also performs that conversion.  In particular,
-     * copying a signaling NaN to return it to the calling method
-     * may perform this conversion.  So {@code longBitsToDouble}
-     * may not be able to return a {@code double} with a
-     * signaling NaN bit pattern.  Consequently, for some
-     * {@code long} values,
-     * {@code doubleToRawLongBits(longBitsToDouble(start))} may
-     * <i>not</i> equal {@code start}.  Moreover, which
-     * particular bit patterns represent signaling NaNs is platform
-     * dependent; although all NaN bit patterns, quiet or signaling,
-     * must be in the NaN range identified above.
+     * <p>注意，此方法不能返回与 {@code long} 参数具有完全相同位模式的 {@code double} NaN。
+     * IEEE 754 区分了两种 NaN：quiet NaN 和 <i>signaling NaNs</i>。
+     * 这两种 NaN 之间的差别在 Java 中通常是不可见的。
+     * 对 signaling NaN 进行的算术运算将它们转换为具有不同（但通常类似）位模式的 quiet NaN。
+     * 但是在某些处理器上，只复制 signaling NaN 也执行这种转换。
+     * 特别是在复制 signaling NaN 以将其返回给调用方法时，可能会执行这种转换。
+     * 因此，{@code longBitsToDouble} 可能无法返回具有 signaling NaN 位模式的 {@code double} 值。
+     * 所以，对于某些 {@code long} 值，
+     * {@code doubleToRawLongBits(longBitsToDouble(start))} 可能 <i>not</i> 等于 {@code start}。
+     * 此外，尽管所有 NaN 位模式（不管是 quiet NaN 还是 signaling NaN）都必须在上面提到的 NaN 范围内，
+     * 但表示 signaling NaN 的特定位模式与平台有关。
      *
-     * @param   bits   any {@code long} integer.
-     * @return  the {@code double} floating-point value with the same
-     *          bit pattern.
+     * @param   bits   任意 @code long} 整数。
+     * @return  具有相同位模式的 {@code double} 浮点值。
      */
     public static native double longBitsToDouble(long bits);
 
     /**
-     * Compares two {@code Double} objects numerically.  There
-     * are two ways in which comparisons performed by this method
-     * differ from those performed by the Java language numerical
-     * comparison operators ({@code <, <=, ==, >=, >})
-     * when applied to primitive {@code double} values:
+     * 对两个 {@code Double} 对象所表示的数值进行比较。
+     * 在应用到基本 {@code double} 值时，有两种方法可以比较
+     * 执行此方法生成的值与执行 Java 语言数字比较运算符（{@code <, <=, ==, >=, >}）生成的值之间的区别：
      * <ul><li>
-     *          {@code Double.NaN} is considered by this method
-     *          to be equal to itself and greater than all other
-     *          {@code double} values (including
-     *          {@code Double.POSITIVE_INFINITY}).
+     *          此方法认为 {@code Double.NaN} 等于它自身，且大于其他所有 {@code double} 值
+     *          （包括 {@code Double.POSITIVE_INFINITY}）。
      * <li>
-     *          {@code 0.0d} is considered by this method to be greater
-     *          than {@code -0.0d}.
+     *          此方法认为 {@code 0.0d} 大于 {@code -0.0d}。
      * </ul>
-     * This ensures that the <i>natural ordering</i> of
-     * {@code Double} objects imposed by this method is <i>consistent
-     * with equals</i>.
+     * 这可以确保受此方法影响的 {@code Double} 对象的 <i>自然顺序</i> 与 <i>equals 一致</i>。
      *
-     * @param   anotherDouble   the {@code Double} to be compared.
-     * @return  the value {@code 0} if {@code anotherDouble} is
-     *          numerically equal to this {@code Double}; a value
-     *          less than {@code 0} if this {@code Double}
-     *          is numerically less than {@code anotherDouble};
-     *          and a value greater than {@code 0} if this
-     *          {@code Double} is numerically greater than
-     *          {@code anotherDouble}.
+     * @param   anotherDouble   要比较的 {@code Double} 值。
+     * @return  如果 {@code anotherDouble} 在数字上等于此 {@code Double}，
+     *           则返回 {@code 0}；
+     *           如果此 {@code Double} 在数字上小于 {@code anotherDouble}，
+     *           则返回小于 {@code 0} 的值；
      *
      * @since   1.2
      */
@@ -890,21 +795,17 @@ public final class Double extends Number implements Comparable<Double> {
     }
 
     /**
-     * Compares the two specified {@code double} values. The sign
-     * of the integer value returned is the same as that of the
-     * integer that would be returned by the call:
+     * 比较两个指定的 {@code double} 值。
+     * 返回整数值的符号与以下调用返回的整数的符号相同：
      * <pre>
      *    new Double(d1).compareTo(new Double(d2))
      * </pre>
      *
-     * @param   d1        the first {@code double} to compare
-     * @param   d2        the second {@code double} to compare
-     * @return  the value {@code 0} if {@code d1} is
-     *          numerically equal to {@code d2}; a value less than
-     *          {@code 0} if {@code d1} is numerically less than
-     *          {@code d2}; and a value greater than {@code 0}
-     *          if {@code d1} is numerically greater than
-     *          {@code d2}.
+     * @param   d1         要比较的第一个 {@code double}
+     * @param   d2         要比较的第二个 {@code double}
+     * @return  如果 {@code d1} 在数字上等于 {@code d2}，则返回 {@code 0}；
+     *           如果 {@code d1} 在数字上小于 {@code d2}，则返回小于 {@code 0} 的值；
+     *           如果 {@code d1} 在数字上大于 {@code d2}，则返回大于 {@code 0} 的值。
      * @since 1.4
      */
     public static int compare(double d1, double d2) {
@@ -923,7 +824,7 @@ public final class Double extends Number implements Comparable<Double> {
     }
 
     /**
-     * Adds two {@code double} values together as per the + operator.
+     * 通过 + 操作得到两个 {@code double} 值的和。
      *
      * @param a the first operand
      * @param b the second operand
@@ -937,8 +838,8 @@ public final class Double extends Number implements Comparable<Double> {
     }
 
     /**
-     * Returns the greater of two {@code double} values
-     * as if by calling {@link Math#max(double, double) Math.max}.
+     * 返回两个 {@code double} 的最大值，
+     * 通过调用了 {@link Math#max(double, double) Math.max}。
      *
      * @param a the first operand
      * @param b the second operand
@@ -951,12 +852,12 @@ public final class Double extends Number implements Comparable<Double> {
     }
 
     /**
-     * Returns the smaller of two {@code double} values
-     * as if by calling {@link Math#min(double, double) Math.min}.
+     * 返回两个 {@code double} 的最小值，
+     * 通过调用了 {@link Math#min(double, double) Math.min}。
      *
-     * @param a the first operand
-     * @param b the second operand
-     * @return the smaller of {@code a} and {@code b}.
+     * @param a 第一个操作数
+     * @param b 第二个操作数
+     * @return {@code a} 和 {@code b} 的最小值。
      * @see java.util.function.BinaryOperator
      * @since 1.8
      */
