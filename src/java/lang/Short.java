@@ -26,14 +26,12 @@
 package java.lang;
 
 /**
- * The {@code Short} class wraps a value of primitive type {@code
- * short} in an object.  An object of type {@code Short} contains a
- * single field whose type is {@code short}.
+ * {@code Short} 类在对象中包装基本类型 {@code short} 的值。
+ * 一个 {@code Short} 类型的对象只包含一个 short 类型的字段。
  *
- * <p>In addition, this class provides several methods for converting
- * a {@code short} to a {@code String} and a {@code String} to a
- * {@code short}, as well as other constants and methods useful when
- * dealing with a {@code short}.
+ * <p>另外，该类提供了多个方法，可以将 {@code short} 转换为 {@code String}，
+ * 将 {@code String} 转换为 {@code short}，同时还提供了
+ * 其他一些处理 {@code short} 时有用的常量和方法。
  *
  * @author  Nakul Saraiya
  * @author  Joseph D. Darcy
@@ -43,30 +41,26 @@ package java.lang;
 public final class Short extends Number implements Comparable<Short> {
 
     /**
-     * A constant holding the minimum value a {@code short} can
-     * have, -2<sup>15</sup>.
+     *  保存 {@code short} 可取的最小值的常量，最小值为 -2<sup>15</sup>。
      */
     public static final short   MIN_VALUE = -32768;
 
     /**
-     * A constant holding the maximum value a {@code short} can
-     * have, 2<sup>15</sup>-1.
+     * 保存 {@code short} 可取的最大值的常量，最大值为 2<sup>15</sup>。
      */
     public static final short   MAX_VALUE = 32767;
 
     /**
-     * The {@code Class} instance representing the primitive type
-     * {@code short}.
+     * 表示基本类型 {@code short} 的 {@code Class} 实例。
      */
     @SuppressWarnings("unchecked")
     public static final Class<Short>    TYPE = (Class<Short>) Class.getPrimitiveClass("short");
 
     /**
-     * Returns a new {@code String} object representing the
-     * specified {@code short}. The radix is assumed to be 10.
+     * 返回表示指定 {@code short} 的一个新 {@code String} 对象。假定用十进制表示。
      *
-     * @param s the {@code short} to be converted
-     * @return the string representation of the specified {@code short}
+     * @param s 所要转换的 {@code short}
+     * @return 表示指定 {@code short} 的字符串
      * @see java.lang.Integer#toString(int)
      */
     public static String toString(short s) {
@@ -74,44 +68,30 @@ public final class Short extends Number implements Comparable<Short> {
     }
 
     /**
-     * Parses the string argument as a signed {@code short} in the
-     * radix specified by the second argument. The characters in the
-     * string must all be digits, of the specified radix (as
-     * determined by whether {@link java.lang.Character#digit(char,
-     * int)} returns a nonnegative value) except that the first
-     * character may be an ASCII minus sign {@code '-'}
-     * ({@code '\u005Cu002D'}) to indicate a negative value or an
-     * ASCII plus sign {@code '+'} ({@code '\u005Cu002B'}) to
-     * indicate a positive value.  The resulting {@code short} value
-     * is returned.
+     * 将字符串参数解析为由第二个参数指定的基数中的有符号的 {@code short}。
+     * 该字符串中的字符必须都是指定基数（这取决于 {@link java.lang.Character#digit(char,int)}
+     * 是否返回非负值）的数字，除非第一个字符是表示负值的 ASCII 符号中的负号 {@code '-'}
+     * （{@code '\u005Cu002D'}） 或表示正值的ASCII 符号中的
+     * 正号{@code '+'}（{@code '\u005Cu002B'}）。返回得到的 byte 值。
      *
-     * <p>An exception of type {@code NumberFormatException} is
-     * thrown if any of the following situations occurs:
+     * <p>如果出现以下情形之一，则抛出 {@code NumberFormatException} 类型的异常：
      * <ul>
-     * <li> The first argument is {@code null} or is a string of
-     * length zero.
+     * <li> 第一个参数是 {@code null} 或零长度的字符串。
      *
-     * <li> The radix is either smaller than {@link
-     * java.lang.Character#MIN_RADIX} or larger than {@link
-     * java.lang.Character#MAX_RADIX}.
+     * <li> 基数小于 {@link java.lang.Character#MIN_RADIX}
+     * 或大于 {@link java.lang.Character#MAX_RADIX}。
      *
-     * <li> Any character of the string is not a digit of the
-     * specified radix, except that the first character may be a minus
-     * sign {@code '-'} ({@code '\u005Cu002D'}) or plus sign
-     * {@code '+'} ({@code '\u005Cu002B'}) provided that the
-     * string is longer than length 1.
+     * <li> 除了在字符串长度超过 1 的情况下第一个字符可能是负号
+     * {@code '-'} ({@code '\u005Cu002D'}) 或者正号 {@code '+'} ({@code '\u005Cu002B'})
+     * 之外，字符串的任何字符都不是指定基数的数字。
      *
-     * <li> The value represented by the string is not a value of type
-     * {@code short}.
+     * <li> 字符串所表示的值不是 {@code short} 类型的值。
      * </ul>
      *
-     * @param s         the {@code String} containing the
-     *                  {@code short} representation to be parsed
-     * @param radix     the radix to be used while parsing {@code s}
-     * @return          the {@code short} represented by the string
-     *                  argument in the specified radix.
-     * @throws          NumberFormatException If the {@code String}
-     *                  does not contain a parsable {@code short}.
+     * @param s         包含要解析的 {@code short} 表示形式的 {@code String}
+     * @param radix    将在解析 {@code s} 时使用的基数
+     * @return          由指定基数中的字符串参数表示的 {@code short} 。
+     * @throws          NumberFormatException 如果 {@code String} 不包含可解析的 {@code short}。
      */
     public static short parseShort(String s, int radix)
         throws NumberFormatException {
@@ -123,51 +103,38 @@ public final class Short extends Number implements Comparable<Short> {
     }
 
     /**
-     * Parses the string argument as a signed decimal {@code
-     * short}. The characters in the string must all be decimal
-     * digits, except that the first character may be an ASCII minus
-     * sign {@code '-'} ({@code '\u005Cu002D'}) to indicate a
-     * negative value or an ASCII plus sign {@code '+'}
-     * ({@code '\u005Cu002B'}) to indicate a positive value.  The
-     * resulting {@code short} value is returned, exactly as if the
-     * argument and the radix 10 were given as arguments to the {@link
-     * #parseShort(java.lang.String, int)} method.
+     * 将字符串参数解析为有符号的十进制 short。
+     * 该字符串中的字符必须都是十进制数字，除非第一个字符是表示负值的 ASCII 符号中的负号 {@code '-'}
+     * （{@code '\u005Cu002D'}） 或表示正值的ASCII 符号中的
+     * 正号{@code '+'}（{@code '\u005Cu002B'}）。
+     * 此值与用该参数和基数 10 作为参数的 {@link #parseShort(java.lang.String, int)}
+     * 方法得到的值相同。
      *
-     * @param s a {@code String} containing the {@code short}
-     *          representation to be parsed
-     * @return  the {@code short} value represented by the
-     *          argument in decimal.
-     * @throws  NumberFormatException If the string does not
-     *          contain a parsable {@code short}.
+     * @param s 包含要解析的 {@code short} 表示形式的 {@code String}
+     * @return  参数（十进制）表示的 {@code short} 值。
+     * @throws  NumberFormatException 如果该字符串不包含可解析的 {@code short}。
      */
     public static short parseShort(String s) throws NumberFormatException {
         return parseShort(s, 10);
     }
 
     /**
-     * Returns a {@code Short} object holding the value
-     * extracted from the specified {@code String} when parsed
-     * with the radix given by the second argument. The first argument
-     * is interpreted as representing a signed {@code short} in
-     * the radix specified by the second argument, exactly as if the
-     * argument were given to the {@link #parseShort(java.lang.String,
-     * int)} method. The result is a {@code Short} object that
-     * represents the {@code short} value specified by the string.
+     * 返回一个 {@code Short} 对象，该对象保持从指定的 {@code String} 中提取的值，
+     * 该值是在使用第二个参数给出的基数对指定字符串进行解析时提取的。
+     * 第一个参数被解释为表示在使用第二个参数所指定基数时的一个有符号的 {@code short}，
+     * 此值与用该参数作为参数的 {@link #parseShort(java.lang.String, int)} 方法得到的值相同。
+     * 结果是一个表示该字符串所指定的 {@code short} 值的 {@code Short} 对象。
      *
-     * <p>In other words, this method returns a {@code Short} object
-     * equal to the value of:
+     * <p>换句话说，此方法返回一个 {@code Short} 对象，它的值等于：
      *
      * <blockquote>
      *  {@code new Short(Short.parseShort(s, radix))}
      * </blockquote>
      *
-     * @param s         the string to be parsed
-     * @param radix     the radix to be used in interpreting {@code s}
-     * @return          a {@code Short} object holding the value
-     *                  represented by the string argument in the
-     *                  specified radix.
-     * @throws          NumberFormatException If the {@code String} does
-     *                  not contain a parsable {@code short}.
+     * @param s         要解析的字符串
+     * @param radix     将在解释 {@code s} 时使用的基数
+     * @return          保持指定基数中的字符串参数所表示的值的 {@code Short}  对象。
+     * @throws          NumberFormatException 如果 {@code String} 不包含可解析的 {@code short}。
      */
     public static Short valueOf(String s, int radix)
         throws NumberFormatException {
@@ -175,26 +142,20 @@ public final class Short extends Number implements Comparable<Short> {
     }
 
     /**
-     * Returns a {@code Short} object holding the
-     * value given by the specified {@code String}. The argument
-     * is interpreted as representing a signed decimal
-     * {@code short}, exactly as if the argument were given to
-     * the {@link #parseShort(java.lang.String)} method. The result is
-     * a {@code Short} object that represents the
-     * {@code short} value specified by the string.
+     * 返回一个保持指定 {@code String} 所给出的值的 {@code Short} 对象。
+     * 该参数被解释为表示一个有符号的十进制 {@code short}，
+     * 此值与用该参数作为参数的 {@link #parseShort(java.lang.String)} 方法得到的值相同。
+     * 结果是一个表示该字符串所指定的 {@code short} 值的 {@code Short} 对象。
      *
-     * <p>In other words, this method returns a {@code Short} object
-     * equal to the value of:
+     * <p>换句话说，此方法返回一个 {@code Short} 对象，它的值等于：
      *
      * <blockquote>
      *  {@code new Short(Short.parseShort(s))}
      * </blockquote>
      *
-     * @param s the string to be parsed
-     * @return  a {@code Short} object holding the value
-     *          represented by the string argument
-     * @throws  NumberFormatException If the {@code String} does
-     *          not contain a parsable {@code short}.
+     * @param s 要解析的字符串
+     * @return  保持字符串参数所表示的值的 {@code Short} 对象
+     * @throws  NumberFormatException 如果 {@code String} 不包含可解析的 {@code short}。
      */
     public static Short valueOf(String s) throws NumberFormatException {
         return valueOf(s, 10);
@@ -212,19 +173,14 @@ public final class Short extends Number implements Comparable<Short> {
     }
 
     /**
-     * Returns a {@code Short} instance representing the specified
-     * {@code short} value.
-     * If a new {@code Short} instance is not required, this method
-     * should generally be used in preference to the constructor
-     * {@link #Short(short)}, as this method is likely to yield
-     * significantly better space and time performance by caching
-     * frequently requested values.
+     * 返回表示指定 {@code short} 值的 {@code Short} 实例。如果不需要新的 {@code Short} 实例，
+     * 则通常应该优先采用此方法，而不是构造方法 {@link #Short(short)}，
+     * 因为此方法很可能通过缓存经常请求的值来显著提高空间和时间性能。
      *
-     * This method will always cache values in the range -128 to 127,
-     * inclusive, and may cache other values outside of this range.
+     * 此方法缓存值范围总在 -128 到 127 之间，并且可以缓存该范围外的其他值。
      *
-     * @param  s a short value.
-     * @return a {@code Short} instance representing {@code s}.
+     * @param  s 一个 short 值。
+     * @return 表示 s 的 {@code Short} 实例。
      * @since  1.5
      */
     public static Short valueOf(short s) {
@@ -237,9 +193,7 @@ public final class Short extends Number implements Comparable<Short> {
     }
 
     /**
-     * Decodes a {@code String} into a {@code Short}.
-     * Accepts decimal, hexadecimal, and octal numbers given by
-     * the following grammar:
+     * 将 {@code String} 解码为 {@code Short}。接受通过以下语法给出的十进制、十六进制和八进制数：
      *
      * <blockquote>
      * <dl>
@@ -256,26 +210,20 @@ public final class Short extends Number implements Comparable<Short> {
      * </dl>
      * </blockquote>
      *
-     * <i>DecimalNumeral</i>, <i>HexDigits</i>, and <i>OctalDigits</i>
-     * are as defined in section 3.10.1 of
-     * <cite>The Java&trade; Language Specification</cite>,
-     * except that underscores are not accepted between digits.
+     * <i>DecimalNumeral</i>, <i>HexDigits</i>, 和 <i>OctalDigits</i>
+     * 在 <cite>The Java&trade; Language Specification</cite> 的 3.10.1 已经定义，
+     * 除了数字之间不能有下划线的情况之外。
      *
-     * <p>The sequence of characters following an optional
-     * sign and/or radix specifier ("{@code 0x}", "{@code 0X}",
-     * "{@code #}", or leading zero) is parsed as by the {@code
-     * Short.parseShort} method with the indicated radix (10, 16, or
-     * 8).  This sequence of characters must represent a positive
-     * value or a {@link NumberFormatException} will be thrown.  The
-     * result is negated if first character of the specified {@code
-     * String} is the minus sign.  No whitespace characters are
-     * permitted in the {@code String}.
+     * <p>在可选符号和/或基数说明符（"{@code 0x}", "{@code 0X}",
+     * "{@code #}", 或前导零）后面的字符序列进行解析就如同用 {@code Short.parseShort}
+     * 方法来解析指定的基数（10、16 或 8）一样。
+     * 该字符序列必须表示为一个正值，否则将抛出 {@link NumberFormatException}。
+     * 如果指定 {@code String} 的第一个字符是减号，则结果无效。
+     * {@code String} 中不允许出现空白字符。
      *
-     * @param     nm the {@code String} to decode.
-     * @return    a {@code Short} object holding the {@code short}
-     *            value represented by {@code nm}
-     * @throws    NumberFormatException  if the {@code String} does not
-     *            contain a parsable {@code short}.
+     * @param     nm 要解码的 {@code String}。
+     * @return    保持 {@code nm} 所表示的 {@code short} 值的 {@code Short} 对象
+     * @throws    NumberFormatException  如果 {@code String} 不包含可解析的 {@code short}。            contain a parsable {@code short}.
      * @see java.lang.Short#parseShort(java.lang.String, int)
      */
     public static Short decode(String nm) throws NumberFormatException {
@@ -287,34 +235,29 @@ public final class Short extends Number implements Comparable<Short> {
     }
 
     /**
-     * The value of the {@code Short}.
+     * {@code Short} 的 值。
      *
      * @serial
      */
     private final short value;
 
     /**
-     * Constructs a newly allocated {@code Short} object that
-     * represents the specified {@code short} value.
+     * 构造一个新分配的 {@code Short} 对象，用来表示指定的 {@code short} 值。
      *
-     * @param value     the value to be represented by the
-     *                  {@code Short}.
+     * @param value    {@code Short}所表示的值
      */
     public Short(short value) {
         this.value = value;
     }
 
     /**
-     * Constructs a newly allocated {@code Short} object that
-     * represents the {@code short} value indicated by the
-     * {@code String} parameter. The string is converted to a
-     * {@code short} value in exactly the manner used by the
-     * {@code parseShort} method for radix 10.
+     * 构造一个新分配的 {@code Short} 对象，用来表示 {@code String} 参数所
+     * 指示的 {@code short} 值。
+     * 将字符串转换为 {@code short} 值，转换方式与基数为 10 的 {@code parseShort} 方法
+     * 所用的方式完全相同。
      *
-     * @param s the {@code String} to be converted to a
-     *          {@code Short}
-     * @throws  NumberFormatException If the {@code String}
-     *          does not contain a parsable {@code short}.
+     * @param s 要转换为 {@code Short} 的 {@code String}
+     * @throws  NumberFormatException 如果 {@code String} 不包含可解析的 {@code short}。
      * @see     java.lang.Short#parseShort(java.lang.String, int)
      */
     public Short(String s) throws NumberFormatException {
@@ -322,8 +265,7 @@ public final class Short extends Number implements Comparable<Short> {
     }
 
     /**
-     * Returns the value of this {@code Short} as a {@code byte} after
-     * a narrowing primitive conversion.
+     * 经过缩小的原始转换后以 {@code byte} 形式返回此 {@code Short}  的值。
      * @jls 5.1.3 Narrowing Primitive Conversions
      */
     public byte byteValue() {
@@ -331,16 +273,14 @@ public final class Short extends Number implements Comparable<Short> {
     }
 
     /**
-     * Returns the value of this {@code Short} as a
-     * {@code short}.
+     * 以 {@code short} 形式返回此 {@code Short} 的值。
      */
     public short shortValue() {
         return value;
     }
 
     /**
-     * Returns the value of this {@code Short} as an {@code int} after
-     * a widening primitive conversion.
+     * 经过拓宽的原始转换后以 {@code int} 形式返回此 {@code Short} 的值。
      * @jls 5.1.2 Widening Primitive Conversions
      */
     public int intValue() {
@@ -348,8 +288,7 @@ public final class Short extends Number implements Comparable<Short> {
     }
 
     /**
-     * Returns the value of this {@code Short} as a {@code long} after
-     * a widening primitive conversion.
+     * 经过拓宽的原始转换后以 {@code long} 形式返回此 {@code Short} 的值。
      * @jls 5.1.2 Widening Primitive Conversions
      */
     public long longValue() {
@@ -357,8 +296,7 @@ public final class Short extends Number implements Comparable<Short> {
     }
 
     /**
-     * Returns the value of this {@code Short} as a {@code float}
-     * after a widening primitive conversion.
+     * 经过拓宽的原始转换后以 {@code float} 形式返回此 {@code Short} 的值。
      * @jls 5.1.2 Widening Primitive Conversions
      */
     public float floatValue() {
@@ -366,8 +304,7 @@ public final class Short extends Number implements Comparable<Short> {
     }
 
     /**
-     * Returns the value of this {@code Short} as a {@code double}
-     * after a widening primitive conversion.
+     * 经过拓宽的原始转换后以 {@code double} 形式返回此 {@code Short} 的值。
      * @jls 5.1.2 Widening Primitive Conversions
      */
     public double doubleValue() {
@@ -375,11 +312,10 @@ public final class Short extends Number implements Comparable<Short> {
     }
 
     /**
-     * Returns a {@code String} object representing this
-     * {@code Short}'s value.  The value is converted to signed
-     * decimal representation and returned as a string, exactly as if
-     * the {@code short} value were given as an argument to the
-     * {@link java.lang.Short#toString(short)} method.
+     * 返回表示此 {@code Short} 的值的 {@code String} 对象。
+     * 该值被转换成有符号的十进制表示形式，并作为一个字符串返回，
+     * 正如将 {@code short} 值作为一个参数指定给
+     * {@link java.lang.Short#toString(short)} 方法所得到的值那样。
      *
      * @return  a string representation of the value of this object in
      *          base&nbsp;10.
@@ -389,8 +325,8 @@ public final class Short extends Number implements Comparable<Short> {
     }
 
     /**
-     * Returns a hash code for this {@code Short}; equal to the result
-     * of invoking {@code intValue()}.
+     * 返回此 {@code Short} 的哈希码；
+     * 和调用 {@code intValue()} 的结果相等。
      *
      * @return a hash code value for this {@code Short}
      */
@@ -400,8 +336,7 @@ public final class Short extends Number implements Comparable<Short> {
     }
 
     /**
-     * Returns a hash code for a {@code short} value; compatible with
-     * {@code Short.hashCode()}.
+     * 返回此 {@code short} 的哈希码；和 {@code Short.hashCode()} 兼容。
      *
      * @param value the value to hash
      * @return a hash code value for a {@code short} value.
@@ -412,14 +347,12 @@ public final class Short extends Number implements Comparable<Short> {
     }
 
     /**
-     * Compares this object to the specified object.  The result is
-     * {@code true} if and only if the argument is not
-     * {@code null} and is a {@code Short} object that
-     * contains the same {@code short} value as this object.
+     * 将此对象与指定对象比较。
+     * 当且仅当参数不是 {@code null}，而是一个与该对象一样包含相同
+     * {@code short} 值的 {@code Short} 对象时，结果才为 {@code true}。
      *
-     * @param obj       the object to compare with
-     * @return          {@code true} if the objects are the same;
-     *                  {@code false} otherwise.
+     * @param obj       将与之进行比较的对象。
+     * @return          如果这些对象相同，则返回 {@code true}；否则返回 {@code false}。;
      */
     public boolean equals(Object obj) {
         if (obj instanceof Short) {
@@ -429,16 +362,13 @@ public final class Short extends Number implements Comparable<Short> {
     }
 
     /**
-     * Compares two {@code Short} objects numerically.
+     * 比较两个 {@code Short} 对象所表示的数值。.
      *
-     * @param   anotherShort   the {@code Short} to be compared.
-     * @return  the value {@code 0} if this {@code Short} is
-     *          equal to the argument {@code Short}; a value less than
-     *          {@code 0} if this {@code Short} is numerically less
-     *          than the argument {@code Short}; and a value greater than
-     *           {@code 0} if this {@code Short} is numerically
-     *           greater than the argument {@code Short} (signed
-     *           comparison).
+     * @param   anotherShort   要比较的 {@code Short}。
+     * @return  如果该 {@code Short} 等于参数 {@code Short}，则返回 {@code 0}；
+     *           如果该 {@code Short} 数值小于参数 {@code Short}，则返回小于 {@code 0} 的值；
+     *           如果该 {@code Short} 数值大于参数 {@code Short}，
+     *           则返回大于 {@code 0} 的值（有符号比较）。
      * @since   1.2
      */
     public int compareTo(Short anotherShort) {
@@ -446,17 +376,17 @@ public final class Short extends Number implements Comparable<Short> {
     }
 
     /**
-     * Compares two {@code short} values numerically.
-     * The value returned is identical to what would be returned by:
+     * 数值上比较两个 {@code short} 值。
+     * 返回的值与以下内容返回的值相同：
      * <pre>
      *    Short.valueOf(x).compareTo(Short.valueOf(y))
      * </pre>
      *
-     * @param  x the first {@code short} to compare
-     * @param  y the second {@code short} to compare
-     * @return the value {@code 0} if {@code x == y};
-     *         a value less than {@code 0} if {@code x < y}; and
-     *         a value greater than {@code 0} if {@code x > y}
+     * @param  x 第一个要比较的 {@code short}
+     * @param  y 第一个要比较的 {@code short}
+     * @return 如果 {@code x == y} 则返回 {@code 0}；
+     *          如果 {@code x < y} 则返回 小于 {@code 0} 的值；
+     *          如果 {@code x > y} 则返回 大于 {@code 0} 的值；
      * @since 1.7
      */
     public static int compare(short x, short y) {
@@ -464,27 +394,23 @@ public final class Short extends Number implements Comparable<Short> {
     }
 
     /**
-     * The number of bits used to represent a {@code short} value in two's
-     * complement binary form.
+     * 用来以二进制补码形式表示 {@code short} 值的位数。
      * @since 1.5
      */
     public static final int SIZE = 16;
 
     /**
-     * The number of bytes used to represent a {@code short} value in two's
-     * complement binary form.
+     * 用来以二进制补码形式表示 {@code short} 值的字节数。
      *
      * @since 1.8
      */
     public static final int BYTES = SIZE / Byte.SIZE;
 
     /**
-     * Returns the value obtained by reversing the order of the bytes in the
-     * two's complement representation of the specified {@code short} value.
+     * 返回通过反转指定 {@code short} 值的二进制补码表示形式中字节的顺序而获得的值。
      *
-     * @param i the value whose bytes are to be reversed
-     * @return the value obtained by reversing (or, equivalently, swapping)
-     *     the bytes in the specified {@code short} value.
+     * @param i 要反转字节的值
+     * @return 通过反转（或者交换，效果相同）指定 {@code short} 值中的字节而获得的值。
      * @since 1.5
      */
     public static short reverseBytes(short i) {
@@ -493,19 +419,14 @@ public final class Short extends Number implements Comparable<Short> {
 
 
     /**
-     * Converts the argument to an {@code int} by an unsigned
-     * conversion.  In an unsigned conversion to an {@code int}, the
-     * high-order 16 bits of the {@code int} are zero and the
-     * low-order 16 bits are equal to the bits of the {@code short} argument.
+     * 通过无符号转换将参数转换为 {@code int} 。
+     * 在无符号转换为 {@code int} 时，{@code int} 的高16位为零，低16位等于{@code short}参数的位。
      *
-     * Consequently, zero and positive {@code short} values are mapped
-     * to a numerically equal {@code int} value and negative {@code
-     * short} values are mapped to an {@code int} value equal to the
-     * input plus 2<sup>16</sup>.
+     * 因此，零和正短数值映射到数字上相等的 {@code int} 值，
+     * 而负 {@code short} 值映射到等于输入的整数值加上 2<sup>16</sup> 。
      *
-     * @param  x the value to convert to an unsigned {@code int}
-     * @return the argument converted to {@code int} by an unsigned
-     *         conversion
+     * @param  x 要无符号转换转换为 {@code int} 的值
+     * @return 通过无符号转换将参数转换为 {@code int}
      * @since 1.8
      */
     public static int toUnsignedInt(short x) {
@@ -513,19 +434,14 @@ public final class Short extends Number implements Comparable<Short> {
     }
 
     /**
-     * Converts the argument to a {@code long} by an unsigned
-     * conversion.  In an unsigned conversion to a {@code long}, the
-     * high-order 48 bits of the {@code long} are zero and the
-     * low-order 16 bits are equal to the bits of the {@code short} argument.
+     * 通过无符号转换将参数转换为 {@code long} 。
+     * 在无符号转换为 {@code long} 时，{@code int} 的高48位为零，低16位等于{@code short}参数的位。
      *
-     * Consequently, zero and positive {@code short} values are mapped
-     * to a numerically equal {@code long} value and negative {@code
-     * short} values are mapped to a {@code long} value equal to the
-     * input plus 2<sup>16</sup>.
+     * 因此，零和正短数值映射到数字上相等的 {@code long} 值，
+     * 而负 {@code short} 值映射到等于输入的整数值加上 2<sup>16</sup> 。
      *
-     * @param  x the value to convert to an unsigned {@code long}
-     * @return the argument converted to {@code long} by an unsigned
-     *         conversion
+     * @param  x 要无符号转换转换为 {@code long} 的值
+     * @return 通过无符号转换将参数转换为 {@code long} 。
      * @since 1.8
      */
     public static long toUnsignedLong(short x) {
