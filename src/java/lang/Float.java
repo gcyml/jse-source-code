@@ -30,16 +30,11 @@ import sun.misc.FloatConsts;
 import sun.misc.DoubleConsts;
 
 /**
- * The {@code Float} class wraps a value of primitive type
- * {@code float} in an object. An object of type
- * {@code Float} contains a single field whose type is
- * {@code float}.
+ * {@code Float} 类在对象中包装一个基本类型 {@code float} 的值。
+ * {@code Float} 类型的对象包含一个 {@code float} 类型的字段。
  *
- * <p>In addition, this class provides several methods for converting a
- * {@code float} to a {@code String} and a
- * {@code String} to a {@code float}, as well as other
- * constants and methods useful when dealing with a
- * {@code float}.
+ * <p>此外，此类提供了几种方法，可将 {@code float} 类型与 {@code String} 类型互相转换，
+ * 还提供了处理 {@code Float} 类型时非常有用的其他一些常量和方法。
  *
  * @author  Lee Boynton
  * @author  Arthur van Hoff
@@ -48,9 +43,8 @@ import sun.misc.DoubleConsts;
  */
 public final class Float extends Number implements Comparable<Float> {
     /**
-     * A constant holding the positive infinity of type
-     * {@code float}. It is equal to the value returned by
-     * {@code Float.intBitsToFloat(0x7f800000)}.
+     * 保存 {@code float} 类型的正无穷大值的常量。
+     * 它等于 {@code Float.intBitsToFloat(0x7f800000)} 返回的值。
      */
     public static final float POSITIVE_INFINITY = 1.0f / 0.0f;
 
@@ -62,74 +56,66 @@ public final class Float extends Number implements Comparable<Float> {
     public static final float NEGATIVE_INFINITY = -1.0f / 0.0f;
 
     /**
-     * A constant holding a Not-a-Number (NaN) value of type
-     * {@code float}.  It is equivalent to the value returned by
-     * {@code Float.intBitsToFloat(0x7fc00000)}.
+     * 保存 {@code float} 类型的负无穷大值的常量。
+     * 它等于 {@code Float.intBitsToFloat(0x7fc00000)} 返回的值。
      */
     public static final float NaN = 0.0f / 0.0f;
 
     /**
-     * A constant holding the largest positive finite value of type
-     * {@code float}, (2-2<sup>-23</sup>)&middot;2<sup>127</sup>.
-     * It is equal to the hexadecimal floating-point literal
-     * {@code 0x1.fffffeP+127f} and also equal to
-     * {@code Float.intBitsToFloat(0x7f7fffff)}.
+     * 保存 {@code float} 类型的最大正有限值的常量，即 (2-2<sup>-23</sup>)&middot;2<sup>127</sup>。
+     * 它等于十六进制的浮点字面值 {@code 0x1.fffffeP+127f}，
+     * 也等于 {@code Float.intBitsToFloat(0x7f7fffff)}。
      */
     public static final float MAX_VALUE = 0x1.fffffeP+127f; // 3.4028235e+38f
 
     /**
-     * A constant holding the smallest positive normal value of type
-     * {@code float}, 2<sup>-126</sup>.  It is equal to the
-     * hexadecimal floating-point literal {@code 0x1.0p-126f} and also
-     * equal to {@code Float.intBitsToFloat(0x00800000)}.
+     * 保存 {@code float} 类型数据的最小正标准值的常量，即 2<sup>-126</sup>。
+     * 它等于十六进制的浮点字面值 {@code 0x1.0p-126f}，
+     * 也等于 {@code Float.intBitsToFloat(0x00800000)}。
      *
      * @since 1.6
      */
     public static final float MIN_NORMAL = 0x1.0p-126f; // 1.17549435E-38f
 
     /**
-     * A constant holding the smallest positive nonzero value of type
-     * {@code float}, 2<sup>-149</sup>. It is equal to the
-     * hexadecimal floating-point literal {@code 0x0.000002P-126f}
-     * and also equal to {@code Float.intBitsToFloat(0x1)}.
+     * 保存 {@code float} 类型数据的最小正非零值的常量，即 2<sup>-149</sup>。
+     * 它等于十六进制的浮点字面值 {@code 0x0.000002P-126f}，
+     * 也等于 {@code Float.intBitsToFloat(0x1)}。
      */
     public static final float MIN_VALUE = 0x0.000002P-126f; // 1.4e-45f
 
     /**
-     * Maximum exponent a finite {@code float} variable may have.  It
-     * is equal to the value returned by {@code
-     * Math.getExponent(Float.MAX_VALUE)}.
+     * 有限 {@code float} 变量可能具有的最大指数。
+     * 它等于 {@code Math.getExponent(Float.MAX_VALUE)} 返回的值。
      *
      * @since 1.6
      */
     public static final int MAX_EXPONENT = 127;
 
     /**
-     * Minimum exponent a normalized {@code float} variable may have.
-     * It is equal to the value returned by {@code
-     * Math.getExponent(Float.MIN_NORMAL)}.
+     * 标准化 {@code float} 变量可能具有的最小指数。
+     * 它等于 {@code Math.getExponent(Float.MIN_NORMAL)} 返回的值。
      *
      * @since 1.6
      */
     public static final int MIN_EXPONENT = -126;
 
     /**
-     * The number of bits used to represent a {@code float} value.
+     * 表示一个 {@code float} 值所使用的位数。
      *
      * @since 1.5
      */
     public static final int SIZE = 32;
 
     /**
-     * The number of bytes used to represent a {@code float} value.
+     * 表示一个 {@code float} 值所使用的字节数。
      *
      * @since 1.8
      */
     public static final int BYTES = SIZE / Byte.SIZE;
 
     /**
-     * The {@code Class} instance representing the primitive type
-     * {@code float}.
+     * 表示 {@code float} 基本类型的 {@code Class} 实例。
      *
      * @since JDK1.1
      */
@@ -137,129 +123,87 @@ public final class Float extends Number implements Comparable<Float> {
     public static final Class<Float> TYPE = (Class<Float>) Class.getPrimitiveClass("float");
 
     /**
-     * Returns a string representation of the {@code float}
-     * argument. All characters mentioned below are ASCII characters.
+     * 返回 {@code float} 参数的字符串表示形式。下面提到的所有字符都是 ASCII 字符。
      * <ul>
-     * <li>If the argument is NaN, the result is the string
-     * "{@code NaN}".
-     * <li>Otherwise, the result is a string that represents the sign and
-     *     magnitude (absolute value) of the argument. If the sign is
-     *     negative, the first character of the result is
-     *     '{@code -}' ({@code '\u005Cu002D'}); if the sign is
-     *     positive, no sign character appears in the result. As for
-     *     the magnitude <i>m</i>:
+     * <li> 如果参数是 NaN，那么结果是字符串 “{@code NaN}”。
+     * <li> 否则，结果是表示参数的符号和数值（绝对值）的字符串。
+     *      如果符号为负，那么结果的第一个字符是 '{@code -}' ({@code '\u005Cu002D'})；
+     *      如果符号为正，则结果中不显示符号字符。至于数值 <i>m</i>：
      * <ul>
-     * <li>If <i>m</i> is infinity, it is represented by the characters
-     *     {@code "Infinity"}; thus, positive infinity produces
-     *     the result {@code "Infinity"} and negative infinity
-     *     produces the result {@code "-Infinity"}.
-     * <li>If <i>m</i> is zero, it is represented by the characters
-     *     {@code "0.0"}; thus, negative zero produces the result
-     *     {@code "-0.0"} and positive zero produces the result
-     *     {@code "0.0"}.
-     * <li> If <i>m</i> is greater than or equal to 10<sup>-3</sup> but
-     *      less than 10<sup>7</sup>, then it is represented as the
-     *      integer part of <i>m</i>, in decimal form with no leading
-     *      zeroes, followed by '{@code .}'
-     *      ({@code '\u005Cu002E'}), followed by one or more
-     *      decimal digits representing the fractional part of
-     *      <i>m</i>.
-     * <li> If <i>m</i> is less than 10<sup>-3</sup> or greater than or
-     *      equal to 10<sup>7</sup>, then it is represented in
-     *      so-called "computerized scientific notation." Let <i>n</i>
-     *      be the unique integer such that 10<sup><i>n</i> </sup>&le;
-     *      <i>m</i> {@literal <} 10<sup><i>n</i>+1</sup>; then let <i>a</i>
-     *      be the mathematically exact quotient of <i>m</i> and
-     *      10<sup><i>n</i></sup> so that 1 &le; <i>a</i> {@literal <} 10.
-     *      The magnitude is then represented as the integer part of
-     *      <i>a</i>, as a single decimal digit, followed by
-     *      '{@code .}' ({@code '\u005Cu002E'}), followed by
-     *      decimal digits representing the fractional part of
-     *      <i>a</i>, followed by the letter '{@code E}'
-     *      ({@code '\u005Cu0045'}), followed by a representation
-     *      of <i>n</i> as a decimal integer, as produced by the
-     *      method {@link java.lang.Integer#toString(int)}.
+     * <li> 如果 <i>m</i> 为无穷大，则用字符串 {@code "Infinity"} 表示；
+     *      因此，正无穷大生成结果 {@code "Infinity"}，负无穷大生成结果 {@code "-Infinity"}。
+     * <li> 如果 <i>m</i> 为0，则用字符 {@code "0.0"} 表示；
+     *      因此，负 0 生成结果 {@code "-0.0"}，正 0 生成结果 {@code "0.0"}。
+     * <li> 如果 <i>m</i> 大于或等于 10<sup>-3</sup>，但小于 10<sup>7</sup>，
+     *      则采用不带前导 0 的十进制形式，用 <i>m</i> 的整数部分表示，后跟 '{@code .}'({@code '\u005Cu002E'})，
+     *      再后面是表示 <i>m</i> 小数部分的一个或多个十进制位数。
+     * <li> 如果 <i>m</i> 小于 10<sup>-3</sup> 或大于等于 10<sup>7</sup>，
+     *      则用所谓的“计算机科学记数法”表示。设 <i>n</i> 为满足 10<sup><i>n</i> </sup>&le;
+     *      <i>m</i> {@literal <} 10<sup><i>n</i>+1</sup> 的唯一整数；
+     *      然后设 <i>a</i> 为 <i>m</i> 与 10<sup><i>n</i></sup> 的精确算术商数值，
+     *      从而 1 &le; <i>a</i> {@literal <} 10。
+     *      那么，数值便表示为 <i>a</i> 的整数部分，其形式为：一个十进制位数，
+     *      后跟 '{@code .}' ({@code '\u005Cu002E'})，
+     *      接着是表示 <i>a</i> 小数部分的十进制位数，
+     *      再后面是字母 '{@code E}' ({@code '\u005Cu0045'})，
+     *      最后是用十进制整数形式表示的 <i>n</i>，这与
+     *      方法 {@link java.lang.Integer#toString(int)} 生成的结果一样。
      *
      * </ul>
      * </ul>
-     * How many digits must be printed for the fractional part of
-     * <i>m</i> or <i>a</i>? There must be at least one digit
-     * to represent the fractional part, and beyond that as many, but
-     * only as many, more digits as are needed to uniquely distinguish
-     * the argument value from adjacent values of type
-     * {@code float}. That is, suppose that <i>x</i> is the
-     * exact mathematical value represented by the decimal
-     * representation produced by this method for a finite nonzero
-     * argument <i>f</i>. Then <i>f</i> must be the {@code float}
-     * value nearest to <i>x</i>; or, if two {@code float} values are
-     * equally close to <i>x</i>, then <i>f</i> must be one of
-     * them and the least significant bit of the significand of
-     * <i>f</i> must be {@code 0}.
+     * 必须为 <i>m</i> 或 <i>a</i> 的小数部分打印多少位呢？
+     * 至少必须有一位数来表示小数部分，除此之外，
+     * 需要更多（但只能和需要的一样多）位数来唯一地区分参数值和 {@code float} 类型的邻近值。
+     * 也就是说，假设 <i>x</i> 是用十进制表示法表示的精确算术值，
+     * 是通过对有限非 0 参数 <i>f</i> 调用此方法生成的。
+     * 那么 <i>f</i> 一定是最接近 <i>x</i> 的 {@code float} 值，
+     * 如果有两个 {@code float} 值同等地接近于 <i>x</i>，
+     * 那么 <i>f</i> 必须是这两个值中的一个，并且 <i>f</i> 的最低有效位必须是 {@code 0}。
      *
-     * <p>To create localized string representations of a floating-point
-     * value, use subclasses of {@link java.text.NumberFormat}.
+     * <p>要创建浮点值的本地化字符串表示形式，请使用 {@link java.text.NumberFormat} 的子类。
      *
-     * @param   f   the float to be converted.
-     * @return a string representation of the argument.
+     * @param   f   要转换的浮点型数据。
+     * @return 参数的字符串表示形式。
      */
     public static String toString(float f) {
         return FloatingDecimal.toJavaFormatString(f);
     }
 
     /**
-     * Returns a hexadecimal string representation of the
-     * {@code float} argument. All characters mentioned below are
-     * ASCII characters.
+     * 返回 {@code float} 参数的十六进制字符串表示形式。下面提到的所有字符都是 ASCII 字符。
      *
      * <ul>
-     * <li>If the argument is NaN, the result is the string
-     *     "{@code NaN}".
-     * <li>Otherwise, the result is a string that represents the sign and
-     * magnitude (absolute value) of the argument. If the sign is negative,
-     * the first character of the result is '{@code -}'
-     * ({@code '\u005Cu002D'}); if the sign is positive, no sign character
-     * appears in the result. As for the magnitude <i>m</i>:
+     * <li> 如果参数是 NaN，那么结果是字符串 “{@code NaN}”。
+     * <li> 否则，结果是表示参数的符号和数值（绝对值）的字符串。
+     *      如果符号为负，那么结果的第一个字符是 '{@code -}' ({@code '\u005Cu002D'})；
+     *      如果符号为正，则结果中不显示符号字符。至于数值 <i>m</i>：
      *
      * <ul>
-     * <li>If <i>m</i> is infinity, it is represented by the string
-     * {@code "Infinity"}; thus, positive infinity produces the
-     * result {@code "Infinity"} and negative infinity produces
-     * the result {@code "-Infinity"}.
+     * <li> 如果 <i>m</i> 为无穷大，则用字符串 {@code "Infinity"} 表示；
+     *      因此，正无穷大生成结果 {@code "Infinity"}，负无穷大生成结果 {@code "-Infinity"}。
      *
-     * <li>If <i>m</i> is zero, it is represented by the string
-     * {@code "0x0.0p0"}; thus, negative zero produces the result
-     * {@code "-0x0.0p0"} and positive zero produces the result
-     * {@code "0x0.0p0"}.
+     * <li> 如果 <i>m</i> 为0，则用字符 {@code "0x0.0p0"} 表示；
+     *      因此，负 0 生成结果 {@code "-0x0.0p0"}，正 0 生成结果 {@code "0x0.0p0"}。
      *
-     * <li>If <i>m</i> is a {@code float} value with a
-     * normalized representation, substrings are used to represent the
-     * significand and exponent fields.  The significand is
-     * represented by the characters {@code "0x1."}
-     * followed by a lowercase hexadecimal representation of the rest
-     * of the significand as a fraction.  Trailing zeros in the
-     * hexadecimal representation are removed unless all the digits
-     * are zero, in which case a single zero is used. Next, the
-     * exponent is represented by {@code "p"} followed
-     * by a decimal string of the unbiased exponent as if produced by
-     * a call to {@link Integer#toString(int) Integer.toString} on the
-     * exponent value.
+     * <li> 如果 <i>m</i> 是具有标准化表示形式的的 {@code float} 值，
+     * 则使用子字符串表示有效位数和指数。 有效位数用字符串 {@code "0x1."} 表示，
+     * 后跟该有效位数小数部分的小写十六进制表示形式。除非所有位数都为 0，
+     * 否则移除十六进制表示形式中的尾部 0，在所有位数为 0 的情况下，可以用一个 0 表示。
+     * 然后用 {@code "p"} 表示指数，后跟无偏指数的十进制字符串，
+     * 该值与对指数值调用 {@link Integer#toString(int) Integer.toString} 生成的值相同。
      *
-     * <li>If <i>m</i> is a {@code float} value with a subnormal
-     * representation, the significand is represented by the
-     * characters {@code "0x0."} followed by a
-     * hexadecimal representation of the rest of the significand as a
-     * fraction.  Trailing zeros in the hexadecimal representation are
-     * removed. Next, the exponent is represented by
-     * {@code "p-126"}.  Note that there must be at
-     * least one nonzero digit in a subnormal significand.
+     * <li>如果 <i>m</i> 是具有 subnormal 表示形式的 {@code float} 值，
+     * 则用字符 {@code "0x0."} 表示有效位数，后跟该有效位数小数部分的十六进制表示形式。
+     * 移除十六进制表示形式中的尾部 0。然后用 {@code "p-126"} 表示指数。
+     * 注意，在 subnormal 有效位数中，至少必须有一个非 0 位数。
      *
      * </ul>
      *
      * </ul>
      *
      * <table border>
-     * <caption>Examples</caption>
-     * <tr><th>Floating-point Value</th><th>Hexadecimal String</th>
+     * <caption>示例</caption>
+     * <tr><th>浮点值</th><th>十六进制字符串</th>
      * <tr><td>{@code 1.0}</td> <td>{@code 0x1.0p0}</td>
      * <tr><td>{@code -1.0}</td>        <td>{@code -0x1.0p0}</td>
      * <tr><td>{@code 2.0}</td> <td>{@code 0x1.0p1}</td>
@@ -275,8 +219,8 @@ public final class Float extends Number implements Comparable<Float> {
      * <tr><td>{@code Float.MIN_VALUE}</td>
      *     <td>{@code 0x0.000002p-126}</td>
      * </table>
-     * @param   f   the {@code float} to be converted.
-     * @return a hex string representation of the argument.
+     * @param   f   要转换的 {@code float} 值。
+     * @return 参数的十六进制字符串表示形式。
      * @since 1.5
      * @author Joseph D. Darcy
      */
@@ -297,19 +241,13 @@ public final class Float extends Number implements Comparable<Float> {
     }
 
     /**
-     * Returns a {@code Float} object holding the
-     * {@code float} value represented by the argument string
-     * {@code s}.
+     * 返回保存用参数字符串 {@code s} 表示的 {@code float} 值的 {@code Float} 对象。
      *
-     * <p>If {@code s} is {@code null}, then a
-     * {@code NullPointerException} is thrown.
+     * <p>如果 {@code s} 为 {@code null}， 则抛出 {@code NullPointerException} 异常。
      *
-     * <p>Leading and trailing whitespace characters in {@code s}
-     * are ignored.  Whitespace is removed as if by the {@link
-     * String#trim} method; that is, both ASCII space and control
-     * characters are removed. The rest of {@code s} should
-     * constitute a <i>FloatValue</i> as described by the lexical
-     * syntax rules:
+     * <p>忽略 {@code s} 中的前导空白字符和尾部空白字符。
+     * 就像调用 {@link String#trim} 方法那样移除空白；也就是说， ASCII 空格和控制字符都要被移除。
+     * {@code s} 的其余部分应该根据词法语法规则描述构成 <i>FloatValue</i> ：
      *
      * <blockquote>
      * <dl>
@@ -349,68 +287,43 @@ public final class Float extends Number implements Comparable<Float> {
      *
      * </blockquote>
      *
-     * where <i>Sign</i>, <i>FloatingPointLiteral</i>,
-     * <i>HexNumeral</i>, <i>HexDigits</i>, <i>SignedInteger</i> and
-     * <i>FloatTypeSuffix</i> are as defined in the lexical structure
-     * sections of
-     * <cite>The Java&trade; Language Specification</cite>,
-     * except that underscores are not accepted between digits.
-     * If {@code s} does not have the form of
-     * a <i>FloatValue</i>, then a {@code NumberFormatException}
-     * is thrown. Otherwise, {@code s} is regarded as
-     * representing an exact decimal value in the usual
-     * "computerized scientific notation" or as an exact
-     * hexadecimal value; this exact numerical value is then
-     * conceptually converted to an "infinitely precise"
-     * binary value that is then rounded to type {@code float}
-     * by the usual round-to-nearest rule of IEEE 754 floating-point
-     * arithmetic, which includes preserving the sign of a zero
-     * value.
+     * 其中 <i>Sign</i>, <i>FloatingPointLiteral</i>, <i>HexNumeral</i>,
+     * <i>HexDigits</i>, <i>SignedInteger</i> 和 <i>FloatTypeSuffix</i> 与
+     * <cite>The Java&trade; Language Specification</cite> 的词法结构部分中的定义相同，
+     * 除了数字间不接受下划线以外。
+     * 如果 {@code s} 的表示形式不是 <i>FloatValue</i>，
+     * 则抛出 {@code NumberFormatException} 异常。
+     * 否则， 可以认为 {@code s} 表示的是常用“计算机科学记数法”表示的精确十进制值，
+     * 或者是一个精确的十六进制值；在概念上，这个精确的数值被转换一个“无限精确的”二进制值，
+     * 然后根据常用 IEEE 754 浮点算法的“舍入为最接近的数”规则（其包括保留零值的符号）将该值舍入为 {@code float} 类型，
      *
-     * Note that the round-to-nearest rule also implies overflow and
-     * underflow behaviour; if the exact value of {@code s} is large
-     * enough in magnitude (greater than or equal to ({@link
-     * #MAX_VALUE} + {@link Math#ulp(float) ulp(MAX_VALUE)}/2),
-     * rounding to {@code float} will result in an infinity and if the
-     * exact value of {@code s} is small enough in magnitude (less
-     * than or equal to {@link #MIN_VALUE}/2), rounding to float will
-     * result in a zero.
+     * 注意，舍入为最接近数的规则也意味着上溢和下溢行为；
+     * 如果 {@code s} 的精确值在幅度上足够大（大于或等于 ({@link #MAX_VALUE} + {@link Math#ulp(float) ulp(MAX_VALUE)}/2），
+     * 则舍入为 {@code float} 将会是无穷大的结果，
+     * 以及如果 {@code s} 的精确值在幅度上足够小（小于或等于 {@link #MIN_VALUE}/2），
+     * 舍入为 float 结果将会是 0。
      *
-     * Finally, after rounding a {@code Float} object representing
-     * this {@code float} value is returned.
+     * 最后，返回表示这个 {@code float} 值的 {@code Float} 对象。
      *
-     * <p>To interpret localized string representations of a
-     * floating-point value, use subclasses of {@link
-     * java.text.NumberFormat}.
+     * <p>要解释浮点值的本地化字符串表示形式，请使用 {@link java.text.NumberFormat} 的子类。
      *
-     * <p>Note that trailing format specifiers, specifiers that
-     * determine the type of a floating-point literal
-     * ({@code 1.0f} is a {@code float} value;
-     * {@code 1.0d} is a {@code double} value), do
-     * <em>not</em> influence the results of this method.  In other
-     * words, the numerical value of the input string is converted
-     * directly to the target floating-point type.  In general, the
-     * two-step sequence of conversions, string to {@code double}
-     * followed by {@code double} to {@code float}, is
-     * <em>not</em> equivalent to converting a string directly to
-     * {@code float}.  For example, if first converted to an
-     * intermediate {@code double} and then to
-     * {@code float}, the string<br>
+     * <p>注意，尾部格式说明符、确定浮点字面值类型的说明符（{@code 1.0f} 是一个 {@code float} 值；
+     * {@code 1.0d} 是一个 {@code double} 值）， <em>不会</em> 影响此方法的结果。
+     * 换句话说，输入字符串的数值被直接转换为目标浮点类型。通常，分两步的转换
+     * （先将字符串转换为 {@code double} 类型，然后将 {@code double} 类型转换为 {@code float} 类型）
+     * <em>不</em> 同于直接将字符串转换为 {@code float} 类型。
+     * 例如，如果首先转换为中间类型 {@code double}，然后再转换为 {@code float} 类型，则字符串<br>
      * {@code "1.00000017881393421514957253748434595763683319091796875001d"}<br>
-     * results in the {@code float} value
-     * {@code 1.0000002f}; if the string is converted directly to
-     * {@code float}, <code>1.000000<b>1</b>f</code> results.
+     * 将得到 {@code float} 值 {@code 1.0000002f}；如果直接将字符串转换为 {@code float} 值，
+     * 则结果将是 <code>1.000000<b>1</b>f</code>。
      *
-     * <p>To avoid calling this method on an invalid string and having
-     * a {@code NumberFormatException} be thrown, the documentation
-     * for {@link Double#valueOf Double.valueOf} lists a regular
-     * expression which can be used to screen the input.
+     * <p>为了避免对无效字符串调用此方法并导致抛出 {@code NumberFormatException}，
+     * {@link Double#valueOf Double.valueOf} 的文档中列出了一个正则表达式，
+     * 可以用该表达式在屏幕上显示输入。
      *
-     * @param   s   the string to be parsed.
-     * @return  a {@code Float} object holding the value
-     *          represented by the {@code String} argument.
-     * @throws  NumberFormatException  if the string does not contain a
-     *          parsable number.
+     * @param   s   要解析的字符串。
+     * @return  保存用 {@code String} 参数表示的值的 {@code Float}  对象。
+     * @throws  NumberFormatException  如果字符串不包含可解析的数字。
      */
     public static Float valueOf(String s) throws NumberFormatException {
         return new Float(parseFloat(s));
