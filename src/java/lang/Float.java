@@ -330,16 +330,12 @@ public final class Float extends Number implements Comparable<Float> {
     }
 
     /**
-     * Returns a {@code Float} instance representing the specified
-     * {@code float} value.
-     * If a new {@code Float} instance is not required, this method
-     * should generally be used in preference to the constructor
-     * {@link #Float(float)}, as this method is likely to yield
-     * significantly better space and time performance by caching
-     * frequently requested values.
+     * 返回表示指定的 {@code float} 值的 {@code Float} 实例。如果不需要新的 {@code Float} 实例，
+     * 则通常应优先使用此方法，而不是构造方法 {@link #Float(float)}，
+     * 因为此方法可能通过缓存经常请求的值来显著提高空间和时间性能。
      *
-     * @param  f a float value.
-     * @return a {@code Float} instance representing {@code f}.
+     * @param  f 一个浮点值。
+     * @return 一个表示 {@code f} 的 {@code Float} 实例。
      * @since  1.5
      */
     public static Float valueOf(float f) {
@@ -347,16 +343,13 @@ public final class Float extends Number implements Comparable<Float> {
     }
 
     /**
-     * Returns a new {@code float} initialized to the value
-     * represented by the specified {@code String}, as performed
-     * by the {@code valueOf} method of class {@code Float}.
+     * 返回一个新的 {@code float} 值，该值被初始化为用指定 {@code String} 表示的值，
+     * 这与 {@code Float} 类的 {@code valueOf} 方法一样。
      *
-     * @param  s the string to be parsed.
-     * @return the {@code float} value represented by the string
-     *         argument.
-     * @throws NullPointerException  if the string is null
-     * @throws NumberFormatException if the string does not contain a
-     *               parsable {@code float}.
+     * @param  s 要解析的字符串。
+     * @return 用字符串参数表示的 {@code float} 值。
+     * @throws NullPointerException  如果字符串为空
+     * @throws NumberFormatException 如果字符串不包含可解析的 {@code float} 值。
      * @see    java.lang.Float#valueOf(String)
      * @since 1.2
      */
@@ -365,12 +358,11 @@ public final class Float extends Number implements Comparable<Float> {
     }
 
     /**
-     * Returns {@code true} if the specified number is a
-     * Not-a-Number (NaN) value, {@code false} otherwise.
+     * 如果指定的数是一个非数字 (NaN) 值，则返回 {@code true}，
+     * 否则返回 {@code false}。
      *
-     * @param   v   the value to be tested.
-     * @return  {@code true} if the argument is NaN;
-     *          {@code false} otherwise.
+     * @param   v   要测试的值。
+     * @return  如果参数为 NaN，则返回 {@code true}，否则返回 {@code false}。
      */
     public static boolean isNaN(float v) {
         return (v != v);
