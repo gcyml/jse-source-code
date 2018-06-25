@@ -369,12 +369,10 @@ public final class Float extends Number implements Comparable<Float> {
     }
 
     /**
-     * Returns {@code true} if the specified number is infinitely
-     * large in magnitude, {@code false} otherwise.
+     * 如果指定数的数值是无穷大，则返回 {@code true}；否则返回 {@code false}。
      *
-     * @param   v   the value to be tested.
-     * @return  {@code true} if the argument is positive infinity or
-     *          negative infinity; {@code false} otherwise.
+     * @param   v   要测试的值。
+     * @return  如果参数是正无穷大或负无穷大，则返回 {@code true}；否则返回 {@code false}。
      */
     public static boolean isInfinite(float v) {
         return (v == POSITIVE_INFINITY) || (v == NEGATIVE_INFINITY);
@@ -382,13 +380,10 @@ public final class Float extends Number implements Comparable<Float> {
 
 
     /**
-     * Returns {@code true} if the argument is a finite floating-point
-     * value; returns {@code false} otherwise (for NaN and infinity
-     * arguments).
+     * 如果参数是一个有限的浮点值则返回 {@code true}，否则则返回 {@code false} （若参数为 NAN 或无穷大）。
      *
-     * @param f the {@code float} value to be tested
-     * @return {@code true} if the argument is a finite
-     * floating-point value, {@code false} otherwise.
+     * @param f 要测试的 {@code float} 值。
+     * @return 如果参数是有限浮点值，则返回 {@code true}；否则返回 {@code false}。
      * @since 1.8
      */
      public static boolean isFinite(float f) {
@@ -396,25 +391,23 @@ public final class Float extends Number implements Comparable<Float> {
     }
 
     /**
-     * The value of the Float.
+     * Float 的值。
      *
      * @serial
      */
     private final float value;
 
     /**
-     * Constructs a newly allocated {@code Float} object that
-     * represents the primitive {@code float} argument.
+     * 构造一个新分配的 {@code Float} 对象，它表示基本的 {@code float} 参数。
      *
-     * @param   value   the value to be represented by the {@code Float}.
+     * @param   value   用 {@code Float} 表示的值。
      */
     public Float(float value) {
         this.value = value;
     }
 
     /**
-     * Constructs a newly allocated {@code Float} object that
-     * represents the argument converted to type {@code float}.
+     * 构造一个新分配的 {@code Float} 对象，它表示转换为 {@code float} 类型的参数。
      *
      * @param   value   the value to be represented by the {@code Float}.
      */
@@ -423,14 +416,11 @@ public final class Float extends Number implements Comparable<Float> {
     }
 
     /**
-     * Constructs a newly allocated {@code Float} object that
-     * represents the floating-point value of type {@code float}
-     * represented by the string. The string is converted to a
-     * {@code float} value as if by the {@code valueOf} method.
+     * 构造一个新分配的 {@code Float} 对象，它表示用字符串表示的 {@code float} 类型的浮点值。
+     * 字符串将被转换为 {@code float} 值，这与 {@code valueOf} 方法一样。
      *
-     * @param      s   a string to be converted to a {@code Float}.
-     * @throws  NumberFormatException  if the string does not contain a
-     *               parsable number.
+     * @param      s   将转换为 {@code Float} 值的字符串。
+     * @throws  NumberFormatException  如果字符串不包含可解析的数字。
      * @see        java.lang.Float#valueOf(java.lang.String)
      */
     public Float(String s) throws NumberFormatException {
@@ -438,35 +428,30 @@ public final class Float extends Number implements Comparable<Float> {
     }
 
     /**
-     * Returns {@code true} if this {@code Float} value is a
-     * Not-a-Number (NaN), {@code false} otherwise.
+     * 如果指定的数是一个非数字 (NaN) 值，则返回 {@code true}；否则返回 {@code false}。
      *
-     * @return  {@code true} if the value represented by this object is
-     *          NaN; {@code false} otherwise.
+     * @return  如果参数为 NaN，则返回 {@code true}；否则返回 {@code false}。
      */
     public boolean isNaN() {
         return isNaN(value);
     }
 
     /**
-     * Returns {@code true} if this {@code Float} value is
-     * infinitely large in magnitude, {@code false} otherwise.
+     * 如果此 {@code Float} 值的大小是无穷大，则返回 {@code true}；否则返回 {@code false}。
      *
-     * @return  {@code true} if the value represented by this object is
-     *          positive infinity or negative infinity;
-     *          {@code false} otherwise.
+     * @return  如果此对象表示的值是正无穷大或负无穷大，则返回 {@code true}；
+     *           否则返回 {@code false}。
      */
     public boolean isInfinite() {
         return isInfinite(value);
     }
 
     /**
-     * Returns a string representation of this {@code Float} object.
-     * The primitive {@code float} value represented by this object
-     * is converted to a {@code String} exactly as if by the method
-     * {@code toString} of one argument.
+     * 返回此 {@code Float} 对象的字符串表示形式。
+     * 使用此对象表示的基本 {@code float} 值被转换为一个 {@code String}，
+     * 此方法与带一个参数的 {@code toString} 方法完全一样。
      *
-     * @return  a {@code String} representation of this object.
+     * @return  此对象的 {@code String} 表示。
      * @see java.lang.Float#toString(float)
      */
     public String toString() {
@@ -474,11 +459,9 @@ public final class Float extends Number implements Comparable<Float> {
     }
 
     /**
-     * Returns the value of this {@code Float} as a {@code byte} after
-     * a narrowing primitive conversion.
+     * 将此 {@code Float} 值以 {@code byte} 形式返回（强制转换为 {@code byte}）。
      *
-     * @return  the {@code float} value represented by this object
-     *          converted to type {@code byte}
+     * @return  此对象表示的 {@code float} 值，该值被转换为 {@code byte} 类型
      * @jls 5.1.3 Narrowing Primitive Conversions
      */
     public byte byteValue() {
@@ -486,11 +469,9 @@ public final class Float extends Number implements Comparable<Float> {
     }
 
     /**
-     * Returns the value of this {@code Float} as a {@code short}
-     * after a narrowing primitive conversion.
+     * 将此 {@code Float} 值以 {@code short} 形式返回（强制转换为 {@code short}）。
      *
-     * @return  the {@code float} value represented by this object
-     *          converted to type {@code short}
+     * @return  此对象表示的 {@code float} 值，该值被转换为 {@code short} 类型
      * @jls 5.1.3 Narrowing Primitive Conversions
      * @since JDK1.1
      */
@@ -499,11 +480,9 @@ public final class Float extends Number implements Comparable<Float> {
     }
 
     /**
-     * Returns the value of this {@code Float} as an {@code int} after
-     * a narrowing primitive conversion.
+     * 将此 {@code Float} 值以 {@code int} 形式返回（强制转换为 {@code int} 类型）。
      *
-     * @return  the {@code float} value represented by this object
-     *          converted to type {@code int}
+     * @return  此对象表示的 {@code float} 值，该值被转换为 {@code int} 类型
      * @jls 5.1.3 Narrowing Primitive Conversions
      */
     public int intValue() {
@@ -511,11 +490,9 @@ public final class Float extends Number implements Comparable<Float> {
     }
 
     /**
-     * Returns value of this {@code Float} as a {@code long} after a
-     * narrowing primitive conversion.
+     * 将此 {@code Float} 值以 {@code long} 形式返回（强制转换为 {@code long} 类型）。
      *
-     * @return  the {@code float} value represented by this object
-     *          converted to type {@code long}
+     * @return  此对象表示的 {@code float} 值，该值被转换为 {@code long} 类型
      * @jls 5.1.3 Narrowing Primitive Conversions
      */
     public long longValue() {
@@ -523,20 +500,18 @@ public final class Float extends Number implements Comparable<Float> {
     }
 
     /**
-     * Returns the {@code float} value of this {@code Float} object.
+     * 返回此 {@code Float} 对象的 {@code float} 值。
      *
-     * @return the {@code float} value represented by this object
+     * @return 此对象表示的 {@code float} 值。
      */
     public float floatValue() {
         return value;
     }
 
     /**
-     * Returns the value of this {@code Float} as a {@code double}
-     * after a widening primitive conversion.
+     * 经过原始拓宽转换返回此 {@code Float} 对象的 {@code double} 值。
      *
-     * @return the {@code float} value represented by this
-     *         object converted to type {@code double}
+     * @return 此对象表示的 {@code float} 值被转换为 {@code double} 类型，并返回转换的结果。
      * @jls 5.1.2 Widening Primitive Conversions
      */
     public double doubleValue() {
@@ -544,13 +519,10 @@ public final class Float extends Number implements Comparable<Float> {
     }
 
     /**
-     * Returns a hash code for this {@code Float} object. The
-     * result is the integer bit representation, exactly as produced
-     * by the method {@link #floatToIntBits(float)}, of the primitive
-     * {@code float} value represented by this {@code Float}
-     * object.
+     * 返回此 {@code Float} 对象的哈希码。
+     * 结果是此 {@code Float} 对象表示的基本 {@code float} 值的整数位表示形式，
      *
-     * @return a hash code value for this object.
+     * @return 此对象的哈希码值。
      */
     @Override
     public int hashCode() {
@@ -558,11 +530,10 @@ public final class Float extends Number implements Comparable<Float> {
     }
 
     /**
-     * Returns a hash code for a {@code float} value; compatible with
-     * {@code Float.hashCode()}.
+     * 返回 {@code float} 值的哈希值；和 {@code Float.hashCode()} 兼容。
      *
-     * @param value the value to hash
-     * @return a hash code value for a {@code float} value.
+     * @param value 要哈希的值
+     * @return {@code float} 值的哈希值。
      * @since 1.8
      */
     public static int hashCode(float value) {
