@@ -576,35 +576,24 @@ public final class Float extends Number implements Comparable<Float> {
     }
 
     /**
-     * Returns a representation of the specified floating-point value
-     * according to the IEEE 754 floating-point "single format" bit
-     * layout.
+     * 根据 IEEE 754 浮点“单一格式”位布局，返回指定浮点值的表示形式。
      *
-     * <p>Bit 31 (the bit that is selected by the mask
-     * {@code 0x80000000}) represents the sign of the floating-point
-     * number.
-     * Bits 30-23 (the bits that are selected by the mask
-     * {@code 0x7f800000}) represent the exponent.
-     * Bits 22-0 (the bits that are selected by the mask
-     * {@code 0x007fffff}) represent the significand (sometimes called
-     * the mantissa) of the floating-point number.
+     * <p>第 31 位（掩码 {@code 0x80000000} 选定的位）表示浮点数的符号。
+     * 第 30-23 位（掩码 {@code 0x7f800000} 选定的位）表示指数。
+     * 第 22-0 位（掩码 {@code 0x007fffff}) 选定的位）表示浮点数的有效位数（有时也称为尾数）。
      *
-     * <p>If the argument is positive infinity, the result is
-     * {@code 0x7f800000}.
+     * <p>如果参数为正无穷大，则结果为 {@code 0x7f800000}。
      *
-     * <p>If the argument is negative infinity, the result is
-     * {@code 0xff800000}.
+     * <p>如果参数为负无穷大，则结果为 {@code 0xff800000}。
      *
-     * <p>If the argument is NaN, the result is {@code 0x7fc00000}.
+     * <p>如果参数为 NaN，则结果为 {@code 0x7fc00000}。
      *
-     * <p>In all cases, the result is an integer that, when given to the
-     * {@link #intBitsToFloat(int)} method, will produce a floating-point
-     * value the same as the argument to {@code floatToIntBits}
-     * (except all NaN values are collapsed to a single
-     * "canonical" NaN value).
+     * <p>在所有情况下，结果都是一个整数，
+     * 将其赋予 {@link #intBitsToFloat(int)} 方法将生成一个浮点值，
+     * 该浮点值与 floatToIntBits 的参数相同（而所有 NaN 值则会生成一个“规范”NaN 值）。
      *
-     * @param   value   a floating-point number.
-     * @return the bits that represent the floating-point number.
+     * @param   value   一个浮点数。
+     * @return 表示浮点数的位。
      */
     public static int floatToIntBits(float value) {
         int result = floatToRawIntBits(value);
@@ -618,66 +607,45 @@ public final class Float extends Number implements Comparable<Float> {
     }
 
     /**
-     * Returns a representation of the specified floating-point value
-     * according to the IEEE 754 floating-point "single format" bit
-     * layout, preserving Not-a-Number (NaN) values.
+     * 根据 IEEE 754 浮点“单一格式”位布局，
+     * 返回指定浮点值的表示形式，并保留非数字 (NaN) 值。
      *
-     * <p>Bit 31 (the bit that is selected by the mask
-     * {@code 0x80000000}) represents the sign of the floating-point
-     * number.
-     * Bits 30-23 (the bits that are selected by the mask
-     * {@code 0x7f800000}) represent the exponent.
-     * Bits 22-0 (the bits that are selected by the mask
-     * {@code 0x007fffff}) represent the significand (sometimes called
-     * the mantissa) of the floating-point number.
+     * <p>第 31 位（掩码 {@code 0x80000000} 选定的位）表示浮点数的符号。
+     * 第 30-23 位（掩码 {@code 0x7f800000} 选定的位）表示指数。
+     * 第 22-0 位（掩码 {@code 0x007fffff}) 选定的位）表示浮点数的有效位数（有时也称为尾数）。
      *
-     * <p>If the argument is positive infinity, the result is
-     * {@code 0x7f800000}.
+     * <p>如果参数为正无穷大，则结果为 {@code 0x7f800000}。
      *
-     * <p>If the argument is negative infinity, the result is
-     * {@code 0xff800000}.
+     * <p>如果参数为负无穷大，则结果为 {@code 0xff800000}。
      *
-     * <p>If the argument is NaN, the result is the integer representing
-     * the actual NaN value.  Unlike the {@code floatToIntBits}
-     * method, {@code floatToRawIntBits} does not collapse all the
-     * bit patterns encoding a NaN to a single "canonical"
-     * NaN value.
+     * <p>如果参数为 NaN，则结果是表示实际 NaN 值的整数。
+     * 与 {@code floatToIntBits} 方法不同，
+     * {@code floatToRawIntBits} 不压缩所有将 NaN 编码为一个“规范”NaN 值的位模式。
      *
-     * <p>In all cases, the result is an integer that, when given to the
-     * {@link #intBitsToFloat(int)} method, will produce a
-     * floating-point value the same as the argument to
-     * {@code floatToRawIntBits}.
+     * <p>在所有情况下，结果都是一个整数，
+     * 将其赋予 {@link #intBitsToFloat(int)} 方法将生成
+     * 一个与 {@code floatToRawIntBits} 的参数相同的浮点值，
      *
-     * @param   value   a floating-point number.
-     * @return the bits that represent the floating-point number.
+     * @param   value   一个浮点数字。
+     * @return 表示浮点数字的位。
      * @since 1.3
      */
     public static native int floatToRawIntBits(float value);
 
     /**
-     * Returns the {@code float} value corresponding to a given
-     * bit representation.
-     * The argument is considered to be a representation of a
-     * floating-point value according to the IEEE 754 floating-point
-     * "single format" bit layout.
+     * 返回对应于给定位表示形式的 {@code float} 值。
+     * 根据 IEEE 754 浮点“单一格式”位布局，该参数被视为浮点值表示形式。
      *
-     * <p>If the argument is {@code 0x7f800000}, the result is positive
-     * infinity.
+     * <p>如果参数为 {@code 0x7f800000}，则结果为正无穷大。
      *
-     * <p>If the argument is {@code 0xff800000}, the result is negative
-     * infinity.
+     * <p>如果参数为 {@code 0xff800000}，则结果为负无穷大。
      *
-     * <p>If the argument is any value in the range
-     * {@code 0x7f800001} through {@code 0x7fffffff} or in
-     * the range {@code 0xff800001} through
-     * {@code 0xffffffff}, the result is a NaN.  No IEEE 754
-     * floating-point operation provided by Java can distinguish
-     * between two NaN values of the same type with different bit
-     * patterns.  Distinct values of NaN are only distinguishable by
-     * use of the {@code Float.floatToRawIntBits} method.
+     * <p>如果参数值在 {@code 0x7f800001} 到 {@code 0x7fffffff} 或
+     * 在 {@code 0xff800001} 到 {@code 0xffffffff} 之间，则结果为 NaN。
+     * Java 提供的任何 IEEE 754 浮点操作都不能区分具有不同位模式的两个同类型 NaN 值。
+     * 不同的 NaN 值只能使用 {@code Float.floatToRawIntBits} 方法区分。
      *
-     * <p>In all other cases, let <i>s</i>, <i>e</i>, and <i>m</i> be three
-     * values that can be computed from the argument:
+     * <p>在所有其他情况下，设 <i>s</i>, <i>e</i>, 和 <i>m</i> 为可以通过以下参数进行计算的三个值；
      *
      * <blockquote><pre>{@code
      * int s = ((bits >> 31) == 0) ? 1 : -1;
@@ -687,31 +655,24 @@ public final class Float extends Number implements Comparable<Float> {
      *                 (bits & 0x7fffff) | 0x800000;
      * }</pre></blockquote>
      *
-     * Then the floating-point result equals the value of the mathematical
-     * expression <i>s</i>&middot;<i>m</i>&middot;2<sup><i>e</i>-150</sup>.
+     * 那么浮点结果等于算术表达式
+     * <i>s</i>&middot;<i>m</i>&middot;2<sup><i>e</i>-150</sup>
+     * 的值。
      *
-     * <p>Note that this method may not be able to return a
-     * {@code float} NaN with exactly same bit pattern as the
-     * {@code int} argument.  IEEE 754 distinguishes between two
-     * kinds of NaNs, quiet NaNs and <i>signaling NaNs</i>.  The
-     * differences between the two kinds of NaN are generally not
-     * visible in Java.  Arithmetic operations on signaling NaNs turn
-     * them into quiet NaNs with a different, but often similar, bit
-     * pattern.  However, on some processors merely copying a
-     * signaling NaN also performs that conversion.  In particular,
-     * copying a signaling NaN to return it to the calling method may
-     * perform this conversion.  So {@code intBitsToFloat} may
-     * not be able to return a {@code float} with a signaling NaN
-     * bit pattern.  Consequently, for some {@code int} values,
-     * {@code floatToRawIntBits(intBitsToFloat(start))} may
-     * <i>not</i> equal {@code start}.  Moreover, which
-     * particular bit patterns represent signaling NaNs is platform
-     * dependent; although all NaN bit patterns, quiet or signaling,
-     * must be in the NaN range identified above.
+     * <p>注意，此方法不能返回与 {@code int} 参数具有完全相同位模式的 {@code float} NaN 值。
+     * IEEE 754 区分了两种 NaN：quiet NaN 和 <i>signaling NaNs</i>。
+     * 这两种 NaN 之间的差别在 Java 中通常是不可见的。
+     * 对 signaling NaN 进行的算术运算将它们转换为具有不同（但通常类似）位模式的 quiet NaN。
+     * 但在某些只复制 signaling NaN 的处理器上也执行这种转换。
+     * 特别是在复制 signaling NaN 以将其返回给调用方法时，可能会执行这种转换。
+     * 因此，{@code intBitsToFloat} 可能无法返回具有 signaling NaN 位模式的 {@code float} 值。
+     * 所以，对于某些 {@code int} 值，
+     * {@code floatToRawIntBits(intBitsToFloat(start))} 可能 <i>不</i> 等于 {@code start}。
+     * 此外，尽管所有 NaN 位模式（不管是 quiet NaN 还是 signaling NaN）都
+     * 必须在前面确定的 NaN 范围内，但表示 signaling NaN 的特定位模式是与平台有关。
      *
-     * @param   bits   an integer.
-     * @return  the {@code float} floating-point value with the same bit
-     *          pattern.
+     * @param   bits   一个整数。
+     * @return  具有相同位模式的 {@code float} 浮点值。
      */
     public static native float intBitsToFloat(int bits);
 
