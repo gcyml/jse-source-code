@@ -541,43 +541,33 @@ public final class Float extends Number implements Comparable<Float> {
     }
 
     /**
-
-     * Compares this object against the specified object.  The result
-     * is {@code true} if and only if the argument is not
-     * {@code null} and is a {@code Float} object that
-     * represents a {@code float} with the same value as the
-     * {@code float} represented by this object. For this
-     * purpose, two {@code float} values are considered to be the
-     * same if and only if the method {@link #floatToIntBits(float)}
-     * returns the identical {@code int} value when applied to
-     * each.
+     * 将此对象与指定对象进行比较。
+     * 当且仅当参数不是 {@code null} 而是 {@code Float} 对象，
+     * 且表示的 {@code float} 值与此对象表示的 {@code float} 值相同时，结果为 {@code true}。
+     * 为此，当且仅当将方法 {@link #floatToIntBits(float)} 应用于两个值所返回的 {@code int} 值相同时，
+     * 才认为这两个 {@code float} 值相同。
      *
-     * <p>Note that in most cases, for two instances of class
-     * {@code Float}, {@code f1} and {@code f2}, the value
-     * of {@code f1.equals(f2)} is {@code true} if and only if
+     * <p>注意，在大多数情况下，对于 {@code Float} 类的
+     * 两个实例 {@code f1} 和 {@code f2}，当且仅当
      *
      * <blockquote><pre>
      *   f1.floatValue() == f2.floatValue()
      * </pre></blockquote>
      *
-     * <p>also has the value {@code true}. However, there are two exceptions:
+     * <p>的值为 {@code true} 时，{@code f1.equals(f2)} 的值才为 {@code true}。但是，有以下两种例外情况：
      * <ul>
-     * <li>If {@code f1} and {@code f2} both represent
-     *     {@code Float.NaN}, then the {@code equals} method returns
-     *     {@code true}, even though {@code Float.NaN==Float.NaN}
-     *     has the value {@code false}.
-     * <li>If {@code f1} represents {@code +0.0f} while
-     *     {@code f2} represents {@code -0.0f}, or vice
-     *     versa, the {@code equal} test has the value
-     *     {@code false}, even though {@code 0.0f==-0.0f}
-     *     has the value {@code true}.
+     * <li>如果 {@code f1} 和 {@code f2} 都表示 {@code Float.NaN}，
+     *     那么即使 {@code Float.NaN==Float.NaN} 的值为 {@code false}，
+     *     {@code equals} 方法也将返回 {@code true}。
+     * <li>如果 {@code f1} 表示 {@code +0.0f}，而 {@code f2} 表示 {@code -0.0f}，
+     *     或相反，那么即使 {@code 0.0f==-0.0f} 的值为 {@code true}，
+     *     {@code equals} 方法也将返回 {@code false}。
      * </ul>
      *
-     * This definition allows hash tables to operate properly.
+     * 该定义使得哈希表得以正确操作。
      *
-     * @param obj the object to be compared
-     * @return  {@code true} if the objects are the same;
-     *          {@code false} otherwise.
+     * @param obj 要比较的对象
+     * @return  如果对象是相同的，则返回 {@code true}；否则返回 {@code false}。
      * @see java.lang.Float#floatToIntBits(float)
      */
     public boolean equals(Object obj) {
