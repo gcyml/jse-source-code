@@ -677,33 +677,24 @@ public final class Float extends Number implements Comparable<Float> {
     public static native float intBitsToFloat(int bits);
 
     /**
-     * Compares two {@code Float} objects numerically.  There are
-     * two ways in which comparisons performed by this method differ
-     * from those performed by the Java language numerical comparison
-     * operators ({@code <, <=, ==, >=, >}) when
-     * applied to primitive {@code float} values:
+     * 比较两个 {@code Float} 对象所表示的数值。
+     * 在应用到基本 {@code float} 值时，有两种方法可以比较执行此方法产生的值
+     * 与执行 Java 语言的数字比较运算符（{@code <, <=, ==, >=, >}）产生的那些值之间的区别：
      *
      * <ul><li>
-     *          {@code Float.NaN} is considered by this method to
-     *          be equal to itself and greater than all other
-     *          {@code float} values
-     *          (including {@code Float.POSITIVE_INFINITY}).
+     *          此方法认为 {@code Float.NaN} 等于其自身，
+     *          且大于其他所有 {@code float} 值（包括 {@code Float.POSITIVE_INFINITY}）。
      * <li>
-     *          {@code 0.0f} is considered by this method to be greater
-     *          than {@code -0.0f}.
+     *          此方法认为 {@code 0.0f} 大于 {@code -0.0f}。
      * </ul>
      *
-     * This ensures that the <i>natural ordering</i> of {@code Float}
-     * objects imposed by this method is <i>consistent with equals</i>.
+     * 这可以确保受此方法影响的 {@code Float} 对象
+     * 的 <i> 自然顺序 </i>  与 <i> equals 一致</i>。
      *
-     * @param   anotherFloat   the {@code Float} to be compared.
-     * @return  the value {@code 0} if {@code anotherFloat} is
-     *          numerically equal to this {@code Float}; a value
-     *          less than {@code 0} if this {@code Float}
-     *          is numerically less than {@code anotherFloat};
-     *          and a value greater than {@code 0} if this
-     *          {@code Float} is numerically greater than
-     *          {@code anotherFloat}.
+     * @param   anotherFloat   要比较的 {@code Float} 值。
+     * @return  如果 {@code anotherFloat} 在数字上等于此 {@code Float}，则返回 {@code 0}；
+     *           如果 {@code anotherFloat} 在数字上小于此 {@code Float}，则返回小于 {@code 0} 的值；
+     *           如果 {@code anotherFloat} 在数字上大于此 {@code Float}，则返回大于 {@code 0} 的值。
      *
      * @since   1.2
      * @see Comparable#compareTo(Object)
@@ -713,21 +704,16 @@ public final class Float extends Number implements Comparable<Float> {
     }
 
     /**
-     * Compares the two specified {@code float} values. The sign
-     * of the integer value returned is the same as that of the
-     * integer that would be returned by the call:
+     * 比较两个指定的 {@code float} 值。返回整数值的符号与以下调用返回整数的符号相同：
      * <pre>
      *    new Float(f1).compareTo(new Float(f2))
      * </pre>
      *
-     * @param   f1        the first {@code float} to compare.
-     * @param   f2        the second {@code float} to compare.
-     * @return  the value {@code 0} if {@code f1} is
-     *          numerically equal to {@code f2}; a value less than
-     *          {@code 0} if {@code f1} is numerically less than
-     *          {@code f2}; and a value greater than {@code 0}
-     *          if {@code f1} is numerically greater than
-     *          {@code f2}.
+     * @param   f1        要比较的第一个 {@code float}  值。
+     * @param   f2        要比较的第二个 {@code float}  值。
+     * @return  如果 {@code f1} 在数字上等于此 {@code f2}，则返回值为 {@code 0}；
+     *           如果 {@code f1} 在数字上小于此 {@code f2}，则返回小于 {@code 0} 的值；
+     *           如果 {@code f1} 在数字上大于此 {@code f2}，则返回大于 {@code 0} 的值。
      * @since 1.4
      */
     public static int compare(float f1, float f2) {
@@ -746,11 +732,11 @@ public final class Float extends Number implements Comparable<Float> {
     }
 
     /**
-     * Adds two {@code float} values together as per the + operator.
+     * 通过 + 运算符把两个 {@code float} 值相加。
      *
-     * @param a the first operand
-     * @param b the second operand
-     * @return the sum of {@code a} and {@code b}
+     * @param a 第一个操作数
+     * @param b 第二个操作数
+     * @return {@code a} 和 {@code b} 的和
      * @jls 4.2.4 Floating-Point Operations
      * @see java.util.function.BinaryOperator
      * @since 1.8
@@ -760,12 +746,12 @@ public final class Float extends Number implements Comparable<Float> {
     }
 
     /**
-     * Returns the greater of two {@code float} values
-     * as if by calling {@link Math#max(float, float) Math.max}.
+     * 通过调用 {@link Math#max(float, float) Math.max} 返回
+     * 两个{@code float} 值的最大值。
      *
-     * @param a the first operand
-     * @param b the second operand
-     * @return the greater of {@code a} and {@code b}
+     * @param a 第一个操作数
+     * @param b 第二个操作数
+     * @return {@code a} 和 {@code b} 的最大值
      * @see java.util.function.BinaryOperator
      * @since 1.8
      */
@@ -774,12 +760,12 @@ public final class Float extends Number implements Comparable<Float> {
     }
 
     /**
-     * Returns the smaller of two {@code float} values
-     * as if by calling {@link Math#min(float, float) Math.min}.
+     * 通过调用 {@link Math#min(float, float) Math.min} 返回
+     * 两个{@code float} 值的最小值。
      *
-     * @param a the first operand
-     * @param b the second operand
-     * @return the smaller of {@code a} and {@code b}
+     * @param a 第一个操作数
+     * @param b 第二个操作数
+     * @return {@code a} 和 {@code b} 的最小值
      * @see java.util.function.BinaryOperator
      * @since 1.8
      */
