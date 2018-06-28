@@ -28,20 +28,17 @@ package java.lang;
 import java.lang.annotation.Native;
 
 /**
- * The {@code Integer} class wraps a value of the primitive type
- * {@code int} in an object. An object of type {@code Integer}
- * contains a single field whose type is {@code int}.
+ * {@code Integer} 类在对象中包装了一个基本类型 {@code int} 的值。
+ * {@code Integer} 类型的对象包含一个 {@code int} 类型的字段。
  *
- * <p>In addition, this class provides several methods for converting
- * an {@code int} to a {@code String} and a {@code String} to an
- * {@code int}, as well as other constants and methods useful when
- * dealing with an {@code int}.
+ * <p>此外，该类提供了多个方法，
+ * 能在 {@code int} 类型和 {@code String} 类型之间互相转换，
+ * 还提供了处理 {@code int} 类型时非常有用的其他一些常量和方法。
  *
- * <p>Implementation note: The implementations of the "bit twiddling"
- * methods (such as {@link #highestOneBit(int) highestOneBit} and
- * {@link #numberOfTrailingZeros(int) numberOfTrailingZeros}) are
- * based on material from Henry S. Warren, Jr.'s <i>Hacker's
- * Delight</i>, (Addison Wesley, 2002).
+ * <p>实现注意事项：“bit twiddling”方法
+ * （如 {@link #highestOneBit(int) highestOneBit} 和
+ * {@link #numberOfTrailingZeros(int) numberOfTrailingZeros}）的实现基于
+ * Henry S. Warren, Jr.撰写的 <i>Hacker's Delight</i>（Addison Wesley, 2002）中的一些有关材料。
  *
  * @author  Lee Boynton
  * @author  Arthur van Hoff
@@ -51,20 +48,17 @@ import java.lang.annotation.Native;
  */
 public final class Integer extends Number implements Comparable<Integer> {
     /**
-     * A constant holding the minimum value an {@code int} can
-     * have, -2<sup>31</sup>.
+     * 值为 -2<sup>31</sup> 的常量，它表示 {@code int} 类型能够表示的最小值。
      */
     @Native public static final int   MIN_VALUE = 0x80000000;
 
     /**
-     * A constant holding the maximum value an {@code int} can
-     * have, 2<sup>31</sup>-1.
+     * 值为 2<sup>31</sup>-1 的常量，它表示 {@code int} 类型能够表示的最大值。
      */
     @Native public static final int   MAX_VALUE = 0x7fffffff;
 
     /**
-     * The {@code Class} instance representing the primitive type
-     * {@code int}.
+     * 表示基本类型 {@code int} 的 {@code Class} 实例。
      *
      * @since   JDK1.1
      */
@@ -72,7 +66,7 @@ public final class Integer extends Number implements Comparable<Integer> {
     public static final Class<Integer>  TYPE = (Class<Integer>) Class.getPrimitiveClass("int");
 
     /**
-     * All possible chars for representing a number as a String
+     * 所有可能的代表数字的字符
      */
     final static char[] digits = {
         '0' , '1' , '2' , '3' , '4' , '5' ,
@@ -84,46 +78,37 @@ public final class Integer extends Number implements Comparable<Integer> {
     };
 
     /**
-     * Returns a string representation of the first argument in the
-     * radix specified by the second argument.
+     * 返回用第二个参数指定基数表示的第一个参数的字符串表示形式。
      *
-     * <p>If the radix is smaller than {@code Character.MIN_RADIX}
-     * or larger than {@code Character.MAX_RADIX}, then the radix
-     * {@code 10} is used instead.
+     * <p>如果基数小于 {@code Character.MIN_RADIX} 或者
+     * 大于 {@code Character.MAX_RADIX}，则改用基数 {@code 10}。
      *
-     * <p>If the first argument is negative, the first element of the
-     * result is the ASCII minus character {@code '-'}
-     * ({@code '\u005Cu002D'}). If the first argument is not
-     * negative, no sign character appears in the result.
+     * <p>如果第一个参数为负，
+     * 则结果中的第一个元素为 ASCII 的减号 {@code '-'} ({@code '\u005Cu002D'})。
+     * 如果第一个参数为非负，则没有符号字符出现在结果中。
      *
-     * <p>The remaining characters of the result represent the magnitude
-     * of the first argument. If the magnitude is zero, it is
-     * represented by a single zero character {@code '0'}
-     * ({@code '\u005Cu0030'}); otherwise, the first character of
-     * the representation of the magnitude will not be the zero
-     * character.  The following ASCII characters are used as digits:
+     * <p>结果中的剩余字符表示第一个参数的大小。
+     * 如果大小为零，则用一个零字符 {@code '0'} ({@code '\u005Cu0030'}) 表示；
+     * 否则，大小的表示形式中的第一个字符将不是零字符。
+     * 用以下 ASCII 字符作为数字：
      *
      * <blockquote>
      *   {@code 0123456789abcdefghijklmnopqrstuvwxyz}
      * </blockquote>
      *
-     * These are {@code '\u005Cu0030'} through
-     * {@code '\u005Cu0039'} and {@code '\u005Cu0061'} through
-     * {@code '\u005Cu007A'}. If {@code radix} is
-     * <var>N</var>, then the first <var>N</var> of these characters
-     * are used as radix-<var>N</var> digits in the order shown. Thus,
-     * the digits for hexadecimal (radix 16) are
-     * {@code 0123456789abcdef}. If uppercase letters are
-     * desired, the {@link java.lang.String#toUpperCase()} method may
-     * be called on the result:
+     * 其范围是从 {@code '\u005Cu0030'} 到 {@code '\u005Cu0039'} 和
+     * 从 {@code '\u005Cu0061'} 到 {@code '\u005Cu007A'}。
+     * 如果 {@code radix} 为 <var>N</var>, 则按照所示顺序，使用这些字符中的前 <var>N</var> 个作为其数字。
+     * 因此，十六进制（基数为 16）的数字是 {@code 0123456789abcdef}。
+     * 如果希望得到大写字母，则可以在结果上调用 {@link java.lang.String#toUpperCase()} 方法：
      *
      * <blockquote>
      *  {@code Integer.toString(n, 16).toUpperCase()}
      * </blockquote>
      *
-     * @param   i       an integer to be converted to a string.
-     * @param   radix   the radix to use in the string representation.
-     * @return  a string representation of the argument in the specified radix.
+     * @param   i       要转换成字符串的整数。
+     * @param   radix   用于字符串表示形式的基数。
+     * @return  使用指定基数的参数的字符串表示形式。
      * @see     java.lang.Character#MAX_RADIX
      * @see     java.lang.Character#MIN_RADIX
      */
@@ -188,43 +173,34 @@ public final class Integer extends Number implements Comparable<Integer> {
     }
 
     /**
-     * Returns a string representation of the integer argument as an
-     * unsigned integer in base&nbsp;16.
+     * 以十六进制（基数&nbsp;16）无符号整数形式返回一个整数参数的字符串表示形式。
      *
-     * <p>The unsigned integer value is the argument plus 2<sup>32</sup>
-     * if the argument is negative; otherwise, it is equal to the
-     * argument.  This value is converted to a string of ASCII digits
-     * in hexadecimal (base&nbsp;16) with no extra leading
-     * {@code 0}s.
+     * <p>如果参数为负，那么无符号整数值为参数加上  2<sup>32</sup>；
+     * 否则等于该参数。将该值转换为十六进制（基数&nbsp;16）的无前导 {@code 0} 的 ASCII 数字字符串。
      *
-     * <p>The value of the argument can be recovered from the returned
-     * string {@code s} by calling {@link
+     * <p>参数的值可以从字符串 {@code s} 中通过调用{@link
      * Integer#parseUnsignedInt(String, int)
-     * Integer.parseUnsignedInt(s, 16)}.
+     * Integer.parseUnsignedInt(s, 16)} 得到。
      *
-     * <p>If the unsigned magnitude is zero, it is represented by a
-     * single zero character {@code '0'} ({@code '\u005Cu0030'});
-     * otherwise, the first character of the representation of the
-     * unsigned magnitude will not be the zero character. The
-     * following characters are used as hexadecimal digits:
+     * <p>如果无符号数的大小值为零，
+     * 则用一个零字符 {@code '0'} ({@code '\u005Cu0030'}) 表示它；
+     * 否则，无符号数大小的表示形式中的第一个字符将不是零字符。
+     * 用以下字符作为十六进制数字：
      *
      * <blockquote>
      *  {@code 0123456789abcdef}
      * </blockquote>
      *
-     * These are the characters {@code '\u005Cu0030'} through
-     * {@code '\u005Cu0039'} and {@code '\u005Cu0061'} through
-     * {@code '\u005Cu0066'}. If uppercase letters are
-     * desired, the {@link java.lang.String#toUpperCase()} method may
-     * be called on the result:
+     * 这些字符的范围是从 {@code '\u005Cu0030'} 到 {@code '\u005Cu0039'} 和
+     * 从 {@code '\u005Cu0061'} 到 {@code '\u005Cu0066'}。
+     * 如果希望得到大写字母，可以在结果上调用  {@link java.lang.String#toUpperCase()} 方法：
      *
      * <blockquote>
      *  {@code Integer.toHexString(n).toUpperCase()}
      * </blockquote>
      *
-     * @param   i   an integer to be converted to a string.
-     * @return  the string representation of the unsigned integer value
-     *          represented by the argument in hexadecimal (base&nbsp;16).
+     * @param   i   要转换成字符串的整数。
+     * @return  参数的十六进制（基数&nbsp;16)无符号整数值的字符串表示形式。
      * @see #parseUnsignedInt(String, int)
      * @see #toUnsignedString(int, int)
      * @since   JDK1.0.2
@@ -234,35 +210,27 @@ public final class Integer extends Number implements Comparable<Integer> {
     }
 
     /**
-     * Returns a string representation of the integer argument as an
-     * unsigned integer in base&nbsp;8.
+     * 以八进制（基数&nbsp;8）无符号整数形式返回一个整数参数的字符串表示形式。
      *
-     * <p>The unsigned integer value is the argument plus 2<sup>32</sup>
-     * if the argument is negative; otherwise, it is equal to the
-     * argument.  This value is converted to a string of ASCII digits
-     * in octal (base&nbsp;8) with no extra leading {@code 0}s.
+     * <p>如果参数为负，该无符号整数值为参数加上 2<sup>32</sup>；否则等于该参数。
+     * 该值被转换成八进制（基数&nbsp;8）ASCII 数字的字符串，且没有附加前导 {@code 0}。
      *
-     * <p>The value of the argument can be recovered from the returned
-     * string {@code s} by calling {@link
+     * <p>参数的值可以从字符串 {@code s} 中通过调用{@link
      * Integer#parseUnsignedInt(String, int)
-     * Integer.parseUnsignedInt(s, 8)}.
+     * Integer.parseUnsignedInt(s, 8)} 得到。
      *
-     * <p>If the unsigned magnitude is zero, it is represented by a
-     * single zero character {@code '0'} ({@code '\u005Cu0030'});
-     * otherwise, the first character of the representation of the
-     * unsigned magnitude will not be the zero character. The
-     * following characters are used as octal digits:
+     * <p>如果无符号数大小为零，则用一个零字符 {@code '0'} ({@code '\u005Cu0030'}) 表示它；
+     * 否则，无符号数大小的表示形式中的第一个字符将不是零字符。
+     * 用以下字符作为八进制数字：
      *
      * <blockquote>
      * {@code 01234567}
      * </blockquote>
      *
-     * These are the characters {@code '\u005Cu0030'} through
-     * {@code '\u005Cu0037'}.
+     * 它们是从 {@code '\u005Cu0030'} 到 {@code '\u005Cu0037'} 的字符。
      *
-     * @param   i   an integer to be converted to a string.
-     * @return  the string representation of the unsigned integer value
-     *          represented by the argument in octal (base&nbsp;8).
+     * @param   i   要转换成字符串的整数。
+     * @return  用八进制参数（基数 &nbsp;8）表示的无符号整数值的字符串表示形式。
      * @see #parseUnsignedInt(String, int)
      * @see #toUnsignedString(int, int)
      * @since   JDK1.0.2
@@ -272,29 +240,25 @@ public final class Integer extends Number implements Comparable<Integer> {
     }
 
     /**
-     * Returns a string representation of the integer argument as an
-     * unsigned integer in base&nbsp;2.
+     * 以二进制（基数&nbsp;2）无符号整数形式返回一个整数参数的字符串表示形式。
      *
-     * <p>The unsigned integer value is the argument plus 2<sup>32</sup>
-     * if the argument is negative; otherwise it is equal to the
-     * argument.  This value is converted to a string of ASCII digits
-     * in binary (base&nbsp;2) with no extra leading {@code 0}s.
+     * <p>如果参数为负，该无符号整数值为参数加上 2<sup>32</sup>；否则等于该参数。
+     * 将该值转换为二进制（基数&nbsp;2）形式的无前导 {@code 0} 的 ASCII 数字字符串。
+     * 如果无符号数的大小为零，则用一个零字符 '0' (’\u0030’) 表示它；
+     * 否则，无符号数大小的表示形式中的第一个字符将不是零字符。
+     * 字符 '0' ('\u0030') 和 '1' ('\u0031') 被用作二进制数字。
      *
-     * <p>The value of the argument can be recovered from the returned
-     * string {@code s} by calling {@link
+     * <p>参数的值可以从字符串 {@code s} 中通过调用{@link
      * Integer#parseUnsignedInt(String, int)
-     * Integer.parseUnsignedInt(s, 2)}.
+     * Integer.parseUnsignedInt(s, 2)} 得到。
      *
-     * <p>If the unsigned magnitude is zero, it is represented by a
-     * single zero character {@code '0'} ({@code '\u005Cu0030'});
-     * otherwise, the first character of the representation of the
-     * unsigned magnitude will not be the zero character. The
-     * characters {@code '0'} ({@code '\u005Cu0030'}) and {@code
-     * '1'} ({@code '\u005Cu0031'}) are used as binary digits.
+     * <p>如果无符号数的大小为零，则用一个零字符 {@code '0'} ({@code '\u005Cu0030'}) 表示它；
+     * 否则，无符号数大小的表示形式中的第一个字符将不是零字符。
+     * 字符  {@code '0'} ({@code '\u005Cu0030'}) 和
+     * {@code '1'} ({@code '\u005Cu0031'}) 被用作二进制数字。
      *
-     * @param   i   an integer to be converted to a string.
-     * @return  the string representation of the unsigned integer value
-     *          represented by the argument in binary (base&nbsp;2).
+     * @param   i    要转换为字符串的整数。
+     * @return  用二进制参数（基数 &nbsp;2）表示的无符号整数值的字符串表示形式。
      * @see #parseUnsignedInt(String, int)
      * @see #toUnsignedString(int, int)
      * @since   JDK1.0.2
@@ -319,13 +283,13 @@ public final class Integer extends Number implements Comparable<Integer> {
     }
 
     /**
-     * Format a long (treated as unsigned) into a character buffer.
-     * @param val the unsigned int to format
-     * @param shift the log2 of the base to format in (4 for hex, 3 for octal, 1 for binary)
-     * @param buf the character buffer to write to
-     * @param offset the offset in the destination buffer to start at
-     * @param len the number of characters to write
-     * @return the lowest character  location used
+     * 将 long（视为无符号）格式化为字符 buffer。
+     * @param val 要格式化的无符号 int
+     * @param shift 要格式化的 log2 的基数 (4 代表十六进制，3 代表八进制，1 代表二进制)
+     * @param buf 要写入的字符 buffer
+     * @param offset 从目标缓冲区开始的偏移量the offset in the destination buffer to start at
+     * @param len 要写入的字符数
+     * @return  使用的最低字符位置
      */
      static int formatUnsignedInt(int val, int shift, char[] buf, int offset, int len) {
         int charPos = len;
