@@ -143,28 +143,22 @@ public final class Integer extends Number implements Comparable<Integer> {
     }
 
     /**
-     * Returns a string representation of the first argument as an
-     * unsigned integer value in the radix specified by the second
-     * argument.
+     * 以第二个参数指定进制的无符号整数形式返回第一个整数参数的字符串表示形式。
      *
-     * <p>If the radix is smaller than {@code Character.MIN_RADIX}
-     * or larger than {@code Character.MAX_RADIX}, then the radix
-     * {@code 10} is used instead.
+     * <p>如果基数小于 {@code Character.MIN_RADIX} 或
+     * 大于 {@code Character.MAX_RADIX}，则基数为 {@code 10}。
      *
-     * <p>Note that since the first argument is treated as an unsigned
-     * value, no leading sign character is printed.
+     * <p>注意，由于第一个参数被视为无符号值，所以不打印前导符号字符。
      *
-     * <p>If the magnitude is zero, it is represented by a single zero
-     * character {@code '0'} ({@code '\u005Cu0030'}); otherwise,
-     * the first character of the representation of the magnitude will
-     * not be the zero character.
+     * <p>如果无符号数的大小值为零，
+     * 则用一个零字符 {@code '0'} ({@code '\u005Cu0030'}) 表示它；
+     * 否则，无符号数大小的表示形式中的第一个字符将不是零字符。
      *
-     * <p>The behavior of radixes and the characters used as digits
-     * are the same as {@link #toString(int, int) toString}.
+     * <p>基数和作为数字使用的字符的行为与当中{@link #toString(int, int) toString} 相同。
      *
-     * @param   i       an integer to be converted to an unsigned string.
-     * @param   radix   the radix to use in the string representation.
-     * @return  an unsigned string representation of the argument in the specified radix.
+     * @param   i       要转换成无符号字符串的整数。
+     * @param   radix   字符串表达形式的基数。
+     * @return  参数在指定基数中的无符号字符串表示形式。
      * @see     #toString(int, int)
      * @since 1.8
      */
@@ -349,14 +343,12 @@ public final class Integer extends Number implements Comparable<Integer> {
         //
 
     /**
-     * Returns a {@code String} object representing the
-     * specified integer. The argument is converted to signed decimal
-     * representation and returned as a string, exactly as if the
-     * argument and radix 10 were given as arguments to the {@link
-     * #toString(int, int)} method.
+     * 返回一个表示指定整数的 {@code String} 对象。
+     * 将该参数转换为有符号的十进制表示形式，以字符串形式返回它，
+     * 就好像将参数和基数 10 作为参数赋予 {@link * #toString(int, int)}  方法。
      *
-     * @param   i   an integer to be converted.
-     * @return  a string representation of the argument in base&nbsp;10.
+     * @param   i   要转换的整数。
+     * @return  十进制（基数&nbsp;10）参数的字符串表示形式。
      */
     public static String toString(int i) {
         if (i == Integer.MIN_VALUE)
@@ -368,16 +360,13 @@ public final class Integer extends Number implements Comparable<Integer> {
     }
 
     /**
-     * Returns a string representation of the argument as an unsigned
-     * decimal value.
+     * 返回参数作为无符号小数值的字符串表示形式。
      *
-     * The argument is converted to unsigned decimal representation
-     * and returned as a string exactly as if the argument and radix
-     * 10 were given as arguments to the {@link #toUnsignedString(int,
-     * int)} method.
+     * 该参数被转换为无符号的小数表示，并以字符串形式返回，
+     * 就像参数和基数 10 被作为参数赋给 {@link #toUnsignedString(int, int)} 方法一样。
      *
-     * @param   i  an integer to be converted to an unsigned string.
-     * @return  an unsigned string representation of the argument.
+     * @param   i  要转换成无符号字符串的整数。
+     * @return  参数的无符号字符串表示形式。
      * @see     #toUnsignedString(int, int)
      * @since 1.8
      */
@@ -386,13 +375,11 @@ public final class Integer extends Number implements Comparable<Integer> {
     }
 
     /**
-     * Places characters representing the integer i into the
-     * character array buf. The characters are placed into
-     * the buffer backwards starting with the least significant
-     * digit at the specified index (exclusive), and working
-     * backwards from there.
+     * 将表示整数i的字符放在字符数组buf中。
+     * 字符从指定索引(独占)的最不重要的数字开始向后放置到缓冲区中，
+     * 并从那里向后工作。
      *
-     * Will fail if i == Integer.MIN_VALUE
+     * 如果i = Integer.MIN_VALUE会失败
      */
     static void getChars(int i, int index, char[] buf) {
         int q, r;
@@ -439,6 +426,11 @@ public final class Integer extends Number implements Comparable<Integer> {
     }
 
     /**
+     * 使用第二个参数指定的基数，将字符串参数解析为有符号的整数。
+     * 除了第一个字符可以是用来表示负值的 ASCII 减号 {@code '-'} ({@code '\u005Cu002D'}) 外，
+     * 字符串中的字符必须都是指定基数的数字（通过 {@link java.lang.Character#digit(char, int)} 是否返回一个负值确定）。
+     * 返回得到的整数值。
+     *
      * Parses the string argument as a signed integer in the radix
      * specified by the second argument. The characters in the string
      * must all be digits of the specified radix (as determined by
@@ -449,27 +441,22 @@ public final class Integer extends Number implements Comparable<Integer> {
      * ({@code '\u005Cu002B'}) to indicate a positive value. The
      * resulting integer value is returned.
      *
-     * <p>An exception of type {@code NumberFormatException} is
-     * thrown if any of the following situations occurs:
+     * <p>如果发生以下任意一种情况，则抛出一个 {@code NumberFormatException} 类型的异常：
      * <ul>
-     * <li>The first argument is {@code null} or is a string of
-     * length zero.
+     * <li>第一个参数为 {@code null} 或一个长度为零的字符串。
      *
-     * <li>The radix is either smaller than
-     * {@link java.lang.Character#MIN_RADIX} or
-     * larger than {@link java.lang.Character#MAX_RADIX}.
+     * <li>基数小于 {@link java.lang.Character#MIN_RADIX} 或者
+     * 大于 {@link java.lang.Character#MAX_RADIX}。
      *
-     * <li>Any character of the string is not a digit of the specified
-     * radix, except that the first character may be a minus sign
-     * {@code '-'} ({@code '\u005Cu002D'}) or plus sign
-     * {@code '+'} ({@code '\u005Cu002B'}) provided that the
-     * string is longer than length 1.
+     * <li>假如字符串的长度超过 1，
+     * 那么除了第一个字符可以是减号 {@code '-'} ({@code '\u005Cu002D'}) 或
+     * 加号 {@code '+'} ({@code '\u005Cu002B'})外，
+     * 字符串中存在任意不是由指定基数的数字表示的字符。
      *
-     * <li>The value represented by the string is not a value of type
-     * {@code int}.
+     * <li>字符串表示的值不是 {@code int} 类型的值。
      * </ul>
      *
-     * <p>Examples:
+     * <p>示例：
      * <blockquote><pre>
      * parseInt("0", 10) returns 0
      * parseInt("473", 10) returns 473
@@ -485,13 +472,10 @@ public final class Integer extends Number implements Comparable<Integer> {
      * parseInt("Kona", 27) returns 411787
      * </pre></blockquote>
      *
-     * @param      s   the {@code String} containing the integer
-     *                  representation to be parsed
-     * @param      radix   the radix to be used while parsing {@code s}.
-     * @return     the integer represented by the string argument in the
-     *             specified radix.
-     * @exception  NumberFormatException if the {@code String}
-     *             does not contain a parsable {@code int}.
+     * @param      s   包含要解析的整数表示形式的 {@code String}
+     * @param      radix   解析 {@code s} 时使用的基数。
+     * @return     使用指定基数的字符串参数表示的整数。
+     * @exception  NumberFormatException 如果 {@code String} 不包含可解析的 {@code int}。
      */
     public static int parseInt(String s, int radix)
                 throws NumberFormatException
