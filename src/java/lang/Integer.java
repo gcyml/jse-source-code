@@ -427,19 +427,10 @@ public final class Integer extends Number implements Comparable<Integer> {
 
     /**
      * 使用第二个参数指定的基数，将字符串参数解析为有符号的整数。
-     * 除了第一个字符可以是用来表示负值的 ASCII 减号 {@code '-'} ({@code '\u005Cu002D'}) 外，
+     * 除了第一个字符可以是用来表示负值的 ASCII 减号 {@code '-'} ({@code '\u005Cu002D'}) 或
+     * ASCII 加号 {@code '+'} ({@code '\u005Cu002B'}) 外，
      * 字符串中的字符必须都是指定基数的数字（通过 {@link java.lang.Character#digit(char, int)} 是否返回一个负值确定）。
      * 返回得到的整数值。
-     *
-     * Parses the string argument as a signed integer in the radix
-     * specified by the second argument. The characters in the string
-     * must all be digits of the specified radix (as determined by
-     * whether {@link java.lang.Character#digit(char, int)} returns a
-     * nonnegative value), except that the first character may be an
-     * ASCII minus sign {@code '-'} ({@code '\u005Cu002D'}) to
-     * indicate a negative value or an ASCII plus sign {@code '+'}
-     * ({@code '\u005Cu002B'}) to indicate a positive value. The
-     * resulting integer value is returned.
      *
      * <p>如果发生以下任意一种情况，则抛出一个 {@code NumberFormatException} 类型的异常：
      * <ul>
@@ -543,67 +534,48 @@ public final class Integer extends Number implements Comparable<Integer> {
     }
 
     /**
-     * Parses the string argument as a signed decimal integer. The
-     * characters in the string must all be decimal digits, except
-     * that the first character may be an ASCII minus sign {@code '-'}
-     * ({@code '\u005Cu002D'}) to indicate a negative value or an
-     * ASCII plus sign {@code '+'} ({@code '\u005Cu002B'}) to
-     * indicate a positive value. The resulting integer value is
-     * returned, exactly as if the argument and the radix 10 were
-     * given as arguments to the {@link #parseInt(java.lang.String,
-     * int)} method.
+     * 将字符串参数作为有符号的十进制整数进行解析。
+     * 除了第一个字符可以是用来表示负值的 ASCII 减号 '-' ( '\u002D') 或
+     * ASCII 加号 {@code '+'} ({@code '\u005Cu002B'}) 外，
+     * 字符串中的字符都必须是十进制数字。
+     * 返回得到的整数值，就好像将该参数和基数 10 作为参数赋予 {@link #parseInt(java.lang.String, int)} 方法一样。
      *
-     * @param s    a {@code String} containing the {@code int}
-     *             representation to be parsed
-     * @return     the integer value represented by the argument in decimal.
-     * @exception  NumberFormatException  if the string does not contain a
-     *               parsable integer.
+     * @param s    包含要解析的 {@code int} 表示形式的 {@code String}。
+     * @return     用十进制参数表示的整数值。
+     * @exception  NumberFormatException  如果字符串不包含可解析的整数。
      */
     public static int parseInt(String s) throws NumberFormatException {
         return parseInt(s,10);
     }
 
     /**
-     * Parses the string argument as an unsigned integer in the radix
-     * specified by the second argument.  An unsigned integer maps the
-     * values usually associated with negative numbers to positive
-     * numbers larger than {@code MAX_VALUE}.
+     * 将字符串参数解析为第二个参数指定的基数中的无符号整数。
+     * 无符号整数将通常与负数相关的值映射到大于 {@code MAX_VALUE} 的正数。
      *
-     * The characters in the string must all be digits of the
-     * specified radix (as determined by whether {@link
-     * java.lang.Character#digit(char, int)} returns a nonnegative
-     * value), except that the first character may be an ASCII plus
-     * sign {@code '+'} ({@code '\u005Cu002B'}). The resulting
-     * integer value is returned.
+     * 除了第一个字符可能是ASCII 加号 {@code '+'} ({@code '\u005Cu002B'}) 外，
+     * 字符串中的字符必须都是指定基数的数字（通过 {@link java.lang.Character#digit(char, int)} 是否返回一个负值确定）。
+     * 除了第一个字符可能是ASCII 加号 {@code '+'} ({@code '\u005Cu002B'}) 。
+     * 返回结果的整数值。
      *
-     * <p>An exception of type {@code NumberFormatException} is
-     * thrown if any of the following situations occurs:
+     * <p>如果发生以下任意一种情况，则抛出一个 {@code NumberFormatException} 类型的异常：
      * <ul>
-     * <li>The first argument is {@code null} or is a string of
-     * length zero.
+     * <li>第一个参数为 {@code null} 或一个长度为零的字符串。
      *
-     * <li>The radix is either smaller than
-     * {@link java.lang.Character#MIN_RADIX} or
-     * larger than {@link java.lang.Character#MAX_RADIX}.
+     * <li>基数小于 {@link java.lang.Character#MIN_RADIX} 或者
+     * 大于 {@link java.lang.Character#MAX_RADIX}。
      *
-     * <li>Any character of the string is not a digit of the specified
-     * radix, except that the first character may be a plus sign
-     * {@code '+'} ({@code '\u005Cu002B'}) provided that the
-     * string is longer than length 1.
+     * <li>假如字符串的长度超过 1，
+     * 那么除了第一个字符可以是 加号 {@code '+'} ({@code '\u005Cu002B'})外，
+     * 字符串中存在任意不是由指定基数的数字表示的字符。
      *
-     * <li>The value represented by the string is larger than the
-     * largest unsigned {@code int}, 2<sup>32</sup>-1.
+     * <li>字符串表示的值大于无符号 {@code int} 的最大值 2<sup>32</sup>-1。
      *
      * </ul>
      *
-     *
-     * @param      s   the {@code String} containing the unsigned integer
-     *                  representation to be parsed
-     * @param      radix   the radix to be used while parsing {@code s}.
-     * @return     the integer represented by the string argument in the
-     *             specified radix.
-     * @throws     NumberFormatException if the {@code String}
-     *             does not contain a parsable {@code int}.
+     * @param      s   包含要解析的无符号整数表示的字符串
+     * @param      radix   解析 {@code s} 时要使用的基数。
+     * @return     用指定基数的字符串参数表示的整数。
+     * @throws     NumberFormatException 如果字符串不包含可解析的整数。
      * @since 1.8
      */
     public static int parseUnsignedInt(String s, int radix)
@@ -640,19 +612,14 @@ public final class Integer extends Number implements Comparable<Integer> {
     }
 
     /**
-     * Parses the string argument as an unsigned decimal integer. The
-     * characters in the string must all be decimal digits, except
-     * that the first character may be an an ASCII plus sign {@code
-     * '+'} ({@code '\u005Cu002B'}). The resulting integer value
-     * is returned, exactly as if the argument and the radix 10 were
-     * given as arguments to the {@link
-     * #parseUnsignedInt(java.lang.String, int)} method.
+     * 将字符串参数解析为无符号十进制整数。
+     * 除了第一个字符可能是ASCII 加号{@code '+'} ({@code '\u005Cu002B'})外，
+     * 字符串中的字符必须是十进制的。
+     * 返回结果的整数值，就像将参数和基数10作为 {@link #parseUnsignedInt(java.lang.String, int)} 方法的参数一样。
      *
-     * @param s   a {@code String} containing the unsigned {@code int}
-     *            representation to be parsed
-     * @return    the unsigned integer value represented by the argument in decimal.
-     * @throws    NumberFormatException  if the string does not contain a
-     *            parsable unsigned integer.
+     * @param s   包含要解析的无符号整数表示的字符串
+     * @return    十进制参数表示的无符号整数值。
+     * @throws    NumberFormatException  如果字符串不包含可解析的整数。
      * @since 1.8
      */
     public static int parseUnsignedInt(String s) throws NumberFormatException {
