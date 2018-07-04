@@ -1220,20 +1220,15 @@ public final class Integer extends Number implements Comparable<Integer> {
     }
 
     /**
-     * Returns the unsigned quotient of dividing the first argument by
-     * the second where each argument and the result is interpreted as
-     * an unsigned value.
+     * 返回将第一个参数除以第二个参数的无符号商，其中每个参数和结果都被解释为无符号值。
      *
-     * <p>Note that in two's complement arithmetic, the three other
-     * basic arithmetic operations of add, subtract, and multiply are
-     * bit-wise identical if the two operands are regarded as both
-     * being signed or both being unsigned.  Therefore separate {@code
-     * addUnsigned}, etc. methods are not provided.
+     * <p>请注意，在在二进制补码运算中，如果两个操作数都被认为是有符号的或两者都是无符号的，
+     * 则加、减和乘的其他三个基本算术运算是按位相同的。
+     * 因此，不提供单独的 {@code addUnsigned} 等方法。
      *
-     * @param dividend the value to be divided
-     * @param divisor the value doing the dividing
-     * @return the unsigned quotient of the first argument divided by
-     * the second argument
+     * @param dividend 被除数
+     * @param divisor 除数
+     * @return 第一个参数的除以第二个参数的无符号商
      * @see #remainderUnsigned
      * @since 1.8
      */
@@ -1243,14 +1238,11 @@ public final class Integer extends Number implements Comparable<Integer> {
     }
 
     /**
-     * Returns the unsigned remainder from dividing the first argument
-     * by the second where each argument and the result is interpreted
-     * as an unsigned value.
+     * 返回第一个参数除以第二个参数的无符号余数，其中每个参数和结果都被解释为无符号值。
      *
-     * @param dividend the value to be divided
-     * @param divisor the value doing the dividing
-     * @return the unsigned remainder of the first argument divided by
-     * the second argument
+     * @param dividend 被除数
+     * @param divisor 除数
+     * @return 第一个参数除以第二个参数的无符号余数
      * @see #divideUnsigned
      * @since 1.8
      */
@@ -1263,32 +1255,27 @@ public final class Integer extends Number implements Comparable<Integer> {
     // Bit twiddling
 
     /**
-     * The number of bits used to represent an {@code int} value in two's
-     * complement binary form.
+     * 在二进制补码形式中用来表示 {@code int} 值的位数。
      *
      * @since 1.5
      */
     @Native public static final int SIZE = 32;
 
     /**
-     * The number of bytes used to represent a {@code int} value in two's
-     * complement binary form.
+     * 在二进制补码形式中用来表示 {@code int} 值的字节数。
      *
      * @since 1.8
      */
     public static final int BYTES = SIZE / Byte.SIZE;
 
     /**
-     * Returns an {@code int} value with at most a single one-bit, in the
-     * position of the highest-order ("leftmost") one-bit in the specified
-     * {@code int} value.  Returns zero if the specified value has no
-     * one-bits in its two's complement binary representation, that is, if it
-     * is equal to zero.
+     * 返回具有至多单个 1 位的 {@code int} 值，
+     * 在指定的 {@code int} 值中最高位（最左边）的 1 位的位置。
+     * 如果指定的值在其二进制补码表示形式中不具有 1 位，即它等于零，则返回零。
      *
-     * @param i the value whose highest one bit is to be computed
-     * @return an {@code int} value with a single one-bit, in the position
-     *     of the highest-order one-bit in the specified value, or zero if
-     *     the specified value is itself equal to zero.
+     * @param i 要计算最高位的值
+     * @return 返回具有单个 1 位的 {@code int} 值, 在指定值中最高位的 1 位的位置，
+     *          否则，如果指定值本身等于零，则返回零。
      * @since 1.5
      */
     public static int highestOneBit(int i) {
@@ -1302,16 +1289,13 @@ public final class Integer extends Number implements Comparable<Integer> {
     }
 
     /**
-     * Returns an {@code int} value with at most a single one-bit, in the
-     * position of the lowest-order ("rightmost") one-bit in the specified
-     * {@code int} value.  Returns zero if the specified value has no
-     * one-bits in its two's complement binary representation, that is, if it
-     * is equal to zero.
+     * 返回具有至多单个 1 位的 {@code int} 值，
+     * 在指定的 {@code int} 值中最低位（最右边）的 1 位的位置。
+     * 如果指定的值在其二进制补码表示形式中不具有 1 位，即它等于零，则返回零。
      *
-     * @param i the value whose lowest one bit is to be computed
-     * @return an {@code int} value with a single one-bit, in the position
-     *     of the lowest-order one-bit in the specified value, or zero if
-     *     the specified value is itself equal to zero.
+     * @param i 要计算最低位的值
+     * @return 返回具有单个 1 位的 {@code int} 值, 在指定值中最低位的 1 位的位置，
+     *          否则，如果指定值本身等于零，则返回零。
      * @since 1.5
      */
     public static int lowestOneBit(int i) {
@@ -1320,24 +1304,18 @@ public final class Integer extends Number implements Comparable<Integer> {
     }
 
     /**
-     * Returns the number of zero bits preceding the highest-order
-     * ("leftmost") one-bit in the two's complement binary representation
-     * of the specified {@code int} value.  Returns 32 if the
-     * specified value has no one-bits in its two's complement representation,
-     * in other words if it is equal to zero.
+     * 在指定 {@code int} 值的二进制补码表示形式中最高位（最左边）的 1 位之前，返回零位的数量。
+     * 如果指定值在其二进制补码表示形式中不存在 1 位，换句话说，如果它等于零，则返回 32。
      *
-     * <p>Note that this method is closely related to the logarithm base 2.
-     * For all positive {@code int} values x:
+     * <p>注意，此方法与基数为 2 的对数密切相关。对于所有的正 {@code int} 值 x：
      * <ul>
      * <li>floor(log<sub>2</sub>(x)) = {@code 31 - numberOfLeadingZeros(x)}
      * <li>ceil(log<sub>2</sub>(x)) = {@code 32 - numberOfLeadingZeros(x - 1)}
      * </ul>
      *
-     * @param i the value whose number of leading zeros is to be computed
-     * @return the number of zero bits preceding the highest-order
-     *     ("leftmost") one-bit in the two's complement binary representation
-     *     of the specified {@code int} value, or 32 if the value
-     *     is equal to zero.
+     * @param i 要计算头部 0 的个数的值
+     * @return 返回在指定 {@code int} 值的二进制补码表示形式中最高位（最左边）的 1 位之前的零位的数量；
+     *          否则，如果该值等于零，则返回 32。
      * @since 1.5
      */
     public static int numberOfLeadingZeros(int i) {
@@ -1354,17 +1332,12 @@ public final class Integer extends Number implements Comparable<Integer> {
     }
 
     /**
-     * Returns the number of zero bits following the lowest-order ("rightmost")
-     * one-bit in the two's complement binary representation of the specified
-     * {@code int} value.  Returns 32 if the specified value has no
-     * one-bits in its two's complement representation, in other words if it is
-     * equal to zero.
+     * 返回指定的 {@code int} 值的二进制补码表示形式中最低（“最右边”）的为 1 的位后面的零位个数。
+     * 如果指定值在它的二进制补码表示形式中没有为 1 的位，即它的值为零，则返回 32。
      *
-     * @param i the value whose number of trailing zeros is to be computed
-     * @return the number of zero bits following the lowest-order ("rightmost")
-     *     one-bit in the two's complement binary representation of the
-     *     specified {@code int} value, or 32 if the value is equal
-     *     to zero.
+     * @param i 要计算尾部 0 个数的值
+     * @return 返回在指定 {@code int} 值的二进制补码表示形式中最低位（最右边）的 1 位之后零位的数量；
+     *          否则，如果该值等于零，则返回 32。
      * @since 1.5
      */
     public static int numberOfTrailingZeros(int i) {
@@ -1380,13 +1353,11 @@ public final class Integer extends Number implements Comparable<Integer> {
     }
 
     /**
-     * Returns the number of one-bits in the two's complement binary
-     * representation of the specified {@code int} value.  This function is
-     * sometimes referred to as the <i>population count</i>.
+     * 返回指定 {@code int} 值的二进制补码表示形式的 1 位的数量。
+     * 此函数有时用于<i>人口普查</i>。
      *
-     * @param i the value whose bits are to be counted
-     * @return the number of one-bits in the two's complement binary
-     *     representation of the specified {@code int} value.
+     * @param i 要计算位数的值
+     * @return 返回指定 {@code int} 值的二进制补码表示形式的 1 位的数量。
      * @since 1.5
      */
     public static int bitCount(int i) {
@@ -1400,23 +1371,18 @@ public final class Integer extends Number implements Comparable<Integer> {
     }
 
     /**
-     * Returns the value obtained by rotating the two's complement binary
-     * representation of the specified {@code int} value left by the
-     * specified number of bits.  (Bits shifted out of the left hand, or
-     * high-order, side reenter on the right, or low-order.)
+     * 返回根据指定的位数循环左移指定的 {@code int} 值的二进制补码表示形式而得到的值。
+     * （位是从左边（即高位）移出，从右边（即低位）再进入）
      *
-     * <p>Note that left rotation with a negative distance is equivalent to
-     * right rotation: {@code rotateLeft(val, -distance) == rotateRight(val,
-     * distance)}.  Note also that rotation by any multiple of 32 is a
-     * no-op, so all but the last five bits of the rotation distance can be
-     * ignored, even if the distance is negative: {@code rotateLeft(val,
-     * distance) == rotateLeft(val, distance & 0x1F)}.
+     * <p>注意，使用负距离的左循环等同于右循环：
+     * {@code rotateLeft(val, -distance) == rotateRight(val, distance)}。
+     * 还要注意的是，以 32 的任何倍数进行的循环都是无操作指令，
+     * 因此，即使距离为负，除了最后五位外，其余所有循环距离都可以忽略：
+     * {@code rotateLeft(val, distance) == rotateLeft(val, distance & 0x1F)}。
      *
-     * @param i the value whose bits are to be rotated left
-     * @param distance the number of bit positions to rotate left
-     * @return the value obtained by rotating the two's complement binary
-     *     representation of the specified {@code int} value left by the
-     *     specified number of bits.
+     * @param i 需要循环左移的值
+     * @param distance 循环左移的位数
+     * @return 返回根据指定的位数循环左移指定的 {@code int} 值的二进制补码表示形式而得到的值。
      * @since 1.5
      */
     public static int rotateLeft(int i, int distance) {
@@ -1424,23 +1390,18 @@ public final class Integer extends Number implements Comparable<Integer> {
     }
 
     /**
-     * Returns the value obtained by rotating the two's complement binary
-     * representation of the specified {@code int} value right by the
-     * specified number of bits.  (Bits shifted out of the right hand, or
-     * low-order, side reenter on the left, or high-order.)
+     * 返回根据指定的位数循环右移指定的 {@code int} 值的二进制补码表示形式而得到的值。
+     * （位是从右边（即低位）移出，从左边（即高位）再进入）
      *
-     * <p>Note that right rotation with a negative distance is equivalent to
-     * left rotation: {@code rotateRight(val, -distance) == rotateLeft(val,
-     * distance)}.  Note also that rotation by any multiple of 32 is a
-     * no-op, so all but the last five bits of the rotation distance can be
-     * ignored, even if the distance is negative: {@code rotateRight(val,
-     * distance) == rotateRight(val, distance & 0x1F)}.
+     * <p>注意，使用负距离的右循环等同于左循环：
+     * {@code rotateRight(val, -distance) == rotateLeft(val, distance)}。
+     * 还要注意的是，以 32 的任何倍数进行的循环都是无操作指令，
+     * 因此，即使距离为负，除了最后五位外，其余所有循环距离都可以忽略：
+     * {@code rotateRight(val, distance) == rotateRight(val, distance & 0x1F)}。
      *
-     * @param i the value whose bits are to be rotated right
-     * @param distance the number of bit positions to rotate right
-     * @return the value obtained by rotating the two's complement binary
-     *     representation of the specified {@code int} value right by the
-     *     specified number of bits.
+     * @param i 需要循环右移的值
+     * @param distance 循环右移的位数
+     * @return 返回根据指定的位数循环右移指定的 {@code int} 值的二进制补码表示形式而得到的值。
      * @since 1.5
      */
     public static int rotateRight(int i, int distance) {
@@ -1448,13 +1409,10 @@ public final class Integer extends Number implements Comparable<Integer> {
     }
 
     /**
-     * Returns the value obtained by reversing the order of the bits in the
-     * two's complement binary representation of the specified {@code int}
-     * value.
+     * 返回通过反转指定 {@code int} 值的二进制补码表示形式中位的顺序而获得的值。
      *
-     * @param i the value to be reversed
-     * @return the value obtained by reversing order of the bits in the
-     *     specified {@code int} value.
+     * @param i 需要反转的值
+     * @return 返回通过反转指定 {@code int} 值中位的顺序而获得的值。
      * @since 1.5
      */
     public static int reverse(int i) {
@@ -1468,12 +1426,11 @@ public final class Integer extends Number implements Comparable<Integer> {
     }
 
     /**
-     * Returns the signum function of the specified {@code int} value.  (The
-     * return value is -1 if the specified value is negative; 0 if the
-     * specified value is zero; and 1 if the specified value is positive.)
+     * 返回指定 {@code int} 值的符号函数。
+     * （如果指定值为负，则返回 －1；如果指定值为零，则返回 0；如果指定的值为正，则返回 1。）
      *
-     * @param i the value whose signum is to be computed
-     * @return the signum function of the specified {@code int} value.
+     * @param i 需要计算符号函数的值
+     * @return 返回指定 {@code int} 值的符号函数。
      * @since 1.5
      */
     public static int signum(int i) {
@@ -1482,12 +1439,10 @@ public final class Integer extends Number implements Comparable<Integer> {
     }
 
     /**
-     * Returns the value obtained by reversing the order of the bytes in the
-     * two's complement representation of the specified {@code int} value.
+     * 返回通过反转指定 {@code int} 值的二进制补码表示形式中字节的顺序而获得的值。
      *
-     * @param i the value whose bytes are to be reversed
-     * @return the value obtained by reversing the bytes in the specified
-     *     {@code int} value.
+     * @param i 要反转字节的值
+     * @return 返回通过反转指定 {@code int} 值的字节而获得的值。
      * @since 1.5
      */
     public static int reverseBytes(int i) {
@@ -1498,11 +1453,11 @@ public final class Integer extends Number implements Comparable<Integer> {
     }
 
     /**
-     * Adds two integers together as per the + operator.
+     * 按 + 运算符将两个整数相加。
      *
-     * @param a the first operand
-     * @param b the second operand
-     * @return the sum of {@code a} and {@code b}
+     * @param a 第一个操作数
+     * @param b 第二个操作数
+     * @return {@code a} 和 {@code b} 的和
      * @see java.util.function.BinaryOperator
      * @since 1.8
      */
@@ -1511,12 +1466,12 @@ public final class Integer extends Number implements Comparable<Integer> {
     }
 
     /**
-     * Returns the greater of two {@code int} values
-     * as if by calling {@link Math#max(int, int) Math.max}.
+     * 返回两个 {@code int} 值的最大值，
+     * 通过调用 {@link Math#max(int, int) Math.max} 得到。
      *
-     * @param a the first operand
-     * @param b the second operand
-     * @return the greater of {@code a} and {@code b}
+     * @param a 第一个操作数
+     * @param b 第二个操作数
+     * @return {@code a} 和 {@code b} 的最大值
      * @see java.util.function.BinaryOperator
      * @since 1.8
      */
@@ -1525,12 +1480,12 @@ public final class Integer extends Number implements Comparable<Integer> {
     }
 
     /**
-     * Returns the smaller of two {@code int} values
-     * as if by calling {@link Math#min(int, int) Math.min}.
+     * 返回两个 {@code int} 值的最小值，
+     * 通过调用 {@link Math#min(int, int) Math.min} 得到。
      *
-     * @param a the first operand
-     * @param b the second operand
-     * @return the smaller of {@code a} and {@code b}
+     * @param a 第一个操作数
+     * @param b 第二个操作数
+     * @return {@code a} 和 {@code b} 的最小值
      * @see java.util.function.BinaryOperator
      * @since 1.8
      */
