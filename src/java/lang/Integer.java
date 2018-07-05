@@ -1067,8 +1067,8 @@ public final class Integer extends Number implements Comparable<Integer> {
      * @param  x 第一个要比较的 {@code int}
      * @param  y 第二个要比较的 {@code int}
      * @return 如果 {@code x == y} 则返回 {@code 0}；
-     *          如果 {@code x < y} 则返回 小于 {@code 0} 的值；
-     *          如果 {@code x > y} 则返回 大于 {@code 0} 的值；
+     *         如果 {@code x < y} 则返回 小于 {@code 0} 的值；
+     *         如果 {@code x > y} 则返回 大于 {@code 0} 的值；
      * @since 1.7
      */
     public static int compare(int x, int y) {
@@ -1081,8 +1081,8 @@ public final class Integer extends Number implements Comparable<Integer> {
      * @param  x 第一个要比较的 {@code int}
      * @param  y 第二个要比较的 {@code int}
      * @return 如果 {@code x == y} 则返回 {@code 0}；
-     *          如果看作无符号整数 {@code x < y} 则返回 小于 {@code 0} 的值；
-     *          如果看作无符号整数 {@code x > y} 则返回 大于 {@code 0} 的值；
+     *         如果看作无符号整数 {@code x < y} 则返回 小于 {@code 0} 的值；
+     *         如果看作无符号整数 {@code x > y} 则返回 大于 {@code 0} 的值；
      * @since 1.8
      */
     public static int compareUnsigned(int x, int y) {
