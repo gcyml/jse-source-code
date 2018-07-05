@@ -30,20 +30,16 @@ import java.math.*;
 
 
 /**
- * The {@code Long} class wraps a value of the primitive type {@code
- * long} in an object. An object of type {@code Long} contains a
- * single field whose type is {@code long}.
+ * {@code Long} 类在对象中包装了基本类型 {@code Long} 的值。
+ * 每个 {@code Long} 类型的对象都包含一个 {@code Long} 类型的字段。
  *
- * <p> In addition, this class provides several methods for converting
- * a {@code long} to a {@code String} and a {@code String} to a {@code
- * long}, as well as other constants and methods useful when dealing
- * with a {@code long}.
+ * <p> 此外，该类提供了多个方法，可以将 {@code long} 转换为 {@code String}，
+ * 将 {@code String} 转换为 {@code long}，
+ * 除此之外，还提供了其他一些处理 {@code long} 时有用的常量和方法。
  *
- * <p>Implementation note: The implementations of the "bit twiddling"
- * methods (such as {@link #highestOneBit(long) highestOneBit} and
- * {@link #numberOfTrailingZeros(long) numberOfTrailingZeros}) are
- * based on material from Henry S. Warren, Jr.'s <i>Hacker's
- * Delight</i>, (Addison Wesley, 2002).
+ * <p>实现注意事项："bit twiddling" 方法（如 {@link #highestOneBit(long) highestOneBit} 和
+ * {@link #numberOfTrailingZeros(long) numberOfTrailingZeros} ）的
+ * 实现基于 Henry S. Warren 和 Jr. 撰写的 <i>Hacker's Delight</i> (Addison Wesley, 2002) 一书中的资料。
  *
  * @author  Lee Boynton
  * @author  Arthur van Hoff
@@ -53,20 +49,17 @@ import java.math.*;
  */
 public final class Long extends Number implements Comparable<Long> {
     /**
-     * A constant holding the minimum value a {@code long} can
-     * have, -2<sup>63</sup>.
+     * 保持 {@code long} 类型的最小值的常量，该值为 -2<sup>63</sup>。
      */
     @Native public static final long MIN_VALUE = 0x8000000000000000L;
 
     /**
-     * A constant holding the maximum value a {@code long} can
-     * have, 2<sup>63</sup>-1.
+     * 保持 {@code long} 类型的最大值的常量，该值为 2<sup>63</sup>-1。
      */
     @Native public static final long MAX_VALUE = 0x7fffffffffffffffL;
 
     /**
-     * The {@code Class} instance representing the primitive type
-     * {@code long}.
+     * 表示基本类型 {@code long} 的 {@code Class} 实例。
      *
      * @since   JDK1.1
      */
@@ -74,46 +67,36 @@ public final class Long extends Number implements Comparable<Long> {
     public static final Class<Long>     TYPE = (Class<Long>) Class.getPrimitiveClass("long");
 
     /**
-     * Returns a string representation of the first argument in the
-     * radix specified by the second argument.
+     * 返回在使用第二个参数指定的基数时第一个参数的字符串表示形式。
      *
-     * <p>If the radix is smaller than {@code Character.MIN_RADIX}
-     * or larger than {@code Character.MAX_RADIX}, then the radix
-     * {@code 10} is used instead.
+     * <p>如果该基数小于 {@code Character.MIN_RADIX}，
+     * 或大于 {@code Character.MAX_RADIX}，则使用基数 {@code 10}。
      *
-     * <p>If the first argument is negative, the first element of the
-     * result is the ASCII minus sign {@code '-'}
-     * ({@code '\u005Cu002d'}). If the first argument is not
-     * negative, no sign character appears in the result.
+     * <p>如果第一个参数是负数，则结果的第一个元素是 ASCII 字符的减号 {@code '-'} ({@code '\u005Cu002d'})。
+     * 如果第一个参数非负，则结果中不会出现符号字符。
      *
-     * <p>The remaining characters of the result represent the magnitude
-     * of the first argument. If the magnitude is zero, it is
-     * represented by a single zero character {@code '0'}
-     * ({@code '\u005Cu0030'}); otherwise, the first character of
-     * the representation of the magnitude will not be the zero
-     * character.  The following ASCII characters are used as digits:
+     * <p>结果的其余字符表示第一个参数的大小。
+     * 如果大小为零，则用单个零字符 {@code '0'} 表示它 ({@code '\u005Cu0030'})；
+     * 否则大小表示形式中的第一个字符将不是零字符。以下 ASCII 字符均被用作数字：
      *
      * <blockquote>
      *   {@code 0123456789abcdefghijklmnopqrstuvwxyz}
      * </blockquote>
      *
-     * These are {@code '\u005Cu0030'} through
-     * {@code '\u005Cu0039'} and {@code '\u005Cu0061'} through
-     * {@code '\u005Cu007a'}. If {@code radix} is
-     * <var>N</var>, then the first <var>N</var> of these characters
-     * are used as radix-<var>N</var> digits in the order shown. Thus,
-     * the digits for hexadecimal (radix 16) are
-     * {@code 0123456789abcdef}. If uppercase letters are
-     * desired, the {@link java.lang.String#toUpperCase()} method may
-     * be called on the result:
+     * 这些是从 {@code '\u005Cu0030'} 到 {@code '\u005Cu0039'} 和
+     * 从 {@code '\u005Cu0061'} 到 {@code '\u005Cu007a'} 的字符。
+     * 如果 {@code radix} 是 <var>N</var>，
+     * 则这些字符的第一个 <var>N</var> 用作显示顺序中基数 <var>N</var> 的数字。
+     * 因此，该数字的十六进制（基数 16）表示形式为 {@code 0123456789abcdef}。
+     * 如果需要使用大写字母，则可以在结果上调用 {@link java.lang.String#toUpperCase()} 方法：
      *
      * <blockquote>
      *  {@code Long.toString(n, 16).toUpperCase()}
      * </blockquote>
      *
-     * @param   i       a {@code long} to be converted to a string.
-     * @param   radix   the radix to use in the string representation.
-     * @return  a string representation of the argument in the specified radix.
+     * @param   i       要转换为字符串的 {@code long}。
+     * @param   radix   将在字符串表示形式中使用的基数。
+     * @return  指定基数中参数的字符串表示形式。
      * @see     java.lang.Character#MAX_RADIX
      * @see     java.lang.Character#MIN_RADIX
      */
@@ -144,28 +127,22 @@ public final class Long extends Number implements Comparable<Long> {
     }
 
     /**
-     * Returns a string representation of the first argument as an
-     * unsigned integer value in the radix specified by the second
-     * argument.
+     *  以第二个参数指定进制的无符号整数形式返回第一个整数参数的字符串表示形式。
      *
-     * <p>If the radix is smaller than {@code Character.MIN_RADIX}
-     * or larger than {@code Character.MAX_RADIX}, then the radix
-     * {@code 10} is used instead.
+     * <p>如果基数小于 {@code Character.MIN_RADIX} 或
+     * 大于 {@code Character.MAX_RADIX}，则基数为 {@code 10}。
      *
-     * <p>Note that since the first argument is treated as an unsigned
-     * value, no leading sign character is printed.
+     * <p>注意，由于第一个参数被视为无符号值，所以不打印前导符号字符。
      *
-     * <p>If the magnitude is zero, it is represented by a single zero
-     * character {@code '0'} ({@code '\u005Cu0030'}); otherwise,
-     * the first character of the representation of the magnitude will
-     * not be the zero character.
+     * <p>如果无符号数的大小值为零，
+     * 则用一个零字符 {@code '0'} ({@code '\u005Cu0030'}) 表示它；
+     * 否则，无符号数大小的表示形式中的第一个字符将不是零字符。
      *
-     * <p>The behavior of radixes and the characters used as digits
-     * are the same as {@link #toString(long, int) toString}.
+     * <p>基数和作为数字使用的字符的行为与当中 {@link #toString(long, int) toString} 相同。
      *
-     * @param   i       an integer to be converted to an unsigned string.
-     * @param   radix   the radix to use in the string representation.
-     * @return  an unsigned string representation of the argument in the specified radix.
+     * @param   i       要转换成无符号字符串的整数。
+     * @param   radix   字符串表达形式的基数。
+     * @return  参数在指定基数中的无符号字符串表示形式。
      * @see     #toString(long, int)
      * @since 1.8
      */
@@ -209,8 +186,7 @@ public final class Long extends Number implements Comparable<Long> {
     }
 
     /**
-     * Return a BigInteger equal to the unsigned value of the
-     * argument.
+     * 返回一个BigInteger，它等于参数的无符号值。
      */
     private static BigInteger toUnsignedBigInteger(long i) {
         if (i >= 0L)
@@ -226,44 +202,33 @@ public final class Long extends Number implements Comparable<Long> {
     }
 
     /**
-     * Returns a string representation of the {@code long}
-     * argument as an unsigned integer in base&nbsp;16.
+     * 以十六进制无符号整数形式返回 {@code long} 参数的字符串表示形式。
      *
-     * <p>The unsigned {@code long} value is the argument plus
-     * 2<sup>64</sup> if the argument is negative; otherwise, it is
-     * equal to the argument.  This value is converted to a string of
-     * ASCII digits in hexadecimal (base&nbsp;16) with no extra
-     * leading {@code 0}s.
+     * <p>如果参数为负，则无符号 {@code long} 值为该参数加上 2<sup>64</sup>；
+     * 否则，它等于该参数。此值将被转换为不带附加前导 {@code 0} 的十六进制（基数&nbsp;16）ASCII 数字字符串。
      *
-     * <p>The value of the argument can be recovered from the returned
-     * string {@code s} by calling {@link
+     * <p>参数的值可以从字符串 {@code s} 中通过调用 {@link
      * Long#parseUnsignedLong(String, int) Long.parseUnsignedLong(s,
-     * 16)}.
+     * 16)} 得到。
      *
-     * <p>If the unsigned magnitude is zero, it is represented by a
-     * single zero character {@code '0'} ({@code '\u005Cu0030'});
-     * otherwise, the first character of the representation of the
-     * unsigned magnitude will not be the zero character. The
-     * following characters are used as hexadecimal digits:
+     * <p>如果无符号大小为零，则该数字由单个零字符 {@code '0'} 表示 ({@code '\u005Cu0030'})；
+     * 否则，无符号大小表示形式中的第一个字符将不是零字符。
+     * 下列字符都被用作十六进制数字：
      *
      * <blockquote>
      *  {@code 0123456789abcdef}
      * </blockquote>
      *
-     * These are the characters {@code '\u005Cu0030'} through
-     * {@code '\u005Cu0039'} and  {@code '\u005Cu0061'} through
-     * {@code '\u005Cu0066'}.  If uppercase letters are desired,
-     * the {@link java.lang.String#toUpperCase()} method may be called
-     * on the result:
+     * 这些是从 {@code '\u005Cu0030'} 到 {@code '\u005Cu0039'} 和
+     * 从 {@code '\u005Cu0061'} 到 {@code '\u005Cu0066'} 的字符。
+     * 如果需要使用大写字母，则可以在结果上调用 {@link java.lang.String#toUpperCase()} 方法：
      *
      * <blockquote>
      *  {@code Long.toHexString(n).toUpperCase()}
      * </blockquote>
      *
-     * @param   i   a {@code long} to be converted to a string.
-     * @return  the string representation of the unsigned {@code long}
-     *          value represented by the argument in hexadecimal
-     *          (base&nbsp;16).
+     * @param   i    要转换为字符串的 {@code long}。
+     * @return  十六进制（基数&nbsp;16）参数表示的无符号 {@code long} 值的字符串表示形式。
      * @see #parseUnsignedLong(String, int)
      * @see #toUnsignedString(long, int)
      * @since   JDK 1.0.2
@@ -273,36 +238,27 @@ public final class Long extends Number implements Comparable<Long> {
     }
 
     /**
-     * Returns a string representation of the {@code long}
-     * argument as an unsigned integer in base&nbsp;8.
+     * 以八进制无符号整数形式返回 {@code long} 参数的字符串表示形式。
      *
-     * <p>The unsigned {@code long} value is the argument plus
-     * 2<sup>64</sup> if the argument is negative; otherwise, it is
-     * equal to the argument.  This value is converted to a string of
-     * ASCII digits in octal (base&nbsp;8) with no extra leading
-     * {@code 0}s.
+     * <p>如果参数为负，该无符号 {@code long} 值为参数加上 2<sup>64</sup>；否则它等于该参数。
+     * 该值被转换成八进制（基数&nbsp;8）ASCII 数字的字符串，且没有附加前导 {@code 0}。
      *
-     * <p>The value of the argument can be recovered from the returned
-     * string {@code s} by calling {@link
-     * Long#parseUnsignedLong(String, int) Long.parseUnsignedLong(s,
-     * 8)}.
+     * <p>>参数的值可以从字符串 {@code s} 中通过调用{@link
+     * Integer#parseUnsignedInt(String, int)
+     * Integer.parseUnsignedInt(s, 8)} 得到。
      *
-     * <p>If the unsigned magnitude is zero, it is represented by a
-     * single zero character {@code '0'} ({@code '\u005Cu0030'});
-     * otherwise, the first character of the representation of the
-     * unsigned magnitude will not be the zero character. The
-     * following characters are used as octal digits:
+     * <p>如果无符号数大小为零，则用一个零字符 {@code '0'} ({@code '\u005Cu0030'}) 表示它；
+     * 否则，无符号数大小的表示形式中的第一个字符将不是零字符。
+     * 用以下字符作为八进制数字：
      *
      * <blockquote>
      *  {@code 01234567}
      * </blockquote>
      *
-     * These are the characters {@code '\u005Cu0030'} through
-     * {@code '\u005Cu0037'}.
+     * 它们是从 {@code '\u005Cu0030'} 到 {@code '\u005Cu0037'} 的字符。
      *
-     * @param   i   a {@code long} to be converted to a string.
-     * @return  the string representation of the unsigned {@code long}
-     *          value represented by the argument in octal (base&nbsp;8).
+     * @param   i   要转换为字符串的 {@code long}。
+     * @return  八进制（基数&nbsp;8）参数表示的无符号 {@code long} 值的字符串表示形式。
      * @see #parseUnsignedLong(String, int)
      * @see #toUnsignedString(long, int)
      * @since   JDK 1.0.2
@@ -312,30 +268,22 @@ public final class Long extends Number implements Comparable<Long> {
     }
 
     /**
-     * Returns a string representation of the {@code long}
-     * argument as an unsigned integer in base&nbsp;2.
+     * 以二进制（基数&nbsp;2）无符号整数形式返回一个 {@code long} 参数的字符串表示形式。
      *
-     * <p>The unsigned {@code long} value is the argument plus
-     * 2<sup>64</sup> if the argument is negative; otherwise, it is
-     * equal to the argument.  This value is converted to a string of
-     * ASCII digits in binary (base&nbsp;2) with no extra leading
-     * {@code 0}s.
+     * <p>如果参数为负，该无符号整数值为参数加上 2<sup>64</sup>；否则等于该参数。
+     * 将该值转换为二进制（基数&nbsp;2）形式的无前导 {@code 0} 的 ASCII 数字字符串。
      *
-     * <p>The value of the argument can be recovered from the returned
-     * string {@code s} by calling {@link
-     * Long#parseUnsignedLong(String, int) Long.parseUnsignedLong(s,
-     * 2)}.
+     * <p>参数的值可以从字符串 {@code s} 中通过调用{@link
+     * Integer#parseUnsignedInt(String, int)
+     * Integer.parseUnsignedInt(s, 2)} 得到。
      *
-     * <p>If the unsigned magnitude is zero, it is represented by a
-     * single zero character {@code '0'} ({@code '\u005Cu0030'});
-     * otherwise, the first character of the representation of the
-     * unsigned magnitude will not be the zero character. The
-     * characters {@code '0'} ({@code '\u005Cu0030'}) and {@code
-     * '1'} ({@code '\u005Cu0031'}) are used as binary digits.
+     * <p>如果无符号数的大小为零，则用一个零字符 {@code '0'} ({@code '\u005Cu0030'}) 表示它；
+     * 否则，无符号数大小的表示形式中的第一个字符将不是零字符。
+     * 字符  {@code '0'} ({@code '\u005Cu0030'}) 和
+     * {@code '1'} ({@code '\u005Cu0031'}) 被用作二进制数字。
      *
-     * @param   i   a {@code long} to be converted to a string.
-     * @return  the string representation of the unsigned {@code long}
-     *          value represented by the argument in binary (base&nbsp;2).
+     * @param   i   要转换为字符串的 {@code long}。
+     * @return  用二进制参数（基数 &nbsp;2）表示的无符号 {@code long} 值的字符串表示形式。
      * @see #parseUnsignedLong(String, int)
      * @see #toUnsignedString(long, int)
      * @since   JDK 1.0.2
@@ -345,9 +293,9 @@ public final class Long extends Number implements Comparable<Long> {
     }
 
     /**
-     * Format a long (treated as unsigned) into a String.
-     * @param val the value to format
-     * @param shift the log2 of the base to format in (4 for hex, 3 for octal, 1 for binary)
+     * 将long （看作无符号）格式化成字符串。
+     * @param val 要格式化的值
+     * @param shift 要格式化的 log2 的基数 (4 代表十六进制，3 代表八进制，1 代表二进制)
      */
     static String toUnsignedString0(long val, int shift) {
         // assert shift > 0 && shift <=5 : "Illegal shift value";
@@ -360,13 +308,13 @@ public final class Long extends Number implements Comparable<Long> {
     }
 
     /**
-     * Format a long (treated as unsigned) into a character buffer.
-     * @param val the unsigned long to format
-     * @param shift the log2 of the base to format in (4 for hex, 3 for octal, 1 for binary)
-     * @param buf the character buffer to write to
-     * @param offset the offset in the destination buffer to start at
-     * @param len the number of characters to write
-     * @return the lowest character location used
+     * 将 long（视为无符号）格式化为字符 buffer。
+     * @param val 要格式化的无符号 long
+     * @param shift 要格式化的 log2 的基数 (4 代表十六进制，3 代表八进制，1 代表二进制)
+     * @param buf 要写入的字符 buffer
+     * @param offset 从目标缓冲区开始的偏移量
+     * @param len 要写入的字符数
+     * @return  使用的最低字符位置
      */
      static int formatUnsignedLong(long val, int shift, char[] buf, int offset, int len) {
         int charPos = len;
@@ -381,14 +329,12 @@ public final class Long extends Number implements Comparable<Long> {
     }
 
     /**
-     * Returns a {@code String} object representing the specified
-     * {@code long}.  The argument is converted to signed decimal
-     * representation and returned as a string, exactly as if the
-     * argument and the radix 10 were given as arguments to the {@link
-     * #toString(long, int)} method.
+     * 返回表示指定 {@code long} 的 {@code String} 对象。
+     * 该参数被转换为有符号的十进制表示形式，并作为字符串返回，
+     * 该字符串与用该参数和基数 10 作为参数的 {@link #toString(long, int)} 方法所得到的值非常相似。
      *
-     * @param   i   a {@code long} to be converted.
-     * @return  a string representation of the argument in base&nbsp;10.
+     * @param   i    要转换的 {@code long}。
+     * @return  十进制参数的字符串表示形式。
      */
     public static String toString(long i) {
         if (i == Long.MIN_VALUE)
@@ -400,16 +346,13 @@ public final class Long extends Number implements Comparable<Long> {
     }
 
     /**
-     * Returns a string representation of the argument as an unsigned
-     * decimal value.
+     * 返回参数作为无符号小数值的字符串表示形式。
      *
-     * The argument is converted to unsigned decimal representation
-     * and returned as a string exactly as if the argument and radix
-     * 10 were given as arguments to the {@link #toUnsignedString(long,
-     * int)} method.
+     * 该参数被转换为无符号的小数表示，并以字符串形式返回，
+     *就像参数和基数 10 被作为参数赋给 {@link #toUnsignedString(long, int)} 方法一样。
      *
-     * @param   i  an integer to be converted to an unsigned string.
-     * @return  an unsigned string representation of the argument.
+     * @param   i  要转换成无符号字符串的整数。.
+     * @return  参数的无符号字符串表示形式。
      * @see     #toUnsignedString(long, int)
      * @since 1.8
      */
@@ -418,13 +361,11 @@ public final class Long extends Number implements Comparable<Long> {
     }
 
     /**
-     * Places characters representing the integer i into the
-     * character array buf. The characters are placed into
-     * the buffer backwards starting with the least significant
-     * digit at the specified index (exclusive), and working
-     * backwards from there.
+     * 将表示整数i的字符放在字符数组buf中。
+     * 字符从指定索引(独占)的最不重要的数字开始向后放置到缓冲区中，
+     * 并从那里向后工作。
      *
-     * Will fail if i == Long.MIN_VALUE
+     * 如果 i == Long.MIN_VALUE 则失败
      */
     static void getChars(long i, int index, char[] buf) {
         long q;
@@ -485,46 +426,34 @@ public final class Long extends Number implements Comparable<Long> {
     }
 
     /**
-     * Parses the string argument as a signed {@code long} in the
-     * radix specified by the second argument. The characters in the
-     * string must all be digits of the specified radix (as determined
-     * by whether {@link java.lang.Character#digit(char, int)} returns
-     * a nonnegative value), except that the first character may be an
-     * ASCII minus sign {@code '-'} ({@code '\u005Cu002D'}) to
-     * indicate a negative value or an ASCII plus sign {@code '+'}
-     * ({@code '\u005Cu002B'}) to indicate a positive value. The
-     * resulting {@code long} value is returned.
+     * 将字符串参数解析为有符号十进制 {@code long}。
+     * 字符串中的字符必须都是十进制数字，
+     * 除非第一个字符是用来表示负值的 ASCII 减号 {@code '-'} ({@code '\u005Cu002D'}) 或
+     * ASCII 加号 {@code '+'} ({@code '\u005Cu002B'}) 。
+     * 返回得到的 {@code long} 值，
+     * 该值与用该参数和基数 10 作为参数的 {@link java.lang.Character#digit(char, int)} 方法得到的值非常相似。
      *
-     * <p>Note that neither the character {@code L}
-     * ({@code '\u005Cu004C'}) nor {@code l}
-     * ({@code '\u005Cu006C'}) is permitted to appear at the end
-     * of the string as a type indicator, as would be permitted in
-     * Java programming language source code - except that either
-     * {@code L} or {@code l} may appear as a digit for a
-     * radix greater than or equal to 22.
+     * <p>注意，不允许将字符 {@code L} ({@code '\u005Cu004C'}) 和
+     * {@code l} ({@code '\u005Cu006C'}) 作为类型指示符出现在字符串的结尾处，
+     * 而这一点在 Java 编程语言源代码中是允许的——除非 {@code L} 或 {@code l} 以大于 22 的基数形式出现。
      *
-     * <p>An exception of type {@code NumberFormatException} is
-     * thrown if any of the following situations occurs:
+     * <p>如果发生以下任意一种情况，则抛出一个 {@code NumberFormatException} 类型的异常：
      * <ul>
      *
-     * <li>The first argument is {@code null} or is a string of
-     * length zero.
+     * <li>第一个参数为 {@code null} 或一个长度为零的字符串。
      *
-     * <li>The {@code radix} is either smaller than {@link
-     * java.lang.Character#MIN_RADIX} or larger than {@link
-     * java.lang.Character#MAX_RADIX}.
+     * <li>基数小于 {@link java.lang.Character#MIN_RADIX} 或者
+     * 大于 {@link java.lang.Character#MAX_RADIX}。
      *
-     * <li>Any character of the string is not a digit of the specified
-     * radix, except that the first character may be a minus sign
-     * {@code '-'} ({@code '\u005Cu002d'}) or plus sign {@code
-     * '+'} ({@code '\u005Cu002B'}) provided that the string is
-     * longer than length 1.
+     * <li>假如字符串的长度超过 1，
+     * 那么除了第一个字符可以是减号 {@code '-'} ({@code '\u005Cu002D'}) 或
+     * 加号 {@code '+'} ({@code '\u005Cu002B'})外，
+     * 字符串中存在任意不是由指定基数的数字表示的字符。
      *
-     * <li>The value represented by the string is not a value of type
-     *      {@code long}.
+     * <li>字符串表示的值不是 {@code long} 类型的值。
      * </ul>
      *
-     * <p>Examples:
+     * <p>示例：
      * <blockquote><pre>
      * parseLong("0", 10) returns 0L
      * parseLong("473", 10) returns 473L
@@ -537,13 +466,10 @@ public final class Long extends Number implements Comparable<Long> {
      * parseLong("Hazelnut", 36) returns 1356099454469L
      * </pre></blockquote>
      *
-     * @param      s       the {@code String} containing the
-     *                     {@code long} representation to be parsed.
-     * @param      radix   the radix to be used while parsing {@code s}.
-     * @return     the {@code long} represented by the string argument in
-     *             the specified radix.
-     * @throws     NumberFormatException  if the string does not contain a
-     *             parsable {@code long}.
+     * @param      s       包含要解析的 {@code long} 表示形式的 {@code String}。
+     * @param      radix   将在解析 {@code s} 时使用的基数。
+     * @return     由指定基数中的字符串参数表示的 {@code long}。
+     * @throws     NumberFormatException  如果字符串不包含可解析的 {@code long}。
      */
     public static long parseLong(String s, int radix)
               throws NumberFormatException
@@ -604,74 +530,54 @@ public final class Long extends Number implements Comparable<Long> {
     }
 
     /**
-     * Parses the string argument as a signed decimal {@code long}.
-     * The characters in the string must all be decimal digits, except
-     * that the first character may be an ASCII minus sign {@code '-'}
-     * ({@code \u005Cu002D'}) to indicate a negative value or an
-     * ASCII plus sign {@code '+'} ({@code '\u005Cu002B'}) to
-     * indicate a positive value. The resulting {@code long} value is
-     * returned, exactly as if the argument and the radix {@code 10}
-     * were given as arguments to the {@link
-     * #parseLong(java.lang.String, int)} method.
+     * 将字符串参数解析为有符号十进制 {@code long}。
+     * 字符串中的字符必须都是十进制数字，
+     * 除非第一个字符是用来表示负值的 ASCII 减号 {@code '-'} ({@code '\u005Cu002D'}) 或
+     * ASCII 加号 {@code '+'} ({@code '\u005Cu002B'}) 。
+     * 返回得到的 {@code long} 值，
+     * 该值与用该参数和基数 10 作为参数的 {@link java.lang.Character#digit(char, int)} 方法得到的值非常相似。
      *
-     * <p>Note that neither the character {@code L}
-     * ({@code '\u005Cu004C'}) nor {@code l}
-     * ({@code '\u005Cu006C'}) is permitted to appear at the end
-     * of the string as a type indicator, as would be permitted in
-     * Java programming language source code.
+     * <p>注意，不允许将字符 {@code L} ({@code '\u005Cu004C'}) 和
+     * {@code l} ({@code '\u005Cu006C'}) 作为类型指示符出现在字符串的结尾处，
+     * 而这一点在 Java 编程语言源代码中是允许的。
      *
-     * @param      s   a {@code String} containing the {@code long}
-     *             representation to be parsed
-     * @return     the {@code long} represented by the argument in
-     *             decimal.
-     * @throws     NumberFormatException  if the string does not contain a
-     *             parsable {@code long}.
+     * @param      s   包含要解析的 {@code long} 表示形式的 {@code String}
+     * @return     十进制参数表示的 {@code long}。
+     * @throws     NumberFormatException  如果字符串不包含可解析的 {@code long}。
      */
     public static long parseLong(String s) throws NumberFormatException {
         return parseLong(s, 10);
     }
 
     /**
-     * Parses the string argument as an unsigned {@code long} in the
-     * radix specified by the second argument.  An unsigned integer
-     * maps the values usually associated with negative numbers to
-     * positive numbers larger than {@code MAX_VALUE}.
+     * 将字符串参数解析为第二个参数指定的基数中的无符号 {@code long}。
+     * 无符号整数将通常与负数相关的值映射到大于 {@code MAX_VALUE} 的正数。
      *
-     * The characters in the string must all be digits of the
-     * specified radix (as determined by whether {@link
-     * java.lang.Character#digit(char, int)} returns a nonnegative
-     * value), except that the first character may be an ASCII plus
-     * sign {@code '+'} ({@code '\u005Cu002B'}). The resulting
-     * integer value is returned.
+     * 除了第一个字符可能是ASCII 加号 {@code '+'} ({@code '\u005Cu002B'}) 外，
+     * 字符串中的字符必须都是指定基数的数字（通过 {@link java.lang.Character#digit(char, int)} 是否返回一个负值确定）。
+     * 除了第一个字符可能是ASCII 加号 {@code '+'} ({@code '\u005Cu002B'}) 。
+     * 返回结果的整数值。
      *
-     * <p>An exception of type {@code NumberFormatException} is
-     * thrown if any of the following situations occurs:
+     * <p>如果发生以下任意一种情况，则抛出一个 {@code NumberFormatException} 类型的异常：
      * <ul>
-     * <li>The first argument is {@code null} or is a string of
-     * length zero.
+     * <li>第一个参数为 {@code null} 或一个长度为零的字符串。
      *
-     * <li>The radix is either smaller than
-     * {@link java.lang.Character#MIN_RADIX} or
-     * larger than {@link java.lang.Character#MAX_RADIX}.
+     * <li>基数小于 {@link java.lang.Character#MIN_RADIX} 或者
+     * 大于 {@link java.lang.Character#MAX_RADIX}。
      *
-     * <li>Any character of the string is not a digit of the specified
-     * radix, except that the first character may be a plus sign
-     * {@code '+'} ({@code '\u005Cu002B'}) provided that the
-     * string is longer than length 1.
+     * <li>假如字符串的长度超过 1，
+     * 那么除了第一个字符可以是 加号 {@code '+'} ({@code '\u005Cu002B'})外，
+     * 字符串中存在任意不是由指定基数的数字表示的字符。
      *
-     * <li>The value represented by the string is larger than the
-     * largest unsigned {@code long}, 2<sup>64</sup>-1.
+     * <li>字符串表示的值大于无符号 {@code int} 的最大值 2<sup>64</sup>-1。
      *
      * </ul>
      *
      *
-     * @param      s   the {@code String} containing the unsigned integer
-     *                  representation to be parsed
-     * @param      radix   the radix to be used while parsing {@code s}.
-     * @return     the unsigned {@code long} represented by the string
-     *             argument in the specified radix.
-     * @throws     NumberFormatException if the {@code String}
-     *             does not contain a parsable {@code long}.
+     * @param      s   包含要解析的无符号整数表示的字符串
+     * @param      radix   解析 {@code s} 时要使用的基数。
+     * @return     用指定基数的字符串参数表示的 {@code long}。
+     * @throws     NumberFormatException 如果字符串不包含可解析的 {@code long}。
      * @since 1.8
      */
     public static long parseUnsignedLong(String s, int radix)
@@ -727,19 +633,14 @@ public final class Long extends Number implements Comparable<Long> {
     }
 
     /**
-     * Parses the string argument as an unsigned decimal {@code long}. The
-     * characters in the string must all be decimal digits, except
-     * that the first character may be an an ASCII plus sign {@code
-     * '+'} ({@code '\u005Cu002B'}). The resulting integer value
-     * is returned, exactly as if the argument and the radix 10 were
-     * given as arguments to the {@link
-     * #parseUnsignedLong(java.lang.String, int)} method.
+     * 将字符串参数解析为无符号十进制整数。
+     * 除了第一个字符可能是ASCII 加号{@code '+'} ({@code '\u005Cu002B'})外，
+     * 字符串中的字符必须是十进制的。
+     * 返回结果的整数值，就像将参数和基数10作为 {@link #parseUnsignedLong(java.lang.String, int)} 方法的参数一样。
      *
-     * @param s   a {@code String} containing the unsigned {@code long}
-     *            representation to be parsed
-     * @return    the unsigned {@code long} value represented by the decimal string argument
-     * @throws    NumberFormatException  if the string does not contain a
-     *            parsable unsigned integer.
+     * @param s   包含要解析的无符号 {@code long} 表示的字符串
+     * @return     十进制参数表示的无符号 {@code long} 值。
+     * @throws    NumberFormatException  如果字符串不包含可解析的整数。
      * @since 1.8
      */
     public static long parseUnsignedLong(String s) throws NumberFormatException {
@@ -747,56 +648,43 @@ public final class Long extends Number implements Comparable<Long> {
     }
 
     /**
-     * Returns a {@code Long} object holding the value
-     * extracted from the specified {@code String} when parsed
-     * with the radix given by the second argument.  The first
-     * argument is interpreted as representing a signed
-     * {@code long} in the radix specified by the second
-     * argument, exactly as if the arguments were given to the {@link
-     * #parseLong(java.lang.String, int)} method. The result is a
-     * {@code Long} object that represents the {@code long}
-     * value specified by the string.
+     * 当使用第二个参数给出的基数进行解析时，
+     * 返回保持从指定 {@code String} 中提取的值的 {@code Long} 对象。
+     * 第一个参数被解释为有符号的 {@code long}，
+     * 基数由第二个参数指定，
+     * 该值与用该参数作为参数的 {@link #parseLong(java.lang.String, int)} 方法得到的值非常类似。
+     * 结果是表示字符串指定的 long 值的 {@code Long} 对象。
      *
-     * <p>In other words, this method returns a {@code Long} object equal
-     * to the value of:
+     * <p>>换句话说，此方法返回一个 {@code Long} 对象，它的值等于：
      *
      * <blockquote>
      *  {@code new Long(Long.parseLong(s, radix))}
      * </blockquote>
      *
-     * @param      s       the string to be parsed
-     * @param      radix   the radix to be used in interpreting {@code s}
-     * @return     a {@code Long} object holding the value
-     *             represented by the string argument in the specified
-     *             radix.
-     * @throws     NumberFormatException  If the {@code String} does not
-     *             contain a parsable {@code long}.
+     * @param      s       要解析的字符串
+     * @param      radix   解释 {@code s} 时使用的基数
+     * @return     一个 {@code Long} 对象，它含有字符串参数（以指定的基数）所表示的数值。
+     * @throws     NumberFormatException  如果不能将字符串解析为 {@code long}。
      */
     public static Long valueOf(String s, int radix) throws NumberFormatException {
         return Long.valueOf(parseLong(s, radix));
     }
 
     /**
-     * Returns a {@code Long} object holding the value
-     * of the specified {@code String}. The argument is
-     * interpreted as representing a signed decimal {@code long},
-     * exactly as if the argument were given to the {@link
-     * #parseLong(java.lang.String)} method. The result is a
-     * {@code Long} object that represents the integer value
-     * specified by the string.
+     * 返回保持指定 {@code String} 的值的 {@code Long} 对象。
+     * 该参数被解释为表示一个有符号的十进制 {@code long}，
+     * 该值与用该参数作为参数的 {@link #parseLong(java.lang.String)} 方法得到的值非常相似。
+     * 结果是表示由字符串指定的整数值的 {@code Long}对象。
      *
-     * <p>In other words, this method returns a {@code Long} object
-     * equal to the value of:
+     * <p>换句话说，此方法返回一个 {@code Long} 对象，它的值等于：
      *
      * <blockquote>
      *  {@code new Long(Long.parseLong(s))}
      * </blockquote>
      *
-     * @param      s   the string to be parsed.
-     * @return     a {@code Long} object holding the value
-     *             represented by the string argument.
-     * @throws     NumberFormatException  If the string cannot be parsed
-     *             as a {@code long}.
+     * @param      s   要解析的字符串。
+     * @return     包含由字符串参数表示的值的 {@code Long} 对象。
+     * @throws     NumberFormatException  如果不能将字符串解析为 {@code long}。
      */
     public static Long valueOf(String s) throws NumberFormatException
     {
@@ -815,21 +703,17 @@ public final class Long extends Number implements Comparable<Long> {
     }
 
     /**
-     * Returns a {@code Long} instance representing the specified
-     * {@code long} value.
-     * If a new {@code Long} instance is not required, this method
-     * should generally be used in preference to the constructor
-     * {@link #Long(long)}, as this method is likely to yield
-     * significantly better space and time performance by caching
-     * frequently requested values.
+     * 返回表示指定 {@code long} 值的 {@code Long} 实例。
+     * 如果不需要新的 {@code Long} 实例，则通常优先使用此方法，
+     * 而不是使用构造方法 {@link #Long(long)}，
+     * 因为此方法通过缓存频繁请求的值，可以显著提高时间和空间性能。
      *
-     * Note that unlike the {@linkplain Integer#valueOf(int)
-     * corresponding method} in the {@code Integer} class, this method
-     * is <em>not</em> required to cache values within a particular
+     * 注意，与 {@code Integer} 类中的 {@linkplain Integer#valueOf(int) corresponding method}
+     * 不同，该方法 <em>不</em> 需要在特定范围内缓存值。
      * range.
      *
-     * @param  l a long value.
-     * @return a {@code Long} instance representing {@code l}.
+     * @param  l 一个 long 值。
+     * @return 表示 {@code l} 的 {@code Long} 实例。
      * @since  1.5
      */
     public static Long valueOf(long l) {
