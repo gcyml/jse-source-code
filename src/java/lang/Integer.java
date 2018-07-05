@@ -627,55 +627,42 @@ public final class Integer extends Number implements Comparable<Integer> {
     }
 
     /**
-     * Returns an {@code Integer} object holding the value
-     * extracted from the specified {@code String} when parsed
-     * with the radix given by the second argument. The first argument
-     * is interpreted as representing a signed integer in the radix
-     * specified by the second argument, exactly as if the arguments
-     * were given to the {@link #parseInt(java.lang.String, int)}
-     * method. The result is an {@code Integer} object that
-     * represents the integer value specified by the string.
+     * 返回一个 {@code Integer} 对象，
+     * 该对象中保存了用第二个参数提供的基数进行解析时从指定的 {@code String} 中提取的值。
+     * 将第一个参数解释为用第二个参数指定的基数表示的有符号整数，
+     * 就好像将这些参数赋予 {@link #parseInt(java.lang.String, int)} 方法一样。
+     * 结果是一个表示字符串指定的整数值的 Integer 对象。
      *
-     * <p>In other words, this method returns an {@code Integer}
-     * object equal to the value of:
+     * <p>换句话说，该方法返回一个等于以下值的 {@code Integer} 对象：
      *
      * <blockquote>
      *  {@code new Integer(Integer.parseInt(s, radix))}
      * </blockquote>
      *
-     * @param      s   the string to be parsed.
-     * @param      radix the radix to be used in interpreting {@code s}
-     * @return     an {@code Integer} object holding the value
-     *             represented by the string argument in the specified
-     *             radix.
-     * @exception NumberFormatException if the {@code String}
-     *            does not contain a parsable {@code int}.
+     * @param      s   要解析的字符串。
+     * @param      radix 解释 {@code s} 时使用的基数。
+     * @return     一个 {@code Integer} 对象，它含有字符串参数（以指定的基数）所表示的数值。a
+     * @exception NumberFormatException 如果 {@code String} 不包含可解析的 {@code int}。
      */
     public static Integer valueOf(String s, int radix) throws NumberFormatException {
         return Integer.valueOf(parseInt(s,radix));
     }
 
     /**
-     * Returns an {@code Integer} object holding the
-     * value of the specified {@code String}. The argument is
-     * interpreted as representing a signed decimal integer, exactly
-     * as if the argument were given to the {@link
-     * #parseInt(java.lang.String)} method. The result is an
-     * {@code Integer} object that represents the integer value
-     * specified by the string.
+     * 返回保存指定的 {@code String} 的值的 {@code Integer} 对象。
+     * 将该参数解释为表示一个有符号的十进制整数,
+     * 就好像将该参数赋予 {@link #parseInt(java.lang.String)} 方法一样。
+     * 结果是一个表示字符串指定的整数值的 {@code Integer} 对象。
      *
-     * <p>In other words, this method returns an {@code Integer}
-     * object equal to the value of:
+     * <p>换句话说，该方法返回一个等于以下值的 {@code Integer} 对象：
      *
      * <blockquote>
      *  {@code new Integer(Integer.parseInt(s))}
      * </blockquote>
      *
-     * @param      s   the string to be parsed.
-     * @return     an {@code Integer} object holding the value
-     *             represented by the string argument.
-     * @exception  NumberFormatException  if the string cannot be parsed
-     *             as an integer.
+     * @param      s   要解析的字符串。
+     * @return     保存字符串参数表示的值的 {@code Integer} 对象。
+     * @exception  NumberFormatException  如果字符串不能解析为一个整数。
      */
     public static Integer valueOf(String s) throws NumberFormatException {
         return Integer.valueOf(parseInt(s, 10));
@@ -727,18 +714,15 @@ public final class Integer extends Number implements Comparable<Integer> {
     }
 
     /**
-     * Returns an {@code Integer} instance representing the specified
-     * {@code int} value.  If a new {@code Integer} instance is not
-     * required, this method should generally be used in preference to
-     * the constructor {@link #Integer(int)}, as this method is likely
-     * to yield significantly better space and time performance by
-     * caching frequently requested values.
+     * 返回一个表示指定的 {@code int} 值的 {@code Integer} 实例。
+     * 如果不需要新的 {@code Integer} 实例，
+     * 则通常应优先使用该方法，而不是构造方法 {@link #Integer(int)}，
+     * 因为该方法有可能通过缓存经常请求的值而显著提高空间和时间性能。
      *
-     * This method will always cache values in the range -128 to 127,
-     * inclusive, and may cache other values outside of this range.
+     * 该方法将始终缓存值在范围-128到127之间，并可能缓存此范围之外的其他值。
      *
-     * @param  i an {@code int} value.
-     * @return an {@code Integer} instance representing {@code i}.
+     * @param  i 一个 {@code int} 值。
+     * @return 表示 {@code i} 的 {@code Integer} 实例。
      * @since  1.5
      */
     public static Integer valueOf(int i) {
@@ -748,34 +732,27 @@ public final class Integer extends Number implements Comparable<Integer> {
     }
 
     /**
-     * The value of the {@code Integer}.
+     * {@code Integer} 的值。
      *
      * @serial
      */
     private final int value;
 
     /**
-     * Constructs a newly allocated {@code Integer} object that
-     * represents the specified {@code int} value.
+     * 构造一个新分配的 {@code Integer} 对象，它表示指定的 {@code int} 值。
      *
-     * @param   value   the value to be represented by the
-     *                  {@code Integer} object.
+     * @param   value   {@code Integer} 对象表示的值。
      */
     public Integer(int value) {
         this.value = value;
     }
 
     /**
-     * Constructs a newly allocated {@code Integer} object that
-     * represents the {@code int} value indicated by the
-     * {@code String} parameter. The string is converted to an
-     * {@code int} value in exactly the manner used by the
-     * {@code parseInt} method for radix 10.
+     * 构造一个新分配的 {@code Integer} 对象，它表示 {@code String} 参数所指示的 {@code int} 值。
+     * 使用与 {@code parseInt} 方法（对基数为 10 的值）相同的方式将该字符串转换成 {@code int} 值。
      *
-     * @param      s   the {@code String} to be converted to an
-     *                 {@code Integer}.
-     * @exception  NumberFormatException  if the {@code String} does not
-     *               contain a parsable integer.
+     * @param      s   要转换为 {@code Integer} 的 {@code String}。
+     * @exception  NumberFormatException   如果 {@code String} 不包含可解析的整数。
      * @see        java.lang.Integer#parseInt(java.lang.String, int)
      */
     public Integer(String s) throws NumberFormatException {
@@ -783,8 +760,7 @@ public final class Integer extends Number implements Comparable<Integer> {
     }
 
     /**
-     * Returns the value of this {@code Integer} as a {@code byte}
-     * after a narrowing primitive conversion.
+     * 以 {@code byte} 类型返回该 {@code Integer} 的值。
      * @jls 5.1.3 Narrowing Primitive Conversions
      */
     public byte byteValue() {
@@ -792,8 +768,7 @@ public final class Integer extends Number implements Comparable<Integer> {
     }
 
     /**
-     * Returns the value of this {@code Integer} as a {@code short}
-     * after a narrowing primitive conversion.
+     * 以 {@code short} 类型返回该 {@code Integer} 的值。
      * @jls 5.1.3 Narrowing Primitive Conversions
      */
     public short shortValue() {
@@ -801,16 +776,14 @@ public final class Integer extends Number implements Comparable<Integer> {
     }
 
     /**
-     * Returns the value of this {@code Integer} as an
-     * {@code int}.
+     * 以 {@code int} 类型返回该 {@code Integer} 的值。
      */
     public int intValue() {
         return value;
     }
 
     /**
-     * Returns the value of this {@code Integer} as a {@code long}
-     * after a widening primitive conversion.
+     * 以 {@code long} 类型返回该 {@code Integer} 的值。
      * @jls 5.1.2 Widening Primitive Conversions
      * @see Integer#toUnsignedLong(int)
      */
@@ -819,8 +792,7 @@ public final class Integer extends Number implements Comparable<Integer> {
     }
 
     /**
-     * Returns the value of this {@code Integer} as a {@code float}
-     * after a widening primitive conversion.
+     * 以 {@code float} 类型返回该 {@code Integer} 的值。
      * @jls 5.1.2 Widening Primitive Conversions
      */
     public float floatValue() {
@@ -828,8 +800,7 @@ public final class Integer extends Number implements Comparable<Integer> {
     }
 
     /**
-     * Returns the value of this {@code Integer} as a {@code double}
-     * after a widening primitive conversion.
+     * 以 {@code double} 类型返回该 {@code Integer} 的值。
      * @jls 5.1.2 Widening Primitive Conversions
      */
     public double doubleValue() {
@@ -837,25 +808,21 @@ public final class Integer extends Number implements Comparable<Integer> {
     }
 
     /**
-     * Returns a {@code String} object representing this
-     * {@code Integer}'s value. The value is converted to signed
-     * decimal representation and returned as a string, exactly as if
-     * the integer value were given as an argument to the {@link
-     * java.lang.Integer#toString(int)} method.
+     * 返回一个表示该 {@code Integer} 值的 {@code String} 对象。
+     * 将该参数转换为有符号的十进制表示形式，
+     * 并以字符串的形式返回它，
+     * 就好像将该整数值作为参数赋予 {@link java.lang.Integer#toString(int)} 方法一样。
      *
-     * @return  a string representation of the value of this object in
-     *          base&nbsp;10.
+     * @return  该对象的值（基数&nbsp;10）的字符串表示形式。
      */
     public String toString() {
         return toString(value);
     }
 
     /**
-     * Returns a hash code for this {@code Integer}.
+     * 返回此 {@code Integer} 的哈希码。
      *
-     * @return  a hash code value for this object, equal to the
-     *          primitive {@code int} value represented by this
-     *          {@code Integer} object.
+     * @return  该对象的哈希码值，它的值即为该 {@code Integer} 对象表示的基本 {@code int} 类型的数值。
      */
     @Override
     public int hashCode() {
@@ -863,27 +830,23 @@ public final class Integer extends Number implements Comparable<Integer> {
     }
 
     /**
-     * Returns a hash code for a {@code int} value; compatible with
-     * {@code Integer.hashCode()}.
+     * 返回 {@code int} 值的哈希值；和 {@code Integer.hashCode()} 兼容。
      *
-     * @param value the value to hash
+     * @param value 要哈希的值
      * @since 1.8
      *
-     * @return a hash code value for a {@code int} value.
+     * @return {@code int} 值的哈希值。
      */
     public static int hashCode(int value) {
         return value;
     }
 
     /**
-     * Compares this object to the specified object.  The result is
-     * {@code true} if and only if the argument is not
-     * {@code null} and is an {@code Integer} object that
-     * contains the same {@code int} value as this object.
+     * 比较此对象与指定对象。当且仅当参数不为 {@code null}，
+     * 并且是一个与该对象包含相同 {@code int} 值的 {@code Integer} 对象时，结果为 {@code true}。
      *
-     * @param   obj   the object to compare with.
-     * @return  {@code true} if the objects are the same;
-     *          {@code false} otherwise.
+     * @param   obj   要比较的对象。
+     * @return  如果对象相同，则返回 {@code true}，否则返回 {@code false}。
      */
     public boolean equals(Object obj) {
         if (obj instanceof Integer) {
@@ -893,30 +856,24 @@ public final class Integer extends Number implements Comparable<Integer> {
     }
 
     /**
-     * Determines the integer value of the system property with the
-     * specified name.
+     * 确定具有指定名称的系统属性的整数值。
      *
-     * <p>The first argument is treated as the name of a system
-     * property.  System properties are accessible through the {@link
-     * java.lang.System#getProperty(java.lang.String)} method. The
-     * string value of this property is then interpreted as an integer
-     * value using the grammar supported by {@link Integer#decode decode} and
-     * an {@code Integer} object representing this value is returned.
+     * <p>第一个参数被视为系统属性的名称。
+     * 通过 {@link java.lang.System#getProperty(java.lang.String)} 方法可以访问系统属性。
+     * 然后，根据每个 {@link Integer#decode decode} 方法，
+     * 将该属性的字符串值解释为一个整数值，并返回一个表示该值的 Integer 对象。
      *
-     * <p>If there is no property with the specified name, if the
-     * specified name is empty or {@code null}, or if the property
-     * does not have the correct numeric format, then {@code null} is
-     * returned.
+     * <p>如果没有具有指定名称的属性，或者指定名称为空或 {@code null}，
+     * 或者属性的数字格式不正确，则返回 {@code null}。
      *
-     * <p>In other words, this method returns an {@code Integer}
-     * object equal to the value of:
+     * <p>换句话说，该方法返回一个等于以下值的 {@code Integer} 对象：
      *
      * <blockquote>
      *  {@code getInteger(nm, null)}
      * </blockquote>
      *
-     * @param   nm   property name.
-     * @return  the {@code Integer} value of the property.
+     * @param   nm   属性名。
+     * @return  属性的 {@code Integer} 值。
      * @throws  SecurityException for the same reasons as
      *          {@link System#getProperty(String) System.getProperty}
      * @see     java.lang.System#getProperty(java.lang.String)
@@ -927,42 +884,35 @@ public final class Integer extends Number implements Comparable<Integer> {
     }
 
     /**
-     * Determines the integer value of the system property with the
-     * specified name.
+     * 确定具有指定名称的系统属性的整数值。
      *
-     * <p>The first argument is treated as the name of a system
-     * property.  System properties are accessible through the {@link
-     * java.lang.System#getProperty(java.lang.String)} method. The
-     * string value of this property is then interpreted as an integer
-     * value using the grammar supported by {@link Integer#decode decode} and
-     * an {@code Integer} object representing this value is returned.
+     * <p>第一个参数被视为系统属性的名称。
+     * 通过 {@link java.lang.System#getProperty(java.lang.String)} 方法可以访问系统属性。
+     * 然后，根据每个 {@link Integer#decode decode} 方法，
+     * 将该属性的字符串值解释为一个整数值，并返回一个表示该值的 Integer 对象。
      *
-     * <p>The second argument is the default value. An {@code Integer} object
-     * that represents the value of the second argument is returned if there
-     * is no property of the specified name, if the property does not have
-     * the correct numeric format, or if the specified name is empty or
-     * {@code null}.
+     * <p>第二个参数是默认值。如果未具有指定名称的属性，
+     * 或者属性的数字格式不正确，或者指定名称为空或 {@code null}，
+     * 则返回一个表示第二个参数的值的 {@code Integer} 对象。
      *
-     * <p>In other words, this method returns an {@code Integer} object
-     * equal to the value of:
+     * <p>换句话说，该方法返回一个等于以下值的 {@code Integer} 对象：
      *
      * <blockquote>
      *  {@code getInteger(nm, new Integer(val))}
      * </blockquote>
      *
-     * but in practice it may be implemented in a manner such as:
+     * 但在实践中可能会用以下类似方式实现它：
      *
      * <blockquote><pre>
      * Integer result = getInteger(nm, null);
      * return (result == null) ? new Integer(val) : result;
      * </pre></blockquote>
      *
-     * to avoid the unnecessary allocation of an {@code Integer}
-     * object when the default value is not needed.
+     * 从而避免在无需默认值时分配不必要的 {@code Integer} 对象。
      *
-     * @param   nm   property name.
-     * @param   val   default value.
-     * @return  the {@code Integer} value of the property.
+     * @param   nm   属性名。
+     * @param   val   默认值。
+     * @return  属性的 {@code Integer} 值。
      * @throws  SecurityException for the same reasons as
      *          {@link System#getProperty(String) System.getProperty}
      * @see     java.lang.System#getProperty(java.lang.String)
@@ -974,37 +924,29 @@ public final class Integer extends Number implements Comparable<Integer> {
     }
 
     /**
-     * Returns the integer value of the system property with the
-     * specified name.  The first argument is treated as the name of a
-     * system property.  System properties are accessible through the
-     * {@link java.lang.System#getProperty(java.lang.String)} method.
-     * The string value of this property is then interpreted as an
-     * integer value, as per the {@link Integer#decode decode} method,
-     * and an {@code Integer} object representing this value is
-     * returned; in summary:
+     * 返回具有指定名称的系统属性的整数值。
+     * 第一个参数被视为系统属性的名称。
+     * 通过 {@link java.lang.System#getProperty(java.lang.String)} 方法可以访问系统属性。
+     * 然后，根据每个 {@link Integer#decode decode} 方法，
+     * 将该属性的字符串值解释为一个整数值，并返回一个表示该值的 {@code Integer} 对象。
+     * 总之：
      *
-     * <ul><li>If the property value begins with the two ASCII characters
-     *         {@code 0x} or the ASCII character {@code #}, not
-     *      followed by a minus sign, then the rest of it is parsed as a
-     *      hexadecimal integer exactly as by the method
-     *      {@link #valueOf(java.lang.String, int)} with radix 16.
-     * <li>If the property value begins with the ASCII character
-     *     {@code 0} followed by another character, it is parsed as an
-     *     octal integer exactly as by the method
-     *     {@link #valueOf(java.lang.String, int)} with radix 8.
-     * <li>Otherwise, the property value is parsed as a decimal integer
-     * exactly as by the method {@link #valueOf(java.lang.String, int)}
-     * with radix 10.
+     * <ul><li>如果属性值以两个 ASCII 字符 {@code 0x} 或者 ASCII 字符 {@code #} 开始，
+     *         并且后面没有减号，则将它的剩余部分解析为十六进制整数，
+     *         就好像以 16 为基数调用 {@link #valueOf(java.lang.String, int)} 方法一样。
+     * <li>如果属性值以 ASCII 字符 {@code 0} 开始，后面还有其他字符，
+     *     则将它解析为八进制整数，
+     *     就好像以 8 为基数调用 {@link #valueOf(java.lang.String, int)} 方法一样。
+     * <li>否则，将属性值解析为十进制整数，
+     *     就好像以 10 为基数调用 {@link #valueOf(java.lang.String, int)} 方法一样。
      * </ul>
      *
-     * <p>The second argument is the default value. The default value is
-     * returned if there is no property of the specified name, if the
-     * property does not have the correct numeric format, or if the
-     * specified name is empty or {@code null}.
+     * <p>第二个参数是默认值。如果未具有指定名称的属性，
+     * 或者属性的数字格式不正确，或者指定名称为空或 {@code null}，则返回默认值。
      *
-     * @param   nm   property name.
-     * @param   val   default value.
-     * @return  the {@code Integer} value of the property.
+     * @param   nm   属性名。
+     * @param   val   默认值。
+     * @return  属性的 {@code Integer} 值。 
      * @throws  SecurityException for the same reasons as
      *          {@link System#getProperty(String) System.getProperty}
      * @see     System#getProperty(java.lang.String)
