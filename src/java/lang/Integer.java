@@ -238,9 +238,6 @@ public final class Integer extends Number implements Comparable<Integer> {
      *
      * <p>如果参数为负，该无符号整数值为参数加上 2<sup>32</sup>；否则等于该参数。
      * 将该值转换为二进制（基数&nbsp;2）形式的无前导 {@code 0} 的 ASCII 数字字符串。
-     * 如果无符号数的大小为零，则用一个零字符 '0' (’\u0030’) 表示它；
-     * 否则，无符号数大小的表示形式中的第一个字符将不是零字符。
-     * 字符 '0' ('\u0030') 和 '1' ('\u0031') 被用作二进制数字。
      *
      * <p>参数的值可以从字符串 {@code s} 中通过调用{@link
      * Integer#parseUnsignedInt(String, int)
@@ -277,11 +274,11 @@ public final class Integer extends Number implements Comparable<Integer> {
     }
 
     /**
-     * 将 long（视为无符号）格式化为字符 buffer。
+     * 将 int（视为无符号）格式化为字符 buffer。
      * @param val 要格式化的无符号 int
      * @param shift 要格式化的 log2 的基数 (4 代表十六进制，3 代表八进制，1 代表二进制)
      * @param buf 要写入的字符 buffer
-     * @param offset 从目标缓冲区开始的偏移量the offset in the destination buffer to start at
+     * @param offset 从目标缓冲区开始的偏移量
      * @param len 要写入的字符数
      * @return  使用的最低字符位置
      */
@@ -641,7 +638,7 @@ public final class Integer extends Number implements Comparable<Integer> {
      *
      * @param      s   要解析的字符串。
      * @param      radix 解释 {@code s} 时使用的基数。
-     * @return     一个 {@code Integer} 对象，它含有字符串参数（以指定的基数）所表示的数值。a
+     * @return     一个 {@code Integer} 对象，它含有字符串参数（以指定的基数）所表示的数值。
      * @exception NumberFormatException 如果 {@code String} 不包含可解析的 {@code int}。
      */
     public static Integer valueOf(String s, int radix) throws NumberFormatException {
