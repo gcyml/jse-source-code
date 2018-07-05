@@ -968,9 +968,8 @@ public final class Integer extends Number implements Comparable<Integer> {
     }
 
     /**
-     * Decodes a {@code String} into an {@code Integer}.
-     * Accepts decimal, hexadecimal, and octal numbers given
-     * by the following grammar:
+     * 将 {@code String} 解码为 {@code Integer}。
+     * 接受通过以下语法给出的十进制、十六进制和八进制数字：
      *
      * <blockquote>
      * <dl>
@@ -987,26 +986,18 @@ public final class Integer extends Number implements Comparable<Integer> {
      * </dl>
      * </blockquote>
      *
-     * <i>DecimalNumeral</i>, <i>HexDigits</i>, and <i>OctalDigits</i>
-     * are as defined in section 3.10.1 of
-     * <cite>The Java&trade; Language Specification</cite>,
-     * except that underscores are not accepted between digits.
+     * <cite>The Java&trade; Language Specification</cite> 的第 3.10.1 节中有
+     * <i>DecimalNumeral</i>, <i>HexDigits</i>, 和 <i>OctalDigits</i> 的定义。
      *
-     * <p>The sequence of characters following an optional
-     * sign and/or radix specifier ("{@code 0x}", "{@code 0X}",
-     * "{@code #}", or leading zero) is parsed as by the {@code
-     * Integer.parseInt} method with the indicated radix (10, 16, or
-     * 8).  This sequence of characters must represent a positive
-     * value or a {@link NumberFormatException} will be thrown.  The
-     * result is negated if first character of the specified {@code
-     * String} is the minus sign.  No whitespace characters are
-     * permitted in the {@code String}.
+     * <p>跟在（可选）负号和/或基数说明符（“{@code 0x}”、“{@code 0X}”、“{@code #}”或前导零）后面的字符序列是
+     * 使用指示的基数（10、16 或 8）通过 {@code Integer.parseInt} 方法解析的。
+     * 字符序列必须表示一个正值，否则会抛出 {@link NumberFormatException}。
+     * 如果指定的 {@code String} 的第一个字符是减号，则对结果求反。
+     * {@code String} 中不允许出现空白字符。
      *
-     * @param     nm the {@code String} to decode.
-     * @return    an {@code Integer} object holding the {@code int}
-     *             value represented by {@code nm}
-     * @exception NumberFormatException  if the {@code String} does not
-     *            contain a parsable integer.
+     * @param     nm 要解码的 {@code String}。
+     * @return    保存 {@code nm} 所表示的 {@code int} 值的 {@code Integer} 对象。
+     * @exception NumberFormatException  如果 {@code String} 不包含可解析整数。
      * @see java.lang.Integer#parseInt(java.lang.String, int)
      */
     public static Integer decode(String nm) throws NumberFormatException {
@@ -1057,16 +1048,12 @@ public final class Integer extends Number implements Comparable<Integer> {
     }
 
     /**
-     * Compares two {@code Integer} objects numerically.
+     * 在数字上比较两个{@code Integer} 对象。
      *
-     * @param   anotherInteger   the {@code Integer} to be compared.
-     * @return  the value {@code 0} if this {@code Integer} is
-     *          equal to the argument {@code Integer}; a value less than
-     *          {@code 0} if this {@code Integer} is numerically less
-     *          than the argument {@code Integer}; and a value greater
-     *          than {@code 0} if this {@code Integer} is numerically
-     *           greater than the argument {@code Integer} (signed
-     *           comparison).
+     * @param   anotherInteger   要比较的 {@code Integer}。
+     * @return  如果该 {@code Integer} 等于 {@code Integer} 参数，则返回 {@code 0} 值；
+     *           如果该 {@code Integer} 在数字上小于 {@code Integer} 参数，则返回小于 {@code 0} 的值；
+     *           如果 {@code Integer} 在数字上大于 {@code Integer} 参数，则返回大于 {@code 0} 的值（有符号的比较）。
      * @since   1.2
      */
     public int compareTo(Integer anotherInteger) {
@@ -1074,17 +1061,17 @@ public final class Integer extends Number implements Comparable<Integer> {
     }
 
     /**
-     * Compares two {@code int} values numerically.
-     * The value returned is identical to what would be returned by:
+     * 在数字上比较两个 {@code int} 值。
+     * 返回的值和下面返回的值相同：
      * <pre>
      *    Integer.valueOf(x).compareTo(Integer.valueOf(y))
      * </pre>
      *
-     * @param  x the first {@code int} to compare
-     * @param  y the second {@code int} to compare
-     * @return the value {@code 0} if {@code x == y};
-     *         a value less than {@code 0} if {@code x < y}; and
-     *         a value greater than {@code 0} if {@code x > y}
+     * @param  x 第一个要比较的 {@code int}
+     * @param  y 第二个要比较的 {@code int}
+     * @return 如果 {@code x == y} 则返回 {@code 0}；
+     *          如果 {@code x < y} 则返回 小于 {@code 0} 的值；
+     *          如果 {@code x > y} 则返回 大于 {@code 0} 的值；
      * @since 1.7
      */
     public static int compare(int x, int y) {
@@ -1092,15 +1079,13 @@ public final class Integer extends Number implements Comparable<Integer> {
     }
 
     /**
-     * Compares two {@code int} values numerically treating the values
-     * as unsigned.
+     * 数值上比较两个 被看作无符号的 {@code int} 值。
      *
-     * @param  x the first {@code int} to compare
-     * @param  y the second {@code int} to compare
-     * @return the value {@code 0} if {@code x == y}; a value less
-     *         than {@code 0} if {@code x < y} as unsigned values; and
-     *         a value greater than {@code 0} if {@code x > y} as
-     *         unsigned values
+     * @param  x 第一个要比较的 {@code int}
+     * @param  y 第二个要比较的 {@code int}
+     * @return 如果 {@code x == y} 则返回 {@code 0}；
+     *          如果看作无符号整数 {@code x < y} 则返回 小于 {@code 0} 的值；
+     *          如果看作无符号整数 {@code x > y} 则返回 大于 {@code 0} 的值；
      * @since 1.8
      */
     public static int compareUnsigned(int x, int y) {
@@ -1108,20 +1093,14 @@ public final class Integer extends Number implements Comparable<Integer> {
     }
 
     /**
-     * Converts the argument to a {@code long} by an unsigned
-     * conversion.  In an unsigned conversion to a {@code long}, the
-     * high-order 32 bits of the {@code long} are zero and the
-     * low-order 32 bits are equal to the bits of the integer
-     * argument.
+     * 通过无符号转换将参数转换为 {@code long}。
+     * 在无符号转换为 {@code long} 时，{@code long} 的高阶32位为零，低阶32位等于整数参数的位。
      *
-     * Consequently, zero and positive {@code int} values are mapped
-     * to a numerically equal {@code long} value and negative {@code
-     * int} values are mapped to a {@code long} value equal to the
-     * input plus 2<sup>32</sup>.
+     * 因此，零和正的 {@code int} 值被映射到数值上相等的 {@code long} 值，
+     * 而负的{@code int} 值被映射到等于输入加上 2<sup>32</sup> 的 {@code long}值。
      *
-     * @param  x the value to convert to an unsigned {@code long}
-     * @return the argument converted to {@code long} by an unsigned
-     *         conversion
+     * @param  x 要转换到无符号 {@code long} 型的值。
+     * @return 通过无符号转换将参数转换为 {@code long}
      * @since 1.8
      */
     public static long toUnsignedLong(int x) {
