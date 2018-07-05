@@ -725,9 +725,7 @@ public final class Long extends Number implements Comparable<Long> {
     }
 
     /**
-     * Decodes a {@code String} into a {@code Long}.
-     * Accepts decimal, hexadecimal, and octal numbers given by the
-     * following grammar:
+     * 将 {@code String} 解码成 {@code Long}。接受通过以下语法给出的十进制、十六进制和八进制数：
      *
      * <blockquote>
      * <dl>
@@ -744,26 +742,18 @@ public final class Long extends Number implements Comparable<Long> {
      * </dl>
      * </blockquote>
      *
-     * <i>DecimalNumeral</i>, <i>HexDigits</i>, and <i>OctalDigits</i>
-     * are as defined in section 3.10.1 of
-     * <cite>The Java&trade; Language Specification</cite>,
-     * except that underscores are not accepted between digits.
+     * <cite>The Java&trade; Language Specification</cite> 的第 3.10.1 节中有
+     * <i>DecimalNumeral</i>, <i>HexDigits</i>, 和 <i>OctalDigits</i> 的定义。
      *
-     * <p>The sequence of characters following an optional
-     * sign and/or radix specifier ("{@code 0x}", "{@code 0X}",
-     * "{@code #}", or leading zero) is parsed as by the {@code
-     * Long.parseLong} method with the indicated radix (10, 16, or 8).
-     * This sequence of characters must represent a positive value or
-     * a {@link NumberFormatException} will be thrown.  The result is
-     * negated if first character of the specified {@code String} is
-     * the minus sign.  No whitespace characters are permitted in the
-     * {@code String}.
+     * <p>跟在（可选）负号和/或基数说明符（“{@code 0x}”、“{@code 0X}”、“{@code #}”或前导零）后面的字符序列是
+     * 使用指示的基数（10、16 或 8）通过 {@code Integer.parseInt} 方法解析的。
+     * 字符序列必须表示一个正值，否则会抛出 {@link NumberFormatException}。
+     * 如果指定的 {@code String} 的第一个字符是减号，则对结果求反。
+     * {@code String} 中不允许出现空白字符。
      *
-     * @param     nm the {@code String} to decode.
-     * @return    a {@code Long} object holding the {@code long}
-     *            value represented by {@code nm}
-     * @throws    NumberFormatException  if the {@code String} does not
-     *            contain a parsable {@code long}.
+     * @param     nm 要解码的 {@code String}。
+     * @return    保存 {@code nm} 所表示的 {@code long} 值的 {@code Long} 对象。
+     * @throws    NumberFormatException  如果 {@code String} 不包含可解析整数。
      * @see java.lang.Long#parseLong(String, int)
      * @since 1.2
      */
@@ -815,34 +805,28 @@ public final class Long extends Number implements Comparable<Long> {
     }
 
     /**
-     * The value of the {@code Long}.
+     * {@code Long} 的值。
      *
      * @serial
      */
     private final long value;
 
     /**
-     * Constructs a newly allocated {@code Long} object that
-     * represents the specified {@code long} argument.
+     * 构造新分配的 {@code Long} 对象，表示指定的 {@code long} 参数。
      *
-     * @param   value   the value to be represented by the
-     *          {@code Long} object.
+     * @param   value   {@code Long} 对象表示的值。
      */
     public Long(long value) {
         this.value = value;
     }
 
     /**
-     * Constructs a newly allocated {@code Long} object that
-     * represents the {@code long} value indicated by the
-     * {@code String} parameter. The string is converted to a
-     * {@code long} value in exactly the manner used by the
-     * {@code parseLong} method for radix 10.
+     * 构造新分配的 {@code Long} 对象，表示由 {@code String} 参数指示的 {@code long} 值。
+     * 该字符串被转换为 {@code long} 值，
+     * 其方式与 radix 参数为 10 的 {@code parseLong} 方法所使用的方式一致。
      *
-     * @param      s   the {@code String} to be converted to a
-     *             {@code Long}.
-     * @throws     NumberFormatException  if the {@code String} does not
-     *             contain a parsable {@code long}.
+     * @param      s   要转换为 {@code Long} 的 {@code String}。
+     * @throws     NumberFormatException  如果 {@code String} 不包含可解析的 {@code long}。
      * @see        java.lang.Long#parseLong(java.lang.String, int)
      */
     public Long(String s) throws NumberFormatException {
@@ -850,8 +834,7 @@ public final class Long extends Number implements Comparable<Long> {
     }
 
     /**
-     * Returns the value of this {@code Long} as a {@code byte} after
-     * a narrowing primitive conversion.
+     * 以 {@code byte} 形式返回此 {@code Long} 的值。
      * @jls 5.1.3 Narrowing Primitive Conversions
      */
     public byte byteValue() {
@@ -859,8 +842,7 @@ public final class Long extends Number implements Comparable<Long> {
     }
 
     /**
-     * Returns the value of this {@code Long} as a {@code short} after
-     * a narrowing primitive conversion.
+     * 以 {@code short} 形式返回此 {@code Long} 的值。
      * @jls 5.1.3 Narrowing Primitive Conversions
      */
     public short shortValue() {
@@ -868,8 +850,7 @@ public final class Long extends Number implements Comparable<Long> {
     }
 
     /**
-     * Returns the value of this {@code Long} as an {@code int} after
-     * a narrowing primitive conversion.
+     * 以 {@code int} 形式返回此 {@code Long} 的值。
      * @jls 5.1.3 Narrowing Primitive Conversions
      */
     public int intValue() {
@@ -877,16 +858,14 @@ public final class Long extends Number implements Comparable<Long> {
     }
 
     /**
-     * Returns the value of this {@code Long} as a
-     * {@code long} value.
+     * 以 {@code long} 形式返回此 {@code Long} 的值。
      */
     public long longValue() {
         return value;
     }
 
     /**
-     * Returns the value of this {@code Long} as a {@code float} after
-     * a widening primitive conversion.
+     * 以 {@code float} 形式返回此 {@code Long} 的值。
      * @jls 5.1.2 Widening Primitive Conversions
      */
     public float floatValue() {
@@ -894,8 +873,7 @@ public final class Long extends Number implements Comparable<Long> {
     }
 
     /**
-     * Returns the value of this {@code Long} as a {@code double}
-     * after a widening primitive conversion.
+     * 以 {@code double} 形式返回此 {@code Long} 的值。
      * @jls 5.1.2 Widening Primitive Conversions
      */
     public double doubleValue() {
@@ -903,30 +881,26 @@ public final class Long extends Number implements Comparable<Long> {
     }
 
     /**
-     * Returns a {@code String} object representing this
-     * {@code Long}'s value.  The value is converted to signed
-     * decimal representation and returned as a string, exactly as if
-     * the {@code long} value were given as an argument to the
-     * {@link java.lang.Long#toString(long)} method.
+     * 返回表示 {@code Long} 值的 {@code String} 对象。
+     * 该值被转换为有符号十进制表示形式，并作为字符串返回，
+     * 该字符串与用 {@code long} 值作为参数的 {@link java.lang.Long#toString(long)} 方法得到的字符串非常相似。
      *
-     * @return  a string representation of the value of this object in
-     *          base&nbsp;10.
+     * @return  十进制对象值的字符串表示形式。
      */
     public String toString() {
         return toString(value);
     }
 
     /**
-     * Returns a hash code for this {@code Long}. The result is
-     * the exclusive OR of the two halves of the primitive
-     * {@code long} value held by this {@code Long}
-     * object. That is, the hashcode is the value of the expression:
+     * 返回 {@code Long} 的哈希码。
+     * 结果是此 {@code Long} 对象保持的基本 {@code long} 值的两个部分的异或 (XOR)。
+     * 也就是说，哈希码就是表达式的值：
      *
      * <blockquote>
      *  {@code (int)(this.longValue()^(this.longValue()>>>32))}
      * </blockquote>
      *
-     * @return  a hash code value for this object.
+     * @return  此对象的哈希码值。
      */
     @Override
     public int hashCode() {
@@ -934,11 +908,10 @@ public final class Long extends Number implements Comparable<Long> {
     }
 
     /**
-     * Returns a hash code for a {@code long} value; compatible with
-     * {@code Long.hashCode()}.
+     * 返回 {@code long} 值的哈希值；和 {@code Long.hashCode()} 兼容。
      *
-     * @param value the value to hash
-     * @return a hash code value for a {@code long} value.
+     * @param value 要哈希的值
+     * @return {@code long} 值的哈希值。
      * @since 1.8
      */
     public static int hashCode(long value) {
@@ -946,14 +919,12 @@ public final class Long extends Number implements Comparable<Long> {
     }
 
     /**
-     * Compares this object to the specified object.  The result is
-     * {@code true} if and only if the argument is not
-     * {@code null} and is a {@code Long} object that
-     * contains the same {@code long} value as this object.
+     * 将此对象与指定对象进行比较。
+     * 当且仅当该参数不是 {@code null}，
+     * 且 {@code Long} 对象与此对象包含相同的 {@code long} 值时，结果才为 {@code true}。
      *
-     * @param   obj   the object to compare with.
-     * @return  {@code true} if the objects are the same;
-     *          {@code false} otherwise.
+     * @param   obj   要与之进行比较的对象。
+     * @return  如果对象相同，则返回 {@code true}；否则，返回 {@code false}。
      */
     public boolean equals(Object obj) {
         if (obj instanceof Long) {
@@ -963,30 +934,24 @@ public final class Long extends Number implements Comparable<Long> {
     }
 
     /**
-     * Determines the {@code long} value of the system property
-     * with the specified name.
+     * 确定具有指定名称的系统属性的 {@code long}  值。
      *
-     * <p>The first argument is treated as the name of a system
-     * property.  System properties are accessible through the {@link
-     * java.lang.System#getProperty(java.lang.String)} method. The
-     * string value of this property is then interpreted as a {@code
-     * long} value using the grammar supported by {@link Long#decode decode}
-     * and a {@code Long} object representing this value is returned.
+     * <p>第一个参数被视为系统属性的名称。
+     * 通过 {@link java.lang.System#getProperty(java.lang.String)} 方法可以访问该系统属性。
+     * 然后，根据每个 {@link Integer#decode decode} 方法，
+     * 以 {@code long} 值的形式解释此属性的字符串值，并返回表示此值的 {@code Long} 对象。
      *
-     * <p>If there is no property with the specified name, if the
-     * specified name is empty or {@code null}, or if the property
-     * does not have the correct numeric format, then {@code null} is
-     * returned.
+     * <p>如果没有具有指定名称的属性，或者指定名称为空或 {@code null}，
+     * 或者属性的数字格式不正确，则返回 {@code null}。
      *
-     * <p>In other words, this method returns a {@code Long} object
-     * equal to the value of:
+     * <p>换句话说，该方法返回一个等于以下值的 {@code Long} 对象：
      *
      * <blockquote>
      *  {@code getLong(nm, null)}
      * </blockquote>
      *
-     * @param   nm   property name.
-     * @return  the {@code Long} value of the property.
+     * @param   nm   属性名。
+     * @return  属性的 {@code Long} 值。
      * @throws  SecurityException for the same reasons as
      *          {@link System#getProperty(String) System.getProperty}
      * @see     java.lang.System#getProperty(java.lang.String)
@@ -997,41 +962,35 @@ public final class Long extends Number implements Comparable<Long> {
     }
 
     /**
-     * Determines the {@code long} value of the system property
-     * with the specified name.
+     * 使用指定名称确定系统属性的 {@code long} 值。
      *
-     * <p>The first argument is treated as the name of a system
-     * property.  System properties are accessible through the {@link
-     * java.lang.System#getProperty(java.lang.String)} method. The
-     * string value of this property is then interpreted as a {@code
-     * long} value using the grammar supported by {@link Long#decode decode}
-     * and a {@code Long} object representing this value is returned.
+     * <p>第一个参数被视为系统属性的名称。
+     * 通过 {@link java.lang.System#getProperty(java.lang.String)} 方法可以访问该系统属性。
+     * 然后，根据每个 {@link Integer#decode decode} 方法，
+     * 以 {@code long} 值的形式解释此属性的字符串值，并返回表示此值的 {@code Long} 对象。
      *
-     * <p>The second argument is the default value. A {@code Long} object
-     * that represents the value of the second argument is returned if there
-     * is no property of the specified name, if the property does not have
-     * the correct numeric format, or if the specified name is empty or null.
+     * <p>第二个参数是默认值。如果指定的名称没有属性，
+     * 或者该属性不具备正确的数字格式，抑或指定名称为空或 null，
+     * 则返回表示第二个参数的值的 {@code Long} 对象。
      *
-     * <p>In other words, this method returns a {@code Long} object equal
-     * to the value of:
+     * <p>换句话说，此方法返回一个 {@code Long} 对象，它的值等于：
      *
      * <blockquote>
      *  {@code getLong(nm, new Long(val))}
      * </blockquote>
      *
-     * but in practice it may be implemented in a manner such as:
+     * 但是实际上，它可能通过以下方式实现：
      *
      * <blockquote><pre>
      * Long result = getLong(nm, null);
      * return (result == null) ? new Long(val) : result;
      * </pre></blockquote>
      *
-     * to avoid the unnecessary allocation of a {@code Long} object when
-     * the default value is not needed.
+     * 这样可以避免不需要默认值时进行的不必要的 {@code Long} 对象分配。
      *
-     * @param   nm    property name.
-     * @param   val   default value.
-     * @return  the {@code Long} value of the property.
+     * @param   nm   属性名。
+     * @param   val   默认值。
+     * @return  属性的 {@code Long} 值。
      * @throws  SecurityException for the same reasons as
      *          {@link System#getProperty(String) System.getProperty}
      * @see     java.lang.System#getProperty(java.lang.String)
@@ -1043,44 +1002,35 @@ public final class Long extends Number implements Comparable<Long> {
     }
 
     /**
-     * Returns the {@code long} value of the system property with
-     * the specified name.  The first argument is treated as the name
-     * of a system property.  System properties are accessible through
-     * the {@link java.lang.System#getProperty(java.lang.String)}
-     * method. The string value of this property is then interpreted
-     * as a {@code long} value, as per the
-     * {@link Long#decode decode} method, and a {@code Long} object
-     * representing this value is returned; in summary:
+     * 使用指定名称返回系统属性的 {@code long} 值。
+     * 第一个参数被视为系统属性的名称。
+     * 通过 {@link java.lang.System#getProperty(java.lang.String)} 方法可以访问该系统属性。
+     * 然后，以 {@code long} 值的形式解释此属性的字符串值，
+     * 并且按照 {@link Long#decode decode} 方法返回表示此值的 {@code Long} 对象。
+     * 总之：
      *
      * <ul>
-     * <li>If the property value begins with the two ASCII characters
-     * {@code 0x} or the ASCII character {@code #}, not followed by
-     * a minus sign, then the rest of it is parsed as a hexadecimal integer
-     * exactly as for the method {@link #valueOf(java.lang.String, int)}
-     * with radix 16.
-     * <li>If the property value begins with the ASCII character
-     * {@code 0} followed by another character, it is parsed as
-     * an octal integer exactly as by the method {@link
-     * #valueOf(java.lang.String, int)} with radix 8.
-     * <li>Otherwise the property value is parsed as a decimal
-     * integer exactly as by the method
-     * {@link #valueOf(java.lang.String, int)} with radix 10.
+     * <li>如果属性值以两个 ASCII 字符 {@code 0x} 或者 ASCII 字符 {@code #} 开始，
+     *     并且后面没有减号，则将它的剩余部分解析为十六进制整数，
+     *     就好像以 16 为基数调用 {@link #valueOf(java.lang.String, int)} 方法一样。
+     * <li>如果属性值以 ASCII 字符 {@code 0} 开始，后面还有其他字符，
+     *     则将它解析为八进制整数，
+     *     就好像以 8 为基数调用 {@link #valueOf(java.lang.String, int)} 方法一样。
+     * <li>否则，将属性值解析为十进制整数，
+     *     就好像以 10 为基数调用 {@link #valueOf(java.lang.String, int)} 方法一样。
      * </ul>
      *
-     * <p>Note that, in every case, neither {@code L}
-     * ({@code '\u005Cu004C'}) nor {@code l}
-     * ({@code '\u005Cu006C'}) is permitted to appear at the end
-     * of the property value as a type indicator, as would be
-     * permitted in Java programming language source code.
+     * <p>注意，在所有情况下，
+     * 都不允许将 {@code L} ('{@code '\u005Cu004C'}) 和
+     * {@code l} ({@code '\u005Cu006C'}) 作为类型指示符出现在属性值的结尾处，
+     * 这一点在 Java 编程语言源代码中是允许的。
      *
-     * <p>The second argument is the default value. The default value is
-     * returned if there is no property of the specified name, if the
-     * property does not have the correct numeric format, or if the
-     * specified name is empty or {@code null}.
+     * <p>第二个参数是默认值。如果指定的名称没有属性，
+     * 或者属性不具有正确的数字格式，抑或指定名称为空或 {@code null}，则返回默认值。
      *
-     * @param   nm   property name.
-     * @param   val   default value.
-     * @return  the {@code Long} value of the property.
+     * @param   nm   属性名。
+     * @param   val   默认值。
+     * @return  属性的 {@code Long}  值。
      * @throws  SecurityException for the same reasons as
      *          {@link System#getProperty(String) System.getProperty}
      * @see     System#getProperty(java.lang.String)
@@ -1102,16 +1052,12 @@ public final class Long extends Number implements Comparable<Long> {
     }
 
     /**
-     * Compares two {@code Long} objects numerically.
+     * 在数字上比较两个 {@code Long} 对象。
      *
-     * @param   anotherLong   the {@code Long} to be compared.
-     * @return  the value {@code 0} if this {@code Long} is
-     *          equal to the argument {@code Long}; a value less than
-     *          {@code 0} if this {@code Long} is numerically less
-     *          than the argument {@code Long}; and a value greater
-     *          than {@code 0} if this {@code Long} is numerically
-     *           greater than the argument {@code Long} (signed
-     *           comparison).
+     * @param   anotherLong   要比较的 {@code Long}。
+     * @return  如果 {@code Long} 等于参数 {@code Long}，则返回 {@code 0} 值；
+     *          如果 {@code Long} 在数字上小于参数 {@code Long}，则返回小于 {@code 0} 的值；
+     *          如果 {@code Long} 在数字上大于参数 {@code Long}，则返回大于 {@code 0} 的值（有符号比较）。
      * @since   1.2
      */
     public int compareTo(Long anotherLong) {
@@ -1119,17 +1065,17 @@ public final class Long extends Number implements Comparable<Long> {
     }
 
     /**
-     * Compares two {@code long} values numerically.
-     * The value returned is identical to what would be returned by:
+     * 在数字上比较两个 {@code long} 值。
+     * 返回的值和下面返回的值相同：
      * <pre>
      *    Long.valueOf(x).compareTo(Long.valueOf(y))
      * </pre>
      *
-     * @param  x the first {@code long} to compare
-     * @param  y the second {@code long} to compare
-     * @return the value {@code 0} if {@code x == y};
-     *         a value less than {@code 0} if {@code x < y}; and
-     *         a value greater than {@code 0} if {@code x > y}
+     * @param  x 第一个要比较的 {@code long}
+     * @param  y 第二个要比较的 {@code long}
+     * @return 如果 {@code x == y} 则返回 {@code 0}；
+     *         如果 {@code x < y} 则返回 小于 {@code 0} 的值；
+     *         如果 {@code x > y} 则返回 大于 {@code 0} 的值；
      * @since 1.7
      */
     public static int compare(long x, long y) {
@@ -1137,15 +1083,13 @@ public final class Long extends Number implements Comparable<Long> {
     }
 
     /**
-     * Compares two {@code long} values numerically treating the values
-     * as unsigned.
+     * 数值上比较两个 被看作无符号的 {@code long} 值。
      *
-     * @param  x the first {@code long} to compare
-     * @param  y the second {@code long} to compare
-     * @return the value {@code 0} if {@code x == y}; a value less
-     *         than {@code 0} if {@code x < y} as unsigned values; and
-     *         a value greater than {@code 0} if {@code x > y} as
-     *         unsigned values
+     * @param  x 第一个要比较的 {@code long}
+     * @param  y 第二个要比较的 {@code long}
+     * @return 如果 {@code x == y} 则返回 {@code 0}；
+     *         如果看作无符号整数 {@code x < y} 则返回 小于 {@code 0} 的值；
+     *         如果看作无符号整数 {@code x > y} 则返回 大于 {@code 0} 的值；
      * @since 1.8
      */
     public static int compareUnsigned(long x, long y) {
@@ -1154,20 +1098,15 @@ public final class Long extends Number implements Comparable<Long> {
 
 
     /**
-     * Returns the unsigned quotient of dividing the first argument by
-     * the second where each argument and the result is interpreted as
-     * an unsigned value.
+     * 返回将第一个参数除以第二个参数的无符号商，其中每个参数和结果都被解释为无符号值。
      *
-     * <p>Note that in two's complement arithmetic, the three other
-     * basic arithmetic operations of add, subtract, and multiply are
-     * bit-wise identical if the two operands are regarded as both
-     * being signed or both being unsigned.  Therefore separate {@code
-     * addUnsigned}, etc. methods are not provided.
+     * <p>请注意，在在二进制补码运算中，如果两个操作数都被认为是有符号的或两者都是无符号的，
+     * 则加、减和乘的其他三个基本算术运算是按位相同的。
+     * 因此，不提供单独的 {@code addUnsigned} 等方法。
      *
-     * @param dividend the value to be divided
-     * @param divisor the value doing the dividing
-     * @return the unsigned quotient of the first argument divided by
-     * the second argument
+     * @param dividend 被除数
+     * @param divisor 除数
+     * @return 第一个参数的除以第二个参数的无符号商
      * @see #remainderUnsigned
      * @since 1.8
      */
@@ -1193,14 +1132,11 @@ public final class Long extends Number implements Comparable<Long> {
     }
 
     /**
-     * Returns the unsigned remainder from dividing the first argument
-     * by the second where each argument and the result is interpreted
-     * as an unsigned value.
+     * 返回第一个参数除以第二个参数的无符号余数，其中每个参数和结果都被解释为无符号值。
      *
-     * @param dividend the value to be divided
-     * @param divisor the value doing the dividing
-     * @return the unsigned remainder of the first argument divided by
-     * the second argument
+     * @param dividend 被除数
+     * @param divisor 除数
+     * @return 第一个参数除以第二个参数的无符号余数
      * @see #divideUnsigned
      * @since 1.8
      */
@@ -1219,32 +1155,27 @@ public final class Long extends Number implements Comparable<Long> {
     // Bit Twiddling
 
     /**
-     * The number of bits used to represent a {@code long} value in two's
-     * complement binary form.
+     * 在二进制补码形式中用来表示 {@code long} 值的位数。
      *
      * @since 1.5
      */
     @Native public static final int SIZE = 64;
 
     /**
-     * The number of bytes used to represent a {@code long} value in two's
-     * complement binary form.
+     * 在二进制补码形式中用来表示 {@code long} 值的字节数。
      *
      * @since 1.8
      */
     public static final int BYTES = SIZE / Byte.SIZE;
 
     /**
-     * Returns a {@code long} value with at most a single one-bit, in the
-     * position of the highest-order ("leftmost") one-bit in the specified
-     * {@code long} value.  Returns zero if the specified value has no
-     * one-bits in its two's complement binary representation, that is, if it
-     * is equal to zero.
+     * 返回至多有一个 1 位的 {@code long} 值，
+     * 在指定的 {@code long} 值中最高位（最左边）的 1 位的位置。
+     * 如果指定值在其二进制补码表示形式中没有 1 位，即等于零，则返回零。
      *
-     * @param i the value whose highest one bit is to be computed
-     * @return a {@code long} value with a single one-bit, in the position
-     *     of the highest-order one-bit in the specified value, or zero if
-     *     the specified value is itself equal to zero.
+     * @param i 要计算最高位的值
+     * @return 返回具有单个 1 位的 {@code long} 值，在指定值中最高位的 1 位的位置；
+     *         否则，如果指定值本身等于零，则返回零。
      * @since 1.5
      */
     public static long highestOneBit(long i) {
@@ -1259,16 +1190,13 @@ public final class Long extends Number implements Comparable<Long> {
     }
 
     /**
-     * Returns a {@code long} value with at most a single one-bit, in the
-     * position of the lowest-order ("rightmost") one-bit in the specified
-     * {@code long} value.  Returns zero if the specified value has no
-     * one-bits in its two's complement binary representation, that is, if it
-     * is equal to zero.
+     * 返回至多有一个 1 位的 {@code long} 值，
+     * 在指定的 {@code long} 值中最低位（最右边）的 1 位的位置。
+     * 如果指定值在其二进制补码表示形式中没有 1 位，即等于零，则返回零。
      *
-     * @param i the value whose lowest one bit is to be computed
-     * @return a {@code long} value with a single one-bit, in the position
-     *     of the lowest-order one-bit in the specified value, or zero if
-     *     the specified value is itself equal to zero.
+     * @param i 要计算最低位的值
+     * @return 返回具有单个 1 位的 {@code long} 值，在指定值中最低位的 1 位的位置；
+     *         否则，如果指定值本身等于零，则返回零。
      * @since 1.5
      */
     public static long lowestOneBit(long i) {
@@ -1277,24 +1205,21 @@ public final class Long extends Number implements Comparable<Long> {
     }
 
     /**
-     * Returns the number of zero bits preceding the highest-order
-     * ("leftmost") one-bit in the two's complement binary representation
-     * of the specified {@code long} value.  Returns 64 if the
-     * specified value has no one-bits in its two's complement representation,
-     * in other words if it is equal to zero.
+     * 在指定 {@code long} 值的二进制补码表示形式中最高位（最左边）的 1 位之前，
+     * 返回零位的数量。
+     * 如果指定值在其二进制补码表示形式中不存在 1 位，
+     * 换句话说，如果它等于零，则返回 64。
      *
-     * <p>Note that this method is closely related to the logarithm base 2.
-     * For all positive {@code long} values x:
+     * <p>注意，此方法与二进制对数密切相关。
+     * 对于所有的正 {@code long} 值 x：
      * <ul>
      * <li>floor(log<sub>2</sub>(x)) = {@code 63 - numberOfLeadingZeros(x)}
      * <li>ceil(log<sub>2</sub>(x)) = {@code 64 - numberOfLeadingZeros(x - 1)}
      * </ul>
      *
-     * @param i the value whose number of leading zeros is to be computed
-     * @return the number of zero bits preceding the highest-order
-     *     ("leftmost") one-bit in the two's complement binary representation
-     *     of the specified {@code long} value, or 64 if the value
-     *     is equal to zero.
+     * @param i 要计算头部 0 的个数的值
+     * @return 返回在指定 {@code long} 值的二进制补码表示形式中最高位（最左边）的 1 位之前的零位的数量；
+     *         否则，如果该值等于零，则返回 64。
      * @since 1.5
      */
     public static int numberOfLeadingZeros(long i) {
@@ -1313,17 +1238,13 @@ public final class Long extends Number implements Comparable<Long> {
     }
 
     /**
-     * Returns the number of zero bits following the lowest-order ("rightmost")
-     * one-bit in the two's complement binary representation of the specified
-     * {@code long} value.  Returns 64 if the specified value has no
-     * one-bits in its two's complement representation, in other words if it is
-     * equal to zero.
+     * 返回在指定 {@code long} 值的二进制补码表示形式中最低位（最右边）的 1 位之后的零位的数量。
+     * 如果指定值在其二进制补码表示形式中不存在 1 位，
+     * 换句话说，如果它等于零，则返回 64。
      *
-     * @param i the value whose number of trailing zeros is to be computed
-     * @return the number of zero bits following the lowest-order ("rightmost")
-     *     one-bit in the two's complement binary representation of the
-     *     specified {@code long} value, or 64 if the value is equal
-     *     to zero.
+     * @param i 要计算尾部 0 个数的值
+     * @return 返回在指定 {@code long} 值的二进制补码表示形式中最低位（最右边）的 1 位之后零位的数量；
+     *         否则，如果该值等于零，则返回 64。
      * @since 1.5
      */
     public static int numberOfTrailingZeros(long i) {
@@ -1340,13 +1261,11 @@ public final class Long extends Number implements Comparable<Long> {
     }
 
     /**
-     * Returns the number of one-bits in the two's complement binary
-     * representation of the specified {@code long} value.  This function is
-     * sometimes referred to as the <i>population count</i>.
+     * 返回指定 {@code long} 值的二进制补码表示形式中的 1 位的数量。
+     * 此功能有时被称为<i>填充计算</i>。
      *
-     * @param i the value whose bits are to be counted
-     * @return the number of one-bits in the two's complement binary
-     *     representation of the specified {@code long} value.
+     * @param i 要计算位数的值
+     * @return 返回指定 {@code long} 值的二进制补码表示形式的 1 位的数量。
      * @since 1.5
      */
      public static int bitCount(long i) {
@@ -1361,23 +1280,18 @@ public final class Long extends Number implements Comparable<Long> {
      }
 
     /**
-     * Returns the value obtained by rotating the two's complement binary
-     * representation of the specified {@code long} value left by the
-     * specified number of bits.  (Bits shifted out of the left hand, or
-     * high-order, side reenter on the right, or low-order.)
+     * 返回根据指定的位数循环左移指定的 {@code long} 值的二进制补码表示形式而得到的值。
+     * （位是从左边（即高位）移出，从右边（即低位）再进入）
      *
-     * <p>Note that left rotation with a negative distance is equivalent to
-     * right rotation: {@code rotateLeft(val, -distance) == rotateRight(val,
-     * distance)}.  Note also that rotation by any multiple of 64 is a
-     * no-op, so all but the last six bits of the rotation distance can be
-     * ignored, even if the distance is negative: {@code rotateLeft(val,
-     * distance) == rotateLeft(val, distance & 0x3F)}.
+     * <p>注意，使用负距离的左循环等同于右循环：
+     * {@code rotateLeft(val, -distance) == rotateRight(val, distance)}。
+     * 另请注意，使用 64 的倍数循环无效，
+     * 因此除了最后六位，所有循环距离都可以忽略，即使距离是负值：
+     * {@code rotateLeft(val, distance) == rotateLeft(val, distance & 0x3F)}。
      *
-     * @param i the value whose bits are to be rotated left
-     * @param distance the number of bit positions to rotate left
-     * @return the value obtained by rotating the two's complement binary
-     *     representation of the specified {@code long} value left by the
-     *     specified number of bits.
+     * @param i 需要循环左移的值
+     * @param distance 循环左移的位数
+     * @return 返回根据指定的位数循环左移指定的 {@code long} 值的二进制补码表示形式而得到的值。
      * @since 1.5
      */
     public static long rotateLeft(long i, int distance) {
@@ -1385,23 +1299,18 @@ public final class Long extends Number implements Comparable<Long> {
     }
 
     /**
-     * Returns the value obtained by rotating the two's complement binary
-     * representation of the specified {@code long} value right by the
-     * specified number of bits.  (Bits shifted out of the right hand, or
-     * low-order, side reenter on the left, or high-order.)
+     * 返回根据指定的位数循环右移指定的 {@code long} 值的二进制补码表示形式而得到的值。
+     * （位是从右边（即低位）移出，从左边（即高位）再进入）
      *
-     * <p>Note that right rotation with a negative distance is equivalent to
-     * left rotation: {@code rotateRight(val, -distance) == rotateLeft(val,
-     * distance)}.  Note also that rotation by any multiple of 64 is a
-     * no-op, so all but the last six bits of the rotation distance can be
-     * ignored, even if the distance is negative: {@code rotateRight(val,
-     * distance) == rotateRight(val, distance & 0x3F)}.
+     * <p>注意，使用负距离右循环等于左循环：
+     * {@code rotateRight(val, -distance) == rotateLeft(val, distance)}。
+     * 另请注意，使用 64 的倍数循环无效，
+     * 因此除了最后六位，所有循环距离都可以忽略，即使距离是负值：
+     * {@code rotateRight(val, distance) == rotateRight(val, distance & 0x3F)}。
      *
-     * @param i the value whose bits are to be rotated right
-     * @param distance the number of bit positions to rotate right
-     * @return the value obtained by rotating the two's complement binary
-     *     representation of the specified {@code long} value right by the
-     *     specified number of bits.
+     * @param i 需要循环右移的值
+     * @param distance 循环右移的位数
+     * @return 返回根据指定的位数循环右移指定的 {@code long} 值的二进制补码表示形式而得到的值。
      * @since 1.5
      */
     public static long rotateRight(long i, int distance) {
@@ -1409,13 +1318,10 @@ public final class Long extends Number implements Comparable<Long> {
     }
 
     /**
-     * Returns the value obtained by reversing the order of the bits in the
-     * two's complement binary representation of the specified {@code long}
-     * value.
+     * 返回通过反转指定 {@code long} 值的二进制补码表示形式中位的顺序而获得的值。
      *
-     * @param i the value to be reversed
-     * @return the value obtained by reversing order of the bits in the
-     *     specified {@code long} value.
+     * @param i 需要反转的值
+     * @return 返回通过反转指定 {@code long} 值中位的顺序而获得的值。
      * @since 1.5
      */
     public static long reverse(long i) {
@@ -1430,12 +1336,11 @@ public final class Long extends Number implements Comparable<Long> {
     }
 
     /**
-     * Returns the signum function of the specified {@code long} value.  (The
-     * return value is -1 if the specified value is negative; 0 if the
-     * specified value is zero; and 1 if the specified value is positive.)
+     * 返回指定 {@code long} 值的符号函数。
+     * （如果指定值为负，则返回值 -1；如果指定值为零，则返回 0；如果指定值为正，则返回 1。）
      *
-     * @param i the value whose signum is to be computed
-     * @return the signum function of the specified {@code long} value.
+     * @param i 需要计算符号函数的值
+     * @return 返回指定 {@code long} 值的符号函数。
      * @since 1.5
      */
     public static int signum(long i) {
@@ -1444,12 +1349,10 @@ public final class Long extends Number implements Comparable<Long> {
     }
 
     /**
-     * Returns the value obtained by reversing the order of the bytes in the
-     * two's complement representation of the specified {@code long} value.
+     * 返回通过反转指定 {@code long} 值的二进制补码表示形式中字节的顺序而获得的值。
      *
-     * @param i the value whose bytes are to be reversed
-     * @return the value obtained by reversing the bytes in the specified
-     *     {@code long} value.
+     * @param i 要反转字节的值
+     * @return 返回通过反转指定 {@code long} 值的字节而获得的值。
      * @since 1.5
      */
     public static long reverseBytes(long i) {
@@ -1459,11 +1362,11 @@ public final class Long extends Number implements Comparable<Long> {
     }
 
     /**
-     * Adds two {@code long} values together as per the + operator.
+     * 按 + 运算符将两个整数相加。
      *
-     * @param a the first operand
-     * @param b the second operand
-     * @return the sum of {@code a} and {@code b}
+     * @param a 第一个操作数
+     * @param b 第二个操作数
+     * @return {@code a} 和 {@code b} 的和
      * @see java.util.function.BinaryOperator
      * @since 1.8
      */
@@ -1472,12 +1375,12 @@ public final class Long extends Number implements Comparable<Long> {
     }
 
     /**
-     * Returns the greater of two {@code long} values
-     * as if by calling {@link Math#max(long, long) Math.max}.
+     * 返回两个 {@code int} 值的最大值，
+     * 通过调用 {@link Math#max(int, int) Math.max} 得到。
      *
-     * @param a the first operand
-     * @param b the second operand
-     * @return the greater of {@code a} and {@code b}
+     * @param a 第一个操作数
+     * @param b 第二个操作数
+     * @return {@code a} 和 {@code b} 的最大值
      * @see java.util.function.BinaryOperator
      * @since 1.8
      */
@@ -1486,12 +1389,12 @@ public final class Long extends Number implements Comparable<Long> {
     }
 
     /**
-     * Returns the smaller of two {@code long} values
-     * as if by calling {@link Math#min(long, long) Math.min}.
+     * 返回两个 {@code int} 值的最小值，
+     * 通过调用 {@link Math#min(int, int) Math.min} 得到。
      *
-     * @param a the first operand
-     * @param b the second operand
-     * @return the smaller of {@code a} and {@code b}
+     * @param a 第一个操作数
+     * @param b 第二个操作数
+     * @return {@code a} 和 {@code b} 的最小值
      * @see java.util.function.BinaryOperator
      * @since 1.8
      */
