@@ -40,22 +40,19 @@ import java.util.regex.Pattern;
 import java.util.regex.PatternSyntaxException;
 
 /**
- * The {@code String} class represents character strings. All
- * string literals in Java programs, such as {@code "abc"}, are
- * implemented as instances of this class.
+ * {@code String} 类代表字符串。Java 程序中的所有字符串字面值（如 {@code "abc"} ）都作为此类的实例实现。
  * <p>
- * Strings are constant; their values cannot be changed after they
- * are created. String buffers support mutable strings.
- * Because String objects are immutable they can be shared. For example:
+ * 字符串是常量；它们的值在创建之后不能更改。
+ * 字符串缓冲区支持可变的字符串。因为 String 对象是不可变的，所以可以共享。例如：
  * <blockquote><pre>
  *     String str = "abc";
  * </pre></blockquote><p>
- * is equivalent to:
+ * 等效于：
  * <blockquote><pre>
  *     char data[] = {'a', 'b', 'c'};
  *     String str = new String(data);
  * </pre></blockquote><p>
- * Here are some more examples of how strings can be used:
+ * 下面给出了一些如何使用字符串的更多示例：
  * <blockquote><pre>
  *     System.out.println("abc");
  *     String cde = "cde";
@@ -64,38 +61,26 @@ import java.util.regex.PatternSyntaxException;
  *     String d = cde.substring(1, 2);
  * </pre></blockquote>
  * <p>
- * The class {@code String} includes methods for examining
- * individual characters of the sequence, for comparing strings, for
- * searching strings, for extracting substrings, and for creating a
- * copy of a string with all characters translated to uppercase or to
- * lowercase. Case mapping is based on the Unicode Standard version
- * specified by the {@link java.lang.Character Character} class.
+ * {@code String} 类包括的方法可用于检查序列的
+ * 单个字符、比较字符串、搜索字符串、提取子字符串、创建字符串副本
+ * 并将所有字符全部转换为大写或小写。
+ * 大小写映射基于 {@link java.lang.Character Character} 类指定的 Unicode 标准版。
  * <p>
- * The Java language provides special support for the string
- * concatenation operator (&nbsp;+&nbsp;), and for conversion of
- * other objects to strings. String concatenation is implemented
- * through the {@code StringBuilder}(or {@code StringBuffer})
- * class and its {@code append} method.
- * String conversions are implemented through the method
- * {@code toString}, defined by {@code Object} and
- * inherited by all classes in Java. For additional information on
- * string concatenation and conversion, see Gosling, Joy, and Steele,
- * <i>The Java Language Specification</i>.
+ * Java 语言提供对字符串串联符号（"+"）以及将其他对象转换为字符串的特殊支持。
+ * 字符串串联是通过 {@code StringBuilder}
+ * （或 {@code StringBuffer}）类及其 {@code append} 方法实现的。
+ * 字符串转换是通过 toString 方法实现的，
+ * 该方法由 {@code Object} 类定义，并可被 Java 中的所有类继承。
+ * 有关字符串串联和转换的更多信息，
+ * 请参阅 Gosling、Joy 和 Steele 合著的<i>The Java Language Specification</i>。
  *
- * <p> Unless otherwise noted, passing a <tt>null</tt> argument to a constructor
- * or method in this class will cause a {@link NullPointerException} to be
- * thrown.
+ * <p> 除非另行说明，否则将<tt>null</tt>参数传递给
+ * 此类中的构造方法或方法将抛出 {@link NullPointerException}。
  *
- * <p>A {@code String} represents a string in the UTF-16 format
- * in which <em>supplementary characters</em> are represented by <em>surrogate
- * pairs</em> (see the section <a href="Character.html#unicode">Unicode
- * Character Representations</a> in the {@code Character} class for
- * more information).
- * Index values refer to {@code char} code units, so a supplementary
- * character uses two positions in a {@code String}.
- * <p>The {@code String} class provides methods for dealing with
- * Unicode code points (i.e., characters), in addition to those for
- * dealing with Unicode code units (i.e., {@code char} values).
+ * <p>{@code String} 表示一个 UTF-16 格式的字符串，其中的<em>增补字符</em>由<em>代理项对</em>表示
+ * （有关详细信息，请参阅 {@code Character} 类中的 <a href="Character.html#unicode">Unicode 字符表示形式</a>）。
+ * 索引值是指 {@code char} 代码单元，因此增补字符在 {@code String} 中占用两个位置。
+ * <p>{@code String} 类提供处理 Unicode 代码点（即字符）和 Unicode 代码单元（即 {@code char} 值）的方法。
  *
  * @author  Lee Boynton
  * @author  Arthur van Hoff
@@ -110,10 +95,10 @@ import java.util.regex.PatternSyntaxException;
 
 public final class String
     implements java.io.Serializable, Comparable<String>, CharSequence {
-    /** The value is used for character storage. */
+    /** 用来存储字符的值。 */
     private final char value[];
 
-    /** Cache the hash code for the string */
+    /** 字符串的哈希码 Cache */
     private int hash; // Default to 0
 
     /** use serialVersionUID from JDK 1.0.2 for interoperability */
@@ -130,23 +115,23 @@ public final class String
         new ObjectStreamField[0];
 
     /**
-     * Initializes a newly created {@code String} object so that it represents
-     * an empty character sequence.  Note that use of this constructor is
-     * unnecessary since Strings are immutable.
+     * 初始化一个新创建的 {@code String} 对象，
+     * 使其表示一个空字符序列。注意，由于 {@code String} 是不可变的，
+     * 所以无需使用此构造方法。
      */
     public String() {
         this.value = "".value;
     }
 
     /**
-     * Initializes a newly created {@code String} object so that it represents
-     * the same sequence of characters as the argument; in other words, the
-     * newly created string is a copy of the argument string. Unless an
-     * explicit copy of {@code original} is needed, use of this constructor is
-     * unnecessary since Strings are immutable.
+     * 初始化一个新创建的 {@code String} 对象，
+     * 使其表示一个与参数相同的字符序列；
+     * 换句话说，新创建的字符串是该参数字符串的副本。
+     * 由于 {@code String} 是不可变的，所以无需使用此构造方法，
+     * 除非需要 {@code original} 的显式副本。
      *
      * @param  original
-     *         A {@code String}
+     *         一个 {@code String}
      */
     public String(String original) {
         this.value = original.value;
@@ -154,38 +139,36 @@ public final class String
     }
 
     /**
-     * Allocates a new {@code String} so that it represents the sequence of
-     * characters currently contained in the character array argument. The
-     * contents of the character array are copied; subsequent modification of
-     * the character array does not affect the newly created string.
+     * 分配一个新的 {@code String}，
+     * 使其表示字符数组参数中当前包含的字符序列。
+     * 该字符数组的内容已被复制；
+     * 后续对字符数组的修改不会影响新创建的字符串。
      *
      * @param  value
-     *         The initial value of the string
+     *         字符串的初始值
      */
     public String(char value[]) {
         this.value = Arrays.copyOf(value, value.length);
     }
 
     /**
-     * Allocates a new {@code String} that contains characters from a subarray
-     * of the character array argument. The {@code offset} argument is the
-     * index of the first character of the subarray and the {@code count}
-     * argument specifies the length of the subarray. The contents of the
-     * subarray are copied; subsequent modification of the character array does
-     * not affect the newly created string.
+     * 分配一个新的 {@code String}，它包含取自字符数组参数一个子数组的字符。
+     * {@code offset} 参数是子数组第一个字符的索引，
+     * {@code count} 参数指定子数组的长度。
+     * 该子数组的内容已被复制；后续对字符数组的修改不会影响新创建的字符串。
      *
      * @param  value
-     *         Array that is the source of characters
+     *         作为字符源的数组
      *
      * @param  offset
-     *         The initial offset
+     *         初始偏移量
      *
      * @param  count
-     *         The length
+     *         长度
      *
      * @throws  IndexOutOfBoundsException
-     *          If the {@code offset} and {@code count} arguments index
-     *          characters outside the bounds of the {@code value} array
+     *          如果 {@code offset} 和 {@code count} 参数索引字符
+     *          超出 {@code value} 数组的范围
      */
     public String(char value[], int offset, int count) {
         if (offset < 0) {
@@ -208,30 +191,29 @@ public final class String
     }
 
     /**
-     * Allocates a new {@code String} that contains characters from a subarray
-     * of the <a href="Character.html#unicode">Unicode code point</a> array
-     * argument.  The {@code offset} argument is the index of the first code
-     * point of the subarray and the {@code count} argument specifies the
-     * length of the subarray.  The contents of the subarray are converted to
-     * {@code char}s; subsequent modification of the {@code int} array does not
-     * affect the newly created string.
+     * 分配一个新的 {@code String}，
+     * 它包含 <a href="Character.html#unicode"> Unicode 代码点</a> 数组参数一个子数组的字符。
+     * {@code offset} 参数是该子数组第一个代码点的索引，
+     * {@code count} 参数指定子数组的长度。
+     * 将该子数组的内容转换为 {@code char}；
+     * 后续对 {@code int} 数组的修改不会影响新创建的字符串
      *
      * @param  codePoints
-     *         Array that is the source of Unicode code points
+     *         作为 Unicode 代码点的源的数组
      *
      * @param  offset
-     *         The initial offset
+     *         初始偏移量
      *
      * @param  count
-     *         The length
+     *         长度
      *
      * @throws  IllegalArgumentException
-     *          If any invalid Unicode code point is found in {@code
-     *          codePoints}
+     *          如果在 {@code codePoints} 中发现任何无效的 Unicode 代码点
      *
      * @throws  IndexOutOfBoundsException
+     *          如果 {@code offset} 和 {@code count} 参数索引字符
      *          If the {@code offset} and {@code count} arguments index
-     *          characters outside the bounds of the {@code codePoints} array
+     *          超出 {@code codePoints} 数组的范围
      *
      * @since  1.5
      */
@@ -281,35 +263,31 @@ public final class String
     }
 
     /**
-     * Allocates a new {@code String} constructed from a subarray of an array
-     * of 8-bit integer values.
+     * 分配一个新的 {@code String}，它是根据一个 8 位整数值数组的子数组构造的。
      *
-     * <p> The {@code offset} argument is the index of the first byte of the
-     * subarray, and the {@code count} argument specifies the length of the
-     * subarray.
+     * <p> {@code offset} 参数是该子数组的第一个 byte 的索引，
+     * {@code count} 参数指定子数组的长度。
      *
-     * <p> Each {@code byte} in the subarray is converted to a {@code char} as
-     * specified in the method above.
+     * <p> 子数组中的每个 {@code byte} 都按照上述方法转换为 {@code char}。
      *
-     * @deprecated This method does not properly convert bytes into characters.
-     * As of JDK&nbsp;1.1, the preferred way to do this is via the
-     * {@code String} constructors that take a {@link
-     * java.nio.charset.Charset}, charset name, or that use the platform's
-     * default charset.
+     * @deprecated 该方法无法将字节正确地转换为字符。
+     * 从 JDK&nbsp;1.1 开始，完成该转换的首选方法是使用带有 {@link
+     * java.nio.charset.Charset}、字符集名称，
+     * 或使用平台默认字符集的 {@code String} 构造方法。
      *
      * @param  ascii
-     *         The bytes to be converted to characters
+     *         要转换为字符的 byte
      *
      * @param  hibyte
-     *         The top 8 bits of each 16-bit Unicode code unit
+     *         每个 16 位 Unicode 代码单元的前 8 位
      *
      * @param  offset
-     *         The initial offset
+     *         初始偏移量
      * @param  count
-     *         The length
+     *         长度
      *
      * @throws  IndexOutOfBoundsException
-     *          If the {@code offset} or {@code count} argument is invalid
+     *          如果 {@code offset} 或 {@code count} 参数无效
      *
      * @see  #String(byte[], int)
      * @see  #String(byte[], int, int, java.lang.String)
@@ -338,27 +316,25 @@ public final class String
     }
 
     /**
-     * Allocates a new {@code String} containing characters constructed from
-     * an array of 8-bit integer values. Each character <i>c</i>in the
-     * resulting string is constructed from the corresponding component
-     * <i>b</i> in the byte array such that:
+     * 分配一个新的 {@code String}，它包含根据一个 8 位整数值数组构造的字符。
+     * 所得字符串中的每个字符 <i>c</i> 都是根据 byte 数组中的相应组件 <i>b</i> 构造的，
+     * 如下所示：
      *
      * <blockquote><pre>
      *     <b><i>c</i></b> == (char)(((hibyte &amp; 0xff) &lt;&lt; 8)
      *                         | (<b><i>b</i></b> &amp; 0xff))
      * </pre></blockquote>
      *
-     * @deprecated  This method does not properly convert bytes into
-     * characters.  As of JDK&nbsp;1.1, the preferred way to do this is via the
-     * {@code String} constructors that take a {@link
-     * java.nio.charset.Charset}, charset name, or that use the platform's
-     * default charset.
+     * @deprecated 该方法无法将字节正确地转换为字符。
+     * 从 JDK&nbsp;1.1 开始，完成该转换的首选方法是使用带有 {@link
+     * java.nio.charset.Charset}、字符集名称，
+     * 或使用平台默认字符集的 {@code String} 构造方法。
      *
      * @param  ascii
-     *         The bytes to be converted to characters
+     *         要转换为字符的 byte
      *
      * @param  hibyte
-     *         The top 8 bits of each 16-bit Unicode code unit
+     *         每个 16 位 Unicode 代码单元的前 8 位
      *
      * @see  #String(byte[], int, int, java.lang.String)
      * @see  #String(byte[], int, int, java.nio.charset.Charset)
@@ -386,35 +362,31 @@ public final class String
     }
 
     /**
-     * Constructs a new {@code String} by decoding the specified subarray of
-     * bytes using the specified charset.  The length of the new {@code String}
-     * is a function of the charset, and hence may not be equal to the length
-     * of the subarray.
+     * 通过使用指定的字符集解码指定的 byte 子数组，构造一个新的 {@code String}。
+     * 新 {@code String} 的长度是一个字符集函数，因此可能不等于子数组的长度
      *
-     * <p> The behavior of this constructor when the given bytes are not valid
-     * in the given charset is unspecified.  The {@link
-     * java.nio.charset.CharsetDecoder} class should be used when more control
-     * over the decoding process is required.
+     * <p> 当给定 byte 在给定字符集中无效的情况下，此构造方法的行为没有指定。
+     * 如果需要对解码过程进行更多控制，
+     * 则应该使用 {@link java.nio.charset.CharsetDecoder} 类。
      *
      * @param  bytes
-     *         The bytes to be decoded into characters
+     *         要解码为字符的 byte
      *
      * @param  offset
-     *         The index of the first byte to decode
+     *         要解码的第一个 byte 的索引
      *
      * @param  length
-     *         The number of bytes to decode
+     *         要解码的 byte 数
 
      * @param  charsetName
-     *         The name of a supported {@linkplain java.nio.charset.Charset
-     *         charset}
+     *         受支持 {@linkplain java.nio.charset.Charset charset}
+     *         charset 的名称
      *
      * @throws  UnsupportedEncodingException
-     *          If the named charset is not supported
+     *          如果指定的字符集不受支持
      *
      * @throws  IndexOutOfBoundsException
-     *          If the {@code offset} and {@code length} arguments index
-     *          characters outside the bounds of the {@code bytes} array
+     *          如果 {@code offset} 和 {@code length} 参数索引字符超出 {@code bytes} 数组的范围
      *
      * @since  JDK1.1
      */
@@ -427,32 +399,28 @@ public final class String
     }
 
     /**
-     * Constructs a new {@code String} by decoding the specified subarray of
-     * bytes using the specified {@linkplain java.nio.charset.Charset charset}.
-     * The length of the new {@code String} is a function of the charset, and
-     * hence may not be equal to the length of the subarray.
+     * 通过使用指定的 {@linkplain java.nio.charset.Charset charset} 解码指定的 byte 子数组，
+     * 构造一个新的 {@code String}。
+     * 新 {@code String} 的长度是字符集的函数，因此可能不等于子数组的长度。
      *
-     * <p> This method always replaces malformed-input and unmappable-character
-     * sequences with this charset's default replacement string.  The {@link
-     * java.nio.charset.CharsetDecoder} class should be used when more control
-     * over the decoding process is required.
+     * <p> 此方法总是使用此字符集的默认替代字符串替代错误输入
+     * (malformed-input) 和不可映射字符 (unmappable-character) 序列。
+     * 如果需要对解码过程进行更多控制，则应该使用 {@link java.nio.charset.CharsetDecoder} 类。
      *
      * @param  bytes
-     *         The bytes to be decoded into characters
+     *         要解码为字符的 byte
      *
      * @param  offset
-     *         The index of the first byte to decode
+     *         要解码的第一个 byte 的索引
      *
      * @param  length
-     *         The number of bytes to decode
+     *         T要解码的 byte 数
      *
      * @param  charset
-     *         The {@linkplain java.nio.charset.Charset charset} to be used to
-     *         decode the {@code bytes}
+     *         用来解码 {@code bytes} 的 {@linkplain java.nio.charset.Charset charset}
      *
      * @throws  IndexOutOfBoundsException
-     *          If the {@code offset} and {@code length} arguments index
-     *          characters outside the bounds of the {@code bytes} array
+     *          如果 {@code offset} 和 {@code length} 参数索引字符超出 {@code bytes} 数组的范围
      *
      * @since  1.6
      */
@@ -464,25 +432,21 @@ public final class String
     }
 
     /**
-     * Constructs a new {@code String} by decoding the specified array of bytes
-     * using the specified {@linkplain java.nio.charset.Charset charset}.  The
-     * length of the new {@code String} is a function of the charset, and hence
-     * may not be equal to the length of the byte array.
+     * 通过使用指定的 {@linkplain java.nio.charset.Charset charset} 解码指定的 byte 数组，
+     * 构造一个新的 {@code String}。
+     * 新 {@code String} 的长度是字符集的函数，因此可能不等于 byte 数组的长度。
      *
-     * <p> The behavior of this constructor when the given bytes are not valid
-     * in the given charset is unspecified.  The {@link
-     * java.nio.charset.CharsetDecoder} class should be used when more control
-     * over the decoding process is required.
+     * <p> 当给定 byte 在给定字符集中无效的情况下，此构造方法的行为没有指定。
+     * 如果需要对解码过程进行更多控制，则应该使用 {@link java.nio.charset.CharsetDecoder} 类。
      *
      * @param  bytes
-     *         The bytes to be decoded into characters
+     *         要解码为字符的 byte
      *
      * @param  charsetName
-     *         The name of a supported {@linkplain java.nio.charset.Charset
-     *         charset}
+     *         受支持的 {@linkplain java.nio.charset.Charset charset} 的名称
      *
      * @throws  UnsupportedEncodingException
-     *          If the named charset is not supported
+     *          如果指定字符集不受支持
      *
      * @since  JDK1.1
      */
@@ -492,22 +456,18 @@ public final class String
     }
 
     /**
-     * Constructs a new {@code String} by decoding the specified array of
-     * bytes using the specified {@linkplain java.nio.charset.Charset charset}.
-     * The length of the new {@code String} is a function of the charset, and
-     * hence may not be equal to the length of the byte array.
+     * 通过使用指定的 {@linkplain java.nio.charset.Charset charset} 解码指定的 byte 数组，
+     * 构造一个新的 {@code String}。
+     * 新 {@code String} 的长度是字符集的函数，因此可能不等于 byte 数组的长度。
      *
-     * <p> This method always replaces malformed-input and unmappable-character
-     * sequences with this charset's default replacement string.  The {@link
-     * java.nio.charset.CharsetDecoder} class should be used when more control
-     * over the decoding process is required.
+     * <p> 此方法总是使用此字符集的默认替代字符串替代错误输入和不可映射字符序列。
+     * 如果需要对解码过程进行更多控制，则应该使用 {@link java.nio.charset.CharsetDecoder} 类。
      *
      * @param  bytes
-     *         The bytes to be decoded into characters
+     *         要解码为字符的 byte
      *
      * @param  charset
-     *         The {@linkplain java.nio.charset.Charset charset} to be used to
-     *         decode the {@code bytes}
+     *         要用来解码 {@code bytes} 的 {@linkplain java.nio.charset.Charset charset}
      *
      * @since  1.6
      */
@@ -516,28 +476,23 @@ public final class String
     }
 
     /**
-     * Constructs a new {@code String} by decoding the specified subarray of
-     * bytes using the platform's default charset.  The length of the new
-     * {@code String} is a function of the charset, and hence may not be equal
-     * to the length of the subarray.
+     * 通过使用平台的默认字符集解码指定的 byte 子数组，构造一个新的 {@code String}。
+     * 新 {@code String} 的长度是字符集的函数，因此可能不等于该子数组的长度。
      *
-     * <p> The behavior of this constructor when the given bytes are not valid
-     * in the default charset is unspecified.  The {@link
-     * java.nio.charset.CharsetDecoder} class should be used when more control
-     * over the decoding process is required.
+     * <p> 当给定 byte 在给定字符集中无效的情况下，此构造方法的行为没有指定。
+     * 如果需要对解码过程进行更多控制，则应该使用 {@link java.nio.charset.CharsetDecoder} 类。
      *
      * @param  bytes
-     *         The bytes to be decoded into characters
+     *         要解码为字符的 byte
      *
      * @param  offset
-     *         The index of the first byte to decode
+     *         要解码的第一个 byte 的索引
      *
      * @param  length
-     *         The number of bytes to decode
+     *         要解码的 byte 数
      *
      * @throws  IndexOutOfBoundsException
-     *          If the {@code offset} and the {@code length} arguments index
-     *          characters outside the bounds of the {@code bytes} array
+     *          如果 {@code offset} 和 {@code length} 参数索引字符超出 {@code bytes} 数组的范围
      *
      * @since  JDK1.1
      */
@@ -547,18 +502,14 @@ public final class String
     }
 
     /**
-     * Constructs a new {@code String} by decoding the specified array of bytes
-     * using the platform's default charset.  The length of the new {@code
-     * String} is a function of the charset, and hence may not be equal to the
-     * length of the byte array.
+     * 通过使用平台的默认字符集解码指定的 byte 子数组，构造一个新的 {@code String}。
+     * 新 {@code String} 的长度是字符集的函数，因此可能不等于该子数组的长度。
      *
-     * <p> The behavior of this constructor when the given bytes are not valid
-     * in the default charset is unspecified.  The {@link
-     * java.nio.charset.CharsetDecoder} class should be used when more control
-     * over the decoding process is required.
+     * <p> 当给定 byte 在给定字符集中无效的情况下，此构造方法的行为没有指定。
+     * 如果需要对解码过程进行更多控制，则应该使用 {@link java.nio.charset.CharsetDecoder} 类。
      *
      * @param  bytes
-     *         The bytes to be decoded into characters
+     *         要解码为字符的 byte
      *
      * @since  JDK1.1
      */
@@ -567,10 +518,8 @@ public final class String
     }
 
     /**
-     * Allocates a new string that contains the sequence of characters
-     * currently contained in the string buffer argument. The contents of the
-     * string buffer are copied; subsequent modification of the string buffer
-     * does not affect the newly created string.
+     * 分配一个新的字符串，它包含字符串缓冲区参数中当前包含的字符序列。
+     * 该字符串缓冲区的内容已被复制，后续对它的修改不会影响新创建的字符串。
      *
      * @param  buffer
      *         A {@code StringBuffer}
@@ -582,17 +531,14 @@ public final class String
     }
 
     /**
-     * Allocates a new string that contains the sequence of characters
-     * currently contained in the string builder argument. The contents of the
-     * string builder are copied; subsequent modification of the string builder
-     * does not affect the newly created string.
+     * 分配一个新的字符串，它包含字符串生成器参数中当前包含的字符序列。
+     * 该字符串生成器的内容已被复制，后续对它的修改不会影响新创建的字符串。
      *
-     * <p> This constructor is provided to ease migration to {@code
-     * StringBuilder}. Obtaining a string from a string builder via the {@code
-     * toString} method is likely to run faster and is generally preferred.
+     * <p> 提供此构造方法是为了简化到 {@code StringBuilder} 的迁移。
+     * 通过 {@code toString} 方法从字符串生成器中获取字符串可能运行的更快，因此通常作为首选。
      *
      * @param   builder
-     *          A {@code StringBuilder}
+     *          一个 {@code StringBuilder}
      *
      * @since  1.5
      */
@@ -601,6 +547,10 @@ public final class String
     }
 
     /*
+    * 打包私有构造函数，共享值数组以获得速度。
+    * 该构造函数期望使用总是 share==true 来调用。
+    * 我们需要一个单独的构造函数，
+    * 因为我们已经有了一个公共的构造函数 String(char[])，它可以复制给定的char[]。
     * Package private constructor which shares value array for speed.
     * this constructor is always expected to be called with share==true.
     * a separate constructor is needed because we already have a public
@@ -612,22 +562,20 @@ public final class String
     }
 
     /**
-     * Returns the length of this string.
-     * The length is equal to the number of <a href="Character.html#unicode">Unicode
-     * code units</a> in the string.
+     * 返回此字符串的长度。
+     * 长度等于字符串中 <a href="Character.html#unicode">Unicode 代码单元</a> 的数量。
      *
-     * @return  the length of the sequence of characters represented by this
-     *          object.
+     * @return  此对象表示的字符序列的长度。
      */
     public int length() {
         return value.length;
     }
 
     /**
+     * 当且仅当 {@link #length()} 为 {@code 0} 时返回 {@code true}。
      * Returns {@code true} if, and only if, {@link #length()} is {@code 0}.
      *
-     * @return {@code true} if {@link #length()} is {@code 0}, otherwise
-     * {@code false}
+     * @return 如果 {@link #length()} 为 0，则返回 {@code true}；否则返回 {@code false}。
      *
      * @since 1.6
      */
@@ -636,22 +584,17 @@ public final class String
     }
 
     /**
-     * Returns the {@code char} value at the
-     * specified index. An index ranges from {@code 0} to
-     * {@code length() - 1}. The first {@code char} value of the sequence
-     * is at index {@code 0}, the next at index {@code 1},
-     * and so on, as for array indexing.
+     * 返回指定索引处的 {@code char} 值。索引范围为从 {@code 0} 到 {@code length() - 1}。
+     * 序列的第一个 {@code char} 值位于索引 {@code 0} 处，第二个位于索引 {@code 1} 处，
+     * 依此类推，这类似于数组索引。
      *
-     * <p>If the {@code char} value specified by the index is a
-     * <a href="Character.html#unicode">surrogate</a>, the surrogate
-     * value is returned.
+     * <p>如果索引指定的 {@code char} 值是 <a href="Character.html#unicode">代理项</a>，
+     * 则返回代理项值。
      *
-     * @param      index   the index of the {@code char} value.
-     * @return     the {@code char} value at the specified index of this string.
-     *             The first {@code char} value is at index {@code 0}.
-     * @exception  IndexOutOfBoundsException  if the {@code index}
-     *             argument is negative or not less than the length of this
-     *             string.
+     * @param      index   {@code char} 值的索引v。
+     * @return     此字符串指定索引处的 {@code char} 值。
+     *             第一个 {@code char} 值位于索引 {@code 0} 处。
+     * @exception  IndexOutOfBoundsException  如果 {@code index} 参数为负或小于此字符串的长度。
      */
     public char charAt(int index) {
         if ((index < 0) || (index >= value.length)) {
