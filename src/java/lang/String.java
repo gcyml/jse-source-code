@@ -604,25 +604,16 @@ public final class String
     }
 
     /**
-     * Returns the character (Unicode code point) at the specified
-     * index. The index refers to {@code char} values
-     * (Unicode code units) and ranges from {@code 0} to
-     * {@link #length()}{@code  - 1}.
+     * 返回指定索引处的字符（Unicode 代码点）。
+     * 索引引用 {@code char} 值（Unicode 代码单元），其范围从从 {@code 0} 到 {@link #length()}{@code  - 1}。
      *
-     * <p> If the {@code char} value specified at the given index
-     * is in the high-surrogate range, the following index is less
-     * than the length of this {@code String}, and the
-     * {@code char} value at the following index is in the
-     * low-surrogate range, then the supplementary code point
-     * corresponding to this surrogate pair is returned. Otherwise,
-     * the {@code char} value at the given index is returned.
+     * <p> 如果给定索引指定的 {@code char} 值属于高代理项范围，则后续索引小于此 {@code String} 的长度；
+     * 如果后续索引处的 {@code char} 值属于低代理项范围，则返回该代理项对相应的增补代码点。
+     * 否则，返回给定索引处的 {@code char} 值。
      *
-     * @param      index the index to the {@code char} values
-     * @return     the code point value of the character at the
-     *             {@code index}
-     * @exception  IndexOutOfBoundsException  if the {@code index}
-     *             argument is negative or not less than the length of this
-     *             string.
+     * @param      index {@code char} 值的索引
+     * @return     {@code index} 处字符的代码点值
+     * @exception  IndexOutOfBoundsException   如果 {@code index} 参数为负或小于此字符串的长度。
      * @since      1.5
      */
     public int codePointAt(int index) {
@@ -633,25 +624,20 @@ public final class String
     }
 
     /**
-     * Returns the character (Unicode code point) before the specified
-     * index. The index refers to {@code char} values
-     * (Unicode code units) and ranges from {@code 1} to {@link
-     * CharSequence#length() length}.
+     * 返回指定索引之前的字符（Unicode 代码点）。
+     * 索引引用 {@code char} 值（Unicode 代码单元），
+     * 其范围从从 {@code 1} 到 {@link CharSequence#length() length}。
      *
-     * <p> If the {@code char} value at {@code (index - 1)}
-     * is in the low-surrogate range, {@code (index - 2)} is not
-     * negative, and the {@code char} value at {@code (index -
-     * 2)} is in the high-surrogate range, then the
-     * supplementary code point value of the surrogate pair is
-     * returned. If the {@code char} value at {@code index -
-     * 1} is an unpaired low-surrogate or a high-surrogate, the
-     * surrogate value is returned.
+     * <p> 如果 {@code (index - 1)} 处的 {@code char} 值属于低代理项范围，
+     * 则 {@code (index - 2)} 为非负；
+     * 如果 {@code (index - 2)} 处的 {@code char} 值属于高低理项范围，
+     * 则返回该代理项对的增补代码点值。
+     * 如果 {@code index - 1} 处的 {@code char} 值是未配对的低（高）代理项，
+     * 则返回代理项值。
      *
-     * @param     index the index following the code point that should be returned
-     * @return    the Unicode code point value before the given index.
-     * @exception IndexOutOfBoundsException if the {@code index}
-     *            argument is less than 1 or greater than the length
-     *            of this string.
+     * @param     index 应返回的代码点之后的索引
+     * @return    给定索引前面的 Unicode 代码点。
+     * @exception IndexOutOfBoundsException 如果 {@code index} 参数小于 1 或大于此字符串的长度。
      * @since     1.5
      */
     public int codePointBefore(int index) {
@@ -663,24 +649,16 @@ public final class String
     }
 
     /**
-     * Returns the number of Unicode code points in the specified text
-     * range of this {@code String}. The text range begins at the
-     * specified {@code beginIndex} and extends to the
-     * {@code char} at index {@code endIndex - 1}. Thus the
-     * length (in {@code char}s) of the text range is
-     * {@code endIndex-beginIndex}. Unpaired surrogates within
-     * the text range count as one code point each.
+     * 返回此 {@code String} 的指定文本范围中的 Unicode 代码点数。
+     * 文本范围始于指定的 {@code beginIndex}，一直到索引 {@code endIndex - 1} 处的 {@code char}。
+     * 因此，该文本范围的长度（用 {@code char} 表示）是 {@code endIndex-beginIndex}。
+     * 该文本范围内每个未配对的代理项计为一个代码点。
      *
-     * @param beginIndex the index to the first {@code char} of
-     * the text range.
-     * @param endIndex the index after the last {@code char} of
-     * the text range.
-     * @return the number of Unicode code points in the specified text
-     * range
-     * @exception IndexOutOfBoundsException if the
-     * {@code beginIndex} is negative, or {@code endIndex}
-     * is larger than the length of this {@code String}, or
-     * {@code beginIndex} is larger than {@code endIndex}.
+     * @param beginIndex 文本范围的第一个 {@code char} 的索引。
+     * @param endIndex 文本范围的最后一个 {@code char} 之后的索引。
+     * @return 指定文本范围中 Unicode 代码点的数量
+     * @exception IndexOutOfBoundsException 如果 {@code beginIndex} 为负，
+     * 或 {@code endIndex} 大于此 {@code String} 的长度，或 {@code beginIndex} 大于 {@code endIndex}。
      * @since  1.5
      */
     public int codePointCount(int beginIndex, int endIndex) {
@@ -691,23 +669,17 @@ public final class String
     }
 
     /**
-     * Returns the index within this {@code String} that is
-     * offset from the given {@code index} by
-     * {@code codePointOffset} code points. Unpaired surrogates
-     * within the text range given by {@code index} and
-     * {@code codePointOffset} count as one code point each.
+     * 返回此 {@code String} 中从给定的 {@code index} 处偏移 {@code codePointOffset} 个代码点的索引。
+     * 文本范围内由 {@code index} 和 {@code codePointOffset} 给定的未配对代理项各计为一个代码点。
      *
-     * @param index the index to be offset
-     * @param codePointOffset the offset in code points
-     * @return the index within this {@code String}
-     * @exception IndexOutOfBoundsException if {@code index}
-     *   is negative or larger then the length of this
-     *   {@code String}, or if {@code codePointOffset} is positive
-     *   and the substring starting with {@code index} has fewer
-     *   than {@code codePointOffset} code points,
-     *   or if {@code codePointOffset} is negative and the substring
-     *   before {@code index} has fewer than the absolute value
-     *   of {@code codePointOffset} code points.
+     * @param index 要偏移的索引
+     * @param codePointOffset 代码点中的偏移量
+     * @return {@code String} 的索引
+     * @exception IndexOutOfBoundsException 如果 {@code index} 为负或大于此 {@code String} 的长度；
+     * 或者 {@code codePointOffset} 为正，
+     * 且以 {@code index} 开头子字符串的代码点比 {@code codePointOffset} 少；
+     * 如果 {@code codePointOffset} 为负，
+     * 且 {@code index} 前面子字符串的代码点比 {@code codePointOffset} 的绝对值少。
      * @since 1.5
      */
     public int offsetByCodePoints(int index, int codePointOffset) {
@@ -719,42 +691,34 @@ public final class String
     }
 
     /**
-     * Copy characters from this string into dst starting at dstBegin.
-     * This method doesn't perform any range checking.
+     * 将该字符串中的字符从 dstBegin 开始复制到 dst 中。
+     * 此方法不执行任何范围检查
      */
     void getChars(char dst[], int dstBegin) {
         System.arraycopy(value, 0, dst, dstBegin, value.length);
     }
 
     /**
-     * Copies characters from this string into the destination character
-     * array.
+     * 将字符从此字符串复制到目标字符数组。
      * <p>
-     * The first character to be copied is at index {@code srcBegin};
-     * the last character to be copied is at index {@code srcEnd-1}
-     * (thus the total number of characters to be copied is
-     * {@code srcEnd-srcBegin}). The characters are copied into the
-     * subarray of {@code dst} starting at index {@code dstBegin}
-     * and ending at index:
+     * 要复制的第一个字符位于索引 {@code srcBegin} 处；
+     * 要复制的最后一个字符位于索引 {@code srcEnd-1} 处
+     * （因此要复制的字符总数是 {@code srcEnd-srcBegin}）。
+     * 要复制到 dst 子数组的字符从索引 {@code dstBegin} 处开始，并结束于索引：
      * <blockquote><pre>
      *     dstBegin + (srcEnd-srcBegin) - 1
      * </pre></blockquote>
      *
-     * @param      srcBegin   index of the first character in the string
-     *                        to copy.
-     * @param      srcEnd     index after the last character in the string
-     *                        to copy.
-     * @param      dst        the destination array.
-     * @param      dstBegin   the start offset in the destination array.
-     * @exception IndexOutOfBoundsException If any of the following
-     *            is true:
-     *            <ul><li>{@code srcBegin} is negative.
-     *            <li>{@code srcBegin} is greater than {@code srcEnd}
-     *            <li>{@code srcEnd} is greater than the length of this
-     *                string
-     *            <li>{@code dstBegin} is negative
-     *            <li>{@code dstBegin+(srcEnd-srcBegin)} is larger than
-     *                {@code dst.length}</ul>
+     * @param      srcBegin   字符串中要复制的第一个字符的索引。
+     * @param      srcEnd     字符串中要复制的最后一个字符之后的索引。
+     * @param      dst        目标数组。
+     * @param      dstBegin   目标数组中的起始偏移量。
+     * @exception IndexOutOfBoundsException 如果下列任何一项为 true：
+     *            <ul><li>{@code srcBegin} 为负。
+     *            <li>{@code srcBegin} 大于 {@code srcEnd}
+     *            <li>{@code srcEnd} 大于此字符串的长度
+     *            <li>{@code dstBegin} 为负
+     *            <li>{@code dstBegin+(srcEnd-srcBegin)} 大于 {@code dst.length}</ul>
      */
     public void getChars(int srcBegin, int srcEnd, char dst[], int dstBegin) {
         if (srcBegin < 0) {
@@ -770,46 +734,41 @@ public final class String
     }
 
     /**
-     * Copies characters from this string into the destination byte array. Each
-     * byte receives the 8 low-order bits of the corresponding character. The
-     * eight high-order bits of each character are not copied and do not
-     * participate in the transfer in any way.
+     * 将字符从此字符串复制到目标 byte 数组中。
+     * 每个 byte 接收相应字符的 8 个低位。不复制每个字符的高位，它们不参与任何方式的转换。
      *
-     * <p> The first character to be copied is at index {@code srcBegin}; the
-     * last character to be copied is at index {@code srcEnd-1}.  The total
-     * number of characters to be copied is {@code srcEnd-srcBegin}. The
-     * characters, converted to bytes, are copied into the subarray of {@code
-     * dst} starting at index {@code dstBegin} and ending at index:
-     *
+     * <p>要复制的第一个字符位于索引 {@code srcBegin} 处；
+     * 要复制的最后一个字符位于索引 {@code srcEnd-1} 处
+     * （因此要复制的字符总数是 {@code srcEnd-srcBegin}）。
+     * 要复制到 dst 子数组的字符从索引 {@code dstBegin} 处开始，并结束于索引：
      * <blockquote><pre>
      *     dstBegin + (srcEnd-srcBegin) - 1
      * </pre></blockquote>
      *
-     * @deprecated  This method does not properly convert characters into
-     * bytes.  As of JDK&nbsp;1.1, the preferred way to do this is via the
-     * {@link #getBytes()} method, which uses the platform's default charset.
+     * @deprecated  该方法无法将字符正确转换为字节。
+     * 从 JDK&nbsp;1.1 起，完成该转换的首选方法是通过 {@link #getBytes()} 方法，
+     * 该方法使用平台的默认字符集。
      *
      * @param  srcBegin
-     *         Index of the first character in the string to copy
+     *         字符串中要复制的第一个字符的索引
      *
      * @param  srcEnd
-     *         Index after the last character in the string to copy
+     *         字符串中要复制的第一个字符的索引
      *
      * @param  dst
-     *         The destination array
+     *         目标数组
      *
      * @param  dstBegin
-     *         The start offset in the destination array
+     *         目标数组中的起始偏移量
      *
      * @throws  IndexOutOfBoundsException
-     *          If any of the following is true:
+     *          如果下列任何一项为 true：
      *          <ul>
-     *            <li> {@code srcBegin} is negative
-     *            <li> {@code srcBegin} is greater than {@code srcEnd}
-     *            <li> {@code srcEnd} is greater than the length of this String
-     *            <li> {@code dstBegin} is negative
-     *            <li> {@code dstBegin+(srcEnd-srcBegin)} is larger than {@code
-     *                 dst.length}
+     *            <li>{@code srcBegin} 为负。
+     *            <li>{@code srcBegin} 大于 {@code srcEnd}
+     *            <li>{@code srcEnd} 大于此字符串的长度
+     *            <li>{@code dstBegin} 为负
+     *            <li>{@code dstBegin+(srcEnd-srcBegin)} 大于 {@code dst.length}
      *          </ul>
      */
     @Deprecated
@@ -836,22 +795,19 @@ public final class String
     }
 
     /**
-     * Encodes this {@code String} into a sequence of bytes using the named
-     * charset, storing the result into a new byte array.
+     * 使用指定的字符集将此 {@code String} 编码为 byte 序列，
+     * 并将结果存储到一个新的 byte 数组中。
      *
-     * <p> The behavior of this method when this string cannot be encoded in
-     * the given charset is unspecified.  The {@link
-     * java.nio.charset.CharsetEncoder} class should be used when more control
-     * over the encoding process is required.
+     * <p> 当此字符串不能使用给定的字符集编码时，此方法的行为没有指定。
+     * 如果需要对编码过程进行更多控制，则应该使用 {@link java.nio.charset.CharsetEncoder} 类。
      *
      * @param  charsetName
-     *         The name of a supported {@linkplain java.nio.charset.Charset
-     *         charset}
+     *          受支持的 {@linkplain java.nio.charset.Charset charset} 名称
      *
-     * @return  The resultant byte array
+     * @return  所得 byte 数组
      *
      * @throws  UnsupportedEncodingException
-     *          If the named charset is not supported
+     *           如果指定的字符集不受支持
      *
      * @since  JDK1.1
      */
@@ -862,20 +818,16 @@ public final class String
     }
 
     /**
-     * Encodes this {@code String} into a sequence of bytes using the given
-     * {@linkplain java.nio.charset.Charset charset}, storing the result into a
-     * new byte array.
+     * 使用给定的 {@linkplain java.nio.charset.Charset charset}
+     * 将此 {@code String} 编码到 byte 序列，并将结果存储到新的 byte 数组。
      *
-     * <p> This method always replaces malformed-input and unmappable-character
-     * sequences with this charset's default replacement byte array.  The
-     * {@link java.nio.charset.CharsetEncoder} class should be used when more
-     * control over the encoding process is required.
+     * <p> 此方法总是使用此字符集的默认替代 byte 数组替代错误输入和不可映射字符序列。
+     * 如果需要对编码过程进行更多控制，则应该使用 {@link java.nio.charset.CharsetEncoder} 类。
      *
      * @param  charset
-     *         The {@linkplain java.nio.charset.Charset} to be used to encode
-     *         the {@code String}
+     *         用于编码 {@code String} 的 {@linkplain java.nio.charset.Charset}
      *
-     * @return  The resultant byte array
+     * @return  所得 byte 数组
      *
      * @since  1.6
      */
@@ -885,15 +837,13 @@ public final class String
     }
 
     /**
-     * Encodes this {@code String} into a sequence of bytes using the
-     * platform's default charset, storing the result into a new byte array.
+     * 使用平台的默认字符集将此 {@code String} 编码为 byte 序列，
+     * 并将结果存储到一个新的 byte 数组中。
      *
-     * <p> The behavior of this method when this string cannot be encoded in
-     * the default charset is unspecified.  The {@link
-     * java.nio.charset.CharsetEncoder} class should be used when more control
-     * over the encoding process is required.
+     * <p> 当此字符串不能使用给定的字符集编码时，此方法的行为没有指定。
+     * 如果需要对编码过程进行更多控制，则应该使用 {@link java.nio.charset.CharsetEncoder} 类。
      *
-     * @return  The resultant byte array
+     * @return  所得 byte 数组
      *
      * @since      JDK1.1
      */
@@ -902,16 +852,14 @@ public final class String
     }
 
     /**
-     * Compares this string to the specified object.  The result is {@code
-     * true} if and only if the argument is not {@code null} and is a {@code
-     * String} object that represents the same sequence of characters as this
-     * object.
+     * 将此字符串与指定的对象比较。当且仅当该参数不为 {@code null}，
+     * 并且是与此对象表示相同字符序列的 {@code String} 对象时，结果才为 {@code true}。
      *
      * @param  anObject
-     *         The object to compare this {@code String} against
+     *         与此 {@code String} 进行比较的对象。
      *
-     * @return  {@code true} if the given object represents a {@code String}
-     *          equivalent to this string, {@code false} otherwise
+     * @return  如果给定对象表示的 {@code String} 与此 {@code String} 相等，
+     * 则返回 {@code true}；否则返回 {@code false}。
      *
      * @see  #compareTo(String)
      * @see  #equalsIgnoreCase(String)
@@ -939,17 +887,15 @@ public final class String
     }
 
     /**
-     * Compares this string to the specified {@code StringBuffer}.  The result
-     * is {@code true} if and only if this {@code String} represents the same
-     * sequence of characters as the specified {@code StringBuffer}. This method
-     * synchronizes on the {@code StringBuffer}.
+     * 将此字符串与指定的 {@code StringBuffer} 比较。
+     * 当且仅当此 {@code String} 与指定 {@code StringBuffer} 表示相同的字符序列时，
+     * 结果才为 {@code true}。
      *
      * @param  sb
-     *         The {@code StringBuffer} to compare this {@code String} against
+     *         要与此 {@code String} 比较的 {@code StringBuffer}
      *
-     * @return  {@code true} if this {@code String} represents the same
-     *          sequence of characters as the specified {@code StringBuffer},
-     *          {@code false} otherwise
+     * @return  如果此 {@code String} 与指定 {@code StringBuffer} 表示相同的字符序列，
+     * 则返回 {@code true}；否则返回 {@code false}。
      *
      * @since  1.4
      */
@@ -973,18 +919,14 @@ public final class String
     }
 
     /**
-     * Compares this string to the specified {@code CharSequence}.  The
-     * result is {@code true} if and only if this {@code String} represents the
-     * same sequence of char values as the specified sequence. Note that if the
-     * {@code CharSequence} is a {@code StringBuffer} then the method
-     * synchronizes on it.
+     * 将此字符串与指定的 {@code CharSequence} 比较。
+     * 当且仅当此 {@code String} 与指定序列表示相同的 char 值序列时，结果才为 {@code true}。
      *
      * @param  cs
-     *         The sequence to compare this {@code String} against
+     *         要与此 {@code String} 比较的序列
      *
-     * @return  {@code true} if this {@code String} represents the same
-     *          sequence of char values as the specified sequence, {@code
-     *          false} otherwise
+     * @return  如果此 {@code String} 与指定序列表示相同的 char 值序列，
+     * 则返回 {@code true}；否则返回 {@code false}。
      *
      * @since  1.5
      */
@@ -1018,30 +960,24 @@ public final class String
     }
 
     /**
-     * Compares this {@code String} to another {@code String}, ignoring case
-     * considerations.  Two strings are considered equal ignoring case if they
-     * are of the same length and corresponding characters in the two strings
-     * are equal ignoring case.
+     * 将此 {@code String} 与另一个 {@code String} 比较，不考虑大小写。
+     * 如果两个字符串的长度相同，并且其中的相应字符都相等（忽略大小写），则认为这两个字符串是相等的。
      *
-     * <p> Two characters {@code c1} and {@code c2} are considered the same
-     * ignoring case if at least one of the following is true:
+     * <p> 在忽略大小写的情况下，如果下列至少一项为 true，
+     * 则认为 {@code c1} 和 {@code c2} 这两个字符相同：
      * <ul>
-     *   <li> The two characters are the same (as compared by the
-     *        {@code ==} operator)
-     *   <li> Applying the method {@link
-     *        java.lang.Character#toUpperCase(char)} to each character
-     *        produces the same result
-     *   <li> Applying the method {@link
-     *        java.lang.Character#toLowerCase(char)} to each character
-     *        produces the same result
+     *   <li> 这两个字符相同（使用 {@code ==} 运算符进行比较）
+     *   <li> 对每个字符应用方法 {@link java.lang.Character#toUpperCase(char)}
+     *        生成相同的结果
+     *   <li> 对每个字符应用方法 {@link java.lang.Character#toLowerCase(char)}
+     *        生成相同的结果
      * </ul>
      *
      * @param  anotherString
-     *         The {@code String} to compare this {@code String} against
+     *         与此 {@code String} 进行比较的{@code String}
      *
-     * @return  {@code true} if the argument is not {@code null} and it
-     *          represents an equivalent {@code String} ignoring case; {@code
-     *          false} otherwise
+     * @return  如果参数不为 {@code null}，且这两个 {@code String} 相等（忽略大小写），
+     * 则返回 {@code true}；否则返回 {@code false}。
      *
      * @see  #equals(Object)
      */
@@ -1053,45 +989,33 @@ public final class String
     }
 
     /**
-     * Compares two strings lexicographically.
-     * The comparison is based on the Unicode value of each character in
-     * the strings. The character sequence represented by this
-     * {@code String} object is compared lexicographically to the
-     * character sequence represented by the argument string. The result is
-     * a negative integer if this {@code String} object
-     * lexicographically precedes the argument string. The result is a
-     * positive integer if this {@code String} object lexicographically
-     * follows the argument string. The result is zero if the strings
-     * are equal; {@code compareTo} returns {@code 0} exactly when
-     * the {@link #equals(Object)} method would return {@code true}.
+     * 按字典顺序比较两个字符串。该比较基于字符串中各个字符的 Unicode 值。
+     * 按字典顺序将此 {@code String} 对象表示的字符序列与参数字符串所表示的字符序列进行比较。
+     * 如果按字典顺序此 {@code String} 对象位于参数字符串之前，则比较结果为一个负整数。
+     * 如果按字典顺序此 {@code String} 对象位于参数字符串之后，则比较结果为一个正整数。
+     * 如果这两个字符串相等，则结果为零；
+     * {@code compareTo} 只在方法 {@link #equals(Object)} 返回 {@code true} 时才返回 {@code 0}。
      * <p>
-     * This is the definition of lexicographic ordering. If two strings are
-     * different, then either they have different characters at some index
-     * that is a valid index for both strings, or their lengths are different,
-     * or both. If they have different characters at one or more index
-     * positions, let <i>k</i> be the smallest such index; then the string
-     * whose character at position <i>k</i> has the smaller value, as
-     * determined by using the &lt; operator, lexicographically precedes the
-     * other string. In this case, {@code compareTo} returns the
-     * difference of the two character values at position {@code k} in
-     * the two string -- that is, the value:
+     * 这是字典排序的定义。
+     * 如果这两个字符串不同，那么它们要么在某个索引处的字符不同（该索引对二者均为有效索引），
+     * 要么长度不同，或者同时具备这两种情况。
+     * 如果它们在一个或多个索引位置上的字符不同，假设 <i>k</i> 是这类索引的最小值；
+     * 则在位置 <i>k</i> 上具有较小值的那个字符串（使用 &lt; 运算符确定），
+     * 其字典顺序在其他字符串之前。
+     * 在这种情况下，{@code compareTo} 返回这两个字符串在位置 {@code k} 处两个char 值的差，即值：
      * <blockquote><pre>
      * this.charAt(k)-anotherString.charAt(k)
      * </pre></blockquote>
-     * If there is no index position at which they differ, then the shorter
-     * string lexicographically precedes the longer string. In this case,
-     * {@code compareTo} returns the difference of the lengths of the
-     * strings -- that is, the value:
+     * 如果没有字符不同的索引位置，则较短字符串的字典顺序在较长字符串之前。
+     * 在这种情况下， {@code compareTo} 返回这两个字符串长度的差，即值：
      * <blockquote><pre>
      * this.length()-anotherString.length()
      * </pre></blockquote>
      *
-     * @param   anotherString   the {@code String} to be compared.
-     * @return  the value {@code 0} if the argument string is equal to
-     *          this string; a value less than {@code 0} if this string
-     *          is lexicographically less than the string argument; and a
-     *          value greater than {@code 0} if this string is
-     *          lexicographically greater than the string argument.
+     * @param   anotherString   要比较的 {@code String}。
+     * @return  如果参数字符串等于此字符串，则返回值 {@code 0}；
+     *           如果此字符串按字典顺序小于字符串参数，则返回一个小于 {@code 0} 的值；
+     *           如果此字符串按字典顺序大于字符串参数，则返回一个大于 {@code 0} 的值。
      */
     public int compareTo(String anotherString) {
         int len1 = value.length;
