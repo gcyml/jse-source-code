@@ -1037,13 +1037,12 @@ public final class String
     }
 
     /**
-     * A Comparator that orders {@code String} objects as by
-     * {@code compareToIgnoreCase}. This comparator is serializable.
+     * 一个对 {@code String} 对象进行排序的 Comparator，
+     * 作用与 {@code compareToIgnoreCase} 相同。此比较器是可序列化的。
      * <p>
-     * Note that this Comparator does <em>not</em> take locale into account,
-     * and will result in an unsatisfactory ordering for certain locales.
-     * The java.text package provides <em>Collators</em> to allow
-     * locale-sensitive ordering.
+     * 注意，Comparator <em>不</em> 考虑语言环境，
+     * 因此可能导致在某些语言环境中的排序效果不理想。
+     * java.text 包提供 <em>Collators</em> 完成与语言环境有关的排序。
      *
      * @see     java.text.Collator#compare(String, String)
      * @since   1.2
@@ -1083,22 +1082,18 @@ public final class String
     }
 
     /**
-     * Compares two strings lexicographically, ignoring case
-     * differences. This method returns an integer whose sign is that of
-     * calling {@code compareTo} with normalized versions of the strings
-     * where case differences have been eliminated by calling
-     * {@code Character.toLowerCase(Character.toUpperCase(character))} on
-     * each character.
+     * 按字典顺序比较两个字符串，不考虑大小写。
+     * 此方法返回一个整数，其符号与使用规范化的字符串调用 {@code compareTo} 所得符号相同，
+     * 规范化字符串的大小写差异已通过对每个字符调用
+     * {@code Character.toLowerCase(Character.toUpperCase(character))}
+     * 消除。
      * <p>
-     * Note that this method does <em>not</em> take locale into account,
-     * and will result in an unsatisfactory ordering for certain locales.
-     * The java.text package provides <em>collators</em> to allow
-     * locale-sensitive ordering.
+     * 注意，此方法不 考虑语言环境，因此可能导致在某些语言环境中的排序效果不理想。
+     * java.text 包提供 <em>collators</em> 完成与语言环境有关的排序。
      *
-     * @param   str   the {@code String} to be compared.
-     * @return  a negative integer, zero, or a positive integer as the
-     *          specified String is greater than, equal to, or less
-     *          than this String, ignoring case considerations.
+     * @param   str   要比较的 {@code String}。
+     * @return  根据指定 String 大于、等于还是小于此 String（不考虑大小写），
+     *          分别返回一个负整数、0 或一个正整数。
      * @see     java.text.Collator#compare(String, String)
      * @since   1.2
      */
@@ -1107,36 +1102,28 @@ public final class String
     }
 
     /**
-     * Tests if two string regions are equal.
+     * 测试两个字符串区域是否相等。
      * <p>
-     * A substring of this {@code String} object is compared to a substring
-     * of the argument other. The result is true if these substrings
-     * represent identical character sequences. The substring of this
-     * {@code String} object to be compared begins at index {@code toffset}
-     * and has length {@code len}. The substring of other to be compared
-     * begins at index {@code ooffset} and has length {@code len}. The
-     * result is {@code false} if and only if at least one of the following
-     * is true:
-     * <ul><li>{@code toffset} is negative.
-     * <li>{@code ooffset} is negative.
-     * <li>{@code toffset+len} is greater than the length of this
-     * {@code String} object.
-     * <li>{@code ooffset+len} is greater than the length of the other
-     * argument.
-     * <li>There is some nonnegative integer <i>k</i> less than {@code len}
-     * such that:
+     * 将此 {@code String} 对象的一个子字符串与参数 other 的一个子字符串进行比较。
+     * 如果这两个子字符串表示相同的字符序列，则结果为 true。
+     * 要比较的此 {@code String} 对象的子字符串从索引 {@code toffset} 处开始，长度为 {@code len}。
+     * 要比较的 other 的子字符串从索引 {@code ooffset} 处开始，长度为 {@code len}。
+     * 当且仅当下列至少一项为 true 时，结果才为 {@code false} ：
+     * <ul><li>{@code toffset} 为负。
+     * <li>{@code ooffset} 为负。
+     * <li>{@code toffset+len} 大于此 {@code String} 对象的长度。
+     * <li>{@code ooffset+len} 大于另一个参数的长度。
+     * <li>存在某个小于 {@code len} 的非负整数 <i>k</i>，它满足：
      * {@code this.charAt(toffset + }<i>k</i>{@code ) != other.charAt(ooffset + }
      * <i>k</i>{@code )}
      * </ul>
      *
-     * @param   toffset   the starting offset of the subregion in this string.
-     * @param   other     the string argument.
-     * @param   ooffset   the starting offset of the subregion in the string
-     *                    argument.
-     * @param   len       the number of characters to compare.
-     * @return  {@code true} if the specified subregion of this string
-     *          exactly matches the specified subregion of the string argument;
-     *          {@code false} otherwise.
+     * @param   toffset   字符串中子区域的起始偏移量。
+     * @param   other     字符串参数。
+     * @param   ooffset   字符串参数中子区域的起始偏移量。
+     * @param   len       要比较的字符数。
+     * @return  如果此字符串的指定子区域完全匹配字符串参数的指定子区域，则返回{@code true}；
+     *          否则返回 {@code false}。
      */
     public boolean regionMatches(int toffset, String other, int ooffset,
             int len) {
@@ -1159,54 +1146,44 @@ public final class String
     }
 
     /**
-     * Tests if two string regions are equal.
+     * 测试两个字符串区域是否相等。
      * <p>
-     * A substring of this {@code String} object is compared to a substring
-     * of the argument {@code other}. The result is {@code true} if these
-     * substrings represent character sequences that are the same, ignoring
-     * case if and only if {@code ignoreCase} is true. The substring of
-     * this {@code String} object to be compared begins at index
-     * {@code toffset} and has length {@code len}. The substring of
-     * {@code other} to be compared begins at index {@code ooffset} and
-     * has length {@code len}. The result is {@code false} if and only if
-     * at least one of the following is true:
-     * <ul><li>{@code toffset} is negative.
-     * <li>{@code ooffset} is negative.
-     * <li>{@code toffset+len} is greater than the length of this
-     * {@code String} object.
-     * <li>{@code ooffset+len} is greater than the length of the other
-     * argument.
-     * <li>{@code ignoreCase} is {@code false} and there is some nonnegative
-     * integer <i>k</i> less than {@code len} such that:
+     * 将此 {@code String} 对象的一个子字符串与参数 {@code other} 的一个子字符串进行比较。
+     * 如果这两个子字符串表示相同的字符序列，则结果为 {@code true} ，
+     * 当且仅当 {@code ignoreCase} 为 true 时忽略大小写。
+     * 要比较的此 {@code String} 对象的子字符串从索引 {@code toffset} 处开始，长度为 {@code len}。
+     * 要比较的 {@code other} 的子字符串从索引 {@code ooffset} 处开始，长度为 {@code len}。
+     * 当且仅当下列至少一项为 true 时，结果才为 {@code false} ：
+     * <ul><li>{@code toffset} 为负。
+     * <li>{@code ooffset} 为负。
+     * <li>{@code toffset+len} 大于此 {@code String} 对象的长度。
+     * <li>{@code ooffset+len} 大于另一个参数的长度。
+     * <li>{@code ignoreCase} 为 {@code false}，且存在某个小于 {@code len}
+     * 的非负整数 <i>k</i>，即：
      * <blockquote><pre>
      * this.charAt(toffset+k) != other.charAt(ooffset+k)
      * </pre></blockquote>
-     * <li>{@code ignoreCase} is {@code true} and there is some nonnegative
-     * integer <i>k</i> less than {@code len} such that:
+     * <li>{@code ignoreCase} 为 {@code true}，且存在某个小于 {@code len} and there is some nonnegative
+     * 的非负整数 <i>k</i>，即：
      * <blockquote><pre>
      * Character.toLowerCase(this.charAt(toffset+k)) !=
      Character.toLowerCase(other.charAt(ooffset+k))
      * </pre></blockquote>
-     * and:
+     * 以及：
      * <blockquote><pre>
      * Character.toUpperCase(this.charAt(toffset+k)) !=
      *         Character.toUpperCase(other.charAt(ooffset+k))
      * </pre></blockquote>
      * </ul>
      *
-     * @param   ignoreCase   if {@code true}, ignore case when comparing
-     *                       characters.
-     * @param   toffset      the starting offset of the subregion in this
-     *                       string.
-     * @param   other        the string argument.
-     * @param   ooffset      the starting offset of the subregion in the string
-     *                       argument.
-     * @param   len          the number of characters to compare.
-     * @return  {@code true} if the specified subregion of this string
-     *          matches the specified subregion of the string argument;
-     *          {@code false} otherwise. Whether the matching is exact
-     *          or case insensitive depends on the {@code ignoreCase}
-     *          argument.
+     * @param   ignoreCase   如果为 {@code true}，则比较字符时忽略大小写。
+     * @param   toffset      此字符串中子区域的起始偏移量。
+     * @param   other        字符串参数。
+     * @param   ooffset      字符串参数中子区域的起始偏移量。
+     * @param   len          要比较的字符数。
+     * @return  如果此字符串的指定子区域匹配字符串参数的指定子区域，
+     *          则返回 {@code true}；否则返回 {@code false}。
+     *          是否完全匹配或考虑大小写取决于 {@code ignoreCase} 参数。
      */
     public boolean regionMatches(boolean ignoreCase, int toffset,
             String other, int ooffset, int len) {
@@ -1250,18 +1227,14 @@ public final class String
     }
 
     /**
-     * Tests if the substring of this string beginning at the
-     * specified index starts with the specified prefix.
+     * 测试此字符串从指定索引开始的子字符串是否以指定前缀开始。
      *
-     * @param   prefix    the prefix.
-     * @param   toffset   where to begin looking in this string.
-     * @return  {@code true} if the character sequence represented by the
-     *          argument is a prefix of the substring of this object starting
-     *          at index {@code toffset}; {@code false} otherwise.
-     *          The result is {@code false} if {@code toffset} is
-     *          negative or greater than the length of this
-     *          {@code String} object; otherwise the result is the same
-     *          as the result of the expression
+     * @param   prefix    前缀。
+     * @param   toffset   在此字符串中开始查找的位置。
+     * @return  如果参数表示的字符序列是此对象从索引 {@code toffset} 处开始的子字符串前缀，
+     *          则返回 {@code true}；否则返回 {@code false}。
+     *          如果 {@code toffset} 为负或大于此 {@code String} 对象的长度，
+     *          则结果为 {@code false}；否则结果与以下表达式的结果相同：
      *          <pre>
      *          this.substring(toffset).startsWith(prefix)
      *          </pre>
@@ -1285,16 +1258,13 @@ public final class String
     }
 
     /**
-     * Tests if this string starts with the specified prefix.
+     * 测试此字符串是否以指定的前缀开始。
      *
-     * @param   prefix   the prefix.
-     * @return  {@code true} if the character sequence represented by the
-     *          argument is a prefix of the character sequence represented by
-     *          this string; {@code false} otherwise.
-     *          Note also that {@code true} will be returned if the
-     *          argument is an empty string or is equal to this
-     *          {@code String} object as determined by the
-     *          {@link #equals(Object)} method.
+     * @param   prefix   前缀。
+     * @return  如果参数表示的字符序列是此字符串表示的字符序列的前缀，
+     *          则返回 {@code true}；否则返回 {@code false}。
+     *          还要注意，如果参数是空字符串，或者等于此 {@code String} 对象（用 {@link #equals(Object)} 方法确定），
+     *          则返回 {@code true}。
      * @since   1. 0
      */
     public boolean startsWith(String prefix) {
@@ -1302,32 +1272,28 @@ public final class String
     }
 
     /**
-     * Tests if this string ends with the specified suffix.
+     * 测试此字符串是否以指定的后缀结束。
      *
-     * @param   suffix   the suffix.
-     * @return  {@code true} if the character sequence represented by the
-     *          argument is a suffix of the character sequence represented by
-     *          this object; {@code false} otherwise. Note that the
-     *          result will be {@code true} if the argument is the
-     *          empty string or is equal to this {@code String} object
-     *          as determined by the {@link #equals(Object)} method.
+     * @param   suffix   后缀。
+     * @return  如果参数表示的字符序列是此对象表示的字符序列的后缀，
+     *          则返回 {@code true}；否则返回 {@code false}。
+     *          注意，如果参数是空字符串，或者等于此 {@code String} 对象（用 {@link #equals(Object)} 方法确定），
+     *          则返回 {@code true}。
      */
     public boolean endsWith(String suffix) {
         return startsWith(suffix, value.length - suffix.value.length);
     }
 
     /**
-     * Returns a hash code for this string. The hash code for a
-     * {@code String} object is computed as
+     * 返回此字符串的哈希码。 {@code String} 对象的哈希码根据以下公式计算：
      * <blockquote><pre>
      * s[0]*31^(n-1) + s[1]*31^(n-2) + ... + s[n-1]
      * </pre></blockquote>
-     * using {@code int} arithmetic, where {@code s[i]} is the
-     * <i>i</i>th character of the string, {@code n} is the length of
-     * the string, and {@code ^} indicates exponentiation.
-     * (The hash value of the empty string is zero.)
+     * 使用 {@code int} 算法，这里 {@code s[i]} 是字符串的第 <i>i</i>
+     * 个字符，{@code n} 是字符串的长度，{@code ^} 表示求幂。
+     * （空字符串的哈希值为0。）
      *
-     * @return  a hash code value for this object.
+     * @return  此对象的哈希码值。
      */
     public int hashCode() {
         int h = hash;
@@ -1343,28 +1309,24 @@ public final class String
     }
 
     /**
-     * Returns the index within this string of the first occurrence of
-     * the specified character. If a character with value
-     * {@code ch} occurs in the character sequence represented by
-     * this {@code String} object, then the index (in Unicode
-     * code units) of the first such occurrence is returned. For
-     * values of {@code ch} in the range from 0 to 0xFFFF
-     * (inclusive), this is the smallest value <i>k</i> such that:
+     * 返回指定字符在此字符串中第一次出现处的索引。
+     * 如果在此 {@code String} 对象表示的字符序列中出现值为 {@code ch} 的字符，
+     * 则返回第一次出现该字符的索引（以 Unicode 代码单元表示）。
+     * 对于 0 到 0xFFFF（包括 0 和 0xFFFF）范围内的 ch 的值，返回值是
      * <blockquote><pre>
      * this.charAt(<i>k</i>) == ch
      * </pre></blockquote>
-     * is true. For other values of {@code ch}, it is the
-     * smallest value <i>k</i> such that:
+     * 为 true 的最小 <i>k</i> 值。
+     * 对于其他 {@code ch} 值，返回值是
      * <blockquote><pre>
      * this.codePointAt(<i>k</i>) == ch
      * </pre></blockquote>
-     * is true. In either case, if no such character occurs in this
-     * string, then {@code -1} is returned.
+     * 为 true 的最小 <i>k</i> 值。
+     * 无论哪种情况，如果此字符串中没有这样的字符，则返回 {@code -1}。
      *
-     * @param   ch   a character (Unicode code point).
-     * @return  the index of the first occurrence of the character in the
-     *          character sequence represented by this object, or
-     *          {@code -1} if the character does not occur.
+     * @param   ch   个字符（Unicode 代码点）。
+     * @return  在此对象表示的字符序列中第一次出现该字符的索引；
+     *          如果未出现该字符，则返回 {@code -1}。
      */
     public int indexOf(int ch) {
         return indexOf(ch, 0);
