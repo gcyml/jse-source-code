@@ -2432,38 +2432,36 @@ public final class String
     }
 
     /**
-     * Converts all of the characters in this {@code String} to upper
-     * case using the rules of the given {@code Locale}. Case mapping is based
-     * on the Unicode Standard version specified by the {@link java.lang.Character Character}
-     * class. Since case mappings are not always 1:1 char mappings, the resulting
-     * {@code String} may be a different length than the original {@code String}.
+     * 使用给定 {@code Locale} 的规则将此 {@code String} 中的所有字符都转换为大写。
+     * 大小写映射关系基于 {@link java.lang.Character Character} 类指定的 Unicode 标准版。
+     * 由于大小写映射关系并不总是 1:1 的字符映射关系，因此所得 {@code String} 的长度可能不同于原 {@code String}。
      * <p>
-     * Examples of locale-sensitive and 1:M case mappings are in the following table.
+     * 下表中给出了几个与语言环境有关和 1:M 大小写映射关系的一些示例。
      *
      * <table border="1" summary="Examples of locale-sensitive and 1:M case mappings. Shows Language code of locale, lower case, upper case, and description.">
      * <tr>
-     *   <th>Language Code of Locale</th>
-     *   <th>Lower Case</th>
-     *   <th>Upper Case</th>
-     *   <th>Description</th>
+     *   <th>语言环境的代码</th>
+     *   <th>小写</th>
+     *   <th>大写</th>
+     *   <th>描述</th>
      * </tr>
      * <tr>
      *   <td>tr (Turkish)</td>
      *   <td>&#92;u0069</td>
      *   <td>&#92;u0130</td>
-     *   <td>small letter i -&gt; capital letter I with dot above</td>
+     *   <td>小写字母 i -&gt; 大写字幕 I，上面有点</td>
      * </tr>
      * <tr>
      *   <td>tr (Turkish)</td>
      *   <td>&#92;u0131</td>
      *   <td>&#92;u0049</td>
-     *   <td>small letter dotless i -&gt; capital letter I</td>
+     *   <td>小写字母 i，无点 -&gt; 大写字母 I</td>
      * </tr>
      * <tr>
      *   <td>(all)</td>
      *   <td>&#92;u00df</td>
      *   <td>&#92;u0053 &#92;u0053</td>
-     *   <td>small letter sharp s -&gt; two letters: SS</td>
+     *   <td>小写字母 sharp s -&gt; 两个字母: SS</td>
      * </tr>
      * <tr>
      *   <td>(all)</td>
@@ -2472,8 +2470,8 @@ public final class String
      *   <td></td>
      * </tr>
      * </table>
-     * @param locale use the case transformation rules for this locale
-     * @return the {@code String}, converted to uppercase.
+     * @param locale 使用此语言环境的大小写转换规则
+     * @return 要转换为大写的 {@code String}
      * @see     java.lang.String#toUpperCase()
      * @see     java.lang.String#toLowerCase()
      * @see     java.lang.String#toLowerCase(Locale)
@@ -2572,22 +2570,17 @@ public final class String
     }
 
     /**
-     * Converts all of the characters in this {@code String} to upper
-     * case using the rules of the default locale. This method is equivalent to
+     * 使用默认语言环境的规则将此 {@code String} 中的所有字符都转换为大写。此方法等效于
      * {@code toUpperCase(Locale.getDefault())}.
      * <p>
-     * <b>Note:</b> This method is locale sensitive, and may produce unexpected
-     * results if used for strings that are intended to be interpreted locale
-     * independently.
-     * Examples are programming language identifiers, protocol keys, and HTML
-     * tags.
-     * For instance, {@code "title".toUpperCase()} in a Turkish locale
-     * returns {@code "T\u005Cu0130TLE"}, where '\u005Cu0130' is the
-     * LATIN CAPITAL LETTER I WITH DOT ABOVE character.
-     * To obtain correct results for locale insensitive strings, use
+     * <b>注：</b> 此方法与语言环境有关，如果用于应独立于语言环境解释的字符串，则可能生成不可预料的结果。
+     * 示例有编程语言标识符、协议键、HTML 标记。
+     * 例如，{@code "title".toUpperCase()} 在 Turkish（土耳其语）语言环境中返回 "{@code "T\u005Cu0130TLE"}，
+     * 其中“\u005Cu0130”是 LATIN CAPITAL LETTER I WITH DOT ABOVE 字符。
+     * 对于与语言环境有关的字符，要获得正确的结果，请使用
      * {@code toUpperCase(Locale.ROOT)}.
      * <p>
-     * @return  the {@code String}, converted to uppercase.
+     * @return  要转换为大写的 {@code String}。
      * @see     java.lang.String#toUpperCase(Locale)
      */
     public String toUpperCase() {
@@ -2595,35 +2588,24 @@ public final class String
     }
 
     /**
-     * Returns a string whose value is this string, with any leading and trailing
-     * whitespace removed.
+     * 返回字符串的副本，忽略前导空白和尾部空白。
      * <p>
-     * If this {@code String} object represents an empty character
-     * sequence, or the first and last characters of character sequence
-     * represented by this {@code String} object both have codes
-     * greater than {@code '\u005Cu0020'} (the space character), then a
-     * reference to this {@code String} object is returned.
+     * 如果此 {@code String} 对象表示一个空字符序列，
+     * 或者此 {@code String} 对象表示的字符序列的第一个和最后一个字符的代码都大于 {@code '\u005Cu0020'}（空格字符），
+     * 则返回对此 {@code String} 对象的引用。
      * <p>
-     * Otherwise, if there is no character with a code greater than
-     * {@code '\u005Cu0020'} in the string, then a
-     * {@code String} object representing an empty string is
-     * returned.
+     * 否则，若字符串中没有代码大于 {@code '\u005Cu0020'} 的字符，
+     * 则创建并返回一个表示空字符串的新 {@code String} 对象。
      * <p>
-     * Otherwise, let <i>k</i> be the index of the first character in the
-     * string whose code is greater than {@code '\u005Cu0020'}, and let
-     * <i>m</i> be the index of the last character in the string whose code
-     * is greater than {@code '\u005Cu0020'}. A {@code String}
-     * object is returned, representing the substring of this string that
-     * begins with the character at index <i>k</i> and ends with the
-     * character at index <i>m</i>-that is, the result of
-     * {@code this.substring(k, m + 1)}.
+     * 否则，假定 <i>k</i>  为字符串中代码大于 {@code '\u005Cu0020'} 的第一个字符的索引，
+     * <i>m</i> 为字符串中代码大于 {@code '\u005Cu0020'} 的最后一个字符的索引。
+     * 创建一个新的 {@code String} 对象，它表示此字符串中从索引 <i>k</i> 处的字符开始，
+     * 到索引 <i>m</i> 处的字符结束的子字符串，即 {@code this.substring(k, m + 1)} 的结果。
      * <p>
-     * This method may be used to trim whitespace (as defined above) from
-     * the beginning and end of a string.
+     * 此方法可用于截去字符串开头和末尾的空白（如上所述）。
      *
-     * @return  A string whose value is this string, with any leading and trailing white
-     *          space removed, or this string if it has no leading or
-     *          trailing white space.
+     * @return  此字符串移除了前导和尾部空白的副本；
+     *          如果没有前导和尾部空白，则返回此字符串。
      */
     public String trim() {
         int len = value.length;
@@ -2640,20 +2622,19 @@ public final class String
     }
 
     /**
-     * This object (which is already a string!) is itself returned.
+     * 返回此对象本身（它已经是一个字符串！）。
      *
-     * @return  the string itself.
+     * @return  字符串本身。
      */
     public String toString() {
         return this;
     }
 
     /**
-     * Converts this string to a new character array.
+     * 将此字符串转换为一个新的字符数组。
      *
-     * @return  a newly allocated character array whose length is the length
-     *          of this string and whose contents are initialized to contain
-     *          the character sequence represented by this string.
+     * @return 一个新分配的字符数组，它的长度是此字符串的长度，
+     *         它的内容被初始化为包含此字符串表示的字符序列。
      */
     public char[] toCharArray() {
         // Cannot use Arrays.copyOf because of class initialization order issues
@@ -2663,36 +2644,31 @@ public final class String
     }
 
     /**
-     * Returns a formatted string using the specified format string and
-     * arguments.
+     * 使用指定的格式字符串和参数返回一个格式化字符串。
      *
-     * <p> The locale always used is the one returned by {@link
-     * java.util.Locale#getDefault() Locale.getDefault()}.
+     * <p> 始终使用 {@link
+     * java.util.Locale#getDefault() Locale.getDefault()} 返回的语言环境。
      *
      * @param  format
-     *         A <a href="../util/Formatter.html#syntax">format string</a>
+     *         A <a href="../util/Formatter.html#syntax">格式字符串</a>
      *
      * @param  args
-     *         Arguments referenced by the format specifiers in the format
-     *         string.  If there are more arguments than format specifiers, the
-     *         extra arguments are ignored.  The number of arguments is
-     *         variable and may be zero.  The maximum number of arguments is
-     *         limited by the maximum dimension of a Java array as defined by
-     *         <cite>The Java&trade; Virtual Machine Specification</cite>.
-     *         The behaviour on a
-     *         {@code null} argument depends on the <a
-     *         href="../util/Formatter.html#syntax">conversion</a>.
+     *         格式字符串中由格式说明符引用的参数。
+     *         如果还有格式说明符以外的参数，则忽略这些额外的参数。
+     *         参数的数目是可变的，可以为 0。
+     *         参数的最大数目受
+     *         <cite>The Java&trade; Virtual Machine Specification</cite>
+     *         所定义的 Java 数组最大维度的限制。
+     *         有关 {@code null} 参数的行为依赖于 <a
+     *         href="../util/Formatter.html#syntax">转换</a>。
      *
      * @throws  java.util.IllegalFormatException
-     *          If a format string contains an illegal syntax, a format
-     *          specifier that is incompatible with the given arguments,
-     *          insufficient arguments given the format string, or other
-     *          illegal conditions.  For specification of all possible
-     *          formatting errors, see the <a
-     *          href="../util/Formatter.html#detail">Details</a> section of the
-     *          formatter class specification.
+     *          如果格式字符串中包含非法语法、与给定的参数不兼容的格式说明符，
+     *          格式字符串给定的参数不够，或者存在其他非法条件。
+     *          有关所有可能的格式化错误的规范，请参阅 formatter 类规范的
+     *          <a href="../util/Formatter.html#detail">详细信息</a> 一节。
      *
-     * @return  A formatted string
+     * @return  一个格式化字符串
      *
      * @see  java.util.Formatter
      * @since  1.5
@@ -2702,38 +2678,32 @@ public final class String
     }
 
     /**
-     * Returns a formatted string using the specified locale, format string,
-     * and arguments.
+     * 使用指定的语言环境、格式字符串和参数返回一个格式化字符串。
      *
      * @param  l
-     *         The {@linkplain java.util.Locale locale} to apply during
-     *         formatting.  If {@code l} is {@code null} then no localization
-     *         is applied.
+     *         格式化过程中要应用的 {@linkplain java.util.Locale 语言环境}。
+     *         如果 {@code l} 为 {@code null}，则不进行本地化。
      *
      * @param  format
-     *         A <a href="../util/Formatter.html#syntax">format string</a>
+     *         <a href="../util/Formatter.html#syntax">格式字符串</a>
      *
      * @param  args
-     *         Arguments referenced by the format specifiers in the format
-     *         string.  If there are more arguments than format specifiers, the
-     *         extra arguments are ignored.  The number of arguments is
-     *         variable and may be zero.  The maximum number of arguments is
-     *         limited by the maximum dimension of a Java array as defined by
-     *         <cite>The Java&trade; Virtual Machine Specification</cite>.
-     *         The behaviour on a
-     *         {@code null} argument depends on the
-     *         <a href="../util/Formatter.html#syntax">conversion</a>.
+     *         格式字符串中由格式说明符引用的参数。
+     *         如果还有格式说明符以外的参数，则忽略这些额外的参数。
+     *         参数的数目是可变的，可以为 0。
+     *         参数的最大数目受
+     *         <cite>The Java&trade; Virtual Machine Specification</cite>
+     *         所定义的 Java 数组最大维度的限制。
+     *         有关 {@code null} 参数的行为依赖于 <a
+     *         href="../util/Formatter.html#syntax">转换</a>。
      *
      * @throws  java.util.IllegalFormatException
-     *          If a format string contains an illegal syntax, a format
-     *          specifier that is incompatible with the given arguments,
-     *          insufficient arguments given the format string, or other
-     *          illegal conditions.  For specification of all possible
-     *          formatting errors, see the <a
-     *          href="../util/Formatter.html#detail">Details</a> section of the
-     *          formatter class specification
+     *          如果格式字符串中包含非法语法、与给定的参数不兼容的格式说明符，
+     *          格式字符串给定的参数不够，或者存在其他非法条件。
+     *          有关所有可能的格式化错误的规范，请参阅 formatter 类规范的
+     *          <a href="../util/Formatter.html#detail">详细信息</a> 一节。
      *
-     * @return  A formatted string
+     * @return  一个格式化字符串
      *
      * @see  java.util.Formatter
      * @since  1.5
@@ -2743,12 +2713,11 @@ public final class String
     }
 
     /**
-     * Returns the string representation of the {@code Object} argument.
+     * 返回 {@code Object}  参数的字符串表示形式。
      *
-     * @param   obj   an {@code Object}.
-     * @return  if the argument is {@code null}, then a string equal to
-     *          {@code "null"}; otherwise, the value of
-     *          {@code obj.toString()} is returned.
+     * @param   obj   一个 {@code Object}。
+     * @return  如果参数为 {@code null}， 则字符串等于 {@code "null"}；
+     *          否则，返回 {@code obj.toString()} 的值。
      * @see     java.lang.Object#toString()
      */
     public static String valueOf(Object obj) {
@@ -2756,90 +2725,74 @@ public final class String
     }
 
     /**
-     * Returns the string representation of the {@code char} array
-     * argument. The contents of the character array are copied; subsequent
-     * modification of the character array does not affect the returned
-     * string.
+     * 返回 {@code char} 数组参数的字符串表示形式。
+     * 字符数组的内容已被复制，后续修改不会影响新创建的字符串。
      *
-     * @param   data     the character array.
-     * @return  a {@code String} that contains the characters of the
-     *          character array.
+     * @param   data     char 数组。
+     * @return  一个 {@code String}，它包含字符数组的字符。
      */
     public static String valueOf(char data[]) {
         return new String(data);
     }
 
     /**
-     * Returns the string representation of a specific subarray of the
-     * {@code char} array argument.
+     * 返回 {@code char} 数组参数的特定子数组的字符串表示形式。
      * <p>
-     * The {@code offset} argument is the index of the first
-     * character of the subarray. The {@code count} argument
-     * specifies the length of the subarray. The contents of the subarray
-     * are copied; subsequent modification of the character array does not
-     * affect the returned string.
+     * {@code offset} 参数是子数组的第一个字符的索引。
+     * {@code count} 参数指定子数组的长度。
+     * 字符数组的内容已被复制，后续修改不会影响新创建的字符串。
      *
-     * @param   data     the character array.
-     * @param   offset   initial offset of the subarray.
-     * @param   count    length of the subarray.
-     * @return  a {@code String} that contains the characters of the
-     *          specified subarray of the character array.
-     * @exception IndexOutOfBoundsException if {@code offset} is
-     *          negative, or {@code count} is negative, or
-     *          {@code offset+count} is larger than
-     *          {@code data.length}.
+     * @param   data     字符数组。
+     * @param   offset   子数组的初始偏移量。
+     * @param   count    子数组的长度。
+     * @return  一个{@code String}，它表示在字符数组参数的子数组中包含的字符序列。
+     * @exception IndexOutOfBoundsException 如果 {@code offset} 为负， {@code count} 为负，
+     *          或者 {@code offset+count} 大于 {@code data.length}。
      */
     public static String valueOf(char data[], int offset, int count) {
         return new String(data, offset, count);
     }
 
     /**
-     * Equivalent to {@link #valueOf(char[], int, int)}.
+     * 等同于 {@link #valueOf(char[], int, int)}.
      *
-     * @param   data     the character array.
-     * @param   offset   initial offset of the subarray.
-     * @param   count    length of the subarray.
-     * @return  a {@code String} that contains the characters of the
-     *          specified subarray of the character array.
-     * @exception IndexOutOfBoundsException if {@code offset} is
-     *          negative, or {@code count} is negative, or
-     *          {@code offset+count} is larger than
-     *          {@code data.length}.
+     * @param   data     字符数组。
+     * @param   offset   子数组的初始偏移量。
+     * @param   count    子数组的长度。
+     * @return  一个{@code String}，它表示在字符数组参数的子数组中包含的字符序列。
+     * @exception IndexOutOfBoundsException 如果 {@code offset} 为负， {@code count} 为负，
+     *          或者 {@code offset+count} 大于 {@code data.length}。
      */
     public static String copyValueOf(char data[], int offset, int count) {
         return new String(data, offset, count);
     }
 
     /**
-     * Equivalent to {@link #valueOf(char[])}.
+     * 等同于 {@link #valueOf(char[])}.
      *
-     * @param   data   the character array.
-     * @return  a {@code String} that contains the characters of the
-     *          character array.
+     * @param   data   字符数组。
+     * @return  一个 {@code String}，它包含字符数组的字符。
      */
     public static String copyValueOf(char data[]) {
         return new String(data);
     }
 
     /**
-     * Returns the string representation of the {@code boolean} argument.
+     * 返回 {@code boolean} 参数的字符串表示形式。
      *
-     * @param   b   a {@code boolean}.
-     * @return  if the argument is {@code true}, a string equal to
-     *          {@code "true"} is returned; otherwise, a string equal to
-     *          {@code "false"} is returned.
+     * @param   b   一个 {@code boolean}.
+     * @return  如果参数为 {@code true}，则返回一个等于 {@code "true"} 的字符串；
+     *          否则，返回一个等于 {@code "false"} 的字符串。
      */
     public static String valueOf(boolean b) {
         return b ? "true" : "false";
     }
 
     /**
-     * Returns the string representation of the {@code char}
-     * argument.
+     * 返回 {@code char} 参数的字符串表示形式。
      *
-     * @param   c   a {@code char}.
-     * @return  a string of length {@code 1} containing
-     *          as its single character the argument {@code c}.
+     * @param   c   一个 {@code char}。
+     * @return 一个长度为 {@code 1} 的字符串，它包含参数 {@code c} 的单个字符。
      */
     public static String valueOf(char c) {
         char data[] = {c};
@@ -2847,13 +2800,12 @@ public final class String
     }
 
     /**
-     * Returns the string representation of the {@code int} argument.
+     * 返回 {@code int} 参数的字符串表示形式。
      * <p>
-     * The representation is exactly the one returned by the
-     * {@code Integer.toString} method of one argument.
+     * 该表示形式恰好是单参数的 {@code Integer.toString} 方法返回的结果。
      *
-     * @param   i   an {@code int}.
-     * @return  a string representation of the {@code int} argument.
+     * @param   i   一个 {@code int}。
+     * @return  {@code int} 参数的字符串表示形式。
      * @see     java.lang.Integer#toString(int, int)
      */
     public static String valueOf(int i) {
@@ -2861,13 +2813,12 @@ public final class String
     }
 
     /**
-     * Returns the string representation of the {@code long} argument.
+     * 返回 {@code long}  参数的字符串表示形式。
      * <p>
-     * The representation is exactly the one returned by the
-     * {@code Long.toString} method of one argument.
+     * 该表示形式恰好是单参数的 {@code Long.toString} 方法返回的结果。
      *
-     * @param   l   a {@code long}.
-     * @return  a string representation of the {@code long} argument.
+     * @param   l   一个 {@code long}。
+     * @return  {@code long} 参数的字符串表示形式。
      * @see     java.lang.Long#toString(long)
      */
     public static String valueOf(long l) {
@@ -2875,13 +2826,12 @@ public final class String
     }
 
     /**
-     * Returns the string representation of the {@code float} argument.
+     * 返回 {@code float} 参数的字符串表示形式。
      * <p>
-     * The representation is exactly the one returned by the
-     * {@code Float.toString} method of one argument.
+     * 该表示形式恰好是单参数的 {@code Float.toString} 方法返回的结果。
      *
-     * @param   f   a {@code float}.
-     * @return  a string representation of the {@code float} argument.
+     * @param   f   一个 {@code float}。
+     * @return  {@code float} 参数的字符串表示形式。
      * @see     java.lang.Float#toString(float)
      */
     public static String valueOf(float f) {
@@ -2889,13 +2839,12 @@ public final class String
     }
 
     /**
-     * Returns the string representation of the {@code double} argument.
+     * 返回 {@code double} 参数的字符串表示形式。
      * <p>
-     * The representation is exactly the one returned by the
-     * {@code Double.toString} method of one argument.
+     * 该表示形式恰好是单参数的 {@code Double.toString} 方法返回的结果。
      *
-     * @param   d   a {@code double}.
-     * @return  a  string representation of the {@code double} argument.
+     * @param   d   一个 {@code double}。
+     * @return  {@code double} 参数的字符串表示形式。
      * @see     java.lang.Double#toString(double)
      */
     public static String valueOf(double d) {
@@ -2903,27 +2852,24 @@ public final class String
     }
 
     /**
-     * Returns a canonical representation for the string object.
+     * 返回字符串对象的规范化表示形式。
      * <p>
-     * A pool of strings, initially empty, is maintained privately by the
-     * class {@code String}.
+     * 一个初始为空的字符串池，它由类 {@code String} 私有地维护。
      * <p>
-     * When the intern method is invoked, if the pool already contains a
-     * string equal to this {@code String} object as determined by
-     * the {@link #equals(Object)} method, then the string from the pool is
-     * returned. Otherwise, this {@code String} object is added to the
-     * pool and a reference to this {@code String} object is returned.
+     * 当调用 intern 方法时，
+     * 如果池已经包含一个等于此 {@code String} 对象的字符串（用 {@link #equals(Object)} 方法确定），
+     * 则返回池中的字符串。
+     * 否则，将此 {@code String} 对象添加到池中，并返回此 {@code String} 对象的引用。
      * <p>
-     * It follows that for any two strings {@code s} and {@code t},
-     * {@code s.intern() == t.intern()} is {@code true}
-     * if and only if {@code s.equals(t)} is {@code true}.
+     * 它遵循以下规则：对于任意两个字符串 {@code s} 和 {@code t}，
+     * 当且仅当 {@code s.equals(t)} 为 {@code true} 时，
+     * {@code s.intern() == t.intern()} 才为 {@code true}。
      * <p>
-     * All literal strings and string-valued constant expressions are
-     * interned. String literals are defined in section 3.10.5 of the
-     * <cite>The Java&trade; Language Specification</cite>.
+     * 所有字面值字符串和字符串赋值常量表达式都使用 intern 方法进行操作。
+     * 字符串字面值在
+     * <cite>The Java&trade; Language Specification</cite> 的 3.10.5 节中定义.
      *
-     * @return  a string that has the same contents as this string, but is
-     *          guaranteed to be from a pool of unique strings.
+     * @return  一个字符串，内容与此字符串相同，但一定取自具有唯一字符串的池。
      */
     public native String intern();
 }
