@@ -1486,38 +1486,38 @@ public final class String
     }
 
     /**
+     * 返回指定子字符串在此字符串中第一次出现处的索引。
      * Returns the index within this string of the first occurrence of the
      * specified substring.
      *
-     * <p>The returned index is the smallest value <i>k</i> for which:
+     * <p>返回的索引是满足下式的最小 <i>k</i> 值：
      * <blockquote><pre>
      * this.startsWith(str, <i>k</i>)
      * </pre></blockquote>
-     * If no such value of <i>k</i> exists, then {@code -1} is returned.
+     * 如果不存在这样的 <i>k</i> 值，则返回 {@code -1}。
      *
-     * @param   str   the substring to search for.
-     * @return  the index of the first occurrence of the specified substring,
-     *          or {@code -1} if there is no such occurrence.
+     * @param   str   任意字符串。
+     * @return  如果字符串参数作为一个子字符串在此对象中出现，
+     *           则返回第一个这种子字符串的第一个字符的索引；
+     *           如果它不作为一个子字符串出现，则返回 {@code -1}。
      */
     public int indexOf(String str) {
         return indexOf(str, 0);
     }
 
     /**
-     * Returns the index within this string of the first occurrence of the
-     * specified substring, starting at the specified index.
+     * 返回指定子字符串在此字符串中第一次出现处的索引，从指定的索引开始。
      *
-     * <p>The returned index is the smallest value <i>k</i> for which:
+     * <p>返回的索引是满足下式的最小 <i>k</i> 值：
      * <blockquote><pre>
      * <i>k</i> &gt;= fromIndex {@code &&} this.startsWith(str, <i>k</i>)
      * </pre></blockquote>
-     * If no such value of <i>k</i> exists, then {@code -1} is returned.
+     * 如果不存在这样的 <i>k</i> 值，则返回 {@code -1}。
      *
-     * @param   str         the substring to search for.
-     * @param   fromIndex   the index from which to start the search.
-     * @return  the index of the first occurrence of the specified substring,
-     *          starting at the specified index,
-     *          or {@code -1} if there is no such occurrence.
+     * @param   str         要搜索的子字符串。
+     * @param   fromIndex   开始搜索的索引位置。
+     * @return  指定子字符串在此字符串中第一次出现处的索引，从指定的索引开始。
+     *           如果没有这种情况出现，则返回 {@code -1}。
      */
     public int indexOf(String str, int fromIndex) {
         return indexOf(value, 0, value.length,
@@ -1525,6 +1525,7 @@ public final class String
     }
 
     /**
+     * String 和 AbstractStringBuilder 用于搜索的共享的代码。
      * Code shared by String and AbstractStringBuilder to do searches. The
      * source is the character array being searched, and the target
      * is the string being searched for.
@@ -1594,39 +1595,38 @@ public final class String
     }
 
     /**
-     * Returns the index within this string of the last occurrence of the
-     * specified substring.  The last occurrence of the empty string ""
-     * is considered to occur at the index value {@code this.length()}.
+     * 返回指定子字符串在此字符串中第一次出现处的索引。
+     * 空字符 ""  的最后一次出现被认为是在索引值 {@code this.length()} 处出现的。
      *
-     * <p>The returned index is the largest value <i>k</i> for which:
+     * <p>返回的索引是满足下式的最大 <i>k</i> 值：
      * <blockquote><pre>
      * this.startsWith(str, <i>k</i>)
      * </pre></blockquote>
-     * If no such value of <i>k</i> exists, then {@code -1} is returned.
+     * 如果不存在这样的 <i>k</i> 值，则返回 {@code -1}。
      *
-     * @param   str   the substring to search for.
-     * @return  the index of the last occurrence of the specified substring,
-     *          or {@code -1} if there is no such occurrence.
+     * @param   str  要搜索的子字符串。
+     * @return  如果字符串参数作为一个子字符串在此对象中出现一次或多次，
+     *           则返回最后一个这种子字符串的第一个字符。
+     *           如果它不作为一个子字符串出现，则返回 则返回 {@code -1}。
      */
     public int lastIndexOf(String str) {
         return lastIndexOf(str, value.length);
     }
 
     /**
-     * Returns the index within this string of the last occurrence of the
-     * specified substring, searching backward starting at the specified index.
+     * 返回指定子字符串在此字符串中最后一次出现处的索引，从指定的索引开始反向搜索。
      *
-     * <p>The returned index is the largest value <i>k</i> for which:
+     * <p>返回的整数是满足下式的最大 <i>k</i> 值：
      * <blockquote><pre>
      * <i>k</i> {@code <=} fromIndex {@code &&} this.startsWith(str, <i>k</i>)
      * </pre></blockquote>
-     * If no such value of <i>k</i> exists, then {@code -1} is returned.
+     * 如果不存在这样的 <i>k</i> 值，则返回 {@code -1}。
      *
-     * @param   str         the substring to search for.
-     * @param   fromIndex   the index to start the search from.
-     * @return  the index of the last occurrence of the specified substring,
-     *          searching backward from the specified index,
-     *          or {@code -1} if there is no such occurrence.
+     * @param   str         要搜索的子字符串。
+     * @param   fromIndex   开始搜索的索引位置。
+     * @return  指定子字符串在此字符串中最后一次出现处的索引，
+     *           从指定的索引开始反向搜索。
+     *           如果它不作为一个子字符串出现，则返回 则返回 {@code -1}。
      */
     public int lastIndexOf(String str, int fromIndex) {
         return lastIndexOf(value, 0, value.length,
@@ -1711,21 +1711,18 @@ public final class String
     }
 
     /**
-     * Returns a string that is a substring of this string. The
-     * substring begins with the character at the specified index and
-     * extends to the end of this string. <p>
-     * Examples:
+     * 返回一个新的字符串，它是此字符串的一个子字符串。
+     * 该子字符串从指定索引处的字符开始，直到此字符串末尾。
+     * <p> 示例：
      * <blockquote><pre>
      * "unhappy".substring(2) returns "happy"
      * "Harbison".substring(3) returns "bison"
      * "emptiness".substring(9) returns "" (an empty string)
      * </pre></blockquote>
      *
-     * @param      beginIndex   the beginning index, inclusive.
-     * @return     the specified substring.
-     * @exception  IndexOutOfBoundsException  if
-     *             {@code beginIndex} is negative or larger than the
-     *             length of this {@code String} object.
+     * @param      beginIndex   起始索引（包括）。
+     * @return     指定的子字符串。
+     * @exception  IndexOutOfBoundsException  如果 {@code beginIndex} 为负或大于此 {@code String} 对象的长度。
      */
     public String substring(int beginIndex) {
         if (beginIndex < 0) {
@@ -1739,26 +1736,21 @@ public final class String
     }
 
     /**
-     * Returns a string that is a substring of this string. The
-     * substring begins at the specified {@code beginIndex} and
-     * extends to the character at index {@code endIndex - 1}.
-     * Thus the length of the substring is {@code endIndex-beginIndex}.
+     * 返回一个新字符串，它是此字符串的一个子字符串。
+     * 该子字符串从指定的 {@code beginIndex} 处开始，直到索引 {@code endIndex - 1} 处的字符。
+     * 因此，该子字符串的长度为 {@code endIndex-beginIndex}。
      * <p>
-     * Examples:
+     * 示例：
      * <blockquote><pre>
      * "hamburger".substring(4, 8) returns "urge"
      * "smiles".substring(1, 5) returns "mile"
      * </pre></blockquote>
      *
-     * @param      beginIndex   the beginning index, inclusive.
-     * @param      endIndex     the ending index, exclusive.
-     * @return     the specified substring.
-     * @exception  IndexOutOfBoundsException  if the
-     *             {@code beginIndex} is negative, or
-     *             {@code endIndex} is larger than the length of
-     *             this {@code String} object, or
-     *             {@code beginIndex} is larger than
-     *             {@code endIndex}.
+     * @param      beginIndex   起始索引（包括）。
+     * @param      endIndex     结束索引（不包括）。
+     * @return     指定的子字符串。
+     * @exception  IndexOutOfBoundsException   如果 {@code beginIndex} 为负，或 {@code endIndex} 大于此 {@code String} 对象的长度，
+     *              或 {@code beginIndex} 大于 {@code endIndex}。
      */
     public String substring(int beginIndex, int endIndex) {
         if (beginIndex < 0) {
@@ -1776,30 +1768,29 @@ public final class String
     }
 
     /**
-     * Returns a character sequence that is a subsequence of this sequence.
+     * 返回一个新的字符序列，它是此序列的一个子序列。
      *
-     * <p> An invocation of this method of the form
+     * <p> 此方法这种形式的调用：
      *
      * <blockquote><pre>
      * str.subSequence(begin,&nbsp;end)</pre></blockquote>
      *
-     * behaves in exactly the same way as the invocation
+     * 与以下调用的行为完全相同：
      *
      * <blockquote><pre>
      * str.substring(begin,&nbsp;end)</pre></blockquote>
      *
      * @apiNote
-     * This method is defined so that the {@code String} class can implement
-     * the {@link CharSequence} interface.
+     * 定义此方法使 {@code String} 类能够实现 {@link CharSequence} 接口。
      *
-     * @param   beginIndex   the begin index, inclusive.
-     * @param   endIndex     the end index, exclusive.
-     * @return  the specified subsequence.
+     * @param   beginIndex   起始索引（包括）。
+     * @param   endIndex     结束索引（不包括）。
+     * @return  指定子序列。
      *
      * @throws  IndexOutOfBoundsException
-     *          if {@code beginIndex} or {@code endIndex} is negative,
-     *          if {@code endIndex} is greater than {@code length()},
-     *          or if {@code beginIndex} is greater than {@code endIndex}
+     *          如果 {@code beginIndex} 或 endIndex 为负，
+     *          如果 {@code endIndex} 大于 {@code length()}
+     *          或 {@code beginIndex} 大于 {@code endIndex}
      *
      * @since 1.4
      * @spec JSR-51
@@ -1809,24 +1800,20 @@ public final class String
     }
 
     /**
-     * Concatenates the specified string to the end of this string.
+     * 将指定字符串连接到此字符串的结尾。
      * <p>
-     * If the length of the argument string is {@code 0}, then this
-     * {@code String} object is returned. Otherwise, a
-     * {@code String} object is returned that represents a character
-     * sequence that is the concatenation of the character sequence
-     * represented by this {@code String} object and the character
-     * sequence represented by the argument string.<p>
-     * Examples:
+     * 如果参数字符串的长度为 {@code 0}，则返回此 {@code String} 对象。
+     * 否则，创建一个新的 {@code String} 对象，
+     * 用来表示由此 {@code String} 对象表示的字符序列和
+     * 参数字符串表示的字符序列连接而成的字符序列。<p>
+     * 示例：
      * <blockquote><pre>
      * "cares".concat("s") returns "caress"
      * "to".concat("get").concat("her") returns "together"
      * </pre></blockquote>
      *
-     * @param   str   the {@code String} that is concatenated to the end
-     *                of this {@code String}.
-     * @return  a string that represents the concatenation of this object's
-     *          characters followed by the string argument's characters.
+     * @param   str   连接到此 {@code String} 结尾的 {@code String}。
+     * @return  一个字符串，它表示在此对象字符后连接字符串参数字符而成的字符。
      */
     public String concat(String str) {
         int otherLen = str.length();
@@ -1840,19 +1827,16 @@ public final class String
     }
 
     /**
-     * Returns a string resulting from replacing all occurrences of
-     * {@code oldChar} in this string with {@code newChar}.
+     * 返回一个新的字符串，
+     * 它是通过用 {@code newChar} 替换此字符串中出现的所有 {@code oldChar} 得到的。
      * <p>
-     * If the character {@code oldChar} does not occur in the
-     * character sequence represented by this {@code String} object,
-     * then a reference to this {@code String} object is returned.
-     * Otherwise, a {@code String} object is returned that
-     * represents a character sequence identical to the character sequence
-     * represented by this {@code String} object, except that every
-     * occurrence of {@code oldChar} is replaced by an occurrence
-     * of {@code newChar}.
+     * 如果 {@code oldChar} 在此 {@code String} 对象表示的字符序列中没有出现，
+     * 则返回对此 {@code String} 对象的引用。
+     * 否则，创建一个新的 {@code String} 对象，
+     * 它所表示的字符序列除了所有的 {@code oldChar} 都被替换为 {@code newChar} 之外，
+     * 与此 {@code String} 对象表示的字符序列相同。
      * <p>
-     * Examples:
+     * 示例：
      * <blockquote><pre>
      * "mesquite in your cellar".replace('e', 'o')
      *         returns "mosquito in your collar"
@@ -1863,10 +1847,10 @@ public final class String
      * "JonL".replace('q', 'x') returns "JonL" (no change)
      * </pre></blockquote>
      *
-     * @param   oldChar   the old character.
-     * @param   newChar   the new character.
-     * @return  a string derived from this string by replacing every
-     *          occurrence of {@code oldChar} with {@code newChar}.
+     * @param   oldChar   原字符。
+     * @param   newChar    新字符。
+     * @return  一个从此字符串派生的字符串，
+     *           它将此字符串中的所有 {@code oldChar} 替代为 {@code newChar}。
      */
     public String replace(char oldChar, char newChar) {
         if (oldChar != newChar) {
@@ -1896,12 +1880,9 @@ public final class String
     }
 
     /**
-     * Tells whether or not this string matches the given <a
-     * href="../util/regex/Pattern.html#sum">regular expression</a>.
+     * 告知此字符串是否匹配给定的 <a href="../util/regex/Pattern.html#sum">正则表达式</a>。
      *
-     * <p> An invocation of this method of the form
-     * <i>str</i>{@code .matches(}<i>regex</i>{@code )} yields exactly the
-     * same result as the expression
+     * <p> 调用此方法的 <i>str</i>{@code .matches(}<i>regex</i>{@code )} 形式与以下表达式产生的结果完全相同：
      *
      * <blockquote>
      * {@link java.util.regex.Pattern}.{@link java.util.regex.Pattern#matches(String,CharSequence)
@@ -1909,13 +1890,12 @@ public final class String
      * </blockquote>
      *
      * @param   regex
-     *          the regular expression to which this string is to be matched
+     *          用来匹配此字符串的正则表达式
      *
-     * @return  {@code true} if, and only if, this string matches the
-     *          given regular expression
+     * @return  当且仅当此字符串匹配给定的正则表达式时，返回 {@code true}
      *
      * @throws  PatternSyntaxException
-     *          if the regular expression's syntax is invalid
+     *          如果正则表达式的语法无效
      *
      * @see java.util.regex.Pattern
      *
@@ -1927,11 +1907,10 @@ public final class String
     }
 
     /**
-     * Returns true if and only if this string contains the specified
-     * sequence of char values.
+     * 当且仅当此字符串包含指定的 char 值序列时，返回 true。
      *
-     * @param s the sequence to search for
-     * @return true if this string contains {@code s}, false otherwise
+     * @param s 要搜索的序列
+     * @return 如果此字符串包含 s，则返回 true，否则返回 false
      * @since 1.5
      */
     public boolean contains(CharSequence s) {
@@ -1939,13 +1918,12 @@ public final class String
     }
 
     /**
-     * Replaces the first substring of this string that matches the given <a
-     * href="../util/regex/Pattern.html#sum">regular expression</a> with the
-     * given replacement.
+     * 使用给定的 replacement 替换此字符串匹配给定的 <a
+     * href="../util/regex/Pattern.html#sum">正则表达式</a> 的第一个子字符串。
      *
-     * <p> An invocation of this method of the form
+     * <p> 调用此方法的
      * <i>str</i>{@code .replaceFirst(}<i>regex</i>{@code ,} <i>repl</i>{@code )}
-     * yields exactly the same result as the expression
+     * 形式与以下表达式产生的结果完全相同：
      *
      * <blockquote>
      * <code>
@@ -1957,22 +1935,20 @@ public final class String
      * </blockquote>
      *
      *<p>
-     * Note that backslashes ({@code \}) and dollar signs ({@code $}) in the
-     * replacement string may cause the results to be different than if it were
-     * being treated as a literal replacement string; see
-     * {@link java.util.regex.Matcher#replaceFirst}.
-     * Use {@link java.util.regex.Matcher#quoteReplacement} to suppress the special
-     * meaning of these characters, if desired.
+     * 注意，在替代字符串中使用反斜杠 ({@code \}) 和美元符号 ({@code $}) 与
+     * 将其视为字面值替代字符串所得的结果可能不同；
+     * 请参阅 {@link java.util.regex.Matcher#replaceFirst}。
+     * 如有需要，可使用 {@link java.util.regex.Matcher#quoteReplacement} 取消这些字符的特殊含义。
      *
      * @param   regex
-     *          the regular expression to which this string is to be matched
+     *          用来匹配此字符串的正则表达式
      * @param   replacement
-     *          the string to be substituted for the first match
+     *          用来替换第一个匹配项的字符串
      *
-     * @return  The resulting {@code String}
+     * @return  所得 {@code String}
      *
      * @throws  PatternSyntaxException
-     *          if the regular expression's syntax is invalid
+     *          如果正则表达式的语法无效
      *
      * @see java.util.regex.Pattern
      *
@@ -1984,13 +1960,12 @@ public final class String
     }
 
     /**
-     * Replaces each substring of this string that matches the given <a
-     * href="../util/regex/Pattern.html#sum">regular expression</a> with the
-     * given replacement.
+     * 使用给定的 replacement 替换此字符串所有匹配给定的 <a
+     * href="../util/regex/Pattern.html#sum">正则表达式</a>的子字符串。
      *
-     * <p> An invocation of this method of the form
+     * <p> 调用此方法的
      * <i>str</i>{@code .replaceAll(}<i>regex</i>{@code ,} <i>repl</i>{@code )}
-     * yields exactly the same result as the expression
+     * 形式与以下表达式产生的结果完全相同：
      *
      * <blockquote>
      * <code>
@@ -2002,22 +1977,20 @@ public final class String
      * </blockquote>
      *
      *<p>
-     * Note that backslashes ({@code \}) and dollar signs ({@code $}) in the
-     * replacement string may cause the results to be different than if it were
-     * being treated as a literal replacement string; see
-     * {@link java.util.regex.Matcher#replaceAll Matcher.replaceAll}.
-     * Use {@link java.util.regex.Matcher#quoteReplacement} to suppress the special
-     * meaning of these characters, if desired.
+     * 注意，在替代字符串中使用反斜杠 ({@code \}) 和美元符号 ({@code $}) 与
+     * 将其视为字面值替代字符串所得的结果可能不同；
+     * 请参阅 {@link java.util.regex.Matcher#replaceFirst}。
+     * 如有需要，可使用 {@link java.util.regex.Matcher#quoteReplacement} 取消这些字符的特殊含义。
      *
      * @param   regex
-     *          the regular expression to which this string is to be matched
+     *          用来匹配此字符串的正则表达式
      * @param   replacement
-     *          the string to be substituted for each match
+     *          用来替换每个匹配项的字符串
      *
-     * @return  The resulting {@code String}
+     * @return  所得 {@code String}
      *
      * @throws  PatternSyntaxException
-     *          if the regular expression's syntax is invalid
+     *          如果正则表达式的语法无效
      *
      * @see java.util.regex.Pattern
      *
