@@ -2002,15 +2002,13 @@ public final class String
     }
 
     /**
-     * Replaces each substring of this string that matches the literal target
-     * sequence with the specified literal replacement sequence. The
-     * replacement proceeds from the beginning of the string to the end, for
-     * example, replacing "aa" with "b" in the string "aaa" will result in
-     * "ba" rather than "ab".
+     * 使用指定的字面值替换序列替换此字符串所有匹配字面值目标序列的子字符串。
+     * 该替换从字符串的开头朝末尾执行，
+     * 例如，用 "b" 替换字符串 "aaa" 中的 "aa" 将生成 "ba" 而不是 "ab"。
      *
-     * @param  target The sequence of char values to be replaced
-     * @param  replacement The replacement sequence of char values
-     * @return  The resulting string
+     * @param  target 要被替换的 char 值序列
+     * @param  replacement char 值的替换序列
+     * @return  所得 String
      * @since 1.5
      */
     public String replace(CharSequence target, CharSequence replacement) {
@@ -2019,40 +2017,35 @@ public final class String
     }
 
     /**
-     * Splits this string around matches of the given
-     * <a href="../util/regex/Pattern.html#sum">regular expression</a>.
+     * 根据匹配给定的 <a href="../util/regex/Pattern.html#sum">正则表达式</a> 来拆分此字符串。
      *
-     * <p> The array returned by this method contains each substring of this
+     * <p> 此方法返回的数组包含此字符串的子字符串，每个子字符串都由另一个匹配给定表达式的子字符串终止，
+     * 或者由此字符串末尾终止。数组中的子字符串按它们在此字符串中出现的顺序排列。
+     * 如果表达式不匹配输入的任何部分，那么所得数组只具有一个元素，即此字符串。
+     * The array returned by this method contains each substring of this
      * string that is terminated by another substring that matches the given
      * expression or is terminated by the end of the string.  The substrings in
      * the array are in the order in which they occur in this string.  If the
      * expression does not match any part of the input then the resulting array
      * has just one element, namely this string.
      *
-     * <p> When there is a positive-width match at the beginning of this
-     * string then an empty leading substring is included at the beginning
-     * of the resulting array. A zero-width match at the beginning however
-     * never produces such empty leading substring.
+     * <p> 当此字符串的开头存在正向宽度匹配时，在结果数组的开头包含空的前导子字符串。
+     * 然而，开头的零宽度匹配从不会产生这样的空前导子串。
      *
-     * <p> The {@code limit} parameter controls the number of times the
-     * pattern is applied and therefore affects the length of the resulting
-     * array.  If the limit <i>n</i> is greater than zero then the pattern
-     * will be applied at most <i>n</i>&nbsp;-&nbsp;1 times, the array's
-     * length will be no greater than <i>n</i>, and the array's last entry
-     * will contain all input beyond the last matched delimiter.  If <i>n</i>
-     * is non-positive then the pattern will be applied as many times as
-     * possible and the array can have any length.  If <i>n</i> is zero then
-     * the pattern will be applied as many times as possible, the array can
-     * have any length, and trailing empty strings will be discarded.
+     * <p> {@code limit} 参数控制模式应用的次数，因此影响所得数组的长度。
+     * 如果该限制 <i>n</i> 大于 0，则模式将被最多应用 <i>n</i>&nbsp;-&nbsp;1 次，
+     * 数组的长度将不会大于 <i>n</i>，而且数组的最后一项将包含所有超出最后匹配的定界符的输入。
+     * 如果 <i>n</i> 为非正，那么模式将被应用尽可能多的次数，而且数组可以是任何长度。
+     * 如果 <i>n</i> 为 0，那么模式将被应用尽可能多的次数，
+     * 数组可以是任何长度，并且结尾空字符串将被丢弃。
      *
-     * <p> The string {@code "boo:and:foo"}, for example, yields the
-     * following results with these parameters:
+     * <p> 例如，字符串 {@code "boo:and:foo"} 使用这些参数可生成以下结果：
      *
      * <blockquote><table cellpadding=1 cellspacing=0 summary="Split example showing regex, limit, and result">
      * <tr>
      *     <th>Regex</th>
      *     <th>Limit</th>
-     *     <th>Result</th>
+     *     <th>结果</th>
      * </tr>
      * <tr><td align=center>:</td>
      *     <td align=center>2</td>
@@ -2074,9 +2067,9 @@ public final class String
      *     <td>{@code { "b", "", ":and:f" }}</td></tr>
      * </table></blockquote>
      *
-     * <p> An invocation of this method of the form
+     * <p> 调用此方法的
      * <i>str.</i>{@code split(}<i>regex</i>{@code ,}&nbsp;<i>n</i>{@code )}
-     * yields the same result as the expression
+     * 形式与以下表达式产生的结果完全相同：
      *
      * <blockquote>
      * <code>
@@ -2088,16 +2081,15 @@ public final class String
      *
      *
      * @param  regex
-     *         the delimiting regular expression
+     *         定界正则表达式
      *
      * @param  limit
-     *         the result threshold, as described above
+     *         结果阈值，如上所述
      *
-     * @return  the array of strings computed by splitting this string
-     *          around matches of the given regular expression
+     * @return  字符串数组，它是根据给定正则表达式的匹配拆分此字符串确定的
      *
      * @throws  PatternSyntaxException
-     *          if the regular expression's syntax is invalid
+     *          如果正则表达式的语法无效
      *
      * @see java.util.regex.Pattern
      *
@@ -2159,21 +2151,18 @@ public final class String
     }
 
     /**
-     * Splits this string around matches of the given <a
-     * href="../util/regex/Pattern.html#sum">regular expression</a>.
+     * 根据匹配给定的 <a href="../util/regex/Pattern.html#sum">正则表达式</a> 来拆分此字符串。
      *
-     * <p> This method works as if by invoking the two-argument {@link
-     * #split(String, int) split} method with the given expression and a limit
-     * argument of zero.  Trailing empty strings are therefore not included in
-     * the resulting array.
+     * <p> 该方法的作用就像是使用给定的表达式和限制参数 0 来调用两参数 {@link
+     * #split(String, int) split} 方法。
+     * 因此，所得数组中不包括结尾空字符串。
      *
-     * <p> The string {@code "boo:and:foo"}, for example, yields the following
-     * results with these expressions:
+     * <p> 例如，字符串 {@code "boo:and:foo"} 使用这些表达式可生成以下结果：
      *
      * <blockquote><table cellpadding=1 cellspacing=0 summary="Split examples showing regex and result">
      * <tr>
      *  <th>Regex</th>
-     *  <th>Result</th>
+     *  <th>结果</th>
      * </tr>
      * <tr><td align=center>:</td>
      *     <td>{@code { "boo", "and", "foo" }}</td></tr>
@@ -2183,13 +2172,12 @@ public final class String
      *
      *
      * @param  regex
-     *         the delimiting regular expression
+     *         定界正则表达式
      *
-     * @return  the array of strings computed by splitting this string
-     *          around matches of the given regular expression
+     * @return  字符串数组，它是根据给定正则表达式的匹配拆分此字符串确定的
      *
      * @throws  PatternSyntaxException
-     *          if the regular expression's syntax is invalid
+     *          如果正则表达式的语法无效
      *
      * @see java.util.regex.Pattern
      *
@@ -2285,37 +2273,36 @@ public final class String
     }
 
     /**
-     * Converts all of the characters in this {@code String} to lower
-     * case using the rules of the given {@code Locale}.  Case mapping is based
-     * on the Unicode Standard version specified by the {@link java.lang.Character Character}
-     * class. Since case mappings are not always 1:1 char mappings, the resulting
-     * {@code String} may be a different length than the original {@code String}.
+     * 使用给定 {@code Locale} 的规则将此 {@code String} 中的所有字符都转换为小写。
+     * 大小写映射关系基于 {@link java.lang.Character Character} 类指定的 Unicode 标准版。
+     * 由于大小写映射关系并不总是 1:1 的字符映射关系，
+     * 因此所得 {@code String} 的长度可能不同于原 {@code String}。
      * <p>
-     * Examples of lowercase  mappings are in the following table:
+     * 下表中给出了几个小写映射关系的示例：
      * <table border="1" summary="Lowercase mapping examples showing language code of locale, upper case, lower case, and description">
      * <tr>
-     *   <th>Language Code of Locale</th>
-     *   <th>Upper Case</th>
-     *   <th>Lower Case</th>
-     *   <th>Description</th>
+     *   <th>语言环境</th>
+     *   <th>大写字母</th>
+     *   <th>小写字母</th>
+     *   <th>描述</th>
      * </tr>
      * <tr>
      *   <td>tr (Turkish)</td>
      *   <td>&#92;u0130</td>
      *   <td>&#92;u0069</td>
-     *   <td>capital letter I with dot above -&gt; small letter i</td>
+     *   <td>大写字母 I，上面有点 -&gt; 小写字母 i</td>
      * </tr>
      * <tr>
      *   <td>tr (Turkish)</td>
      *   <td>&#92;u0049</td>
      *   <td>&#92;u0131</td>
-     *   <td>capital letter I -&gt; small letter dotless i </td>
+     *   <td>大写字母 I -&gt; 小写字母 i，无点</td>
      * </tr>
      * <tr>
      *   <td>(all)</td>
      *   <td>French Fries</td>
      *   <td>french fries</td>
-     *   <td>lowercased all chars in String</td>
+     *   <td>将字符串中的所有字符都小写</td>
      * </tr>
      * <tr>
      *   <td>(all)</td>
@@ -2325,12 +2312,12 @@ public final class String
      *   <td><img src="doc-files/iota.gif" alt="iota"><img src="doc-files/chi.gif" alt="chi">
      *       <img src="doc-files/theta.gif" alt="theta"><img src="doc-files/upsilon.gif" alt="upsilon">
      *       <img src="doc-files/sigma1.gif" alt="sigma"></td>
-     *   <td>lowercased all chars in String</td>
+     *   <td>将字符串中的所有字符都小写</td>
      * </tr>
      * </table>
      *
-     * @param locale use the case transformation rules for this locale
-     * @return the {@code String}, converted to lowercase.
+     * @param locale 使用此语言环境的大小写转换规则
+     * @return 要转换为小写的 {@code String}
      * @see     java.lang.String#toLowerCase()
      * @see     java.lang.String#toUpperCase()
      * @see     java.lang.String#toUpperCase(Locale)
@@ -2426,22 +2413,18 @@ public final class String
     }
 
     /**
-     * Converts all of the characters in this {@code String} to lower
-     * case using the rules of the default locale. This is equivalent to calling
+     * 使用默认语言环境的规则将此 {@code String} 中的所有字符都转换为小写。这等效于调用
      * {@code toLowerCase(Locale.getDefault())}.
      * <p>
-     * <b>Note:</b> This method is locale sensitive, and may produce unexpected
-     * results if used for strings that are intended to be interpreted locale
-     * independently.
-     * Examples are programming language identifiers, protocol keys, and HTML
-     * tags.
-     * For instance, {@code "TITLE".toLowerCase()} in a Turkish locale
-     * returns {@code "t\u005Cu0131tle"}, where '\u005Cu0131' is the
-     * LATIN SMALL LETTER DOTLESS I character.
-     * To obtain correct results for locale insensitive strings, use
-     * {@code toLowerCase(Locale.ROOT)}.
+     * <b>注：</b> 此方法与语言环境有关，如果用于应独立于语言环境解释的字符串，
+     * 则可能生成不可预料的结果。
+     * 示例有编程语言标识符、协议键、HTML 标记。
+     * 例如，{@code "TITLE".toLowerCase()} 在 Turkish（土耳其语）语言环境中返回 {@code "t\u005Cu0131tle"}，
+     * 其中“\u005Cu0131”是 LATIN SMALL LETTER DOTLESS I 字符。
+     * 对于与语言环境有关的字符，要获得正确的结果，
+     * 请使用 {@code toLowerCase(Locale.ROOT)}。
      * <p>
-     * @return  the {@code String}, converted to lowercase.
+     * @return  要转换为小写的 {@code String}。
      * @see     java.lang.String#toLowerCase(Locale)
      */
     public String toLowerCase() {
