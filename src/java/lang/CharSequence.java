@@ -34,22 +34,16 @@ import java.util.stream.IntStream;
 import java.util.stream.StreamSupport;
 
 /**
- * A <tt>CharSequence</tt> is a readable sequence of <code>char</code> values. This
- * interface provides uniform, read-only access to many different kinds of
- * <code>char</code> sequences.
- * A <code>char</code> value represents a character in the <i>Basic
- * Multilingual Plane (BMP)</i> or a surrogate. Refer to <a
- * href="Character.html#unicode">Unicode Character Representation</a> for details.
+ * <tt>CharSequence</tt> 是 <code>char</code> 值的一个可读序列。
+ * 此接口对许多不同种类的 <code>char</code> 序列提供统一的只读访问。
+ * <code>char</code> 值表示 <i>Basic Multilingual Plane (BMP)</i> 或代理项中的一个字符。
+ * 有关详细信息，请参阅 <a href="Character.html#unicode">Unicode 字符表示形式</a>。
  *
- * <p> This interface does not refine the general contracts of the {@link
- * java.lang.Object#equals(java.lang.Object) equals} and {@link
- * java.lang.Object#hashCode() hashCode} methods.  The result of comparing two
- * objects that implement <tt>CharSequence</tt> is therefore, in general,
- * undefined.  Each object may be implemented by a different class, and there
- * is no guarantee that each class will be capable of testing its instances
- * for equality with those of the other.  It is therefore inappropriate to use
- * arbitrary <tt>CharSequence</tt> instances as elements in a set or as keys in
- * a map. </p>
+ * <p> 此接口不修改 {@link java.lang.Object#equals(java.lang.Object) equals} 和
+ * {@link java.lang.Object#hashCode() hashCode} 方法的常规协定。
+ * 因此，通常未定义比较实现 <tt>CharSequence</tt> 的两个对象的结果。
+ * 每个对象都可以通过一个不同的类实现，而且不能保证每个类能够测试其实例与其他类的实例的相等性。
+ * 因此，使用任意 <tt>CharSequence</tt> 实例作为集合中的元素或映射中的键是不合适的。</p>
  *
  * @author Mike McCloskey
  * @since 1.4
@@ -59,59 +53,49 @@ import java.util.stream.StreamSupport;
 public interface CharSequence {
 
     /**
-     * Returns the length of this character sequence.  The length is the number
-     * of 16-bit <code>char</code>s in the sequence.
+     * 返回此字符序列的长度。该长度是序列中的 16 位 <code>char</code> 数。
      *
-     * @return  the number of <code>char</code>s in this sequence
+     * @return  此序列中的 <code>char</code> 数
      */
     int length();
 
     /**
-     * Returns the <code>char</code> value at the specified index.  An index ranges from zero
-     * to <tt>length() - 1</tt>.  The first <code>char</code> value of the sequence is at
-     * index zero, the next at index one, and so on, as for array
-     * indexing.
+     * 返回指定索引的 <code>char</code> 值。索引范围是从零到 <tt>length() - 1</tt>。
+     * 对于数组索引，序列的第一个 <code>char</code> 值是索引零，下一个是索引一，依此类推。
      *
-     * <p>If the <code>char</code> value specified by the index is a
-     * <a href="{@docRoot}/java/lang/Character.html#unicode">surrogate</a>, the surrogate
-     * value is returned.
+     * <p>如果索引指定的 <code>char</code> 值是<a href="{@docRoot}/java/lang/Character.html#unicode">代理项</a>，
+     * 则返回代理项的值。
      *
-     * @param   index   the index of the <code>char</code> value to be returned
+     * @param   index   要返回的 <code>char</code> 值的索引
      *
-     * @return  the specified <code>char</code> value
+     * @return  指定的 <code>char</code> 值
      *
      * @throws  IndexOutOfBoundsException
-     *          if the <tt>index</tt> argument is negative or not less than
-     *          <tt>length()</tt>
+     *           如果 <tt>index</tt> 参数为负或不小于 <tt>length()</tt>
      */
     char charAt(int index);
 
     /**
-     * Returns a <code>CharSequence</code> that is a subsequence of this sequence.
-     * The subsequence starts with the <code>char</code> value at the specified index and
-     * ends with the <code>char</code> value at index <tt>end - 1</tt>.  The length
-     * (in <code>char</code>s) of the
-     * returned sequence is <tt>end - start</tt>, so if <tt>start == end</tt>
-     * then an empty sequence is returned.
+     * 返回一个新的 <code>CharSequence</code>，它是此序列的子序列。
+     * 子序列从指定序列的 <code>char</code> 值开始，并在索引 <tt>end - 1</tt> 的 <code>char</code> 值结束。
+     * 返回序列的长度（ <code>char</code>s 中）是 <tt>end - start</tt>，
+     * 因此，如果 <tt>start == end</tt>，则返回一个空序列。
      *
-     * @param   start   the start index, inclusive
-     * @param   end     the end index, exclusive
+     * @param   start   开始索引（包括）
+     * @param   end     结束索引（不包括）
      *
-     * @return  the specified subsequence
+     * @return  指定的子序列
      *
      * @throws  IndexOutOfBoundsException
-     *          if <tt>start</tt> or <tt>end</tt> are negative,
-     *          if <tt>end</tt> is greater than <tt>length()</tt>,
-     *          or if <tt>start</tt> is greater than <tt>end</tt>
+     *          如果 <tt>start</tt> 或 <tt>end</tt> 为负，
+     *          <tt>end</tt> 大于 length() 或者 <tt>start</tt> 大于 <tt>end</tt>
      */
     CharSequence subSequence(int start, int end);
 
     /**
-     * Returns a string containing the characters in this sequence in the same
-     * order as this sequence.  The length of the string will be the length of
-     * this sequence.
+     * 返回一个包含此序列中字符的字符串，该字符串与此序列的顺序相同。字符串的长度就是此序列的长度。
      *
-     * @return  a string consisting of exactly this sequence of characters
+     * @return  一个完全由此序列的字符组成的字符串
      */
     public String toString();
 

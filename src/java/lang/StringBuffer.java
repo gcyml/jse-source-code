@@ -28,66 +28,42 @@ package java.lang;
 import java.util.Arrays;
 
 /**
- * A thread-safe, mutable sequence of characters.
- * A string buffer is like a {@link String}, but can be modified. At any
- * point in time it contains some particular sequence of characters, but
- * the length and content of the sequence can be changed through certain
- * method calls.
+ * 线程安全的可变字符序列。
+ * 一个类似于 {@link String} 的字符串缓冲区，但不能修改。
+ * 虽然在任意时间点上它都包含某种特定的字符序列，但通过某些方法调用可以改变该序列的长度和内容。
  * <p>
- * String buffers are safe for use by multiple threads. The methods
- * are synchronized where necessary so that all the operations on any
- * particular instance behave as if they occur in some serial order
- * that is consistent with the order of the method calls made by each of
- * the individual threads involved.
+ * 可将字符串缓冲区安全地用于多个线程。
+ * 可以在必要时对这些方法进行同步，
+ * 因此任意特定实例上的所有操作就好像是以串行顺序发生的，该顺序与所涉及的每个线程进行的方法调用顺序一致。
  * <p>
- * The principal operations on a {@code StringBuffer} are the
- * {@code append} and {@code insert} methods, which are
- * overloaded so as to accept data of any type. Each effectively
- * converts a given datum to a string and then appends or inserts the
- * characters of that string to the string buffer. The
- * {@code append} method always adds these characters at the end
- * of the buffer; the {@code insert} method adds the characters at
- * a specified point.
+ * {@code StringBuffer} 上的主要操作是 {@code append} 和 insert 方法，
+ * 可重载这些方法，以接受任意类型的数据。
+ * 每个方法都能有效地将给定的数据转换成字符串，然后将该字符串的字符追加或插入到字符串缓冲区中。
+ * {@code append} 方法始终将这些字符添加到缓冲区的末端；而 {@code insert} 方法则在指定的点添加字符。
  * <p>
- * For example, if {@code z} refers to a string buffer object
- * whose current contents are {@code "start"}, then
- * the method call {@code z.append("le")} would cause the string
- * buffer to contain {@code "startle"}, whereas
- * {@code z.insert(4, "le")} would alter the string buffer to
- * contain {@code "starlet"}.
+ * 例如，如果 {@code z} 引用一个当前内容为 "{@code start}" 的字符串缓冲区对象，
+ * 则该方法调用 {@code z.append("le")} 将使字符串缓冲区包含 "{@code startle}"，
+ * 而 {@code z.insert(4, "le")} 将更改字符串缓冲区，使之包含 "{@code startle}"。
  * <p>
- * In general, if sb refers to an instance of a {@code StringBuffer},
- * then {@code sb.append(x)} has the same effect as
- * {@code sb.insert(sb.length(), x)}.
+ * 通常，如果 sb 引用 {@code StringBuffer} 的实例，
+ * 则 {@code sb.append(x)} 和 {@code sb.insert(sb.length(), x)} 具有相同的效果。
  * <p>
- * Whenever an operation occurs involving a source sequence (such as
- * appending or inserting from a source sequence), this class synchronizes
- * only on the string buffer performing the operation, not on the source.
- * Note that while {@code StringBuffer} is designed to be safe to use
- * concurrently from multiple threads, if the constructor or the
- * {@code append} or {@code insert} operation is passed a source sequence
- * that is shared across threads, the calling code must ensure
- * that the operation has a consistent and unchanging view of the source
- * sequence for the duration of the operation.
- * This could be satisfied by the caller holding a lock during the
- * operation's call, by using an immutable source sequence, or by not
- * sharing the source sequence across threads.
+ * 当发生与源序列有关的操作（如源序列中的追加或插入操作）时，
+ * 该类只在执行此操作的字符串缓冲区上而不是在源上实现同步。
+ * 请注意，虽然 {@code StringBuffer} 被设计为可以安全地从多个线程同时使用，但是如果构造函数或者
+ * {@code append} 或者 {@code insert} 操作传递了跨线程共享的源序列，
+ * 则调用代码必须确保操作在期间具有一致且不变的源序列视图。
+ * 这可以通过在操作调用期间持有锁的调用者，通过使用不可变的源序列，或者不跨线程共享源序列来实现。
  * <p>
- * Every string buffer has a capacity. As long as the length of the
- * character sequence contained in the string buffer does not exceed
- * the capacity, it is not necessary to allocate a new internal
- * buffer array. If the internal buffer overflows, it is
- * automatically made larger.
+ * 每个字符串缓冲区都有一定的容量。
+ * 只要字符串缓冲区所包含的字符序列的长度没有超出此容量，就无需分配新的内部缓冲区数组。
+ * 如果内部缓冲区溢出，则此容量自动增大。
  * <p>
- * Unless otherwise noted, passing a {@code null} argument to a constructor
- * or method in this class will cause a {@link NullPointerException} to be
- * thrown.
+ * 除非另有说明，否则将 {@code null} 参数传递给构造函数或此类的方法将抛出 {@link NullPointerException}。
  * <p>
- * As of  release JDK 5, this class has been supplemented with an equivalent
- * class designed for use by a single thread, {@link StringBuilder}.  The
- * {@code StringBuilder} class should generally be used in preference to
- * this one, as it supports all of the same operations but it is faster, as
- * it performs no synchronization.
+ * 从 JDK 5 开始，为该类补充了一个单个线程使用的等价类，即 {@link StringBuilder}。
+ * 与该类相比，通常应该优先使用 {@link StringBuilder} 类，
+ * 因为它支持所有相同的操作，但由于它不执行同步，所以速度更快。
  *
  * @author      Arthur van Hoff
  * @see     java.lang.StringBuilder
@@ -100,8 +76,7 @@ import java.util.Arrays;
 {
 
     /**
-     * A cache of the last value returned by toString. Cleared
-     * whenever the StringBuffer is modified.
+     * toString 返回的最后一个值的缓存。 每当 StringBuffer 被修改时清空。
      */
     private transient char[] toStringCache;
 
@@ -109,31 +84,27 @@ import java.util.Arrays;
     static final long serialVersionUID = 3388685877147921107L;
 
     /**
-     * Constructs a string buffer with no characters in it and an
-     * initial capacity of 16 characters.
+     * 构造一个其中不带字符的字符串缓冲区，其初始容量为 16 个字符。
      */
     public StringBuffer() {
         super(16);
     }
 
     /**
-     * Constructs a string buffer with no characters in it and
-     * the specified initial capacity.
+     * 构造一个不带字符，但具有指定初始容量的字符串缓冲区。
      *
-     * @param      capacity  the initial capacity.
-     * @exception  NegativeArraySizeException  if the {@code capacity}
-     *               argument is less than {@code 0}.
+     * @param      capacity  初始容量。
+     * @exception  NegativeArraySizeException  如果 {@code capacity} 参数小于 {@code 0}。
      */
     public StringBuffer(int capacity) {
         super(capacity);
     }
 
     /**
-     * Constructs a string buffer initialized to the contents of the
-     * specified string. The initial capacity of the string buffer is
-     * {@code 16} plus the length of the string argument.
+     * 构造一个字符串缓冲区，并将其内容初始化为指定的字符串内容。
+     * 该字符串的初始容量为 {@code 16} 加上字符串参数的长度。
      *
-     * @param   str   the initial contents of the buffer.
+     * @param   str   缓冲区的初始内容。
      */
     public StringBuffer(String str) {
         super(str.length() + 16);
@@ -141,16 +112,12 @@ import java.util.Arrays;
     }
 
     /**
-     * Constructs a string buffer that contains the same characters
-     * as the specified {@code CharSequence}. The initial capacity of
-     * the string buffer is {@code 16} plus the length of the
-     * {@code CharSequence} argument.
+     * 构造一个字符串缓冲区，它包含与指定的 {@code CharSequence} 相同的字符。
+     * 该字符串缓冲区的初始容量为 16 加上 {@code CharSequence} 参数的长度。
      * <p>
-     * If the length of the specified {@code CharSequence} is
-     * less than or equal to zero, then an empty buffer of capacity
-     * {@code 16} is returned.
+     * 如果指定的 {@code CharSequence} 的长度小于或等于 0，则返回容量为 {@code 16} 的空缓冲区。
      *
-     * @param      seq   the sequence to copy.
+     * @param      seq   要复制的序列。
      * @since 1.5
      */
     public StringBuffer(CharSequence seq) {
@@ -272,27 +239,20 @@ import java.util.Arrays;
     }
 
     /**
-     * Appends the specified {@code StringBuffer} to this sequence.
+     * 将指定的 {@code StringBuffer} 追加到此序列中。
      * <p>
-     * The characters of the {@code StringBuffer} argument are appended,
-     * in order, to the contents of this {@code StringBuffer}, increasing the
-     * length of this {@code StringBuffer} by the length of the argument.
-     * If {@code sb} is {@code null}, then the four characters
-     * {@code "null"} are appended to this {@code StringBuffer}.
+     * 按顺序将 {@code StringBuffer} 参数中的字符追加到此 {@code StringBuffer} 中，
+     * 并使 {@code StringBuffer} 在长度上增加该参数的长度。
+     * 如果 {@code sb} 为 {@code null}，则将 4 个 {@code "null"} 字符追加到此 {@code StringBuffer} 中。
      * <p>
-     * Let <i>n</i> be the length of the old character sequence, the one
-     * contained in the {@code StringBuffer} just prior to execution of the
-     * {@code append} method. Then the character at index <i>k</i> in
-     * the new character sequence is equal to the character at index <i>k</i>
-     * in the old character sequence, if <i>k</i> is less than <i>n</i>;
-     * otherwise, it is equal to the character at index <i>k-n</i> in the
-     * argument {@code sb}.
+     * 在执行 {@code append} 方法前，让 {@code StringBuffer} 中包含的原有字符序列的长度为 <i>n</i>。
+     * 如果 <i>k</i> 小于 <i>n</i>，则新字符序列中索引 <i>k</i> 处的字符等于原有序列中索引 <i>k</i> 处的字符；
+     * 否则它等于参数 {@code sb} 中索引 <i>k-n</i> 处的字符。
      * <p>
-     * This method synchronizes on {@code this}, the destination
-     * object, but does not synchronize on the source ({@code sb}).
+     * 该方法在 {@code this}（目标）对象上实现同步，但不在源（{@code sb}）上实现同步。
      *
-     * @param   sb   the {@code StringBuffer} to append.
-     * @return  a reference to this object.
+     * @param   sb   要追加的 {@code StringBuffer}。
+     * @return  该对象的一个引用。
      * @since 1.4
      */
     public synchronized StringBuffer append(StringBuffer sb) {
@@ -312,24 +272,18 @@ import java.util.Arrays;
     }
 
     /**
-     * Appends the specified {@code CharSequence} to this
-     * sequence.
+     * 将指定的 {@code CharSequence} 追加到该序列。
      * <p>
-     * The characters of the {@code CharSequence} argument are appended,
-     * in order, increasing the length of this sequence by the length of the
-     * argument.
+     * 按顺序将 {@code CharSequence} 参数中的字符追加到该序列中，使该序列增加该参数的长度。
      *
-     * <p>The result of this method is exactly the same as if it were an
-     * invocation of this.append(s, 0, s.length());
+     * <p>该方法的结果与调用 this.append(s, 0, s.length()) 的结果完全相同；
      *
-     * <p>This method synchronizes on {@code this}, the destination
-     * object, but does not synchronize on the source ({@code s}).
+     * <p>该方法在 {@code this}（目标）对象上实现同步，但不在源（{@code s}）上实现同步。
      *
-     * <p>If {@code s} is {@code null}, then the four characters
-     * {@code "null"} are appended.
+     * <p>如果 {@code s} 为 {@code null}，则追加 4 个 {@code "null"} 字符。
      *
-     * @param   s the {@code CharSequence} to append.
-     * @return  a reference to this object.
+     * @param   s 要追加的 {@code CharSequence}。
+     * @return  此对象的一个引用。
      * @since 1.5
      */
     @Override
@@ -672,15 +626,14 @@ import java.util.Arrays;
     }
 
     /**
-     * Serializable fields for StringBuffer.
+     * StringBuffer的可序列化字段。
      *
      * @serialField value  char[]
-     *              The backing character array of this StringBuffer.
+     *              StringBuffer 的后备字符数组。
      * @serialField count int
-     *              The number of characters in this StringBuffer.
+     *              StringBuffer 的字符数。
      * @serialField shared  boolean
-     *              A flag indicating whether the backing array is shared.
-     *              The value is ignored upon deserialization.
+     *              后背数组是否共享的标志位。反序列化时忽略该值。
      */
     private static final java.io.ObjectStreamField[] serialPersistentFields =
     {
@@ -690,8 +643,7 @@ import java.util.Arrays;
     };
 
     /**
-     * readObject is called to restore the state of the StringBuffer from
-     * a stream.
+     * 调用readObject从流恢复StringBuffer的状态。
      */
     private synchronized void writeObject(java.io.ObjectOutputStream s)
         throws java.io.IOException {
@@ -703,8 +655,7 @@ import java.util.Arrays;
     }
 
     /**
-     * readObject is called to restore the state of the StringBuffer from
-     * a stream.
+     * 调用readObject从流恢复StringBuffer的状态。
      */
     private void readObject(java.io.ObjectInputStream s)
         throws java.io.IOException, ClassNotFoundException {
