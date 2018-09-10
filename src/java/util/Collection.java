@@ -30,79 +30,66 @@ import java.util.stream.Stream;
 import java.util.stream.StreamSupport;
 
 /**
- * The root interface in the <i>collection hierarchy</i>.  A collection
- * represents a group of objects, known as its <i>elements</i>.  Some
- * collections allow duplicate elements and others do not.  Some are ordered
- * and others unordered.  The JDK does not provide any <i>direct</i>
- * implementations of this interface: it provides implementations of more
- * specific subinterfaces like <tt>Set</tt> and <tt>List</tt>.  This interface
- * is typically used to pass collections around and manipulate them where
- * maximum generality is desired.
+ * <i>Collection 层次结构</i> 中的根接口。
+ * Collection 表示一组对象，这些对象也称为 collection 的<i>元素</i>。
+ * 一些 collection 允许有重复的元素，而另一些则不允许。
+ * 一些 collection 是有序的，而另一些则是无序的。
+ * JDK 不提供此接口的任何<i>直接</i>实现：
+ * 它提供更具体的子接口（如 <tt>Set</tt> 和 <tt>List</tt>）实现。
+ * 此接口通常用来传递 collection，并在需要最大普遍性的地方操作这些 collection。
  *
- * <p><i>Bags</i> or <i>multisets</i> (unordered collections that may contain
- * duplicate elements) should implement this interface directly.
+ * <p><i>包 (bag) </i> 或<i>多集合 (multiset)</i>
+ * （可能包含重复元素的无序 collection）应该直接实现此接口。
  *
- * <p>All general-purpose <tt>Collection</tt> implementation classes (which
- * typically implement <tt>Collection</tt> indirectly through one of its
- * subinterfaces) should provide two "standard" constructors: a void (no
- * arguments) constructor, which creates an empty collection, and a
- * constructor with a single argument of type <tt>Collection</tt>, which
- * creates a new collection with the same elements as its argument.  In
- * effect, the latter constructor allows the user to copy any collection,
- * producing an equivalent collection of the desired implementation type.
- * There is no way to enforce this convention (as interfaces cannot contain
- * constructors) but all of the general-purpose <tt>Collection</tt>
- * implementations in the Java platform libraries comply.
+ * <p>所有通用的 <tt>Collection</tt> 实现类
+ * （通常通过它的一个子接口间接实现 <tt>Collection</tt>）应该提供两个“标准”构造方法：
+ * 一个是 void（无参数）构造方法，用于创建空 collection；
+ * 另一个是带有<tt>Collection</tt> 类型单参数的构造方法，
+ * 用于创建一个具有与其参数相同元素新的 collection。
+ * 实际上，后者允许用户复制任何 collection，以生成所需实现类型的一个等效 collection。
+ * 尽管无法强制执行此约定（因为接口不能包含构造方法），
+ * 但是 Java 平台库中所有通用的 <tt>Collection</tt> 实现都遵从它。
  *
- * <p>The "destructive" methods contained in this interface, that is, the
- * methods that modify the collection on which they operate, are specified to
- * throw <tt>UnsupportedOperationException</tt> if this collection does not
- * support the operation.  If this is the case, these methods may, but are not
- * required to, throw an <tt>UnsupportedOperationException</tt> if the
- * invocation would have no effect on the collection.  For example, invoking
- * the {@link #addAll(Collection)} method on an unmodifiable collection may,
- * but is not required to, throw the exception if the collection to be added
- * is empty.
+ * <p>此接口中包含的“破坏性”方法，是指可修改其所操作的 collection 的那些方法，
+ * 如果此 collection 不支持该操作，
+ * 则指定这些方法抛出 <tt>UnsupportedOperationException</tt>。
+ * 如果是这样，那么在调用对该 collection 无效时，这些方法可能，但并不一定抛出
+ * <tt>UnsupportedOperationException</tt>。
+ * 例如，如果要添加的 collection 为空且不可修改，
+ * 则对该 collection 调用 {@link #addAll(Collection)} 方法时，
+ * 可能但并不一定抛出异常。
  *
  * <p><a name="optional-restrictions">
- * Some collection implementations have restrictions on the elements that
- * they may contain.</a>  For example, some implementations prohibit null elements,
- * and some have restrictions on the types of their elements.  Attempting to
- * add an ineligible element throws an unchecked exception, typically
- * <tt>NullPointerException</tt> or <tt>ClassCastException</tt>.  Attempting
- * to query the presence of an ineligible element may throw an exception,
- * or it may simply return false; some implementations will exhibit the former
- * behavior and some will exhibit the latter.  More generally, attempting an
- * operation on an ineligible element whose completion would not result in
- * the insertion of an ineligible element into the collection may throw an
- * exception or it may succeed, at the option of the implementation.
- * Such exceptions are marked as "optional" in the specification for this
- * interface.
+ * 一些 collection 实现对它们可能包含的元素有所限制。</a>
+ * 例如，某些实现禁止 null 元素，而某些实现则对元素的类型有限制。
+ * 试图添加不合格的元素将抛出一个未经检查的异常，
+ * 通常是 <tt>NullPointerException</tt> 或 <tt>ClassCastException</tt>。
+ * 试图查询是否存在不合格的元素可能抛出一个异常，或者只是简单地返回 false；
+ * 某些实现将表现出前一种行为，而某些实现则表现后一种。
+ * 较为常见的是，试图对某个不合格的元素执行操作且
+ * 该操作的完成不会导致将不合格的元素插入 collection 中，
+ * 将可能抛出一个异常，也可能操作成功，这取决于实现本身。
+ * 这样的异常在此接口的规范中标记为“可选”。
  *
- * <p>It is up to each collection to determine its own synchronization
- * policy.  In the absence of a stronger guarantee by the
- * implementation, undefined behavior may result from the invocation
- * of any method on a collection that is being mutated by another
- * thread; this includes direct invocations, passing the collection to
- * a method that might perform invocations, and using an existing
- * iterator to examine the collection.
+ * <p>由每个 collection 来确定其自身的同步策略。
+ * 在没有实现的强烈保证的情况下，
+ * 调用由另一进程正在更改的 collection 的方法可能会出现不确定行为；
+ * 这包括直接调用，将 collection 传递给可能执行调用的方法，
+ * 以及使用现有迭代器检查 collection。
  *
- * <p>Many methods in Collections Framework interfaces are defined in
- * terms of the {@link Object#equals(Object) equals} method.  For example,
- * the specification for the {@link #contains(Object) contains(Object o)}
- * method says: "returns <tt>true</tt> if and only if this collection
- * contains at least one element <tt>e</tt> such that
- * <tt>(o==null ? e==null : o.equals(e))</tt>."  This specification should
- * <i>not</i> be construed to imply that invoking <tt>Collection.contains</tt>
- * with a non-null argument <tt>o</tt> will cause <tt>o.equals(e)</tt> to be
- * invoked for any element <tt>e</tt>.  Implementations are free to implement
- * optimizations whereby the <tt>equals</tt> invocation is avoided, for
- * example, by first comparing the hash codes of the two elements.  (The
- * {@link Object#hashCode()} specification guarantees that two objects with
- * unequal hash codes cannot be equal.)  More generally, implementations of
- * the various Collections Framework interfaces are free to take advantage of
- * the specified behavior of underlying {@link Object} methods wherever the
- * implementor deems it appropriate.
+ * <p>Collections Framework 接口中的很多方法是
+ * 根据 {@link Object#equals(Object) equals} 方法定义的。
+ * 例如，{@link #contains(Object) contains(Object o)} 方法的规范声明：
+ * “当且仅当此 collection 包含至少一个满足
+ * <tt>(o==null ? e==null : o.equals(e))</tt> 的元素 <tt>e</tt> 时，
+ * 返回 <tt>true</tt>。”<i>不</i>应将此规范理解为它暗指
+ * 调用具有非空参数 <tt>o</tt> 的 <tt>Collection.contains</tt> 方法会导致
+ * 为任意的 <tt>e</tt> 元素调用 <tt>o.equals(e)</tt> 方法。
+ * 可随意对各种实现执行优化，只要避免调用 <tt>equals</tt> 即可，
+ * 例如，通过首先比较两个元素的哈希码。
+ * （{@link Object#hashCode()} 规范保证哈希码不相等的两个对象不会相等）。
+ * 较为常见的是，各种 Collections Framework 接口的实现
+ * 可随意利用底层 {@link Object} 方法的指定行为，而不管实现程序认为它是否合适。
  *
  * <p>Some collection operations which perform recursive traversal of the
  * collection may fail with an exception for self-referential instances where
@@ -111,9 +98,9 @@ import java.util.stream.StreamSupport;
  * methods. Implementations may optionally handle the self-referential scenario,
  * however most current implementations do not do so.
  *
- * <p>This interface is a member of the
+ * <p>此接口是
  * <a href="{@docRoot}/../technotes/guides/collections/index.html">
- * Java Collections Framework</a>.
+ * Java Collections Framework</a> 的一个成员。
  *
  * @implSpec
  * The default method implementations (inherited or otherwise) do not apply any
@@ -145,146 +132,124 @@ public interface Collection<E> extends Iterable<E> {
     // Query Operations
 
     /**
-     * Returns the number of elements in this collection.  If this collection
-     * contains more than <tt>Integer.MAX_VALUE</tt> elements, returns
-     * <tt>Integer.MAX_VALUE</tt>.
+     * 返回此 collection 中的元素数。
+     * 如果此 collection 包含的元素大于 <tt>Integer.MAX_VALUE</tt>，
+     * 则返回 <tt>Integer.MAX_VALUE</tt>。
      *
-     * @return the number of elements in this collection
+     * @return 此 collection 中的元素数
      */
     int size();
 
     /**
-     * Returns <tt>true</tt> if this collection contains no elements.
+     * 如果此 collection 不包含元素，则返回 <tt>true</tt>。
      *
-     * @return <tt>true</tt> if this collection contains no elements
+     * @return 如果此 collection 不包含元素，则返回 <tt>true</tt>
      */
     boolean isEmpty();
 
     /**
-     * Returns <tt>true</tt> if this collection contains the specified element.
-     * More formally, returns <tt>true</tt> if and only if this collection
-     * contains at least one element <tt>e</tt> such that
-     * <tt>(o==null&nbsp;?&nbsp;e==null&nbsp;:&nbsp;o.equals(e))</tt>.
+     * 如果此 collection 包含指定的元素，则返回 <tt>true</tt>。
+     * 更确切地讲，当且仅当此 collection 至少包含一个满足
+     * <tt>(o==null&nbsp;?&nbsp;e==null&nbsp;:&nbsp;o.equals(e))</tt>
+     * 的元素 <tt>e</tt> 时，返回 <tt>true</tt>。
      *
-     * @param o element whose presence in this collection is to be tested
-     * @return <tt>true</tt> if this collection contains the specified
-     *         element
-     * @throws ClassCastException if the type of the specified element
-     *         is incompatible with this collection
-     *         (<a href="#optional-restrictions">optional</a>)
-     * @throws NullPointerException if the specified element is null and this
-     *         collection does not permit null elements
-     *         (<a href="#optional-restrictions">optional</a>)
+     * @param o 测试在此 collection 中是否存在的元素
+     * @return 如果此 collection 包含指定的元素，则返回 <tt>true</tt>
+     * @throws ClassCastException 如果指定元素的类型与此 collection 不兼容
+     *         （<a href="#optional-restrictions">可选</a>）。
+     * @throws NullPointerException 如果指定的元素为 null，
+     *         并且此 collection 不允许 null 元素
+     *         （<a href="#optional-restrictions">可选</a>）
      */
     boolean contains(Object o);
 
     /**
-     * Returns an iterator over the elements in this collection.  There are no
-     * guarantees concerning the order in which the elements are returned
-     * (unless this collection is an instance of some class that provides a
-     * guarantee).
+     * 返回在此 collection 的元素上进行迭代的迭代器。
+     * 关于元素返回的顺序没有任何保证
+     * （除非此 collection 是某个能提供保证顺序的类实例）。
      *
-     * @return an <tt>Iterator</tt> over the elements in this collection
+     * @return 在此 collection 的元素上进行迭代的 <tt>Iterator</tt>
      */
     Iterator<E> iterator();
 
     /**
-     * Returns an array containing all of the elements in this collection.
-     * If this collection makes any guarantees as to what order its elements
-     * are returned by its iterator, this method must return the elements in
-     * the same order.
+     * 返回包含此 collection 中所有元素的数组。
+     * 如果 collection 对其迭代器返回的元素顺序做出了某些保证，
+     * 那么此方法必须以相同的顺序返回这些元素。
      *
-     * <p>The returned array will be "safe" in that no references to it are
-     * maintained by this collection.  (In other words, this method must
-     * allocate a new array even if this collection is backed by an array).
-     * The caller is thus free to modify the returned array.
+     * <p>返回的数组将是“安全的”，因为此 collection 并不维护对返回数组的任何引用。
+     * （换句话说，即使 collection 受到数组的支持，此方法也必须分配一个新的数组）。
+     * 因此，调用者可以随意修改返回的数组。
      *
-     * <p>This method acts as bridge between array-based and collection-based
-     * APIs.
+     * <p>此方法充当了基于数组的 API 与基于 collection 的 API 之间的桥梁。
      *
-     * @return an array containing all of the elements in this collection
+     * @return 包含此 collection 中所有元素的数组
      */
     Object[] toArray();
 
     /**
-     * Returns an array containing all of the elements in this collection;
-     * the runtime type of the returned array is that of the specified array.
-     * If the collection fits in the specified array, it is returned therein.
-     * Otherwise, a new array is allocated with the runtime type of the
-     * specified array and the size of this collection.
+     * 返回包含此 collection 中所有元素的数组；
+     * 返回数组的运行时类型与指定数组的运行时类型相同。
+     * 如果指定的数组能容纳该 collection，则返回包含此 collection 元素的数组。
+     * 否则，将分配一个具有指定数组的运行时类型和此 collection 大小的新数组。
      *
-     * <p>If this collection fits in the specified array with room to spare
-     * (i.e., the array has more elements than this collection), the element
-     * in the array immediately following the end of the collection is set to
-     * <tt>null</tt>.  (This is useful in determining the length of this
-     * collection <i>only</i> if the caller knows that this collection does
-     * not contain any <tt>null</tt> elements.)
+     * <p>如果指定的数组能容纳 collection，
+     * 并有剩余空间（即数组的元素比 collection 的元素多），
+     * 那么会将数组中紧接 collection 尾部的元素设置为 <tt>null</tt>。
+     * （<i>只有</i>在调用者知道此 collection 没有包含任何 <tt>null</tt> 元素时
+     * 才能用此方法确定 collection 的长度。）
      *
-     * <p>If this collection makes any guarantees as to what order its elements
-     * are returned by its iterator, this method must return the elements in
-     * the same order.
+     * <p>如果此 collection 对其迭代器返回的元素顺序做出了某些保证，
+     * 那么此方法必须以相同的顺序返回这些元素。
      *
-     * <p>Like the {@link #toArray()} method, this method acts as bridge between
-     * array-based and collection-based APIs.  Further, this method allows
-     * precise control over the runtime type of the output array, and may,
-     * under certain circumstances, be used to save allocation costs.
+     * <p>像 {@link #toArray()} 方法一样，
+     * 此方法充当基于数组的 API 与基于 collection 的 API 之间的桥梁。
+     * 更进一步说，此方法允许对输出数组的运行时类型进行精确控制，
+     * 并且在某些情况下，可以用来节省分配开销。
      *
-     * <p>Suppose <tt>x</tt> is a collection known to contain only strings.
-     * The following code can be used to dump the collection into a newly
-     * allocated array of <tt>String</tt>:
+     * <p>假定 <tt>x</tt> 是只包含字符串的一个已知 collection。
+     * 以下代码用来将 collection 转储到一个新分配的 <tt>String</tt> 数组：
      *
      * <pre>
      *     String[] y = x.toArray(new String[0]);</pre>
      *
-     * Note that <tt>toArray(new Object[0])</tt> is identical in function to
-     * <tt>toArray()</tt>.
+     * 注意， <tt>toArray(new Object[0])</tt>
+     * 和 <tt>toArray()</tt> 在功能上是相同的。
      *
      * @param <T> the runtime type of the array to contain the collection
-     * @param a the array into which the elements of this collection are to be
-     *        stored, if it is big enough; otherwise, a new array of the same
-     *        runtime type is allocated for this purpose.
-     * @return an array containing all of the elements in this collection
-     * @throws ArrayStoreException if the runtime type of the specified array
-     *         is not a supertype of the runtime type of every element in
-     *         this collection
-     * @throws NullPointerException if the specified array is null
+     * @param a 存储此 collection 元素的数组（如果其足够大）；
+     *        否则，将为此分配一个具有相同运行时类型的新数组。
+     * @return 包含此 collection 中所有元素的数组
+     * @throws ArrayStoreException 如果指定数组的运行时类型不是
+     *         此 collection 每个元素运行时类型的超类型
+     * @throws NullPointerException 如果指定的数组为 null
      */
     <T> T[] toArray(T[] a);
 
     // Modification Operations
 
     /**
-     * Ensures that this collection contains the specified element (optional
-     * operation).  Returns <tt>true</tt> if this collection changed as a
-     * result of the call.  (Returns <tt>false</tt> if this collection does
-     * not permit duplicates and already contains the specified element.)<p>
+     * 确保此 collection 包含指定的元素（可选操作）。
+     * 如果此 collection 由于调用而发生更改，则返回 <tt>true</tt>。
+     * （如果此 collection 不允许有重复元素，并且已经包含了指定的元素，
+     * 则返回 <tt>false</tt>。）<p>
      *
-     * Collections that support this operation may place limitations on what
-     * elements may be added to this collection.  In particular, some
-     * collections will refuse to add <tt>null</tt> elements, and others will
-     * impose restrictions on the type of elements that may be added.
-     * Collection classes should clearly specify in their documentation any
-     * restrictions on what elements may be added.<p>
+     * 支持此操作的 collection 可以限制哪些元素能添加到此 collection 中来。
+     * 需要特别指出的是，一些 collection 拒绝添加 <tt>null</tt> 元素，
+     * 其他一些 collection 将对可以添加的元素类型强加限制。
+     * Collection 类应该在其文档中清楚地指定能添加哪些元素方面的所有限制。<p>
      *
-     * If a collection refuses to add a particular element for any reason
-     * other than that it already contains the element, it <i>must</i> throw
-     * an exception (rather than returning <tt>false</tt>).  This preserves
-     * the invariant that a collection always contains the specified element
-     * after this call returns.
+     * 如果 collection 由于某些原因（已经包含该元素的原因除外）拒绝添加特定的元素，
+     * 那么它<i>必须</i>抛出一个异常（而不是返回 <tt>false</tt>）。
+     * 这确保了在此调用返回后，collection 总是包含指定的元素。
      *
-     * @param e element whose presence in this collection is to be ensured
-     * @return <tt>true</tt> if this collection changed as a result of the
-     *         call
-     * @throws UnsupportedOperationException if the <tt>add</tt> operation
-     *         is not supported by this collection
-     * @throws ClassCastException if the class of the specified element
-     *         prevents it from being added to this collection
-     * @throws NullPointerException if the specified element is null and this
-     *         collection does not permit null elements
-     * @throws IllegalArgumentException if some property of the element
-     *         prevents it from being added to this collection
-     * @throws IllegalStateException if the element cannot be added at this
-     *         time due to insertion restrictions
+     * @param e 确定此 collection 中是否存在的元素
+     * @return 如果此 collection 由于调用而发生更改，则返回 <tt>true</tt>
+     * @throws UnsupportedOperationException 如果此 collection 不支持 <tt>add</tt> 操作
+     * @throws ClassCastException 果指定元素的类不允许它添加到此 collection 中
+     * @throws NullPointerException 如果指定的元素为 null，并且此 collection 不允许 null 元素
+     * @throws IllegalArgumentException 如果元素的某属性不允许它添加到此 collection 中
+     * @throws IllegalStateException 如果由于插入限制，元素不能在此时间添加
      */
     boolean add(E e);
 
