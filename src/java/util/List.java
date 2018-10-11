@@ -287,22 +287,18 @@ public interface List<E> extends Collection<E> {
     boolean removeAll(Collection<?> c);
 
     /**
-     * Retains only the elements in this list that are contained in the
-     * specified collection (optional operation).  In other words, removes
-     * from this list all of its elements that are not contained in the
-     * specified collection.
+     * 仅在列表中保留指定 collection 中所包含的元素（可选操作）。
+     * 换句话说，该方法从列表中移除未包含在指定 collection 中的所有元素。
      *
-     * @param c collection containing elements to be retained in this list
-     * @return <tt>true</tt> if this list changed as a result of the call
-     * @throws UnsupportedOperationException if the <tt>retainAll</tt> operation
-     *         is not supported by this list
-     * @throws ClassCastException if the class of an element of this list
-     *         is incompatible with the specified collection
-     * (<a href="Collection.html#optional-restrictions">optional</a>)
-     * @throws NullPointerException if this list contains a null element and the
-     *         specified collection does not permit null elements
-     *         (<a href="Collection.html#optional-restrictions">optional</a>),
-     *         or if the specified collection is null
+     * @param c 包含将保留在此列表中的元素的 collection
+     * @return 如果此列表由于调用而发生更改，则返回 <tt>true</tt>
+     * @throws UnsupportedOperationException 如果列表不支持 <tt>retainAll</tt> 操作
+     * @throws ClassCastException 如果此列表的元素的类和指定的 collection 不兼容
+     *         (<a href="Collection.html#optional-restrictions">可选</a>)
+     * @throws NullPointerException 如果此列表包含一个 null 元素，
+     *         并且指定的 collection 不允许 null 元素
+     *         (<a href="Collection.html#optional-restrictions">可选</a>)，
+     *         或者指定的 collection 为 null
      * @see #remove(Object)
      * @see #contains(Object)
      */
@@ -415,11 +411,9 @@ public interface List<E> extends Collection<E> {
     }
 
     /**
-     * Removes all of the elements from this list (optional operation).
-     * The list will be empty after this call returns.
+     * 从列表中移除所有元素（可选操作）。此调用返回后该列表将是空的。
      *
-     * @throws UnsupportedOperationException if the <tt>clear</tt> operation
-     *         is not supported by this list
+     * @throws UnsupportedOperationException 如果列表不支持 <tt>clear</tt> 操作
      */
     void clear();
 
@@ -427,35 +421,32 @@ public interface List<E> extends Collection<E> {
     // Comparison and hashing
 
     /**
-     * Compares the specified object with this list for equality.  Returns
-     * <tt>true</tt> if and only if the specified object is also a list, both
-     * lists have the same size, and all corresponding pairs of elements in
-     * the two lists are <i>equal</i>.  (Two elements <tt>e1</tt> and
-     * <tt>e2</tt> are <i>equal</i> if <tt>(e1==null ? e2==null :
-     * e1.equals(e2))</tt>.)  In other words, two lists are defined to be
-     * equal if they contain the same elements in the same order.  This
-     * definition ensures that the equals method works properly across
-     * different implementations of the <tt>List</tt> interface.
+     * 比较指定的对象与列表是否相等。
+     * 当且仅当指定的对象也是一个列表、两个列表有相同的大小，
+     * 并且两个列表中的所有相应的元素对 <i>相等</i> 时才返回 <tt>true</tt>
+     * （ 如果 <tt>(e1==null ? e2==null : e1.equals(e2))</tt>)，
+     * 则两个元素 <tt>e1</tt> 和 <tt>e2</tt> 是 <i>相等</i> 的）。
+     * 换句话说，如果所定义的两个列表以相同的顺序包含相同的元素，那么它们是相等的。
+     * 该定义确保了 equals 方法在 <tt>List</tt> 接口的不同实现间正常工作。
      *
-     * @param o the object to be compared for equality with this list
-     * @return <tt>true</tt> if the specified object is equal to this list
+     * @param o 要与此列表进行相等性比较的对象
+     * @return 如果指定对象与此列表相等，则返回 <tt>true</tt>
      */
     boolean equals(Object o);
 
     /**
-     * Returns the hash code value for this list.  The hash code of a list
-     * is defined to be the result of the following calculation:
+     * 返回列表的哈希码值。列表的哈希码定义为以下计算的结果：
      * <pre>{@code
      *     int hashCode = 1;
      *     for (E e : list)
      *         hashCode = 31*hashCode + (e==null ? 0 : e.hashCode());
      * }</pre>
-     * This ensures that <tt>list1.equals(list2)</tt> implies that
-     * <tt>list1.hashCode()==list2.hashCode()</tt> for any two lists,
-     * <tt>list1</tt> and <tt>list2</tt>, as required by the general
-     * contract of {@link Object#hashCode}.
+     * 这确保了 <tt>list1.equals(list2)</tt> 意味着
+     * 对于任何两个列表 <tt>list1</tt> 和 <tt>list2</tt> 而言，
+     * 可实现 <tt>list1.hashCode()==list2.hashCode()</tt>，
+     * 正如 {@link Object#hashCode} 的常规协定所要求的。
      *
-     * @return the hash code value for this list
+     * @return 此列表的哈希码值
      * @see Object#equals(Object)
      * @see #equals(Object)
      */
@@ -465,67 +456,53 @@ public interface List<E> extends Collection<E> {
     // Positional Access Operations
 
     /**
-     * Returns the element at the specified position in this list.
+     * 返回列表中指定位置的元素。
      *
-     * @param index index of the element to return
-     * @return the element at the specified position in this list
-     * @throws IndexOutOfBoundsException if the index is out of range
+     * @param index 要返回的元素的索引
+     * @return 列表中指定位置的元素
+     * @throws IndexOutOfBoundsException 如果索引超出范围
      *         (<tt>index &lt; 0 || index &gt;= size()</tt>)
      */
     E get(int index);
 
     /**
-     * Replaces the element at the specified position in this list with the
-     * specified element (optional operation).
+     * 用指定元素替换列表中指定位置的元素（可选操作）。
      *
-     * @param index index of the element to replace
-     * @param element element to be stored at the specified position
-     * @return the element previously at the specified position
-     * @throws UnsupportedOperationException if the <tt>set</tt> operation
-     *         is not supported by this list
-     * @throws ClassCastException if the class of the specified element
-     *         prevents it from being added to this list
-     * @throws NullPointerException if the specified element is null and
-     *         this list does not permit null elements
-     * @throws IllegalArgumentException if some property of the specified
-     *         element prevents it from being added to this list
-     * @throws IndexOutOfBoundsException if the index is out of range
+     * @param index 要替换的元素的索引
+     * @param element 要在指定位置存储的元素
+     * @return 以前在指定位置的元素
+     * @throws UnsupportedOperationException 如果列表不支持 <tt>set</tt> 操作
+     * @throws ClassCastException 如果指定元素的类不允许它添加到此列表
+     * @throws NullPointerException 如果指定的元素为 null，并且此列表不允许 null 元素
+     * @throws IllegalArgumentException 如果指定元素的某些属性不允许它添加到此列表
+     * @throws IndexOutOfBoundsException 如果索引超出范围
      *         (<tt>index &lt; 0 || index &gt;= size()</tt>)
      */
     E set(int index, E element);
 
     /**
-     * Inserts the specified element at the specified position in this list
-     * (optional operation).  Shifts the element currently at that position
-     * (if any) and any subsequent elements to the right (adds one to their
-     * indices).
+     * 在列表的指定位置插入指定元素（可选操作）。
+     * 将当前处于该位置的元素（如果有的话）和所有后续元素向右移动（在其索引中加 1）。
      *
-     * @param index index at which the specified element is to be inserted
-     * @param element element to be inserted
-     * @throws UnsupportedOperationException if the <tt>add</tt> operation
-     *         is not supported by this list
-     * @throws ClassCastException if the class of the specified element
-     *         prevents it from being added to this list
-     * @throws NullPointerException if the specified element is null and
-     *         this list does not permit null elements
-     * @throws IllegalArgumentException if some property of the specified
-     *         element prevents it from being added to this list
-     * @throws IndexOutOfBoundsException if the index is out of range
+     * @param index 要在其中插入指定元素处的索引
+     * @param element 要插入的元素
+     * @throws UnsupportedOperationException 如果列表不支持 <tt>add</tt> 操作
+     * @throws ClassCastException 如果指定元素的类不允许它添加到此列表
+     * @throws NullPointerException 如果指定的元素为 null，并且此列表不允许 null 元素
+     * @throws IllegalArgumentException 如果指定元素的某些属性不允许它添加到此列表
+     * @throws IndexOutOfBoundsException 如果索引超出范围
      *         (<tt>index &lt; 0 || index &gt; size()</tt>)
      */
     void add(int index, E element);
 
     /**
-     * Removes the element at the specified position in this list (optional
-     * operation).  Shifts any subsequent elements to the left (subtracts one
-     * from their indices).  Returns the element that was removed from the
-     * list.
+     * 移除列表中指定位置的元素（可选操作）。
+     * 将所有的后续元素向左移动（将其索引减 1）。返回从列表中移除的元素。
      *
-     * @param index the index of the element to be removed
-     * @return the element previously at the specified position
-     * @throws UnsupportedOperationException if the <tt>remove</tt> operation
-     *         is not supported by this list
-     * @throws IndexOutOfBoundsException if the index is out of range
+     * @param index 要移除的元素的索引
+     * @return 以前在指定位置的元素
+     * @throws UnsupportedOperationException 如果列表不支持 <tt>remove</tt> 操作
+     * @throws IndexOutOfBoundsException 如果索引超出范围
      *         (<tt>index &lt; 0 || index &gt;= size()</tt>)
      */
     E remove(int index);
@@ -534,40 +511,36 @@ public interface List<E> extends Collection<E> {
     // Search Operations
 
     /**
-     * Returns the index of the first occurrence of the specified element
-     * in this list, or -1 if this list does not contain the element.
-     * More formally, returns the lowest index <tt>i</tt> such that
-     * <tt>(o==null&nbsp;?&nbsp;get(i)==null&nbsp;:&nbsp;o.equals(get(i)))</tt>,
-     * or -1 if there is no such index.
+     * 返回此列表中第一次出现的指定元素的索引；
+     * 如果此列表不包含该元素，则返回 -1。
+     * 更确切地讲，返回满足
+     * <tt>(o==null&nbsp;?&nbsp;get(i)==null&nbsp;:&nbsp;o.equals(get(i)))</tt>
+     * 的最低索引 <tt>i</tt>；
+     * 如果没有这样的索引，则返回 -1。
      *
-     * @param o element to search for
-     * @return the index of the first occurrence of the specified element in
-     *         this list, or -1 if this list does not contain the element
-     * @throws ClassCastException if the type of the specified element
-     *         is incompatible with this list
-     *         (<a href="Collection.html#optional-restrictions">optional</a>)
-     * @throws NullPointerException if the specified element is null and this
-     *         list does not permit null elements
-     *         (<a href="Collection.html#optional-restrictions">optional</a>)
+     * @param o 要搜索的元素
+     * @return 此列表中第一次出现的指定元素的索引，如果列表不包含该元素，则返回 -1
+     * @throws ClassCastException 如果指定元素的类型和此列表不兼容（）
+     *         (<a href="Collection.html#optional-restrictions">可选</a>)
+     * @throws NullPointerException  如果指定的元素是 null，并且此列表不允许 null 元素
+     *         (<a href="Collection.html#optional-restrictions">可选l</a>)
      */
     int indexOf(Object o);
 
     /**
-     * Returns the index of the last occurrence of the specified element
-     * in this list, or -1 if this list does not contain the element.
-     * More formally, returns the highest index <tt>i</tt> such that
-     * <tt>(o==null&nbsp;?&nbsp;get(i)==null&nbsp;:&nbsp;o.equals(get(i)))</tt>,
-     * or -1 if there is no such index.
+     * 返回此列表中最后出现的指定元素的索引；
+     * 如果列表不包含此元素，则返回 -1。
+     * 更确切地讲，返回满足
+     * <tt>(o==null&nbsp;?&nbsp;get(i)==null&nbsp;:&nbsp;o.equals(get(i)))</tt>
+     * 的最高索引 <tt>i</tt>；
+     * 如果没有这样的索引，则返回 -1。
      *
-     * @param o element to search for
-     * @return the index of the last occurrence of the specified element in
-     *         this list, or -1 if this list does not contain the element
-     * @throws ClassCastException if the type of the specified element
-     *         is incompatible with this list
-     *         (<a href="Collection.html#optional-restrictions">optional</a>)
-     * @throws NullPointerException if the specified element is null and this
-     *         list does not permit null elements
-     *         (<a href="Collection.html#optional-restrictions">optional</a>)
+     * @param o 要搜索的元素
+     * @return 列表中最后出现的指定元素的索引；如果列表不包含此元素，则返回 -1
+     * @throws ClassCastException 如果指定元素的类型和此列表不兼容
+     *         (<a href="Collection.html#optional-restrictions">可选</a>)
+     * @throws NullPointerException 如果指定的元素是 null，并且此列表不允许 null 元素
+     *         (<a href="Collection.html#optional-restrictions">可选</a>)
      */
     int lastIndexOf(Object o);
 
@@ -575,27 +548,20 @@ public interface List<E> extends Collection<E> {
     // List Iterators
 
     /**
-     * Returns a list iterator over the elements in this list (in proper
-     * sequence).
+     * 返回此列表元素的列表迭代器（按适当顺序）。
      *
-     * @return a list iterator over the elements in this list (in proper
-     *         sequence)
+     * @return 此列表元素的列表迭代器（按适当顺序）
      */
     ListIterator<E> listIterator();
 
     /**
-     * Returns a list iterator over the elements in this list (in proper
-     * sequence), starting at the specified position in the list.
-     * The specified index indicates the first element that would be
-     * returned by an initial call to {@link ListIterator#next next}.
-     * An initial call to {@link ListIterator#previous previous} would
-     * return the element with the specified index minus one.
+     * 返回列表中元素的列表迭代器（按适当顺序），从列表的指定位置开始。
+     * 指定的索引表示 {@link ListIterator#next next} 的初始调用所返回的第一个元素。
+     * {@link ListIterator#previous previous} 方法的初始调用将返回索引比指定索引少 1 的元素。
      *
-     * @param index index of the first element to be returned from the
-     *        list iterator (by a call to {@link ListIterator#next next})
-     * @return a list iterator over the elements in this list (in proper
-     *         sequence), starting at the specified position in the list
-     * @throws IndexOutOfBoundsException if the index is out of range
+     * @param index 从列表迭代器返回的第一个元素的索引（通过调用 {@link ListIterator#next next} 方法）
+     * @return 此列表中元素的列表迭代器（按适当顺序），从列表中的指定位置开始
+     * @throws IndexOutOfBoundsException 如果索引超出范围
      *         ({@code index < 0 || index > size()})
      */
     ListIterator<E> listIterator(int index);
@@ -603,36 +569,28 @@ public interface List<E> extends Collection<E> {
     // View
 
     /**
-     * Returns a view of the portion of this list between the specified
-     * <tt>fromIndex</tt>, inclusive, and <tt>toIndex</tt>, exclusive.  (If
-     * <tt>fromIndex</tt> and <tt>toIndex</tt> are equal, the returned list is
-     * empty.)  The returned list is backed by this list, so non-structural
-     * changes in the returned list are reflected in this list, and vice-versa.
-     * The returned list supports all of the optional list operations supported
-     * by this list.<p>
+     * 返回列表中指定的 <tt>fromIndex</tt>（包括 ）和 <tt>toIndex</tt>（不包括）之间的部分视图。
+     * （如果 <tt>fromIndex</tt> 和 <tt>toIndex</tt> 相等，则返回的列表为空）。
+     * 返回的列表由此列表支持，因此返回列表中的非结构性更改将反映在此列表中，反之亦然。
+     * 返回的列表支持此列表支持的所有可选列表操作。<p>
      *
-     * This method eliminates the need for explicit range operations (of
-     * the sort that commonly exist for arrays).  Any operation that expects
-     * a list can be used as a range operation by passing a subList view
-     * instead of a whole list.  For example, the following idiom
-     * removes a range of elements from a list:
+     * 此方法省去了显式范围操作（此操作通常针对数组存在）。
+     * 通过传递 subList 视图而非整个列表，期望列表的任何操作可用作范围操作。
+     * 例如，下面的语句从列表中移除了元素的范围：
      * <pre>{@code
      *      list.subList(from, to).clear();
      * }</pre>
-     * Similar idioms may be constructed for <tt>indexOf</tt> and
-     * <tt>lastIndexOf</tt>, and all of the algorithms in the
-     * <tt>Collections</tt> class can be applied to a subList.<p>
+     * 可以对 <tt>indexOf</tt> 和 <tt>lastIndexOf</tt> 构造类似的语句，
+     * 而且 <tt>Collections</tt> 类中的所有算法都可以应用于 subList。<p>
      *
-     * The semantics of the list returned by this method become undefined if
-     * the backing list (i.e., this list) is <i>structurally modified</i> in
-     * any way other than via the returned list.  (Structural modifications are
-     * those that change the size of this list, or otherwise perturb it in such
-     * a fashion that iterations in progress may yield incorrect results.)
+     * 如果支持列表（即此列表）通过任何其他方式（而不是通过返回的列表）<i>从结构上修改</i>，
+     * 则此方法返回的列表语义将变为未定义
+     * （从结构上修改是指更改列表的大小，或者以其他方式打乱列表，使正在进行的迭代产生错误的结果）。
      *
-     * @param fromIndex low endpoint (inclusive) of the subList
-     * @param toIndex high endpoint (exclusive) of the subList
-     * @return a view of the specified range within this list
-     * @throws IndexOutOfBoundsException for an illegal endpoint index value
+     * @param fromIndex subList 的低端（包括）
+     * @param toIndex subList 的高端（不包括）
+     * @return 列表中指定范围的视图
+     * @throws IndexOutOfBoundsException 非法的端点值
      *         (<tt>fromIndex &lt; 0 || toIndex &gt; size ||
      *         fromIndex &gt; toIndex</tt>)
      */
