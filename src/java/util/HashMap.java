@@ -37,92 +37,68 @@ import java.util.function.Function;
 import sun.misc.SharedSecrets;
 
 /**
- * Hash table based implementation of the <tt>Map</tt> interface.  This
- * implementation provides all of the optional map operations, and permits
- * <tt>null</tt> values and the <tt>null</tt> key.  (The <tt>HashMap</tt>
- * class is roughly equivalent to <tt>Hashtable</tt>, except that it is
- * unsynchronized and permits nulls.)  This class makes no guarantees as to
- * the order of the map; in particular, it does not guarantee that the order
- * will remain constant over time.
+ * 基于哈希表的 <tt>Map</tt> 接口的实现。
+ * 此实现提供所有可选的映射操作，并允许使用 <tt>null</tt> 值和 <tt>null</tt> 键。
+ * （除了非同步和允许使用 <tt>null</tt> 之外，<tt>HashMap</tt> 类与 <tt>Hashtable</tt> 大致相同。）
+ * 此类不保证映射的顺序，特别是它不保证该顺序恒久不变。
  *
- * <p>This implementation provides constant-time performance for the basic
- * operations (<tt>get</tt> and <tt>put</tt>), assuming the hash function
- * disperses the elements properly among the buckets.  Iteration over
- * collection views requires time proportional to the "capacity" of the
- * <tt>HashMap</tt> instance (the number of buckets) plus its size (the number
- * of key-value mappings).  Thus, it's very important not to set the initial
- * capacity too high (or the load factor too low) if iteration performance is
- * important.
+ * <p>此实现假定哈希函数将元素适当地分布在各桶之间，
+ * 可为基本操作（<tt>get</tt> 和 <tt>put</tt>）提供稳定的性能。
+ * 迭代 collection 视图所需的时间与
+ * <tt>HashMap</tt> 实例的“容量”（桶的数量）及其大小（键-值映射关系数）成比例。
+ * 所以，如果迭代性能很重要，则不要将初始容量设置得太高（或将加载因子设置得太低）。
  *
- * <p>An instance of <tt>HashMap</tt> has two parameters that affect its
- * performance: <i>initial capacity</i> and <i>load factor</i>.  The
- * <i>capacity</i> is the number of buckets in the hash table, and the initial
- * capacity is simply the capacity at the time the hash table is created.  The
- * <i>load factor</i> is a measure of how full the hash table is allowed to
- * get before its capacity is automatically increased.  When the number of
- * entries in the hash table exceeds the product of the load factor and the
- * current capacity, the hash table is <i>rehashed</i> (that is, internal data
- * structures are rebuilt) so that the hash table has approximately twice the
- * number of buckets.
+ * <p><tt>HashMap</tt> 的实例有两个参数影响其性能：<i>初始容量</i> 和 <i>加载因子</i>。
+ * <i>容量</i> 是哈希表中桶的数量，初始容量只是哈希表在创建时的容量。
+ * <i>加载因子</i> 是哈希表在其容量自动增加之前可以达到多满的一种尺度。
+ * 当哈希表中的条目数超出了加载因子与当前容量的乘积时，
+ * 则要对该哈希表进行 <i>rehashed</i> 操作（即重建内部数据结构），从而哈希表将具有大约两倍的桶数。
  *
- * <p>As a general rule, the default load factor (.75) offers a good
- * tradeoff between time and space costs.  Higher values decrease the
- * space overhead but increase the lookup cost (reflected in most of
- * the operations of the <tt>HashMap</tt> class, including
- * <tt>get</tt> and <tt>put</tt>).  The expected number of entries in
- * the map and its load factor should be taken into account when
- * setting its initial capacity, so as to minimize the number of
- * rehash operations.  If the initial capacity is greater than the
- * maximum number of entries divided by the load factor, no rehash
- * operations will ever occur.
+ * <p>通常，默认加载因子 (.75) 在时间和空间成本上寻求一种折衷。
+ * 加载因子过高虽然减少了空间开销，
+ * 但同时也增加了查询成本（在大多数 <tt>HashMap</tt> 类的操作中，
+ * 包括 <tt>get</tt> 和 <tt>put</tt> 操作，都反映了这一点）。
+ * 在设置初始容量时应该考虑到映射中所需的条目数及其加载因子，
+ * 以便最大限度地减少 rehash 操作次数。
+ * 如果初始容量大于最大条目数除以加载因子，则不会发生 rehash 操作。
  *
- * <p>If many mappings are to be stored in a <tt>HashMap</tt>
- * instance, creating it with a sufficiently large capacity will allow
- * the mappings to be stored more efficiently than letting it perform
- * automatic rehashing as needed to grow the table.  Note that using
- * many keys with the same {@code hashCode()} is a sure way to slow
- * down performance of any hash table. To ameliorate impact, when keys
- * are {@link Comparable}, this class may use comparison order among
- * keys to help break ties.
+ * <p>如果很多映射关系要存储在 <tt>HashMap</tt> 实例中，
+ * 则相对于按需执行自动的 rehash 操作以增大表的容量来说，
+ * 使用足够大的初始容量创建它将使得映射关系能更有效地存储。
+ * 请注意，使用具有相同{@code hashCode()}的许多键会降低哈希表的性能。
+ * 为了改善影响，当密钥为 {@link Comparable} 时，此类可以使用密钥之间的比较顺序来帮助打破关系。
  *
- * <p><strong>Note that this implementation is not synchronized.</strong>
- * If multiple threads access a hash map concurrently, and at least one of
- * the threads modifies the map structurally, it <i>must</i> be
- * synchronized externally.  (A structural modification is any operation
- * that adds or deletes one or more mappings; merely changing the value
- * associated with a key that an instance already contains is not a
- * structural modification.)  This is typically accomplished by
- * synchronizing on some object that naturally encapsulates the map.
+ * <p><strong>注意，此实现不是同步的。</strong>
+ * 如果多个线程同时访问一个哈希映射，而其中至少一个线程从结构上修改了该映射，
+ * 则它 <i>必须</i> 保持外部同步。
+ * （结构上的修改是指添加或删除一个或多个映射关系的任何操作；
+ * 仅改变与实例已经包含的键关联的值不是结构上的修改。）
+ * 这一般通过对自然封装该映射的对象进行同步操作来完成。
  *
- * If no such object exists, the map should be "wrapped" using the
- * {@link Collections#synchronizedMap Collections.synchronizedMap}
- * method.  This is best done at creation time, to prevent accidental
- * unsynchronized access to the map:<pre>
+ * 如果不存在这样的对象，则应该使用
+ * {@link Collections#synchronizedMap Collections.synchronizedMap} 方法来“包装”该映射。
+ * 最好在创建时完成这一操作，以防止对映射进行意外的非同步访问，如下所示：<pre>
  *   Map m = Collections.synchronizedMap(new HashMap(...));</pre>
  *
- * <p>The iterators returned by all of this class's "collection view methods"
- * are <i>fail-fast</i>: if the map is structurally modified at any time after
- * the iterator is created, in any way except through the iterator's own
- * <tt>remove</tt> method, the iterator will throw a
- * {@link ConcurrentModificationException}.  Thus, in the face of concurrent
- * modification, the iterator fails quickly and cleanly, rather than risking
- * arbitrary, non-deterministic behavior at an undetermined time in the
- * future.
+ * <p>由所有此类的“collection 视图方法”所返回的迭代器都是快速失败 的：
+ * 在迭代器创建之后，如果从结构上对映射进行修改，
+ * 除非通过迭代器本身的 <tt>remove</tt> 方法，
+ * 其他任何时间任何方式的修改，迭代器都将抛出 {@link ConcurrentModificationException}。
+ * 因此，面对并发的修改，迭代器很快就会完全失败，
+ * 而不冒在将来不确定的时间发生任意不确定行为的风险。
  *
- * <p>Note that the fail-fast behavior of an iterator cannot be guaranteed
- * as it is, generally speaking, impossible to make any hard guarantees in the
- * presence of unsynchronized concurrent modification.  Fail-fast iterators
- * throw <tt>ConcurrentModificationException</tt> on a best-effort basis.
- * Therefore, it would be wrong to write a program that depended on this
- * exception for its correctness: <i>the fail-fast behavior of iterators
- * should be used only to detect bugs.</i>
+ * <p>注意，迭代器的快速失败行为不能得到保证，
+ * 一般来说，存在非同步的并发修改时，不可能作出任何坚决的保证。
+ * 快速失败迭代器尽最大努力抛出 <tt>ConcurrentModificationException</tt>。
+ * 因此，编写依赖于此异常的程序的做法是错误的，
+ * 正确做法是：<i>迭代器的快速失败行为应该仅用于检测程序错误。</i>
  *
- * <p>This class is a member of the
+ * <p>此类是
  * <a href="{@docRoot}/../technotes/guides/collections/index.html">
- * Java Collections Framework</a>.
+ * Java Collections Framework</a> 的成员。
  *
- * @param <K> the type of keys maintained by this map
- * @param <V> the type of mapped values
+ * @param <K> 此映射所维护的键的类型
+ * @param <V> 所映射值的类型
  *
  * @author  Doug Lea
  * @author  Josh Bloch
@@ -143,6 +119,12 @@ public class HashMap<K,V> extends AbstractMap<K,V>
     /*
      * Implementation notes.
      *
+     * 此映射通常用作分区（分区）哈希表，但是当分区变得太大时，
+     * 它们将转换为 TreeNodes 的分区，每个分区的结构与 java.util.TreeMap 中的类似。
+     * 大多数方法尝试使用普通的bin，但在适用时中继到TreeNode方法（只需检查节点的实例）。
+     * TreeNodes的Bin可以像其他任何一样遍历和使用，但是当人口过多时还支持更快的查找。
+     * 但是，由于正常使用的绝大多数垃圾箱都不是人口过多，
+     * 因此在表格方法的过程中可能会延迟检查树箱的存在。
      * This map usually acts as a binned (bucketed) hash table, but
      * when bins get too large, they are transformed into bins of
      * TreeNodes, each structured similarly to those in
@@ -154,6 +136,16 @@ public class HashMap<K,V> extends AbstractMap<K,V>
      * normal use are not overpopulated, checking for existence of
      * tree bins may be delayed in the course of table methods.
      *
+     * 树容器（即，其元素都是TreeNode的容器）主要通过hashCode排序，
+     * 但在关系的情况下，如果是两个元素是相同的“ C类实现Comparable <C> ”类型，
+     * 然后他们的compareTo方法则用于排序。
+     * （我们保守地通过反射检查泛型类型以验证这一点 - 参见方法equivalentClassFor）。
+     * 当密钥具有不同的哈希值或者具有不同的哈希值时，
+     * 增加树容器的复杂性对于提供最坏情况的 O(log n) 操作是值得的。
+     * 因此，在 hashCode() 方法返回分布不均的值的偶然或恶意用法中，
+     * 以及许多密钥共享hashCode的那些，只要它们也是Comparable，性能就会优雅地降级。
+     * （如果这些都不适用，与不采取任何预防措施相比，我们可能在时间和空间上浪费大约两倍。
+     * 但是，唯一已知的情况源于糟糕的用户编程实践，这些实践已经非常缓慢，这几乎没有什么区别。）
      * Tree bins (i.e., bins whose elements are all TreeNodes) are
      * ordered primarily by hashCode, but in the case of ties, if two
      * elements are of the same "class C implements Comparable<C>",
@@ -172,6 +164,16 @@ public class HashMap<K,V> extends AbstractMap<K,V>
      * programming practices that are already so slow that this makes
      * little difference.)
      *
+     * 因为TreeNodes的大小是常规节点的两倍，
+     * 所以只有当bin包含足够的节点以保证使用时，
+     * 我们才使用它们（见TREEIFY_THRESHOLD）。
+     * 当它们变得太小（由于移除或调整大小）时，它们会转换回普通箱。
+     * 在具有良好分布的用户hashCodes的用法中，很少使用树容器。
+     * 理想情况下，在随机hashCodes下，bin中节点的频率遵循
+     * 泊松分布（http://en.wikipedia.org/wiki/Poisson_distribution），
+     * 参数平均值约为0.5，默认调整阈值为0.75，尽管 由于调整粒度而导致的大差异。
+     * 忽略方差，列表大小k的预期出现是(exp(-0.5) * pow(0.5, k) / factorial(k))。
+     * 第一个值是：
      * Because TreeNodes are about twice the size of regular nodes, we
      * use them only when bins contain enough nodes to warrant use
      * (see TREEIFY_THRESHOLD). And when they become too small (due to
@@ -197,11 +199,17 @@ public class HashMap<K,V> extends AbstractMap<K,V>
      * 8:    0.00000006
      * more: less than 1 in ten million
      *
+     * 树bin的根通常是它的第一个节点。
+     * 但是，有时（目前仅在Iterator.remove上），
+     * 根可能在其他地方，但可以在父链接之后恢复（method TreeNode.root() 方法）。
      * The root of a tree bin is normally its first node.  However,
      * sometimes (currently only upon Iterator.remove), the root might
      * be elsewhere, but can be recovered following parent links
      * (method TreeNode.root()).
      *
+     * 所有适用的内部方法都接受哈希码作为参数（通常由公共方法提供），
+     * 允许他们互相调用而不重新计算用户哈希码。
+     * 大多数内部方法也接受 “tab” 参数，通常是当前表，但在调整大小或转换时可能是新的或旧的。
      * All applicable internal methods accept a hash code as an
      * argument (as normally supplied from a public method), allowing
      * them to call each other without recomputing user hashCodes.
@@ -209,6 +217,11 @@ public class HashMap<K,V> extends AbstractMap<K,V>
      * normally the current table, but may be a new or old one when
      * resizing or converting.
      *
+     * 当bin列表被树化，拆分或未解析时，
+     * 我们将它们保持在相同的相对访问/遍历顺序（即 Node.next 字段）
+     * 更好地保留局部性，并略微简化调用 iterator.remove 的分割和遍历的处理。
+     * 在插入时使用比较器时，为了保持整个重新排序的总排序（或者尽可能接近），
+     * 我们将类和 identityHashCodes 作为绑定器进行比较。
      * When bin lists are treeified, split, or untreeified, we keep
      * them in the same relative access/traversal order (i.e., field
      * Node.next) to better preserve locality, and to slightly
@@ -218,6 +231,10 @@ public class HashMap<K,V> extends AbstractMap<K,V>
      * rebalancings, we compare classes and identityHashCodes as
      * tie-breakers.
      *
+     * 普通 和 树模式之间的使用和转换由于子类 LinkedHashMap 的存在而变得复杂。
+     * 请参阅下面的钩子方法，这些钩子方法定义为在插入，删除和访问时调用，
+     * 允许LinkedHashMap内部以其他方式保持独立于这些机制。
+     * （这也要求将map实例传递给可能创建新节点的一些实用程序方法。）
      * The use and transitions among plain vs tree modes is
      * complicated by the existence of subclass LinkedHashMap. See
      * below for hook methods defined to be invoked upon insertion,
@@ -226,28 +243,31 @@ public class HashMap<K,V> extends AbstractMap<K,V>
      * requires that a map instance be passed to some utility methods
      * that may create new nodes.)
      *
+     * 类似于并发编程的基于SSA的编码风格有助于避免在所有扭曲指针操作中出现混叠错误。
      * The concurrent-programming-like SSA-based coding style helps
      * avoid aliasing errors amid all of the twisty pointer operations.
      */
 
     /**
-     * The default initial capacity - MUST be a power of two.
+     * 默认初始容量- 必须是2的倍数。
      */
     static final int DEFAULT_INITIAL_CAPACITY = 1 << 4; // aka 16
 
     /**
-     * The maximum capacity, used if a higher value is implicitly specified
-     * by either of the constructors with arguments.
-     * MUST be a power of two <= 1<<30.
+     * 最大容量，如果有参数的任一构造函数隐式指定更高的值，则使用此参数。
+     * 必须是2 的倍数 <= 1 << 30。
      */
     static final int MAXIMUM_CAPACITY = 1 << 30;
 
     /**
-     * The load factor used when none specified in constructor.
+     * 在构造函数中未指定时使用的加载因子。
      */
     static final float DEFAULT_LOAD_FACTOR = 0.75f;
 
     /**
+     * bin计数阈值，用于使用树而不是bin的列表。
+     * 将元素添加到具有至少这么多节点的bin时，bin被转换为树。
+     * 该值必须大于2并且应该至少为8以与树木移除中的假设相关联，以便在收缩时转换回普通箱。
      * The bin count threshold for using a tree rather than list for a
      * bin.  Bins are converted to trees when adding an element to a
      * bin with at least this many nodes. The value must be greater
@@ -258,6 +278,8 @@ public class HashMap<K,V> extends AbstractMap<K,V>
     static final int TREEIFY_THRESHOLD = 8;
 
     /**
+     * 用于在调整大小操作期间解除（拆分）bin的bin计数阈值。
+     * 应该小于TREEIFY_THRESHOLD，并且最多6个与去除下的收缩检测网格。
      * The bin count threshold for untreeifying a (split) bin during a
      * resize operation. Should be less than TREEIFY_THRESHOLD, and at
      * most 6 to mesh with shrinkage detection under removal.
@@ -265,6 +287,9 @@ public class HashMap<K,V> extends AbstractMap<K,V>
     static final int UNTREEIFY_THRESHOLD = 6;
 
     /**
+     * 容器可以树化的最小表容量。
+     * （否则，如果bin中的节点太多，则会调整表的大小。）
+     * 应该至少为4 * TREEIFY_THRESHOLD，以避免调整大小和树化阈值之间的冲突。
      * The smallest table capacity for which bins may be treeified.
      * (Otherwise the table is resized if too many nodes in a bin.)
      * Should be at least 4 * TREEIFY_THRESHOLD to avoid conflicts
@@ -273,6 +298,7 @@ public class HashMap<K,V> extends AbstractMap<K,V>
     static final int MIN_TREEIFY_CAPACITY = 64;
 
     /**
+     * 基本哈希bin节点，用于大多数条目。 （参见下面的TreeNode子类，以及LinkedHashMap中的Entry子类。）
      * Basic hash bin node, used for most entries.  (See below for
      * TreeNode subclass, and in LinkedHashMap for its Entry subclass.)
      */
@@ -319,6 +345,15 @@ public class HashMap<K,V> extends AbstractMap<K,V>
     /* ---------------- Static utilities -------------- */
 
     /**
+     * 计算key.hashCode（）并将散列（XOR）更高的散列位降低。
+     * 因为该表使用2次幂掩模，所以仅在当前掩码之上的位中变化的散列集将始终发生冲突。
+     * （在已知的例子中是在小表中保存连续整数的浮点键集。）
+     * 因此我们应用一个向下扩展高位比特影响的变换。
+     * 在速度，效用和比特扩展质量之间存在权衡。
+     * 因为许多常见的哈希集合已经合理分布（因此不会受益于传播），
+     * 并且因为我们使用树来处理容器中的大量冲突，
+     * 所以我们只是以最便宜的方式对一些移位的位进行异或，以减少系统损失，
+     * 以及由于表格边界而包含最高位的影响，否则这些位将永远不会用于索引计算。
      * Computes key.hashCode() and spreads (XORs) higher bits of hash
      * to lower.  Because the table uses power-of-two masking, sets of
      * hashes that vary only in bits above the current mask will
@@ -340,6 +375,7 @@ public class HashMap<K,V> extends AbstractMap<K,V>
     }
 
     /**
+     * 如果它的形式为“类 C 继承 Comparable <C>”，则返回x的Class，否则返回null。
      * Returns x's Class if it is of the form "class C implements
      * Comparable<C>", else null.
      */
@@ -363,6 +399,7 @@ public class HashMap<K,V> extends AbstractMap<K,V>
     }
 
     /**
+     * 如果 x 匹配 kc（k的筛选可比类），则返回 k.compareTo(x)，否则返回 0。
      * Returns k.compareTo(x) if x matches kc (k's screened comparable
      * class), else 0.
      */
@@ -373,6 +410,7 @@ public class HashMap<K,V> extends AbstractMap<K,V>
     }
 
     /**
+     * 返回给定目标容量的两个大小的幂。
      * Returns a power of two size for the given target capacity.
      */
     static final int tableSizeFor(int cap) {
@@ -388,35 +426,33 @@ public class HashMap<K,V> extends AbstractMap<K,V>
     /* ---------------- Fields -------------- */
 
     /**
-     * The table, initialized on first use, and resized as
-     * necessary. When allocated, length is always a power of two.
-     * (We also tolerate length zero in some operations to allow
-     * bootstrapping mechanics that are currently not needed.)
+     * 该表在首次使用时初始化，并根据需要调整大小。
+     * 分配时，长度始终是2的幂。
+     * （我们也允许在一些操作中允许长度为零,以允许当前不需要的自举机制。）
      */
     transient Node<K,V>[] table;
 
     /**
-     * Holds cached entrySet(). Note that AbstractMap fields are used
-     * for keySet() and values().
+     * 保存缓存的entrySet()。
+     * 请注意，AbstractMap字段用于keySet() 和values()。
      */
     transient Set<Map.Entry<K,V>> entrySet;
 
     /**
-     * The number of key-value mappings contained in this map.
+     * 此映射中包含的键-值映射的数量。
      */
     transient int size;
 
     /**
-     * The number of times this HashMap has been structurally modified
-     * Structural modifications are those that change the number of mappings in
-     * the HashMap or otherwise modify its internal structure (e.g.,
-     * rehash).  This field is used to make iterators on Collection-views of
-     * the HashMap fail-fast.  (See ConcurrentModificationException).
+     * 此HashMap经过结构修改的次数。结构修改是指
+     * 更改HashMap中映射数或以其他方式修改其内部结构（例如，重新哈希）的修改。
+     * 该字段用于使HashMap的Collection-views上的迭代器快速失败。
+     * （请参阅ConcurrentModificationException）。
      */
     transient int modCount;
 
     /**
-     * The next size value at which to resize (capacity * load factor).
+     * 要调整大小的下一个大小值（容量 * 加载因子）。
      *
      * @serial
      */
@@ -427,7 +463,7 @@ public class HashMap<K,V> extends AbstractMap<K,V>
     int threshold;
 
     /**
-     * The load factor for the hash table.
+     * 哈希表的加载因子
      *
      * @serial
      */
@@ -436,13 +472,11 @@ public class HashMap<K,V> extends AbstractMap<K,V>
     /* ---------------- Public operations -------------- */
 
     /**
-     * Constructs an empty <tt>HashMap</tt> with the specified initial
-     * capacity and load factor.
+     * 构造一个带指定初始容量和加载因子的空 <tt>HashMap</tt>。
      *
-     * @param  initialCapacity the initial capacity
-     * @param  loadFactor      the load factor
-     * @throws IllegalArgumentException if the initial capacity is negative
-     *         or the load factor is nonpositive
+     * @param  initialCapacity 初始容量
+     * @param  loadFactor      加载因子
+     * @throws IllegalArgumentException 如果初始容量为负或者加载因子为非正
      */
     public HashMap(int initialCapacity, float loadFactor) {
         if (initialCapacity < 0)
@@ -458,32 +492,29 @@ public class HashMap<K,V> extends AbstractMap<K,V>
     }
 
     /**
-     * Constructs an empty <tt>HashMap</tt> with the specified initial
-     * capacity and the default load factor (0.75).
+     * 构造一个带指定初始容量和默认加载因子 (0.75) 的空 <tt>HashMap</tt>。
      *
-     * @param  initialCapacity the initial capacity.
-     * @throws IllegalArgumentException if the initial capacity is negative.
+     * @param  initialCapacity 初始容量
+     * @throws IllegalArgumentException 如果初始容量为负。
      */
     public HashMap(int initialCapacity) {
         this(initialCapacity, DEFAULT_LOAD_FACTOR);
     }
 
     /**
-     * Constructs an empty <tt>HashMap</tt> with the default initial capacity
-     * (16) and the default load factor (0.75).
+     * 构造一个具有默认初始容量 (16) 和默认加载因子 (0.75) 的空 <tt>HashMap</tt>。
      */
     public HashMap() {
         this.loadFactor = DEFAULT_LOAD_FACTOR; // all other fields defaulted
     }
 
     /**
-     * Constructs a new <tt>HashMap</tt> with the same mappings as the
-     * specified <tt>Map</tt>.  The <tt>HashMap</tt> is created with
-     * default load factor (0.75) and an initial capacity sufficient to
-     * hold the mappings in the specified <tt>Map</tt>.
+     * 构造一个映射关系与指定 <tt>Map</tt> 相同的新 <tt>HashMap</tt>。
+     * 所创建的 <tt>HashMap</tt> 具有默认加载因子 (0.75)
+     * 和足以容纳指定 <tt>Map</tt> 中映射关系的初始容量。
      *
-     * @param   m the map whose mappings are to be placed in this map
-     * @throws  NullPointerException if the specified map is null
+     * @param   m 映射，其映射关系将存放在此映射中
+     * @throws  NullPointerException 如果指定的映射为 null
      */
     public HashMap(Map<? extends K, ? extends V> m) {
         this.loadFactor = DEFAULT_LOAD_FACTOR;
@@ -491,11 +522,11 @@ public class HashMap<K,V> extends AbstractMap<K,V>
     }
 
     /**
-     * Implements Map.putAll and Map constructor
+     * 实现Map.putAll和Map构造函数
      *
-     * @param m the map
-     * @param evict false when initially constructing this map, else
-     * true (relayed to method afterNodeInsertion).
+     * @param m map
+     * @param evict 初始化构造此映射时为false，否则为true
+     *              （中继到 afterInodeInsertion之后的方法）。
      */
     final void putMapEntries(Map<? extends K, ? extends V> m, boolean evict) {
         int s = m.size();
@@ -518,37 +549,34 @@ public class HashMap<K,V> extends AbstractMap<K,V>
     }
 
     /**
-     * Returns the number of key-value mappings in this map.
+     * 返回此映射中的键-值映射关系数。
      *
-     * @return the number of key-value mappings in this map
+     * @return 此映射中的键-值映射关系数。
      */
     public int size() {
         return size;
     }
 
     /**
-     * Returns <tt>true</tt> if this map contains no key-value mappings.
+     * 如果此映射不包含键-值映射关系，则返回 <tt>true</tt>。
      *
-     * @return <tt>true</tt> if this map contains no key-value mappings
+     * @return 如果此映射不包含键-值映射关系，则返回 <tt>true</tt>。
      */
     public boolean isEmpty() {
         return size == 0;
     }
 
     /**
-     * Returns the value to which the specified key is mapped,
-     * or {@code null} if this map contains no mapping for the key.
+     * 返回指定键所映射的值；如果对于该键来说，此映射不包含任何映射关系，则返回 {@code null}。
      *
-     * <p>More formally, if this map contains a mapping from a key
-     * {@code k} to a value {@code v} such that {@code (key==null ? k==null :
-     * key.equals(k))}, then this method returns {@code v}; otherwise
-     * it returns {@code null}.  (There can be at most one such mapping.)
+     * <p>更确切地讲，如果此映射包含一个满足
+     * {@code (key==null ? k==null : key.equals(k))}
+     * 的从 {@code k} 键到 {@code v} 值的映射关系，
+     * 则此方法返回 {@code v}；否则返回 {@code null}。（最多只能有一个这样的映射关系。）
      *
-     * <p>A return value of {@code null} does not <i>necessarily</i>
-     * indicate that the map contains no mapping for the key; it's also
-     * possible that the map explicitly maps the key to {@code null}.
-     * The {@link #containsKey containsKey} operation may be used to
-     * distinguish these two cases.
+     * <p>返回 {@code null} 值并不 <i>一定</i> 表明该映射不包含该键的映射关系；
+     * 也可能该映射将该键显示地映射为 {@code null}。
+     * 可使用 {@link #containsKey containsKey} 操作来区分这两种情况。
      *
      * @see #put(Object, Object)
      */
@@ -558,11 +586,11 @@ public class HashMap<K,V> extends AbstractMap<K,V>
     }
 
     /**
-     * Implements Map.get and related methods
+     * 实现Map.get和相关方法
      *
-     * @param hash hash for key
-     * @param key the key
-     * @return the node, or null if none
+     * @param hash key的哈希值
+     * @param key key
+     * @return 节点，如果为空则为null
      */
     final Node<K,V> getNode(int hash, Object key) {
         Node<K,V>[] tab; Node<K,V> first, e; int n; K k;
@@ -585,42 +613,38 @@ public class HashMap<K,V> extends AbstractMap<K,V>
     }
 
     /**
-     * Returns <tt>true</tt> if this map contains a mapping for the
-     * specified key.
+     * 如果此映射包含对于指定键的映射关系，则返回 <tt>true</tt>。
      *
-     * @param   key   The key whose presence in this map is to be tested
-     * @return <tt>true</tt> if this map contains a mapping for the specified
-     * key.
+     * @param   key   要测试其是否在此映射中存在的键
+     * @return 如果此映射包含对于指定键的映射关系，则返回 <tt>true</tt>
      */
     public boolean containsKey(Object key) {
         return getNode(hash(key), key) != null;
     }
 
     /**
-     * Associates the specified value with the specified key in this map.
-     * If the map previously contained a mapping for the key, the old
-     * value is replaced.
+     * 在此映射中关联指定值与指定键。
+     * 如果该映射以前包含了一个该键的映射关系，则旧值被替换。
      *
-     * @param key key with which the specified value is to be associated
-     * @param value value to be associated with the specified key
-     * @return the previous value associated with <tt>key</tt>, or
-     *         <tt>null</tt> if there was no mapping for <tt>key</tt>.
-     *         (A <tt>null</tt> return can also indicate that the map
-     *         previously associated <tt>null</tt> with <tt>key</tt>.)
+     * @param key 指定值将要关联的键
+     * @param value 指定键将要关联的值
+     * @return 与 <tt>key</tt> 关联的旧值；
+     *         如果 <tt>key</tt> 没有任何映射关系，则返回 <tt>null</tt>。
+     *        （返回 <tt>null</tt> 还可能表示该映射之前将 <tt>null</tt> 与 <tt>key</tt> 关联。）
      */
     public V put(K key, V value) {
         return putVal(hash(key), key, value, false, true);
     }
 
     /**
-     * Implements Map.put and related methods
+     * 实现 Map.put 和相关方法
      *
-     * @param hash hash for key
-     * @param key the key
-     * @param value the value to put
-     * @param onlyIfAbsent if true, don't change existing value
-     * @param evict if false, the table is in creation mode.
-     * @return previous value, or null if none
+     * @param hash key的哈希值
+     * @param key key
+     * @param value 要放入的值
+     * @param onlyIfAbsent 如果为 true， 不改变现有值
+     * @param evict 如果为false，则表处于创建模式。
+     * @return 以前的值，如果没有则为null
      */
     final V putVal(int hash, K key, V value, boolean onlyIfAbsent,
                    boolean evict) {
@@ -666,13 +690,16 @@ public class HashMap<K,V> extends AbstractMap<K,V>
     }
 
     /**
+     * 初始化或加倍表格大小。 如果为null，则根据字段阈值中保存的初始容量目标进行分配。
+     * 否则，因为我们正在使用二次幂扩展，
+     * 所以每个bin中的元素必须保持相同的索引，或者在新表中以两个偏移的幂移动。
      * Initializes or doubles table size.  If null, allocates in
      * accord with initial capacity target held in field threshold.
      * Otherwise, because we are using power-of-two expansion, the
      * elements from each bin must either stay at same index, or move
      * with a power of two offset in the new table.
      *
-     * @return the table
+     * @return 表
      */
     final Node<K,V>[] resize() {
         Node<K,V>[] oldTab = table;
@@ -749,6 +776,7 @@ public class HashMap<K,V> extends AbstractMap<K,V>
     }
 
     /**
+     * 除非表太小，否则替换给定散列的索引处的bin中的所有链接节点，在这种情况下调整大小。
      * Replaces all linked nodes in bin at index for given hash unless
      * table is too small, in which case resizes instead.
      */
@@ -774,25 +802,22 @@ public class HashMap<K,V> extends AbstractMap<K,V>
     }
 
     /**
-     * Copies all of the mappings from the specified map to this map.
-     * These mappings will replace any mappings that this map had for
-     * any of the keys currently in the specified map.
+     * 将指定映射的所有映射关系复制到此映射中，
+     * 这些映射关系将替换此映射目前针对指定映射中所有键的所有映射关系。
      *
-     * @param m mappings to be stored in this map
-     * @throws NullPointerException if the specified map is null
+     * @param m 要在此映射中存储的映射关系
+     * @throws NullPointerException 如果指定的映射为 null
      */
     public void putAll(Map<? extends K, ? extends V> m) {
         putMapEntries(m, true);
     }
 
     /**
-     * Removes the mapping for the specified key from this map if present.
+     * 从此映射中移除指定键的映射关系（如果存在）。
      *
-     * @param  key key whose mapping is to be removed from the map
-     * @return the previous value associated with <tt>key</tt>, or
-     *         <tt>null</tt> if there was no mapping for <tt>key</tt>.
-     *         (A <tt>null</tt> return can also indicate that the map
-     *         previously associated <tt>null</tt> with <tt>key</tt>.)
+     * @param  key 其映射关系要从映射中移除的键
+     * @return 与 <tt>key</tt> 关联的旧值；如果 <tt>key</tt> 没有任何映射关系，则返回 <tt>null</tt>。
+     *        （返回 <tt>null</tt> 还可能表示该映射之前将 <tt>null</tt> 与 <tt>key</tt> 关联。）
      */
     public V remove(Object key) {
         Node<K,V> e;
@@ -801,14 +826,14 @@ public class HashMap<K,V> extends AbstractMap<K,V>
     }
 
     /**
-     * Implements Map.remove and related methods
+     * 实现Map.remove和相关方法
      *
-     * @param hash hash for key
-     * @param key the key
-     * @param value the value to match if matchValue, else ignored
-     * @param matchValue if true only remove if value is equal
-     * @param movable if false do not move other nodes while removing
-     * @return the node, or null if none
+     * @param hash key的哈希值
+     * @param key key
+     * @param value 如果matchValue匹配的值，否则忽略
+     * @param matchValue true时则如果值相等则仅删除
+     * @param movable 如果为false则在删除时不移动其他节点
+     * @return 节点，如果为空则为null
      */
     final Node<K,V> removeNode(int hash, Object key, Object value,
                                boolean matchValue, boolean movable) {
@@ -852,8 +877,7 @@ public class HashMap<K,V> extends AbstractMap<K,V>
     }
 
     /**
-     * Removes all of the mappings from this map.
-     * The map will be empty after this call returns.
+     * 从此映射中移除所有映射关系。此调用返回后，映射将为空。
      */
     public void clear() {
         Node<K,V>[] tab;
@@ -866,12 +890,10 @@ public class HashMap<K,V> extends AbstractMap<K,V>
     }
 
     /**
-     * Returns <tt>true</tt> if this map maps one or more keys to the
-     * specified value.
+     * 如果此映射将一个或多个键映射到指定值，则返回 <tt>true</tt>。
      *
-     * @param value value whose presence in this map is to be tested
-     * @return <tt>true</tt> if this map maps one or more keys to the
-     *         specified value
+     * @param value 要测试其是否在此映射中存在的值
+     * @return 如果此映射将一个或多个键映射到指定值，则返回 <tt>true</tt>
      */
     public boolean containsValue(Object value) {
         Node<K,V>[] tab; V v;
@@ -888,19 +910,15 @@ public class HashMap<K,V> extends AbstractMap<K,V>
     }
 
     /**
-     * Returns a {@link Set} view of the keys contained in this map.
-     * The set is backed by the map, so changes to the map are
-     * reflected in the set, and vice-versa.  If the map is modified
-     * while an iteration over the set is in progress (except through
-     * the iterator's own <tt>remove</tt> operation), the results of
-     * the iteration are undefined.  The set supports element removal,
-     * which removes the corresponding mapping from the map, via the
-     * <tt>Iterator.remove</tt>, <tt>Set.remove</tt>,
-     * <tt>removeAll</tt>, <tt>retainAll</tt>, and <tt>clear</tt>
-     * operations.  It does not support the <tt>add</tt> or <tt>addAll</tt>
-     * operations.
+     * 返回此映射中所包含的键的 {@link Set} 视图。该 set 受映射的支持，
+     * 所以对映射的更改将反映在该 set 中，反之亦然。
+     * 如果在对 set 进行迭代的同时修改了映射（通过迭代器自己的 <tt>remove</tt> 操作除外），
+     * 则迭代结果是不确定的。该 set 支持元素的移除，通过
+     * <tt>Iterator.remove</tt>、 <tt>Set.remove</tt>、
+     * <tt>removeAll</tt>、 <tt>retainAll</tt> 和 <tt>clear</tt>
+     * 操作可从该映射中移除相应的映射关系。它不支持 <tt>add</tt> 或 <tt>addAll</tt> 操作。
      *
-     * @return a set view of the keys contained in this map
+     * @return 此映射中包含的键的 set 视图
      */
     public Set<K> keySet() {
         Set<K> ks = keySet;
@@ -939,19 +957,17 @@ public class HashMap<K,V> extends AbstractMap<K,V>
     }
 
     /**
-     * Returns a {@link Collection} view of the values contained in this map.
-     * The collection is backed by the map, so changes to the map are
-     * reflected in the collection, and vice-versa.  If the map is
-     * modified while an iteration over the collection is in progress
-     * (except through the iterator's own <tt>remove</tt> operation),
-     * the results of the iteration are undefined.  The collection
-     * supports element removal, which removes the corresponding
-     * mapping from the map, via the <tt>Iterator.remove</tt>,
-     * <tt>Collection.remove</tt>, <tt>removeAll</tt>,
-     * <tt>retainAll</tt> and <tt>clear</tt> operations.  It does not
-     * support the <tt>add</tt> or <tt>addAll</tt> operations.
+     * 返回此映射所包含的值的 {@link Collection} 视图。
+     * 该 collection 受映射的支持，
+     * 所以对映射的更改将反映在该 collection 中，反之亦然。
+     * 如果在对 collection 进行迭代的同时修改了映射（通过迭代器自己的 <tt>remove</tt> 操作除外），
+     * 则迭代结果是不确定的。该 collection 支持元素的移除，
+     * 通过 tt>Iterator.remove</tt>、 <tt>Set.remove</tt>、
+     * <tt>removeAll</tt>、 <tt>retainAll</tt> 和 <tt>clear</tt>
+     * 操作可从该映射中移除相应的映射关系。
+     * 它不支持 <tt>add</tt> 或 <tt>addAll</tt> 操作。
      *
-     * @return a view of the values contained in this map
+     * @return 此映射中包含的值的 collection 视图
      */
     public Collection<V> values() {
         Collection<V> vs = values;
@@ -987,20 +1003,18 @@ public class HashMap<K,V> extends AbstractMap<K,V>
     }
 
     /**
-     * Returns a {@link Set} view of the mappings contained in this map.
-     * The set is backed by the map, so changes to the map are
-     * reflected in the set, and vice-versa.  If the map is modified
-     * while an iteration over the set is in progress (except through
-     * the iterator's own <tt>remove</tt> operation, or through the
-     * <tt>setValue</tt> operation on a map entry returned by the
-     * iterator) the results of the iteration are undefined.  The set
-     * supports element removal, which removes the corresponding
-     * mapping from the map, via the <tt>Iterator.remove</tt>,
-     * <tt>Set.remove</tt>, <tt>removeAll</tt>, <tt>retainAll</tt> and
-     * <tt>clear</tt> operations.  It does not support the
-     * <tt>add</tt> or <tt>addAll</tt> operations.
+     * 返回此映射所包含的映射关系的 {@link Set} 视图。
+     * 该 set 受映射支持，所以对映射的更改将反映在此 set 中，反之亦然。
+     * 如果在对 set 进行迭代的同时修改了映射
+     * （通过迭代器自己的 <tt>remove</tt> 操作，
+     * 或者通过在该迭代器返回的映射项上执行 <tt>setValue</tt> 操作除外），
+     * 则迭代结果是不确定的。该 set 支持元素的移除，
+     * 通过 tt>Iterator.remove</tt>、 <tt>Set.remove</tt>、
+     * <tt>removeAll</tt>、 <tt>retainAll</tt> 和 <tt>clear</tt>
+     * 操作可从该映射中移除相应的映射关系。
+     * 它不支持 <tt>add</tt> 或 <tt>addAll</tt> 操作。
      *
-     * @return a set view of the mappings contained in this map
+     * @return 此映射所包含的映射关系的 set 视图。
      */
     public Set<Map.Entry<K,V>> entrySet() {
         Set<Map.Entry<K,V>> es;
@@ -1314,10 +1328,9 @@ public class HashMap<K,V> extends AbstractMap<K,V>
     // Cloning and serialization
 
     /**
-     * Returns a shallow copy of this <tt>HashMap</tt> instance: the keys and
-     * values themselves are not cloned.
+     * 返回此 <tt>HashMap</tt> 实例的浅表副本：并没有复制键值对本身。
      *
-     * @return a shallow copy of this map
+     * @return 此 map 的浅表副本
      */
     @SuppressWarnings("unchecked")
     @Override
@@ -1343,15 +1356,12 @@ public class HashMap<K,V> extends AbstractMap<K,V>
     }
 
     /**
-     * Save the state of the <tt>HashMap</tt> instance to a stream (i.e.,
-     * serialize it).
+     * 将此 <tt>HashMap</tt> 实例的状态保存到流中（即序列化它）。
      *
-     * @serialData The <i>capacity</i> of the HashMap (the length of the
-     *             bucket array) is emitted (int), followed by the
-     *             <i>size</i> (an int, the number of key-value
-     *             mappings), followed by the key (Object) and value (Object)
-     *             for each key-value mapping.  The key-value mappings are
-     *             emitted in no particular order.
+     * @serialData HashMap的 <i>capacity</i>（桶数组的长度）发出（int），
+     *             然后是<i>size</i>（int，键值映射的数量），
+     *             后跟每个键值映射的键（Object）和值（Object）。
+     *             键值映射不按特定顺序发出。
      */
     private void writeObject(java.io.ObjectOutputStream s)
         throws IOException {
@@ -1364,8 +1374,7 @@ public class HashMap<K,V> extends AbstractMap<K,V>
     }
 
     /**
-     * Reconstitute the {@code HashMap} instance from a stream (i.e.,
-     * deserialize it).
+     * 从流中重构{@code HashMap}实例（即反序列化）。
      */
     private void readObject(java.io.ObjectInputStream s)
         throws IOException, ClassNotFoundException {
@@ -1735,6 +1744,9 @@ public class HashMap<K,V> extends AbstractMap<K,V>
 
 
     /*
+     * 以下受包保护的方法设计为由LinkedHashMap覆盖，但不由任何其他子类覆盖。
+     * 几乎所有其他内部方法也受包保护但是被声明为final，
+     * 因此LinkedHashMap，视图类和HashSet可以使用它们。
      * The following package-protected methods are designed to be
      * overridden by LinkedHashMap, but not by any other subclass.
      * Nearly all other internal methods are also package-protected
@@ -1950,6 +1962,7 @@ public class HashMap<K,V> extends AbstractMap<K,V>
         }
 
         /**
+         * 返回替换从此节点链接的非TreeNode的列表。
          * Returns a list of non-TreeNodes replacing those linked from
          * this node.
          */
@@ -2016,6 +2029,11 @@ public class HashMap<K,V> extends AbstractMap<K,V>
         }
 
         /**
+         * 删除在此调用之前必须存在的给定节点。这比典型的红黑删除代码更麻烦，因为我们
+         * 不能将内部节点的内容与叶子后继者交换，后者由遍历期间可独立访问的“下一个”指针固定。
+         * 所以我们交换树链接。
+         * 如果当前树似乎具有太少的节点，则将bin转换回普通bin。
+         * （测试会在2到6个节点之间触发，具体取决于树结构）。
          * Removes the given node, that must be present before this call.
          * This is messier than typical red-black deletion code because we
          * cannot swap the contents of an interior node with a leaf
@@ -2121,6 +2139,8 @@ public class HashMap<K,V> extends AbstractMap<K,V>
         }
 
         /**
+         * 将树库中的节点拆分为较低和较高的树容器，或者如果现在太小则将其解除。
+         * 只调整大小; 见上面关于拆分位和索引的讨论。
          * Splits nodes in a tree bin into lower and upper tree bins,
          * or untreeifies if now too small. Called only from resize;
          * see above discussion about split bits and indices.
@@ -2178,7 +2198,7 @@ public class HashMap<K,V> extends AbstractMap<K,V>
         }
 
         /* ------------------------------------------------------------ */
-        // Red-black tree methods, all adapted from CLR
+        // 红黑树方法，全部改编自CLR
 
         static <K,V> TreeNode<K,V> rotateLeft(TreeNode<K,V> root,
                                               TreeNode<K,V> p) {
@@ -2364,7 +2384,7 @@ public class HashMap<K,V> extends AbstractMap<K,V>
         }
 
         /**
-         * Recursive invariant check
+         * 递归不变检查
          */
         static <K,V> boolean checkInvariants(TreeNode<K,V> t) {
             TreeNode<K,V> tp = t.parent, tl = t.left, tr = t.right,
